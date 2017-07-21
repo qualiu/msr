@@ -1,0 +1,917 @@
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\ 
+c:\\Program Files\\LLVM\\bin\\clang.exe
+Matched, input-length(35) - output-length(39) = -4. Replaced. Input string = c:\Program Files\LLVM\bin\clang.exe 
+Return = 1 : msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\ 
+
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\ 
+c:\Program Files\LLVM\bin\clang.exe
+Matched, input-length(35) - output-length(35) = 0. Not replaced. Input string = c:\Program Files\LLVM\bin\clang.exe 
+Return = 0 : msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\ 
+
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\ 
+c:\Program Files\LLVM\bin\clang.exe
+Matched, input-length(35) - output-length(35) = 0. Not replaced. Input string = c:\Program Files\LLVM\bin\clang.exe 
+Return = 0 : msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\ 
+
+msr -c -p sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing 
+Matched 1 lines(1.14%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -S -t "(.+\S+)\s*$" -H 0         # Check return value, output nothing 
+
+msr -c -p sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing 
+Matched 0 lines in 1 files
+Return = 0 : msr -c -p sample-file.txt -S -t "(.+\S+)$" -H 0            # Check return value, output nothing 
+
+msr -c -p sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing 
+Matched 1 lines(1.14%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -S -t "(.+\S+)\n$" -H 0          # Check return value, output nothing 
+
+msr -c -p . -f bat -l -PAC -H 0 
+Return = 4 : msr -c -p . -f bat -l -PAC -H 0 
+
+msr -c -p . -f bat -l -PIC -H 0 
+Return = 4 : msr -c -p . -f bat -l -PIC -H 0 
+
+msr -c -p sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2 
+sample-file.txt:7: enum class LineType {
+sample-file.txt:8:     NotMatchedLine = 0,
+sample-file.txt:9:     MatchedLine = 1,
+Matched 1 lines(11.11%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2 
+
+msr -c -p sample-file.txt -it node --nt "node\d+" 
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:67:   <Subject>Node 2 title in body for test</Subject>
+sample-file.txt:75:   <as::item ref="NodeCitOnly" />
+Matched 4 lines(4.55%) in 1 files(100%)
+Return = 4 : msr -c -p sample-file.txt -it node --nt "node\d+" 
+
+msr -c -p sample-file.txt -it node --nt "node\d+" -o "NODE" 
+sample-file.txt:48:   <as::item ref="NODECitOnly" />
+sample-file.txt:62:   <as::item ref="NODECitOnly" />
+sample-file.txt:67:   <Subject>NODE 2 title in body for test</Subject>
+sample-file.txt:75:   <as::item ref="NODECitOnly" />
+Matched 4 lines(4.55%) in 1 files(100%)
+Return = 4 : msr -c -p sample-file.txt -it node --nt "node\d+" -o "NODE" 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks 
+Matched 0 blocks in 1 files
+Return = 0 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block 
+sample-file.txt:47: <Tag Name="Node1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="Node1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="Node1Body">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+sample-file.txt:57:     </as::pairs>
+sample-file.txt:58:   </as::item>
+sample-file.txt:59: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3 
+sample-file.txt:47: <Tag Name="Node1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="Node1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="Node1Body">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+sample-file.txt:57:     </as::pairs>
+sample-file.txt:58:   </as::item>
+sample-file.txt:59: </Tag>
+sample-file.txt:74: <Tag Name="Node3">
+sample-file.txt:75:   <as::item ref="NodeCitOnly" />
+sample-file.txt:76:   <as::item ref="Node3Config" />
+sample-file.txt:77:   
+sample-file.txt:78:   <MailTo>Clark@abc.com</MailTo>
+sample-file.txt:79:   <AllowReTry>true</AllowReTry>
+sample-file.txt:80:   <SubArgs>
+sample-file.txt:81:     <SubArg>HBase</SubArg>
+sample-file.txt:82:   </SubArgs>
+sample-file.txt:83:   <Subject>Node3 title in body for test</Subject>
+sample-file.txt:84:   <Hosts>
+sample-file.txt:85:     <HBrgetHost>LZHOST</HBrgetHost>
+sample-file.txt:86:   </Hosts>
+sample-file.txt:87: </Tag>
+Matched 2 blocks(66.67%) in 1 files(100%)
+Return = 2 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in body for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block 
+
+msr -c -p sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output 
+Matched 0 blocks in 1 files
+Return = 0 : msr -c -p sample-file.txt -ib "\s*<tag" -Q "\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output 
+Matched 0 blocks in 1 files
+Return = 0 : msr -c -p sample-file.txt -b "\s*<tag" -iQ "\s*</tag" --nt "Node[1-3]"  ## Must no block to output 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output 
+Matched 0 blocks in 1 files
+Return = 0 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:63:   <as::item ref="Node2Config" />
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in body for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in body for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block 
+
+msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in body for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced 
+sample-file.txt:47: <Tag Name="myNode1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="myNode1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="myNode1Body">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+sample-file.txt:57:     </as::pairs>
+sample-file.txt:58:   </as::item>
+sample-file.txt:59: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced 
+
+msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output. 
+Matched 0 blocks in 1 files
+Return = 0 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</TagNotExist>" -a ## Should no blocks and output. 
+
+msr -c -p sample-file.txt -ib "^\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching 
+sample-file.txt:12: enum class LineType {
+  NotMatchedLine = 0,
+  MatchedLine = 1,
+  UpLine = 2,
+  DownLine = 3
+};
+
+Matched 1 lines(8.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -ib "\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching 
+
+msr -c -p sample-file.txt -ib "^\s*enum" -q "\};" -t "^\s+" -o "  " -a -P 
+enum class LineType {
+  NotMatchedLine = 0,
+  MatchedLine = 1,
+  UpLine = 2,
+  DownLine = 3
+};
+Matched 4 lines(33.33%) in 1 files(100%)
+Return = 4 : msr -c -p sample-file.txt -ib "\s*enum" -q "\};" -t "\s+" -o "  " -a -P 
+
+msr -c -p sample-file.txt -i -t "(Deferred\w*)" 
+sample-file.txt:14: class DeferredRun {
+sample-file.txt:16:         DeferredRun(const std::function<void()>& run) : _run(run) { }
+sample-file.txt:17:         ~DeferredRun() {
+sample-file.txt:28:         DeferredRun deferredRun([&]() {
+Matched 4 lines(4.55%) in 1 files(100%)
+Return = 4 : msr -c -p sample-file.txt -i -t "(Deferred\w*)" 
+
+msr -c -p sample-file.txt -it "(Deferred\w*)\s+\1" 
+sample-file.txt:28:         DeferredRun deferredRun([&]() {
+Matched 1 lines(1.14%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -it "(Deferred\w*)\s+\1" 
+
+msr -c -p sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced" 
+sample-file.txt:14: class DeferredRunReplaced {
+sample-file.txt:16:         DeferredRunReplaced(const std::function<void()>& run) : _run(run) { }
+sample-file.txt:17:         ~DeferredRunReplaced() {
+Matched 1 blocks(100%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -i -b "class DeferredRun" -Q "};" -t "(Deferred\w*)" -o "$1Replaced" 
+
+msr -c -p example-commands.bat -it "class|run" -H 9 
+example-commands.bat:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
+example-commands.bat:34: msr -c -p %~dp0\sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
+example-commands.bat:35: msr -c -p %~dp0\example-commands.bat -it "class|run" -H 9
+example-commands.bat:36: msr -c -p %~dp0\example-commands.bat -ie "class|run" -H 9
+Matched 4 lines(4.04%) in 1 files(100%)
+Return = 4 : msr -c -p example-commands.bat -it "class|run" -H 9 
+
+msr -c -p example-commands.bat -ie "class|run" -H 9 
+example-commands.bat:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
+example-commands.bat:2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
+example-commands.bat:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+example-commands.bat:4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+example-commands.bat:5: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+example-commands.bat:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+example-commands.bat:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+example-commands.bat:8: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+Matched 99 lines(100%) in 1 files(100%)
+Return = 99 : msr -c -p example-commands.bat -ie "class|run" -H 9 
+
+msr -c -p example-commands.bat -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9 
+example-commands.bat:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+example-commands.bat:4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+example-commands.bat:5: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+example-commands.bat:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+example-commands.bat:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+example-commands.bat:8: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+example-commands.bat:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
+Matched 92 lines(92.93%) in 1 files(100%)
+Return = 92 : msr -c -p example-commands.bat -it "msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9 
+
+msr -c -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines 
+example-commands.bat:10: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+example-commands.bat:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
+example-commands.bat:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+example-commands.bat:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+example-commands.bat:86: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
+example-commands.bat:87: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
+example-commands.bat:88: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
+example-commands.bat:89: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
+example-commands.bat:90: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
+Matched 42 lines(42.42%) in 1 files(100%)
+Return = 42 : msr -c -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines 
+
+msr -c -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines 
+example-commands.bat:10: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+example-commands.bat:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
+example-commands.bat:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+example-commands.bat:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+Matched 42 lines(42.42%) in 1 files(100%)
+Return = 42 : msr -c -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines 
+
+msr -c -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from 
+example-commands.bat:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
+example-commands.bat:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+example-commands.bat:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+example-commands.bat:36: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
+example-commands.bat:37: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
+Matched 40 lines(40.40%) in 1 files(100%)
+Return = 40 : msr -c -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from 
+
+msr -c -p example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test 
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+example-commands.bat:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+example-commands.bat:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Matched 90 lines(90.91%) in 1 files(100%)
+Return = 90 : msr -c -p example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test 
+
+msr -c -p example-commands.bat -x t -L 9 -e txt -H 9 
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+example-commands.bat:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+example-commands.bat:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Matched 90 lines(90.91%) in 1 files(100%)
+Return = 90 : msr -c -p example-commands.bat -x t -L 9 -e txt -H 9 
+
+msr -c -p example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile 
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+example-commands.bat:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+example-commands.bat:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Matched 90 lines(90.91%) in 1 files(100%)
+Return = 90 : msr -c -p example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile 
+
+msr -c -p example-commands.bat -x t -L 9 -e me.txt -H 9 
+example-commands.bat:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+example-commands.bat:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
+example-commands.bat:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+example-commands.bat:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Matched 90 lines(90.91%) in 1 files(100%)
+Return = 90 : msr -c -p example-commands.bat -x t -L 9 -e me.txt -H 9 
+
+msr -c -p example-commands.bat -x me -L 20 -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -x me -L 20 -H 9 
+
+msr -c -p example-commands.bat -x me -L 20 -ie me -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -x me -L 20 -ie me -H 9 
+
+msr -c -p example-commands.bat -t me -L 20 -ie me -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -t me -L 20 -ie me -H 9 
+
+msr -c -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9 
+
+msr -c -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9 
+
+msr -c -p example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9 
+
+msr -c -p example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9 
+example-commands.bat:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+example-commands.bat:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+example-commands.bat:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+example-commands.bat:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+example-commands.bat:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+example-commands.bat:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Matched 35 lines(35.35%) in 1 files(100%)
+Return = 35 : msr -c -p example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9 
+
+msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9 
+example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:52: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+example-commands.bat:53: ::msr -c -p %~dp0\sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+" -R
+example-commands.bat:54: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+example-commands.bat:55: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+example-commands.bat:56: msr -c -p %~dp0\example-commands.bat -it NAME -l
+example-commands.bat:57: msr -c -p %~dp0\sample-file.txt -it NAME -l
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9 
+
+msr -c -p example-commands.bat -t name -o NAME -ie Names -H 9 
+example-commands.bat:52: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+example-commands.bat:54: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+example-commands.bat:55: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+example-commands.bat:56: msr -c -p %~dp0\example-commands.bat -it NAME -l
+example-commands.bat:57: msr -c -p %~dp0\sample-file.txt -it NAME -l
+example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
+example-commands.bat:60: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
+example-commands.bat:61: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
+example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -t name -o NAME -ie Names -H 9 
+
+msr -c -p example-commands.bat -t name -o NAME -T 1 -C 
+example-commands.bat:97: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Matched 19 lines(19.19%) in 1 files(100%)
+Return = 19 : msr -c -p example-commands.bat -t name -o NAME -T 1 -C 
+
+msr -c -p example-commands.bat -it name -l 
+1-1 : example-commands.bat
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -it name -l 
+
+msr -c -p sample-file.txt -it name -l 
+1-1 : sample-file.txt
+Matched 10 lines(11.36%) in 1 files(100%)
+Return = 10 : msr -c -p sample-file.txt -it name -l 
+
+msr -c -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9 
+example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
+example-commands.bat:72: msr -c -p %~dp0\sample-file.txt -ib "<Tag NAME" -q "Switch" -Q "</Tag" -t MailTo -e Switch
+example-commands.bat:73: msr -c -p %~dp0\sample-file.txt -ib "<Tag NAME" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a
+example-commands.bat:74: msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr "
+example-commands.bat:75: msr -c -p %~dp0\sample-file.txt -it Tag -x ref -U 5 -D 5
+example-commands.bat:91: msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "NAME=(\S+)"
+example-commands.bat:92: ::Stop calling for linux-test.sh as following are advanced test. On Linux , need to replace the double quotes "" to single quotes '' in -o xxxx if contains $1 or $2 etc.
+example-commands.bat:93: ::Example bellow extract to a file then generate replacing commands and execute them.
+example-commands.bat:94: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
+Matched 6 blocks(85.71%) in 1 files(100%)
+Return = 6 : msr -c -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9 
+
+msr -c -p example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 5 
+example-commands.bat:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+example-commands.bat:4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+example-commands.bat:5: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+example-commands.bat:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+example-commands.bat:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+Matched 11 lines(11.11%) in 1 files(100%)
+Return = 11 : msr -c -p example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 5 
+
+msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
+example-commands.bat:95: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+example-commands.bat:96: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c
+example-commands.bat:97: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
+
+msr -c -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9 
+example-commands.bat:19: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+example-commands.bat:20: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
+example-commands.bat:21: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
+example-commands.bat:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
+example-commands.bat:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
+example-commands.bat:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
+example-commands.bat:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
+example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
+example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9 
+
+msr -c -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9 
+example-commands.bat:19: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+example-commands.bat:20: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
+example-commands.bat:21: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
+example-commands.bat:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
+example-commands.bat:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
+example-commands.bat:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
+example-commands.bat:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
+example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
+example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
+Matched 24 lines(24.24%) in 1 files(100%)
+Return = 24 : msr -c -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9 
+
+msr -c -p example-commands.bat -b "garbage" -Q publish-update -t ping -e "me|ping|you|(publish-update)" 
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -b "garbage" -Q publish-update -t ping -e "me|ping|you|(publish-update)"
+example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -b "garbage" -q publish-update -t ping -e "me|ping|you|(publish-update)"
+Matched 1 blocks(100%) in 1 files(100%)
+Return = 1 : msr -c -p example-commands.bat -b "garbage" -Q publish-update -t ping -e "me|ping|you|(publish-update)" 
+
+msr -c -p example-commands.bat -b "garbage" -q publish-update -t ping -e "me|ping|you|(publish-update)" 
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -b "garbage" -Q publish-update -t ping -e "me|ping|you|(publish-update)"
+Matched 1 lines(1.59%) in 1 files(100%)
+Return = 1 : msr -c -p example-commands.bat -b "garbage" -q publish-update -t ping -e "me|ping|you|(publish-update)" 
+
+msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3 
+example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -b "garbage" -Q publish-update -t ping -e "me|ping|you|(publish-update)"
+example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -b "garbage" -q publish-update -t ping -e "me|ping|you|(publish-update)"
+example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -t not -U 3 -D 3
+example-commands.bat:66: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
+example-commands.bat:67: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
+example-commands.bat:68: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
+Matched 1 lines(1.01%) in 1 files(100%)
+Return = 1 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3 
+
+msr -c -p sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a 
+sample-file.txt:47: <Tag Name="Node1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="Node1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="Node1BODY">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+sample-file.txt:57:     </as::pairs>
+sample-file.txt:58:   </as::item>
+sample-file.txt:59: </Tag>
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in BODY for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 2 blocks(100%) in 1 files(100%)
+Return = 2 : msr -c -p sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a 
+
+msr -c -p sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a 
+sample-file.txt:61: <Tag Name="Node2">
+sample-file.txt:62:   <as::item ref="NodeCitOnly" />
+sample-file.txt:63:   <as::item ref="Node2Config" />
+sample-file.txt:64:   
+sample-file.txt:65:   <MailTo>Bob@abc.com</MailTo>
+sample-file.txt:66:   <SubArgs />
+sample-file.txt:67:   <Subject>Node 2 title in BODY for test</Subject>
+sample-file.txt:68:   <Hosts>
+sample-file.txt:69:     <HBrgetHost>HB</HBrgetHost>
+sample-file.txt:70:     <Type>BBB</Type>
+sample-file.txt:71:   </Hosts>
+sample-file.txt:72: </Tag>
+Matched 1 blocks(100%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a 
+
+msr -c -p sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a 
+sample-file.txt:47: <Tag Name="Node1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="Node1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="Node1Body">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+sample-file.txt:57:     </as::pairs>
+sample-file.txt:58:   </as::item>
+sample-file.txt:59: </Tag>
+Matched 1 blocks(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a 
+
+msr -c -p example-commands.bat -it name -o NAME -e Names -x update 
+example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
+example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
+Matched 2 lines(2.02%) in 1 files(100%)
+Return = 2 : msr -c -p example-commands.bat -it name -o NAME -e Names -x update 
+
+msr -c -p example-commands.bat -it name -e Names -x nameX 
+example-commands.bat:70: msr -c -p %~dp0\example-commands.bat -it name -e Names -x nameX
+Matched 1 lines(1.01%) in 1 files(100%)
+Return = 1 : msr -c -p example-commands.bat -it name -e Names -x nameX 
+
+msr -c -p example-commands.bat -ix update -t name -e Names 
+example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -it name -o NAME -e Names -x update
+example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -ix update -t name -e Names
+Matched 2 lines(2.02%) in 1 files(100%)
+Return = 2 : msr -c -p example-commands.bat -ix update -t name -e Names 
+
+msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch 
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+Matched 1 blocks(100%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch 
+
+msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a 
+sample-file.txt:47: <Tag Name="Node1">
+sample-file.txt:48:   <as::item ref="NodeCitOnly" />
+sample-file.txt:49:   <as::item ref="Node1Config" />
+sample-file.txt:50:   <MailTo>Alex@abc.com</MailTo>
+sample-file.txt:51:   <as::item ref="Node1Body">
+sample-file.txt:52:     <as::pairs>
+sample-file.txt:53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+sample-file.txt:55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+sample-file.txt:56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+Matched 1 blocks(100%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a 
+
+msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " 
+sample-file.txt:88: class DeferredRun {
+public:
+        DeferredRun(const std::function<void()>& run) : _run(run) { }
+        ~DeferredRun() {
+                _run();
+        }
+private:
+        const std::function<void()> _run;
+};
+
+int main(int argc, char* argv[])
+{
+        auto hFile = OpenHandle(argv[1]);
+
+        DeferredRun deferredRun([&]() {
+                CloseHandle(hFile);
+        });
+}
+
+<pairPair>
+    msr -x "#FUNCTION#" -o "'All'"
+</pairPair>
+<pairPair>
+    msr -x "#THRESHOLD_1#" -o "4000"
+</pairPair>
+<pairPair>
+    msr -x "#THRESHOLD_2#" -o "8000"
+</pairPair>
+
+
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+  
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+<Tag Name="Node3">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node3Config" />
+  
+  <MailTo>Clark@abc.com</MailTo>
+  <AllowReTry>true</AllowReTry>
+  <SubArgs>
+    <SubArg>HBase</SubArg>
+  </SubArgs>
+  <Subject>Node3 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>LZHOST</HBrgetHost>
+  </Hosts>
+</Tag>
+
+Matched 1 lines(1.14%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " 
+
+msr -c -p sample-file.txt -it Tag -x ref -U 5 -D 5 
+Matched 0 lines in 1 files
+Return = 0 : msr -c -p sample-file.txt -it Tag -x ref -U 5 -D 5 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
+sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
+sample-file.txt:4: 2012-12-27 00:04:04.444 forth  line time at 4
+sample-file.txt:5: 2012-12-27 00:05:05.555 fifth  line time at 5
+Matched 3 lines(3.41%) in 1 files(100%)
+Return = 3 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+Matched 2 lines(66.67%) in 1 files(100%)
+Return = 2 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
+Matched 3 lines(100%) in 1 files(100%)
+Return = 3 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+Matched 1 lines(100%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+Matched 2 lines(66.67%) in 1 files(100%)
+Return = 2 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
+
+msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first 
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+Matched 1 lines(33.33%) in 1 files(100%)
+Return = 1 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first 
+
+msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*" 
+example-commands.bat:76: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+example-commands.bat:80: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+example-commands.bat:81: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
+Matched 3 lines(3.03%) in 1 files(100%)
+Return = 3 : msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*" 
+
+msr -c -p sample-file.txt -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012 
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
+sample-file.txt:4: 2012-12-27 00:04:04.444 forth  line time at 4
+sample-file.txt:5: 2012-12-27 00:05:05.555 fifth  line time at 5
+Matched 5 lines(5.68%) in 1 files(100%)
+Return = 5 : msr -c -p sample-file.txt -s "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012 
+
+msr -c -p sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" 
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
+sample-file.txt:4: 2012-12-27 00:04:04.444 forth  line time at 4
+sample-file.txt:5: 2012-12-27 00:05:05.555 fifth  line time at 5
+Matched 5 lines(5.68%) in 1 files(100%)
+Return = 5 : msr -c -p sample-file.txt -t "((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" 
+
+msr -c -p sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc 
+sample-file.txt:5: 2012-12-27 00:05:05.555 fifth  line time at 5
+sample-file.txt:4: 2012-12-27 00:04:04.444 forth  line time at 4
+sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
+Matched 5 lines(5.68%) in 1 files(100%)
+Return = 5 : msr -c -p sample-file.txt -t "((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc 
+
+msr -c -p example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched. 
+Matched 98 lines(98.99%) in 1 files(100%)
+Return = 98 : msr -c -p example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched. 
+
+msr -c -p example-commands.bat -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom. 
+example-commands.bat:97: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced name value settings.
+example-commands.bat:98: msr -z "if exist Node1.tmp del Node1.tmp" -XPI
+Matched 98 lines(98.99%) in 1 files(100%)
+Return = 98 : msr -c -p example-commands.bat -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom. 
+
+msr -c -p example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched. 
+Matched 98 lines(98.99%) in 1 files(100%)
+Return = 98 : msr -c -p example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched. 
+
+msr -c -p example-commands.bat -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top. 
+example-commands.bat:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
+example-commands.bat:2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
+Matched 98 lines(98.99%) in 1 files(100%)
+Return = 98 : msr -c -p example-commands.bat -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top. 
+
+msr -c -p example-commands.bat -it just -U 3 -D 3 
+example-commands.bat:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
+example-commands.bat:2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
+example-commands.bat:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+example-commands.bat:4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+example-commands.bat:87: msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
+example-commands.bat:88: msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.
+example-commands.bat:89: msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
+example-commands.bat:90: msr -c -p %~dp0\example-commands.bat -it just -U 3 -D 3
+example-commands.bat:91: msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
+example-commands.bat:92: ::Stop calling for linux-test.sh as following are advanced test. On Linux , need to replace the double quotes "" to single quotes '' in -o xxxx if contains $1 or $2 etc.
+example-commands.bat:93: ::Example bellow extract to a file then generate replacing commands and execute them.
+Matched 2 lines(2.02%) in 1 files(100%)
+Return = 2 : msr -c -p example-commands.bat -it just -U 3 -D 3 
+
+msr -c -p sample-file.txt -it "\W(function)\W" -e "name=(\S+)" 
+sample-file.txt:16:         DeferredRun(const std::function<void()>& run) : _run(run) { }
+sample-file.txt:21:         const std::function<void()> _run;
+sample-file.txt:34:     <Name>#FUNCTION#</Name>
+sample-file.txt:54:       <as::pair name="Function">#FUNCTION#</as::pair>
+Matched 4 lines(4.55%) in 1 files(100%)
+Return = 4 : msr -c -p sample-file.txt -it "\W(function)\W" -e "name=(\S+)" 
+
+
+echo example-commands.bat | msr -t .+  -o "findstr xml $0" -XA 
+msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced name value settings.
+ 
+
+msr -p example-commands.bat -b "::Stop calling" --nt "::Stop calling" -ix "%~dp0" -o %~dp0 -a -PAC | msr -it "\bmsr\b" -o "msr" -a -XPAC 
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+Run-Command3[1] = msr -x "#FUNCTION#" -o "'All'" -p Node1.tmp -R
+1-1 : Node1.tmp
+Replaced 1 lines(7.14%) in 1 files(100%)
+
+Run-Command3[2] = msr -x "#THRESHOLD_1#" -o "4000" -p Node1.tmp -R
+1-1 : Node1.tmp
+Replaced 1 lines(7.14%) in 1 files(100%)
+
+Run-Command3[3] = msr -x "#THRESHOLD_2#" -o "8000" -p Node1.tmp -R
+1-1 : Node1.tmp
+Replaced 1 lines(7.14%) in 1 files(100%)
+
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">'All'</as::pair>
+      <as::pair name="Interval">4000</as::pair>
+      <as::pair name="Switch">8000</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+

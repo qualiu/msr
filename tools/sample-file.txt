@@ -1,0 +1,87 @@
+2012-12-27 00:02:02.222 first  line time at 2
+2012-12-27 00:01:01.111 second line time at 1
+2012-12-27 00:03:03.333 third  line time at 3
+2012-12-27 00:04:04.444 forth  line time at 4
+2012-12-27 00:05:05.555 fifth  line time at 5
+
+enum class LineType {
+    NotMatchedLine = 0,
+    MatchedLine = 1,
+    UpLine = 2,
+    DownLine = 3
+};
+
+class DeferredRun {
+public:
+        DeferredRun(const std::function<void()>& run) : _run(run) { }
+        ~DeferredRun() {
+                _run();
+        }
+private:
+        const std::function<void()> _run;
+};
+
+int main(int argc, char* argv[])
+{
+        auto hFile = OpenHandle(argv[1]);
+
+        DeferredRun deferredRun([&]() {
+                CloseHandle(hFile);
+        });
+}
+
+<pairPair>
+    <Name>#FUNCTION#</Name>
+    <Value>'All'</Value>
+</pairPair>
+<pairPair>
+    <Name>#THRESHOLD_1#</Name>
+    <Value>4000</Value>
+</pairPair>
+<pairPair>
+    <Name>#THRESHOLD_2#</Name>
+    <Value>8000</Value>
+</pairPair>
+
+
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+  
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+<Tag Name="Node3">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node3Config" />
+  
+  <MailTo>Clark@abc.com</MailTo>
+  <AllowReTry>true</AllowReTry>
+  <SubArgs>
+    <SubArg>HBase</SubArg>
+  </SubArgs>
+  <Subject>Node3 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>LZHOST</HBrgetHost>
+  </Hosts>
+</Tag>

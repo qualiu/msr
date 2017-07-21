@@ -1,0 +1,101 @@
+qualiu@mypc /cygdrive/d/opengit/msr
+$ perf/batch-compare-performance.sh /cygdrive/d/tmp/large-error.log
+# Case-1: Both found
+2017-05-06 14:21:27 : Plain text finding: Exception : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.836273 s, from 2017-05-06 14:21:27.596453 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 3.335511 s, from 2017-05-06 14:21:30.533318 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.263649 s, from 2017-05-06 14:21:33.976591 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Exception
+
+2017-05-06 14:21:36 : Plain ignore case: Exception : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.966850 s, from 2017-05-06 14:21:36.596002 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 6.649423 s, from 2017-05-06 14:21:41.728334 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 3.666171 s, from 2017-05-06 14:21:48.483999 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Exception
+
+2017-05-06 14:21:52 : Regex text finding: Error.*found : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = Error.*found
+Matched 143 files from stdin, read 143 lines. Used 65.611329 s, from 2017-05-06 14:21:52.468501 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : 'Error.*found'
+Matched 143 files from stdin, read 143 lines. Used 6.771953 s, from 2017-05-06 14:22:58.198841 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : 'Error.*found'
+Matched 143 files from stdin, read 143 lines. Used 4.480239 s, from 2017-05-06 14:23:05.068713 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : 'Error.*found'
+
+2017-05-06 14:23:09 : Regex ignore case: Error.*found : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = Error.*found
+Matched 143 files from stdin, read 143 lines. Used 90.423985 s, from 2017-05-06 14:23:09.890747 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : 'Error.*found'
+Matched 143 files from stdin, read 143 lines. Used 6.508600 s, from 2017-05-06 14:24:40.445088 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : 'Error.*found'
+Matched 143 files from stdin, read 143 lines. Used 9.091458 s, from 2017-05-06 14:24:47.076514 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : 'Error.*found'
+
+# Case-2: Both found, simpler regex
+2017-05-06 14:24:59 : Plain text finding: Exception : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.896696 s, from 2017-05-06 14:24:59.763788 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 3.479858 s, from 2017-05-06 14:25:02.778392 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.261150 s, from 2017-05-06 14:25:06.373288 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Exception
+
+2017-05-06 14:25:08 : Plain ignore case: Exception : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.955292 s, from 2017-05-06 14:25:08.938820 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 6.728472 s, from 2017-05-06 14:25:14.026859 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 3.774168 s, from 2017-05-06 14:25:20.880133 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Exception
+
+2017-05-06 14:25:24 : Regex text finding: [0-9]*Exception[0-9]* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = [0-9]*Exception[0-9]*
+Matched 1032 files from stdin, read 1032 lines. Used 5.621759 s, from 2017-05-06 14:25:25.037414 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : '[0-9]*Exception[0-9]*'
+Matched 1032 files from stdin, read 1032 lines. Used 3.532859 s, from 2017-05-06 14:25:30.794145 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : '[0-9]*Exception[0-9]*'
+Matched 1032 files from stdin, read 1032 lines. Used 10.096152 s, from 2017-05-06 14:25:34.458146 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : '[0-9]*Exception[0-9]*'
+
+2017-05-06 14:25:44 : Regex ignore case: [0-9]*Exception[0-9]* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = [0-9]*Exception[0-9]*
+Matched 1032 files from stdin, read 1032 lines. Used 27.736949 s, from 2017-05-06 14:25:44.857443 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : '[0-9]*Exception[0-9]*'
+Matched 1032 files from stdin, read 1032 lines. Used 6.765010 s, from 2017-05-06 14:26:12.737614 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : '[0-9]*Exception[0-9]*'
+Matched 1032 files from stdin, read 1032 lines. Used 18.260002 s, from 2017-05-06 14:26:19.605229 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : '[0-9]*Exception[0-9]*'
+
+# Case-3: Not found, partial matched both
+2017-05-06 14:26:41 : Plain text finding: ExceptionX : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 2.007655 s, from 2017-05-06 14:26:41.408587 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 2.320132 s, from 2017-05-06 14:26:43.532121 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 1.470795 s, from 2017-05-06 14:26:45.962593 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : ExceptionX
+
+2017-05-06 14:26:47 : Plain ignore case: ExceptionX : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 6.130074 s, from 2017-05-06 14:26:47.741165 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 6.553958 s, from 2017-05-06 14:26:53.994562 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 3.112416 s, from 2017-05-06 14:27:00.641710 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : ExceptionX
+
+2017-05-06 14:27:03 : Regex text finding: [0-9]*ExceptionX[0-9]* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = [0-9]*ExceptionX[0-9]*
+Matched 0 files from stdin, read 0 lines. Used 5.246500 s, from 2017-05-06 14:27:04.082241 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : '[0-9]*ExceptionX[0-9]*'
+Matched 0 files from stdin, read 0 lines. Used 2.356655 s, from 2017-05-06 14:27:09.460716 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : '[0-9]*ExceptionX[0-9]*'
+Matched 0 files from stdin, read 0 lines. Used 9.729713 s, from 2017-05-06 14:27:11.937865 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : '[0-9]*ExceptionX[0-9]*'
+
+2017-05-06 14:27:21 : Regex ignore case: [0-9]*ExceptionX[0-9]* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = [0-9]*ExceptionX[0-9]*
+Matched 0 files from stdin, read 0 lines. Used 28.175397 s, from 2017-05-06 14:27:22.001490 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : '[0-9]*ExceptionX[0-9]*'
+Matched 0 files from stdin, read 0 lines. Used 6.403363 s, from 2017-05-06 14:27:50.268307 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : '[0-9]*ExceptionX[0-9]*'
+Matched 0 files from stdin, read 0 lines. Used 18.145361 s, from 2017-05-06 14:27:56.790309 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : '[0-9]*ExceptionX[0-9]*'
+
+# Case-4: Not found, not matched
+2017-05-06 14:28:18 : Plain text finding: Not-Exist : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 1.995729 s, from 2017-05-06 14:28:18.598763 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 3.024657 s, from 2017-05-06 14:28:20.716414 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 1.439122 s, from 2017-05-06 14:28:23.852700 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Not-Exist
+
+2017-05-06 14:28:25 : Plain ignore case: Not-Exist : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 1.982355 s, from 2017-05-06 14:28:25.619576 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 6.786169 s, from 2017-05-06 14:28:27.718790 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 2.981549 s, from 2017-05-06 14:28:34.624447 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : Not-Exist
+
+2017-05-06 14:28:37 : Regex text finding: Not-exist.* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = Not-exist.*
+Matched 0 files from stdin, read 0 lines. Used 2.461482 s, from 2017-05-06 14:28:37.874559 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : 'Not-exist.*'
+Matched 0 files from stdin, read 0 lines. Used 2.844005 s, from 2017-05-06 14:28:40.470355 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : 'Not-exist.*'
+Matched 0 files from stdin, read 0 lines. Used 3.317696 s, from 2017-05-06 14:28:43.403545 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : 'Not-exist.*'
+
+2017-05-06 14:28:46 : Regex ignore case: Not-exist.* : CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = Not-exist.*
+Matched 0 files from stdin, read 0 lines. Used 10.904371 s, from 2017-05-06 14:28:47.107799 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read findstr : 'Not-exist.*'
+Matched 0 files from stdin, read 0 lines. Used 6.614231 s, from 2017-05-06 14:28:58.147014 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read grep : 'Not-exist.*'
+Matched 0 files from stdin, read 0 lines. Used 4.999177 s, from 2017-05-06 14:29:04.856752 CST ; Directory = /cygdrive/D/tmp , command = msr -l -c Read msr : 'Not-exist.*'
