@@ -41,20 +41,28 @@ if not defined msrOptions (
     set msrOptions=!msrOptions! --np "[\\\\/]*(\.git)[\\\\/]"
 )
 
+:: if path has one directory, add file filter
+if exist %PathToDo%\* (
+    if !hasFileFilter! NEQ 0 (
+        set FileFilter=--pp "\.(c|cpp|cxx|h|hpp|cs|java|scala|py|bat|cmd|ps1|sh)$"
+    ) else (
+        set FileFilter=-f "\.(c|cpp|cxx|h|hpp|cs|java|scala|py|bat|cmd|ps1|sh)$"
+    )
+)
+
 @echo ## Remove white spaces at each line end | msr -PA -e .+
-msr !msrOptions! -p %PathToDo% -it "(\S+)\s+$" -o "$1" -R -c Remove white spaces at each line end.
+msr !msrOptions! -p %PathToDo% !FileFilter! -it "(\S+)\s+$" -o "$1" -R -c Remove white spaces at each line end.
 
 ::@echo ## Add a tail new line to files | msr -PA -e .+
 ::msr !msrOptions! -p %PathToDo% -S -t "(\S+)$" -o "$1\n" -R -c Add a tail new line to files.
 
 @echo ## Add/Delete to have only one tail new line in files | msr -PA -e .+
-msr !msrOptions! -p %PathToDo% -S -t "(\S+)\s*$" -o "$1\n" -R -c Add a tail new line to files.
+msr !msrOptions! -p %PathToDo% !FileFilter! -S -t "(\S+)\s*$" -o "$1\n" -R -c Add a tail new line to files.
 
 :: Convert tab at head of each lines in a file, util all tabs are replaced.
 :ConvertTabTo4Spaces
     if exist %PathToDo%\* (
-        if !hasFileFilter! EQU 0 set FileFilterConvertTab=-f "\.(cpp|cxx|hp*|cs|java|scala|py|bat|cmd|ps1|sh)$"
-        msr !msrOptions! -p %PathToDo% !FileFilterConvertTab! -it "^^(\s*)\t" -o "$1    " -R -c Covert TAB to 4 spaces.
+        msr !msrOptions! -p %PathToDo% !FileFilter! -it "^^(\s*)\t" -o "$1    " -R -c Covert TAB to 4 spaces.
     ) else (
         msr !msrOptions! -p %PathToDo% -it "^^(\s*)\t" -o "$1    " -R -c Covert TAB to 4 spaces.
     )
