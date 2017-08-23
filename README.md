@@ -1,8 +1,9 @@
 ### Liberate & Digitize daily works by 2 exe : Data Mining; Map-Reduce; Pipe Endless.
-#### Match/Search/Replace: msr.exe/msr.cygwin/msr.gcc**
+Most time **Just 1 command line** to solve your daily text processing work.
+#### **M**atch/**S**earch/**R**eplace: `msr.exe`/`msr-Win32.exe`/`msr.cygwin`/`msr.gcc**`/`msr-i386.gcc**`
 - **Match/Search/Replace/Execute/*** Files/Pipe Lines/Blocks.
 - **Filter/Load/Extract/Transform/Stats/*** Files/Pipe Lines/Blocks.
-#### Not-IN-latter: nin.exe/nin.cygwin/nin.gcc**
+#### **N**ot-**IN**-latter: `nin.exe`/`nin-Win32.exe`/`nin.cygwin`/`nin.gcc**`/`nin-i386.gcc**`
 - Get **Exclusive/Mutual** Line-Set or Key-Set;
 - **Remove** Line-Set or Key-Set matched in latter file/pipe;
 - Get **Unique/Mutual/Distribution/Stats/*** Files/Pipe Line-Set or Key-Set.
@@ -11,39 +12,44 @@
 ### Performance comparison [msr > findstr, msr ~ grep](https://github.com/qualiu/msr/tree/master/perf) :
 | Compare findstr/grep on Windows | Compare findstr/grep on Cygwin |
 |-----|-----|
-| [**Colorful screenshot**](https://qualiu.github.io/msr/perf/on-Windows-comparison.html) | [**Colorful screenshot**](https://qualiu.github.io/msr/perf/on-Cygwin-comparison.html) |
 | [**Summary table**](https://github.com/qualiu/msr/blob/master/perf/summary-full-Windows-comparison.md) | [**Summary table**](https://github.com/qualiu/msr/blob/master/perf/summary-full-Cygwin-comparison.md) |
+| [**Comparison screenshot**](https://qualiu.github.io/msr/perf/on-Windows-comparison.html) | [**Comparison screenshot**](https://qualiu.github.io/msr/perf/on-Cygwin-comparison.html) |
 
-### **Vivid Colorful Demo/examples**: Run [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters.
+### **Vivid Colorful Demo/examples**: Run [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
 * Download all by command (Install [git](https://git-scm.com/downloads)) : **git clone** https://github.com/qualiu/msr/
 * If you've downloaded, run an updating command in the directory: **git pull** or **git fetch && git reset --hard origin/master** (if get conflictions)
 * Helpful scripts use **msr.exe** and **nin.exe** : https://github.com/qualiu/msrTools , and also *.bat files in [tools](https://github.com/qualiu/msr/tree/master/tools)
 
 ### Almost no learning cost:
-* Using general Regex in **C++, C#, Java, Scala**, needless to learn strange Regex syntax like FINDSTR, Awk and Sed, etc.
-* **Most** of the time **only** use searching(Regex: **-t**/**-i -t**, Plain text: **-x**/**-i -x**);
-* **Some** of the time use searching with replacing-to(**-o**);
-* Just use **-PAC** to get pure result as same as other tools (no **P**ath-number: **-P**, no **A**ny-info : **-A**, no **C**olor: **-C**)
+* You can use plain text to search/replace (**-x**/**-ix** `search-text` to **-o** `replace-to`) if you're not farmiliar with `Regex`.
+* You can use general `Regex` as **C++, C#, Java, Scala**, needless to learn strange Regex syntax like `FINDSTR`, `Awk` and `Sed`, etc.
+* **Most** of the time **only** use searching(Regex: **-t**/**-i -t**, Plain text: **-x**/**-i -x**).
+* **Some** of the time search and replace-to(**-o**);
+* Just use **-PAC** or **-PIC** to get pure result as same as other tools (no **P**ath-number: **-P**, no **A**ny-info : **-A**, no **C**olor: **-C**)
 * All options are **optional** and **no order** and **effective mean while**; Free with abbreviations/full-names.
 
 # Usage screenshots
 * Also can see [tools/readme.txt](https://github.com/qualiu/msr/tree/master/tools)
 * **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 ## msr on Windows/Linux
-* [msr on CentOS-7](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html)
+* [msr on Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html)
 * [msr on Cygwin](https://qualiu.github.io/msr/usage-by-running/msr-Cygwin.html)
 * [msr on Fedora-25](https://qualiu.github.io/msr/usage-by-running/msr-Fedora-25.html)
-* [msr on Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html)
+* [msr on CentOS-7](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html)
+* [msr on CentOS-6 32bit](https://qualiu.github.io/msr/usage-by-running/msr-i386-CentOS-32bit.html)
+
 ## nin on Windows/Linux
-* [nin on CentOS-7](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html)
+* [nin on Windows](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html)
 * [nin on Cygwin](https://qualiu.github.io/msr/usage-by-running/nin-Cygwin.html)
 * [nin on Fedora-25](https://qualiu.github.io/msr/usage-by-running/nin-Fedora-25.html)
-* [nin on Windows](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html)
+* [nin on CentOS-7](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html)
+* [nin on CentOS-6 32bit](https://qualiu.github.io/msr/usage-by-running/nin-i386-CentOS-32bit.html)
+
 ## Demo and test screenshots
 **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 * [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html)
-* [Windows demo, test and compare-base](https://qualiu.github.io/msr/demo/windows-test-compare-base.html)
-* [Windows demo and test](https://qualiu.github.io/msr/demo/windows-test.html)
+* [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html)
+* [Windows test result compare with base logs](https://qualiu.github.io/msr/demo/windows-test-compare-base.html)
 * [Peformance comparison on Cygwin](https://qualiu.github.io/msr/perf/on-Cygwin-comparison.html)
 * [Peformance comparison on Windows](https://qualiu.github.io/msr/perf/on-Windows-comparison.html)
 
@@ -58,7 +64,7 @@
       * Write-time range(**--w1**,**--w2**)
     * 3 kinds of file row / block filters to start/stop/skip reading/replacing each files/pipe: <br>
       * Row/line number begin/end (**-L**, **-N**);
-      * Block begin/end patterns (**-b**, **-Q**);
+      * Block begin/end patterns (**-b**, **-Q**) for each block in each file/pipe; with **-q** to stop at once for pipe/each file. 
       * Normal begin/end patterns (**b**, **-q**).
 * Process pipe (output of self/other commands) **endless** as you want.
 * Two composable single exe: [msr.exe/cygwin/gcc*](https://github.com/qualiu/msr/blob/master/tools/readme.txt) especially powerful with [nin.exe/cygwin/gcc*](https://github.com/qualiu/msr/blob/master/tools/readme.txt).
@@ -122,15 +128,15 @@ Search/Replace text by **msr.exe** / **msr.gcc**** / **msr.cygwin**
       - file size range filter: **--s1** , **--s2** : like --s1 100KB --s2 1M
       - show file modification time and sort : **--wt** : useful if list file with **-l**
       - show file size and unit and sort : **--sz** : useful if list file with **-l**
-   * For file row : if not begin or stopped, not output/match/replace even if matched.
+   * Line matching + **Arbitrary** block matching: if not begin or stopped, not output/match/replace even if matched.
      - Regex pattern
-       * start reading  (**-b**)
+       * start reading  (**-b**), or start matching a block begin (with **-Q** to perform block syntax).
        * stop reading (**-q**) ignore if has matched start pattern.
-       * stop reading if has matched start pattern (**-Q**)
+       * stop reading if has matched start pattern (**-Q**) as one block end (with **-b**) in pipe/each file.
      - File line number
        * start at row (**-L**)
        * stop at row (**-N**)
-  
+       
 5. Matching(**-t**/**-x**) and non-matching(**--nt**/**--nx**) filter at mean while.(like file filter)
 6. Powerful output control:
    * Can sort by time if specified time format **-F** for the logs from multiple paths;

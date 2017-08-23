@@ -1,9 +1,10 @@
 #!/bin/sh
-#=======================================================
-# Check and fix file style
-#=======================================================
+#==================================================================
+# Check and fix file style.
+# Latest version in: https://github.com/qualiu/msrTools
+#==================================================================
 
-ThisDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ThisDir="$( cd "$( dirname "$0" )" && pwd )"
 SYS_TYPE=$(uname | sed 's/_.*//g' | awk '{print tolower($0)}')
 
 sh $ThisDir/check-download-tools.sh

@@ -85,3 +85,49 @@ int main(int argc, char* argv[])
     <HBrgetHost>LZHOST</HBrgetHost>
   </Hosts>
 </Tag>
+
+--- arbitrary block to match replace  ----------
+[section1]
+key1=value1
+key2=value2
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+[section4]
+
+[section5]
+key1=value1
+key2=value2
+[section6]
+key1=value1
+key2=value2
+[section7]
+key=value
+[section8]
+[section9]
+
+--section1---------------
+section 1 line 1
+section 1 line 2
+--section2---------------
+second section line 1
+second section line 2
+--------------------section3
+section 3 line 1
+section 3 line 2
+--------------------section4
+section 4 line 1
+--------------------section5
+section 5 line 1
+--------------------section6
+line 6.1
+--------------------section7
+section 6 line 1
+--------------------section8
+--------------------section9
+line 9.1

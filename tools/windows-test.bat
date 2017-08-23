@@ -56,7 +56,7 @@ if %ERRORLEVEL% LSS 1 SET "PATH=%PATH%;%ThisDir%;"
 
 set StopCalling="::Stop calling"
 set FirstReplaceForFile=%msrExeName% -it "%msrThis% -c" -o "%msrExeName% %ReplaceTo%" -p %SourceFile% --nt "\s+-R\b" -PAC
-set FirstReplaceForPipe=%msrExeName% -it "%msrThis% -c" -o "%msrExeName% %ReplaceTo% -A" -p %SourceFile% --nt "\s+(-R|-PAC|-PIC)\b" -PAC
+set FirstReplaceForPipe=%msrExeName% -it "%msrThis% -c" -o "%msrExeName% %ReplaceTo% -A" -p %SourceFile% --nt "\s+(-R|-PAC|-PIC)\b" -PAC -q "%StopCalling%|stop pipe test"
 set ReplaceExeName=%msrExeName% -it "\b%msrExeName%\s+" -o "%msrExeName% " -PAC
 ::set ReplaceToThisDirMainCmd=%msrExeName% -ix "%%~dp0" -o "%ThisDir2Slash%"
 set ReplaceToThisDirMainCmd=%msrExeName% -ix "%%~dp0" -o %ThisDir% -a
@@ -73,16 +73,16 @@ set UnifyCurrentToDot=%msrExeName% -ix "%ThisDir%" -o "." -ROc UnifyCurrentToDot
 if not "%IsSavingToFile%" == "1" (
     if %SleepSeconds% GTR 0 (
         :: %FirstReplaceForFile% -q %StopCalling%| %ReplaceExeName% | %ReplaceToThisDirMainCmd% -PAC | %msrExeName% -t "^.+$" -o "$0 && sleep %SleepSeconds%" -XI
-        echo %FirstReplaceForFile% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
-        for /F "tokens=*" %%a in ('%FirstReplaceForFile% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PAC ') do (
+        echo %FirstReplaceForFile%^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
+        for /F "tokens=*" %%a in ('%FirstReplaceForFile% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PAC ') do (
             echo %%a | %msrThis% -XI 2>nul
             :: a trick to sleep
             ping 127.0.0.1 -n %SleepSeconds% -w 1000 > nul 2>nul
             echo.
         )
     )  else (
-        echo %FirstReplaceForFile% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
-        %FirstReplaceForFile% -q %StopCalling% | %ReplaceExeName% | %ReplaceToThisDirMainCmd% -I -X
+        echo %FirstReplaceForFile% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
+        %FirstReplaceForFile% | %ReplaceExeName% | %ReplaceToThisDirMainCmd% -I -X
     )
 
     echo %SourceFile% | %msrExeName% -t .+  -o "findstr xml $0" -XI
@@ -93,8 +93,8 @@ if not "%IsSavingToFile%" == "1" (
 echo ######### Reading from file test begin ######################## | %msrThis% -PA -e .+
 set fileResult=%ThisDir%\file-test-result-on-windows.log
 if exist %fileResult% del %fileResult%
-echo %FirstReplaceForFile% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
-for /F "tokens=*" %%a in ('%FirstReplaceForFile% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PIC ') do (
+echo %FirstReplaceForFile% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd%
+for /F "tokens=*" %%a in ('%FirstReplaceForFile% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PIC ') do (
     echo %%a >> %fileResult%
     %%a >> %fileResult%
     echo Return = !ERRORLEVEL! : %%a >> %fileResult%
@@ -124,8 +124,8 @@ echo. & echo.
 set /a allDifferences=0
 echo ######### Reading from pipe test begin ######################## | %msrThis% -PA -e .+
 set pipeResult=%ThisDir%\pipe-test-result-on-windows.log
-echo %FirstReplaceForPipe% -q %StopCalling% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PAC ^| %msrExeName% --nt "--wt|--sz" -it "^(%msrExeName%.*?)\s+-p\s+(\S+)(\s*.*)" -o "type $2 | $1 $3" -XI
-%FirstReplaceForPipe% -q %StopCalling% | %ReplaceExeName% | %ReplaceToThisDirMainCmd% -PAC | %msrExeName% --nt "--wt|--sz" -it "^(%msrExeName%.*?)\s+-p\s+(\S+)(\s*.*)" -o "type $2 | $1 $3" -XI > %pipeResult%
+echo %FirstReplaceForPipe% ^| %ReplaceExeName% ^| %ReplaceToThisDirMainCmd% -PAC ^| %msrExeName% --nt "--wt|--sz" -it "^(%msrExeName%.*?)\s+-p\s+(\S+)(\s*.*)" -o "type $2 | $1 $3" -XI
+%FirstReplaceForPipe% | %ReplaceExeName% | %ReplaceToThisDirMainCmd% -PAC | %msrExeName% --nt "--wt|--sz" -it "^(%msrExeName%.*?)\s+-p\s+(\S+)(\s*.*)" -o "type $2 | $1 $3" -XI > %pipeResult%
 %UnifyPipeTestExeName% -p %pipeResult%
 %RemoveDateTimeDir% -p %pipeResult%
 %UnifyExtraExeName% -p %pipeResult%

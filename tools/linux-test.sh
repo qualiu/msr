@@ -8,7 +8,7 @@ fi
 
 # For example of msr.gcc48, just replace the windows test command and execute them by -X
 SleepSeconds=$1
-ThisDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ThisDir="$( cd "$( dirname "$0" )" && pwd )"
 SYS_TYPE=$(uname | sed 's/_.*//g' | awk '{print tolower($0)}')
 
 msrExisted=$(whereis msr 2>/dev/null | msr -t "^.*?:\s*(\S+?msr\S*).*" -o '$1' -PAC 2>/dev/null | tr -d '\r')
@@ -36,10 +36,10 @@ cd $ThisDir
 
 alias msr=$msrThis
 if [ "$md5Existed" = "$md5This" ] && [[ -x $msrExisted ]] && [ -z "$SleepSeconds" ] ; then
-    msr -p example-commands.bat -x %~dp0\\ -o "" -q "^::\s*Stop" --nt "^::" | msr -t "-o\s+.*-R" -x '"' -o "'" -a -X
+    msr -p example-commands.bat -x %~dp0\\ -o "" -iq "^::.*Stop" --nt "^::" | msr -t "-o\s+.*-R" -x '"' -o "'" -a -X
 else
-    # echo "$msrThis -p example-commands.bat -x %~dp0\\ -o "" -q "^::\s*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o \"$msrThis\" -aPAC"
-    $msrThis -p example-commands.bat -x %~dp0\\ -o "" -q "^::\s*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o "$msrThis" -aPAC | $msrThis -t '\s+-o\s+\"(\$.*?)\"' -o " -o '\$1'" -aPAC | $msrThis -t '\s+-o\s+\"(msr.*)\"' -o " -o '\$1'" -aPAC |
+    # echo "$msrThis -p example-commands.bat -x %~dp0\\ -o "" -iq "^::\s*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o \"$msrThis\" -aPAC"
+    $msrThis -p example-commands.bat -x %~dp0\\ -o "" -iq "^::.*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o "$msrThis" -aPAC | $msrThis -t '\s+-o\s+\"(\$.*?)\"' -o " -o '\$1'" -aPAC | $msrThis -t '\s+-o\s+\"(msr.*)\"' -o " -o '\$1'" -aPAC |
     while IFS= read -r cmdLine ; do
         sh -c "$cmdLine"
         if(($SleepSeconds > 0)); then
