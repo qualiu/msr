@@ -1,4 +1,5 @@
-Liberate & Digitize daily works by 2 exe : Data Mining; Map-Reduce; Pipe Endless.
+Liberate & Digitize daily works by 2 exe: File Processing, Data Mining, Map-Reduce.
+Most time Just 1 command line to solve your daily text or file processing work, pipe endless.
 Vivid Colorful Demo/examples: Run windows-test.bat without parameters.
 Download all by command : git clone https://github.com/qualiu/msr/
 If you've downloaded, run an updating command in the directory: git pull or git fetch && git reset --hard origin/master (if get conflictions)
