@@ -503,7 +503,7 @@ msr -c -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q
 example-commands.bat:111: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
 example-commands.bat:112: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
 example-commands.bat:113: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
-example-commands.bat:114: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a -y
+example-commands.bat:114: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 example-commands.bat:115: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
 example-commands.bat:116: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 example-commands.bat:117: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
@@ -1131,7 +1131,7 @@ sample-file.txt:111: [section8]
 Matched 4 blocks(80.00%) with 16 lines(11.94%) in 1 files(100%)
 Return = 4 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[" -a 
 
-msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a -y 
+msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y 
 sample-file.txt:90: [section1]
 sample-file.txt:91: key1=value1
 sample-file.txt:92: key2=value2
@@ -1155,8 +1155,10 @@ sample-file.txt:109: [section7]
 sample-file.txt:110: key=value
 sample-file.txt:111: [section8]
 sample-file.txt:112: [section9]
-Matched 8 blocks(88.89%) with 23 lines(17.16%) in 1 files(100%)
-Return = 8 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[" -a -y 
+sample-file.txt:113: 
+sample-file.txt:114: --section1---------------
+Matched 9 blocks(100%) with 25 lines(18.66%) in 1 files(100%)
+Return = 9 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[|\s*$" -a -y 
 
 msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a 
 sample-file.txt:90: [section1]

@@ -388,7 +388,7 @@ Run-Command142[47] = type example-commands.bat | msr -c -A  -t name -a -o NAME -
 :111: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
 :112: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
 :113: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
-:114: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a -y
+:114: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 :115: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
 :116: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 :117: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
@@ -902,7 +902,7 @@ Run-Command142[103] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :110: key=value
 :111: [section8]
 
-Run-Command142[104] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -a -y
+Run-Command142[104] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -926,6 +926,8 @@ Run-Command142[104] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :110: key=value
 :111: [section8]
 :112: [section9]
+:113: 
+:114: --section1---------------
 
 Run-Command142[105] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
 :90: [section1]

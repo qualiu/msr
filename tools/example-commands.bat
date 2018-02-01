@@ -111,7 +111,7 @@ msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
-msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a -y
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
