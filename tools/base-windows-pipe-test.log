@@ -1,29 +1,29 @@
-Run-Command142[1] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+Run-Command140[1] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
 
-Run-Command142[2] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+Run-Command140[2] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
 
-Run-Command142[3] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+Run-Command140[3] = type sample-file.txt | msr -c -A  -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
 
-Run-Command142[4] = type sample-file.txt | msr -c -A  -L 7 -N 9 -t Not -U 2 -D 2
+Run-Command140[4] = type sample-file.txt | msr -c -A  -L 7 -N 9 -t Not -U 2 -D 2
 :7: enum class LineType {
 :8:     NotMatchedLine = 0,
 :9:     MatchedLine = 1,
 
-Run-Command142[5] = type sample-file.txt | msr -c -A  -it node --nt "node\d+"
+Run-Command140[5] = type sample-file.txt | msr -c -A  -it node --nt "node\d+"
 :48:   <as::item ref="NodeCitOnly" />
 :62:   <as::item ref="NodeCitOnly" />
 :67:   <Subject>Node 2 title in body for test</Subject>
 :75:   <as::item ref="NodeCitOnly" />
 
-Run-Command142[6] = type sample-file.txt | msr -c -A  -it node --nt "node\d+" -o "NODE"
+Run-Command140[6] = type sample-file.txt | msr -c -A  -it node --nt "node\d+" -o "NODE"
 :48:   <as::item ref="NODECitOnly" />
 :62:   <as::item ref="NODECitOnly" />
 :67:   <Subject>NODE 2 title in body for test</Subject>
 :75:   <as::item ref="NODECitOnly" />
 
-Run-Command142[7] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+Run-Command140[7] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
 
-Run-Command142[8] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+Run-Command140[8] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -38,7 +38,7 @@ Run-Command142[8] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Ta
 :58:   </as::item>
 :59: </Tag>
 
-Run-Command142[9] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Run-Command140[9] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -55,7 +55,7 @@ Run-Command142[9] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Ta
 :74: <Tag Name="Node3">
 :75:   <as::item ref="NodeCitOnly" />
 :76:   <as::item ref="Node3Config" />
-:77:   
+:77: 
 :78:   <MailTo>Clark@abc.com</MailTo>
 :79:   <AllowReTry>true</AllowReTry>
 :80:   <SubArgs>
@@ -67,11 +67,11 @@ Run-Command142[9] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Ta
 :86:   </Hosts>
 :87: </Tag>
 
-Run-Command142[10] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
+Run-Command140[10] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in body for test</Subject>
@@ -81,21 +81,21 @@ Run-Command142[10] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</T
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[11] = type sample-file.txt | msr -c -A  -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+Run-Command140[11] = type sample-file.txt | msr -c -A  -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
 
-Run-Command142[12] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
+Run-Command140[12] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
 
-Run-Command142[13] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
+Run-Command140[13] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
 
-Run-Command142[14] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
+Run-Command140[14] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
 :61: <Tag Name="Node2">
 :63:   <as::item ref="Node2Config" />
 
-Run-Command142[15] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
+Run-Command140[15] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in body for test</Subject>
@@ -105,11 +105,11 @@ Run-Command142[15] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</t
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[16] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
+Run-Command140[16] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in body for test</Subject>
@@ -119,11 +119,11 @@ Run-Command142[16] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</t
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[17] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
+Run-Command140[17] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in body for test</Subject>
@@ -133,7 +133,7 @@ Run-Command142[17] = type sample-file.txt | msr -c -A  -b "^\s*<tag" -Q "^\s*</t
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[18] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
+Run-Command140[18] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
 :47: <Tag Name="myNode1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="myNode1Config" />
@@ -148,9 +148,9 @@ Run-Command142[18] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</T
 :58:   </as::item>
 :59: </Tag>
 
-Run-Command142[19] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
+Run-Command140[19] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
 
-Run-Command142[20] = type sample-file.txt | msr -c -A  -ib "^\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching
+Run-Command140[20] = type sample-file.txt | msr -c -A  -ib "^\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching
 :12: enum class LineType {
   NotMatchedLine = 0,
   MatchedLine = 1,
@@ -158,7 +158,7 @@ Run-Command142[20] = type sample-file.txt | msr -c -A  -ib "^\s*enum" -q "\};" -
   DownLine = 3
 };
 
-Run-Command142[21] = type sample-file.txt | msr -c -A  -ib "^\s*enum" -q "\};" -t "^\s+" -o "  " -a -P
+Run-Command140[21] = type sample-file.txt | msr -c -A  -ib "^\s*enum" -q "\};" -t "^\s+" -o "  " -a -P
 enum class LineType {
   NotMatchedLine = 0,
   MatchedLine = 1,
@@ -166,279 +166,279 @@ enum class LineType {
   DownLine = 3
 };
 
-Run-Command142[22] = type sample-file.txt | msr -c -A  -i -t "(Deferred\w*)"
+Run-Command140[22] = type sample-file.txt | msr -c -A  -i -t "(Deferred\w*)"
 :14: class DeferredRun {
 :16:         DeferredRun(const std::function<void()>& run) : _run(run) { }
 :17:         ~DeferredRun() {
 :28:         DeferredRun deferredRun([&]() {
 
-Run-Command142[23] = type sample-file.txt | msr -c -A  -it "(Deferred\w*)\s+\1"
+Run-Command140[23] = type sample-file.txt | msr -c -A  -it "(Deferred\w*)\s+\1"
 :28:         DeferredRun deferredRun([&]() {
 
-Run-Command142[24] = type sample-file.txt | msr -c -A  -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
+Run-Command140[24] = type sample-file.txt | msr -c -A  -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
 :14: class DeferredRunReplaced {
 :16:         DeferredRunReplaced(const std::function<void()>& run) : _run(run) { }
 :17:         ~DeferredRunReplaced() {
 
-Run-Command142[25] = type example-commands.bat | msr -c -A  -it "class|run" -H 9
+Run-Command140[25] = type example-commands.bat | msr -c -A  -it "class|run" -H 9
 :1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
-:34: msr -c -p %~dp0\sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
-:35: msr -c -p %~dp0\example-commands.bat -it "class|run" -H 9
-:36: msr -c -p %~dp0\example-commands.bat -ie "class|run" -H 9
+:41: msr -c -p %~dp0\sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
+:42: msr -c -p %~dp0\example-commands.bat -it "class|run" -H 9
+:43: msr -c -p %~dp0\example-commands.bat -ie "class|run" -H 9
 
-Run-Command142[26] = type example-commands.bat | msr -c -A  -ie "class|run" -H 9
+Run-Command140[26] = type example-commands.bat | msr -c -A  -ie "class|run" -H 9
 :1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
 :2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
 :3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
 :4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
-:5: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
-:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
-:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
-:8: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
-:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:5: msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+:8: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
 
-Run-Command142[27] = type example-commands.bat | msr -c -A  -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c -A " -H 9
+Run-Command140[27] = type example-commands.bat | msr -c -A  -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c -A " -H 9
 :3: msr -c -A -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
 :4: msr -c -A -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
-:5: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
-:6: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
-:7: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
-:8: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
-:9: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
-:10: msr -c -A -p %~dp0 -f bat -l -PAC -H 0
-:11: msr -c -A -p %~dp0 -f bat -l -PIC -H 0
+:5: msr -c -A -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+:6: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+:7: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+:8: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+:9: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+:10: msr -c -A -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:11: msr -c -A -p %~dp0 -f bat -l -PAC -H 0
 
-Run-Command142[28] = type example-commands.bat | msr -c -A  -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines
-:10: msr -c -p %~dp0 -f BAT -l -PAC -H 0
-:11: msr -c -p %~dp0 -f BAT -l -PIC -H 0
-:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
-:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
-:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
-:83: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
-:84: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
-:85: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
-:86: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
-:87: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
+Run-Command140[28] = type example-commands.bat | msr -c -A  -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines
+:11: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+:12: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
+:75: msr -c -p %~dp0\example-commands.BAT -ix update -t name -e Names
+:86: msr -c -p %~dp0\example-commands.BAT -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
+:90: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
+:91: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
+:92: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
 
-Run-Command142[29] = type example-commands.bat | msr -c -A  -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines
-:10: msr -c -p %~dp0 -f BAT -l -PAC -H 0
-:11: msr -c -p %~dp0 -f BAT -l -PIC -H 0
-:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
-:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
-:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+Run-Command140[29] = type example-commands.bat | msr -c -A  -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines
+:11: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+:12: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
 
-Run-Command142[30] = type example-commands.bat | msr -c -A  -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from
-:28: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
-:29: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
-:35: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
-:36: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
-:37: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
+Run-Command140[30] = type example-commands.bat | msr -c -A  -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from
+:35: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
+:36: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+:42: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+:43: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
+:44: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
 
-Run-Command142[31] = type example-commands.bat | msr -c -A  -t t -L 9 -e txt -H 9             ## single char matching and coloring test
-:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
-:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
-:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
-:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Run-Command140[31] = type example-commands.bat | msr -c -A  -t t -L 9 -e txt -H 9             ## single char matching and coloring test
+:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+:10: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:11: msr -c -p %~dp0 -f bat -l -PAC -H 0
+:12: msr -c -p %~dp0 -f bat -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+:16: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+:17: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
 
-Run-Command142[32] = type example-commands.bat | msr -c -A  -x t -L 9 -e txt -H 9
-:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
-:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
-:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
-:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Run-Command140[32] = type example-commands.bat | msr -c -A  -x t -L 9 -e txt -H 9
+:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+:10: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:11: msr -c -p %~dp0 -f bat -l -PAC -H 0
+:12: msr -c -p %~dp0 -f bat -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+:16: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+:17: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
 
-Run-Command142[33] = type example-commands.bat | msr -c -A  -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
-:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
-:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
-:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Run-Command140[33] = type example-commands.bat | msr -c -A  -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+:10: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:11: msr -c -p %~dp0 -f bat -l -PAC -H 0
+:12: msr -c -p %~dp0 -f bat -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+:16: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+:17: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
 
-Run-Command142[34] = type example-commands.bat | msr -c -A  -x t -L 9 -e me.txt -H 9
-:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
-:10: msr -c -p %~dp0 -f bat -l -PAC -H 0
-:11: msr -c -p %~dp0 -f bat -l -PIC -H 0
-:12: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-:13: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-:14: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-:15: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-:16: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-:17: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+Run-Command140[34] = type example-commands.bat | msr -c -A  -x t -L 9 -e me.txt -H 9
+:9: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+:10: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+:11: msr -c -p %~dp0 -f bat -l -PAC -H 0
+:12: msr -c -p %~dp0 -f bat -l -PIC -H 0
+:13: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+:14: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+:15: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+:16: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+:17: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
 
-Run-Command142[35] = type example-commands.bat | msr -c -A  -x me -L 20 -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Run-Command140[35] = type example-commands.bat | msr -c -A  -x me -L 20 -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[36] = type example-commands.bat | msr -c -A  -x me -L 20 -ie me -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Run-Command140[36] = type example-commands.bat | msr -c -A  -x me -L 20 -ie me -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[37] = type example-commands.bat | msr -c -A  -t me -L 20 -ie me -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Run-Command140[37] = type example-commands.bat | msr -c -A  -t me -L 20 -ie me -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[38] = type example-commands.bat | msr -c -A  -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Run-Command140[38] = type example-commands.bat | msr -c -A  -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[39] = type example-commands.bat | msr -c -A  -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Run-Command140[39] = type example-commands.bat | msr -c -A  -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[40] = type example-commands.bat | msr -c -A  -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Run-Command140[40] = type example-commands.bat | msr -c -A  -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[41] = type example-commands.bat | msr -c -A  -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-:43: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
-:44: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
-:45: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
-:46: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
-:47: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
-:48: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+Run-Command140[41] = type example-commands.bat | msr -c -A  -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
+:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e me.txt -H 9
+:52: msr -c -p %~dp0\example-commands.bat -x me -L 20 -H 9
+:53: msr -c -p %~dp0\example-commands.bat -x me -L 20 -ie me -H 9
+:54: msr -c -p %~dp0\example-commands.bat -t me -L 20 -ie me -H 9
+:55: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
 
-Run-Command142[42] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9
-:49: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-:50: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-:51: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-:52: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
-:53: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
-:54: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
-:55: msr -c -p %~dp0\example-commands.bat -it NAME -l
-:56: msr -c -p %~dp0\sample-file.txt -it NAME -l
-:57: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
+Run-Command140[42] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9
+:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+:59: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+:60: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+:61: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+:62: msr -c -p %~dp0\example-commands.bat -it NAME -l
+:63: msr -c -p %~dp0\sample-file.txt -it NAME -l
+:64: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
 
-Run-Command142[43] = type example-commands.bat | msr -c -A  -t name -o NAME -ie Names -H 9
-:52: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
-:53: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
-:54: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
-:55: msr -c -p %~dp0\example-commands.bat -it NAME -l
-:56: msr -c -p %~dp0\sample-file.txt -it NAME -l
-:57: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
-:59: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
-:60: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
-:61: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
+Run-Command140[43] = type example-commands.bat | msr -c -A  -t name -o NAME -ie Names -H 9
+:59: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+:60: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+:61: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+:62: msr -c -p %~dp0\example-commands.bat -it NAME -l
+:63: msr -c -p %~dp0\sample-file.txt -it NAME -l
+:64: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
+:66: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
+:67: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
+:68: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
 
-Run-Command142[44] = type example-commands.bat | msr -c -A  -t name -o NAME -T 1 -C
-:202: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Run-Command140[44] = type example-commands.bat | msr -c -A  -t name -o NAME -T 1 -C
+:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
 
-Run-Command142[45] = type example-commands.bat | msr -c -A  -it name -l
+Run-Command140[45] = type example-commands.bat | msr -c -A  -it name -l
 
-Run-Command142[46] = type sample-file.txt | msr -c -A  -it name -l
+Run-Command140[46] = type sample-file.txt | msr -c -A  -it name -l
 
-Run-Command142[47] = type example-commands.bat | msr -c -A  -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9
-:111: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
-:112: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
-:113: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
-:114: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
-:115: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
-:116: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
-:117: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
-:199: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
-:200: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+Run-Command140[47] = type example-commands.bat | msr -c -A  -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9
+:116: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
+:117: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
+:118: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
+:119: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+:120: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
+:121: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+:122: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
+:207: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
+:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
 
-Run-Command142[48] = type example-commands.bat | msr -c -A  -it NOT -U 2 -e "SRC|DIR" -H 5
-:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+Run-Command140[48] = type example-commands.bat | msr -c -A  -it NOT -U 2 -e "SRC|DIR" -H 5
 :4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
-:5: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
-:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
-:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+:5: msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+:6: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+:7: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+:8: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
 
-Run-Command142[49] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -T 3
-:200: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-:201: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
-:202: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Run-Command140[49] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -T 3
+:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
 
-Run-Command142[50] = type example-commands.bat | msr -c -A  -t name -o come -ie "name|come" -a -L 19 -H 9
-:19: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
-:20: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
-:21: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
-:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
-:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
-:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
-:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
-:26: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
-:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
+Run-Command140[50] = type example-commands.bat | msr -c -A  -t name -o come -ie "name|come" -a -L 19 -H 9
+:19: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+:20: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+:21: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
+:26: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
 
-Run-Command142[51] = type example-commands.bat | msr -c -A  -t name -a -o NAM -ie "name|come" -L 19 -H 9
-:19: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
-:20: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
-:21: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output
-:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block
-:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block
-:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block
-:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block
-:26: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced
-:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.
+Run-Command140[51] = type example-commands.bat | msr -c -A  -t name -a -o NAM -ie "name|come" -L 19 -H 9
+:19: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+:20: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+:21: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
+:26: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
 
-Run-Command142[52] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -t not -U 3 -D 3
-:59: msr -c -p %~dp0\example-commands.bat -x name -o NAME -ie "name|come" -T 3
-:60: msr -c -p %~dp0\example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
-:61: msr -c -p %~dp0\example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
-:62: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -t not -U 3 -D 3
-:63: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
-:64: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
-:65: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
+Run-Command140[52] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -t not -U 3 -D 3
+:66: msr -c -p %~dp0\example-commands.bat -x name -o NAME -ie "name|come" -T 3
+:67: msr -c -p %~dp0\example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
+:68: msr -c -p %~dp0\example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
+:69: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -t not -U 3 -D 3
+:70: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
+:71: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
+:72: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
 
-Run-Command142[53] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
+Run-Command140[53] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -455,7 +455,7 @@ Run-Command142[53] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node1
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in BODY for test</Subject>
@@ -465,11 +465,11 @@ Run-Command142[53] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node1
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[54] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
+Run-Command140[54] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in BODY for test</Subject>
@@ -479,7 +479,7 @@ Run-Command142[54] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(Node2
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[55] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
+Run-Command140[55] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -494,22 +494,22 @@ Run-Command142[55] = type sample-file.txt | msr -c -A  -ib "<Tag Name.*?\b(\w+)\
 :58:   </as::item>
 :59: </Tag>
 
-Run-Command142[56] = type example-commands.bat | msr -c -A  -it name -o NAME -e Names -x update
-:66: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
-:68: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
+Run-Command140[56] = type example-commands.bat | msr -c -A  -it name -o NAME -e Names -x update
+:73: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
+:75: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
 
-Run-Command142[57] = type example-commands.bat | msr -c -A  -it name -e Names -x nameX
-:67: msr -c -p %~dp0\example-commands.bat -it name -e Names -x nameX
+Run-Command140[57] = type example-commands.bat | msr -c -A  -it name -e Names -x nameX
+:74: msr -c -p %~dp0\example-commands.bat -it name -e Names -x nameX
 
-Run-Command142[58] = type example-commands.bat | msr -c -A  -ix update -t name -e Names
-:66: msr -c -p %~dp0\example-commands.bat -it name -o NAME -e Names -x update
-:68: msr -c -p %~dp0\example-commands.bat -ix update -t name -e Names
+Run-Command140[58] = type example-commands.bat | msr -c -A  -ix update -t name -e Names
+:73: msr -c -p %~dp0\example-commands.bat -it name -o NAME -e Names -x update
+:75: msr -c -p %~dp0\example-commands.bat -ix update -t name -e Names
 
-Run-Command142[59] = type sample-file.txt | msr -c -A  -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch
+Run-Command140[59] = type sample-file.txt | msr -c -A  -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch
 :50:   <MailTo>Alex@abc.com</MailTo>
 :53:       <as::pair name="MailTo">Bob@abc.com</as::pair>
 
-Run-Command142[60] = type sample-file.txt | msr -c -A  -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a
+Run-Command140[60] = type sample-file.txt | msr -c -A  -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -521,7 +521,7 @@ Run-Command142[60] = type sample-file.txt | msr -c -A  -ib "<Tag name" -q "Switc
 :55:       <as::pair name="Interval">#THRESHOLD_1#</as::pair>
 :56:       <as::pair name="Switch">#THRESHOLD_2#</as::pair>
 
-Run-Command142[61] = type sample-file.txt | msr -c -A  -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block"
+Run-Command140[61] = type sample-file.txt | msr -c -A  -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block"
 :89: class DeferredRun {
 public:
         DeferredRun(const std::function<void()>& run) : _run(run) { }
@@ -541,15 +541,15 @@ int main(int argc, char* argv[])
         });
 }
 
-<pairPair>
+<pair>
     msr -x "#FUNCTION#" -o "'All'"
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     msr -x "#THRESHOLD_1#" -o "4000"
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     msr -x "#THRESHOLD_2#" -o "8000"
-</pairPair>
+</pair>
 
 
 <Tag Name="Node1">
@@ -569,7 +569,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node2">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node2Config" />
-  
+
   <MailTo>Bob@abc.com</MailTo>
   <SubArgs />
   <Subject>Node 2 title in body for test</Subject>
@@ -582,7 +582,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node3">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node3Config" />
-  
+
   <MailTo>Clark@abc.com</MailTo>
   <AllowReTry>true</AllowReTry>
   <SubArgs>
@@ -596,114 +596,96 @@ int main(int argc, char* argv[])
 
 --- arbitrary block to match replace  ----------
 
-Run-Command142[62] = type sample-file.txt | msr -c -A  -it Tag -x ref -U 5 -D 5
+Run-Command140[62] = type sample-file.txt | msr -c -A  -it Tag -x ref -U 5 -D 5
 
-Run-Command142[63] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+Run-Command140[63] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
 :3: 2012-12-27 00:03:03.333 third  line time at 3
 :4: 2012-12-27 00:04:04.444 forth  line time at 4
 :5: 2012-12-27 00:05:05.555 fifth  line time at 5
 
-Run-Command142[64] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03"
+Run-Command140[64] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03"
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 
-Run-Command142[65] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03"
-:2: 2012-12-27 00:01:01.111 second line time at 1
-:1: 2012-12-27 00:02:02.222 first  line time at 2
-:3: 2012-12-27 00:03:03.333 third  line time at 3
-
-Run-Command142[66] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03"
-:1: 2012-12-27 00:02:02.222 first  line time at 2
-
-Run-Command142[67] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
-:2: 2012-12-27 00:01:01.111 second line time at 1
-:1: 2012-12-27 00:02:02.222 first  line time at 2
-
-Run-Command142[68] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
-:1: 2012-12-27 00:02:02.222 first  line time at 2
-
-Run-Command142[69] = type example-commands.bat | msr -c -A  -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
-:73: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
-:77: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
-:78: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
-
-Run-Command142[70] = type sample-file.txt | msr -c -A  -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012
+Run-Command140[65] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03"
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 :3: 2012-12-27 00:03:03.333 third  line time at 3
-:4: 2012-12-27 00:04:04.444 forth  line time at 4
-:5: 2012-12-27 00:05:05.555 fifth  line time at 5
 
-Run-Command142[71] = type sample-file.txt | msr -c -A  -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line"
+Run-Command140[66] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03"
+:1: 2012-12-27 00:02:02.222 first  line time at 2
+
+Run-Command140[67] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+:2: 2012-12-27 00:01:01.111 second line time at 1
+:1: 2012-12-27 00:02:02.222 first  line time at 2
+
+Run-Command140[68] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
+:1: 2012-12-27 00:02:02.222 first  line time at 2
+
+Run-Command140[69] = type example-commands.bat | msr -c -A  -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
+:80: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+:84: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+:85: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
+
+Run-Command140[70] = type sample-file.txt | msr -c -A  -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 :3: 2012-12-27 00:03:03.333 third  line time at 3
 :4: 2012-12-27 00:04:04.444 forth  line time at 4
 :5: 2012-12-27 00:05:05.555 fifth  line time at 5
 
-Run-Command142[72] = type sample-file.txt | msr -c -A  -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc
+Run-Command140[71] = type sample-file.txt | msr -c -A  -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line"
+:2: 2012-12-27 00:01:01.111 second line time at 1
+:1: 2012-12-27 00:02:02.222 first  line time at 2
+:3: 2012-12-27 00:03:03.333 third  line time at 3
+:4: 2012-12-27 00:04:04.444 forth  line time at 4
+:5: 2012-12-27 00:05:05.555 fifth  line time at 5
+
+Run-Command140[72] = type sample-file.txt | msr -c -A  -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc
 :5: 2012-12-27 00:05:05.555 fifth  line time at 5
 :4: 2012-12-27 00:04:04.444 forth  line time at 4
 :3: 2012-12-27 00:03:03.333 third  line time at 3
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 :2: 2012-12-27 00:01:01.111 second line time at 1
 
-Run-Command142[73] = type example-commands.bat | msr -c -A  -it "\w+" -H 0       ## Must NOT out any matched.
+Run-Command140[73] = type example-commands.bat | msr -c -A  -it "\w+" -H 0       ## Must NOT out any matched.
 
-Run-Command142[74] = type example-commands.bat | msr -c -A  -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
-:202: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced name value settings.
-:203: msr -z "if exist Node1.tmp del Node1.tmp" -XPI
+Run-Command140[74] = type example-commands.bat | msr -c -A  -it "\w+" -T 0       ## Must NOT out any matched.
 
-Run-Command142[75] = type example-commands.bat | msr -c -A  -it "\w+" -T 0       ## Must NOT out any matched.
-
-Run-Command142[76] = type example-commands.bat | msr -c -A  -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
-:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
-:2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
-
-Run-Command142[77] = type example-commands.bat | msr -c -A  -it just -U 3 -D 3
+Run-Command140[75] = type example-commands.bat | msr -c -A  -it just -U 3 -D 3
 :1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
 :2: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
 :3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
 :4: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
-:84: msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
-:85: msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.
-:86: msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
-:87: msr -c -p %~dp0\example-commands.bat -it just -U 3 -D 3
-:88: msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
-:89: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
-:90: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
+:89: msr -c -p %~dp0\sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc
+:90: msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched.
+:91: msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.
+:92: msr -c -p %~dp0\example-commands.bat -it just -U 3 -D 3
+:93: msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
+:94: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
+:95: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
 
-Run-Command142[78] = type sample-file.txt | msr -c -A  -it "\W(function)\W" -e "name=(\S+)"
+Run-Command140[76] = type sample-file.txt | msr -c -A  -it "\W(function)\W" -e "name=(\S+)"
 :16:         DeferredRun(const std::function<void()>& run) : _run(run) { }
 :21:         const std::function<void()> _run;
 :34:     <Name>#FUNCTION#</Name>
 :54:       <as::pair name="Function">#FUNCTION#</as::pair>
 
-Run-Command142[79] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
+Run-Command140[77] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
 
-Run-Command142[80] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
+Run-Command140[78] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
 :93: 
 
-Run-Command142[81] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 96
+Run-Command140[79] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 96
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
 :93: 
 
-Run-Command142[82] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 97
-:90: [section1]
-:91: key1=value1
-:92: key2=value2
-:93: 
-:94: [section2]
-:95: key1=value1
-:96: key=value
-:97: 
-
-Run-Command142[83] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 90
+Run-Command140[80] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 97
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -712,11 +694,12 @@ Run-Command142[83] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :95: key1=value1
 :96: key=value
 :97: 
-:98: [section3]
-:99: key=value
-:100: 
 
-Run-Command142[84] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 91
+Run-Command140[81] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 90
+:90: [section1]
+:91: key1=value1
+:92: key2=value2
+:93: 
 :94: [section2]
 :95: key1=value1
 :96: key=value
@@ -725,25 +708,34 @@ Run-Command142[84] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :99: key=value
 :100: 
 
-Run-Command142[85] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 99 -it key2 -a
+Run-Command140[82] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 91
+:94: [section2]
+:95: key1=value1
+:96: key=value
+:97: 
+:98: [section3]
+:99: key=value
+:100: 
+
+Run-Command140[83] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 99 -it key2 -a
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
 :93: 
 
-Run-Command142[86] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a
+Run-Command140[84] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
 :93: 
 
-Run-Command142[87] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a -o KEY
+Run-Command140[85] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a -o KEY
 :90: [section1]
 :91: key1=value1
 :92: KEY=value2
 :93: 
 
-Run-Command142[88] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100
+Run-Command140[86] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -756,7 +748,7 @@ Run-Command142[88] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :99: key=value
 :100: 
 
-Run-Command142[89] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 101
+Run-Command140[87] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 101
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -769,7 +761,7 @@ Run-Command142[89] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :99: key=value
 :100: 
 
-Run-Command142[90] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 102
+Run-Command140[88] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 102
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -784,13 +776,13 @@ Run-Command142[90] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :101: [section4]
 :102: 
 
-Run-Command142[91] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 110
+Run-Command140[89] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 110
 :103: [section5]
 :104: key1=value1
 :105: key2=value2
 :106: [section6]
 
-Run-Command142[92] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 111
+Run-Command140[90] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 111
 :103: [section5]
 :104: key1=value1
 :105: key2=value2
@@ -799,45 +791,44 @@ Run-Command142[92] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\
 :110: key=value
 :111: [section8]
 
-Run-Command142[93] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109
+Run-Command140[91] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109
 :109: [section7]
 :110: key=value
 :111: [section8]
 :112: [section9]
 :113: 
 
-Run-Command142[94] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 111
+Run-Command140[92] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 111
 :109: [section7]
 :110: key=value
 :111: [section8]
 
-Run-Command142[95] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 112
+Run-Command140[93] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 112
 :109: [section7]
 :110: key=value
 :111: [section8]
 
-Run-Command142[96] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 113
+Run-Command140[94] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 113
 :109: [section7]
 :110: key=value
 :111: [section8]
 :112: [section9]
 :113: 
 
-Run-Command142[97] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111 -y
+Run-Command140[95] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111 -y
 :111: [section8]
 :112: [section9]
 :113: 
-:114: --section1---------------
 
-Run-Command142[98] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111
+Run-Command140[96] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111
 :111: [section8]
 :112: [section9]
 
-Run-Command142[99] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -L 111
+Run-Command140[97] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -L 111
 :111: [section8]
 :112: [section9]
 
-Run-Command142[100] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key
+Run-Command140[98] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key
 :91: key1=value1
 :92: key2=value2
 :99: key=value
@@ -845,7 +836,7 @@ Run-Command142[100] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :105: key2=value2
 :110: key=value
 
-Run-Command142[101] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key -a
+Run-Command140[99] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key -a
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -863,7 +854,7 @@ Run-Command142[101] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :110: key=value
 :111: [section8]
 
-Run-Command142[102] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key -a -y
+Run-Command140[100] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -t key -a -y
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -884,7 +875,7 @@ Run-Command142[102] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :109: [section7]
 :110: key=value
 
-Run-Command142[103] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -a
+Run-Command140[101] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" -a
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -902,58 +893,7 @@ Run-Command142[103] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[" 
 :110: key=value
 :111: [section8]
 
-Run-Command142[104] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
-:90: [section1]
-:91: key1=value1
-:92: key2=value2
-:93: 
-:94: [section2]
-:95: key1=value1
-:96: key=value
-:97: 
-:98: [section3]
-:99: key=value
-:100: 
-:101: [section4]
-:102: 
-:103: [section5]
-:104: key1=value1
-:105: key2=value2
-:106: [section6]
-:107: key1=value1
-:108: key2=value2
-:109: [section7]
-:110: key=value
-:111: [section8]
-:112: [section9]
-:113: 
-:114: --section1---------------
-
-Run-Command142[105] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
-:90: [section1]
-:91: key1=value1
-:92: key2=value2
-:93: 
-:94: [section2]
-:95: key1=value1
-:96: key=value
-:97: 
-:98: [section3]
-:99: key=value
-:100: 
-:101: [section4]
-:102: 
-:103: [section5]
-:104: key1=value1
-:105: key2=value2
-:106: [section6]
-:109: [section7]
-:110: key=value
-:111: [section8]
-:112: [section9]
-:113: 
-
-Run-Command142[106] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+Run-Command140[102] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 :90: [section1]
 :91: key1=value1
 :92: key2=value2
@@ -978,9 +918,58 @@ Run-Command142[106] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :111: [section8]
 :112: [section9]
 :113: 
-:114: --section1---------------
 
-Run-Command142[107] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
+Run-Command140[103] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
+:90: [section1]
+:91: key1=value1
+:92: key2=value2
+:93: 
+:94: [section2]
+:95: key1=value1
+:96: key=value
+:97: 
+:98: [section3]
+:99: key=value
+:100: 
+:101: [section4]
+:102: 
+:103: [section5]
+:104: key1=value1
+:105: key2=value2
+:106: [section6]
+:109: [section7]
+:110: key=value
+:111: [section8]
+:112: [section9]
+:113: 
+
+Run-Command140[104] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+:90: [section1]
+:91: key1=value1
+:92: key2=value2
+:93: 
+:94: [section2]
+:95: key1=value1
+:96: key=value
+:97: 
+:98: [section3]
+:99: key=value
+:100: 
+:101: [section4]
+:102: 
+:103: [section5]
+:104: key1=value1
+:105: key2=value2
+:106: [section6]
+:107: key1=value1
+:108: key2=value2
+:109: [section7]
+:110: key=value
+:111: [section8]
+:112: [section9]
+:113: 
+
+Run-Command140[105] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
 :47: <Tag Name="Node1">
 :48:   <as::item ref="NodeCitOnly" />
 :49:   <as::item ref="Node1Config" />
@@ -997,7 +986,7 @@ Run-Command142[107] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 title in body for test</Subject>
@@ -1007,11 +996,11 @@ Run-Command142[107] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[108] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -a
+Run-Command140[106] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -a
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 TITLE in body for test</Subject>
@@ -1021,16 +1010,17 @@ Run-Command142[108] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[109] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3
+Run-Command140[107] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3
 :67:   <Subject>Node 2 TITLE in body for test</Subject>
 
-Run-Command142[110] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y
+Run-Command140[108] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y
+:67:   <Subject>Node 2 TITLE in body for test</Subject>
 
-Run-Command142[111] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y -a
+Run-Command140[109] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y -a
 :61: <Tag Name="Node2">
 :62:   <as::item ref="NodeCitOnly" />
 :63:   <as::item ref="Node2Config" />
-:64:   
+:64: 
 :65:   <MailTo>Bob@abc.com</MailTo>
 :66:   <SubArgs />
 :67:   <Subject>Node 2 TITLE in body for test</Subject>
@@ -1040,7 +1030,7 @@ Run-Command142[111] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</
 :71:   </Hosts>
 :72: </Tag>
 
-Run-Command142[112] = type sample-file.txt | msr -c -A  -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o ""
+Run-Command140[110] = type sample-file.txt | msr -c -A  -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o ""
 :100: [section2]
 key1=value1
 key=value
@@ -1049,7 +1039,7 @@ key=value
 key=value
 
 
-Run-Command142[113] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?value2" -o ""
+Run-Command140[111] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?value2" -o ""
 :133: 2012-12-27 00:02:02.222 first  line time at 2
 2012-12-27 00:01:01.111 second line time at 1
 2012-12-27 00:03:03.333 third  line time at 3
@@ -1082,18 +1072,18 @@ int main(int argc, char* argv[])
         });
 }
 
-<pairPair>
+<pair>
     <Name>#FUNCTION#</Name>
     <Value>'All'</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_1#</Name>
     <Value>4000</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_2#</Name>
     <Value>8000</Value>
-</pairPair>
+</pair>
 
 
 <Tag Name="Node1">
@@ -1113,7 +1103,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node2">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node2Config" />
-  
+
   <MailTo>Bob@abc.com</MailTo>
   <SubArgs />
   <Subject>Node 2 title in body for test</Subject>
@@ -1126,7 +1116,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node3">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node3Config" />
-  
+
   <MailTo>Clark@abc.com</MailTo>
   <AllowReTry>true</AllowReTry>
   <SubArgs>
@@ -1181,7 +1171,7 @@ section 6 line 1
 --------------------section9
 line 9.1
 
-Run-Command142[114] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101
+Run-Command140[112] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101
 :101: 
 --- arbitrary block to match replace  ----------value2
 
@@ -1194,7 +1184,7 @@ key=value
 
 [section4]
 
-Run-Command142[115] = type sample-file.txt | msr -c -A  -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101
+Run-Command140[113] = type sample-file.txt | msr -c -A  -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101
 :101: 
 --- arbitrary block to match replace  ----------
 value2
@@ -1208,7 +1198,7 @@ key=value
 
 [section4]
 
-Run-Command142[116] = type sample-file.txt | msr -c -A  -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101
+Run-Command140[114] = type sample-file.txt | msr -c -A  -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101
 :101: --- arbitrary block to match replace  ----------
 value2
 
@@ -1221,18 +1211,18 @@ key=value
 
 [section4]
 
-Run-Command142[117] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o ""
+Run-Command140[115] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o ""
 :90: 
 
-Run-Command142[118] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*?value2" -o "value2"
+Run-Command140[116] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*?value2" -o "value2"
 :90: value2
 
 
-Run-Command142[119] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "\s*\[section1.*?value2" -o "value2"
+Run-Command140[117] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "\s*\[section1.*?value2" -o "value2"
 :90: value2
 
 
-Run-Command142[120] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
+Run-Command140[118] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
 :90: 
 :94: 
 :98: 
@@ -1241,7 +1231,7 @@ Run-Command142[120] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :109: 
 :112: 
 
-Run-Command142[121] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -y
+Run-Command140[119] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -y
 :90: [section1]
 key1=value1
 key2=value2
@@ -1267,24 +1257,25 @@ key=value
 :112: [section9]
 
 
-Run-Command142[122] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""
+Run-Command140[120] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""
+:90: 
 
-Run-Command142[123] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"
+Run-Command140[121] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"
 :90: value2
 
 
-Run-Command142[124] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)\s*" -o "$1"
+Run-Command140[122] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)\s*" -o "$1"
 :90: value2
 
-Run-Command142[125] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
+Run-Command140[123] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
 :90: value2
 
 
-Run-Command142[126] = type sample-file.txt | msr -c -A  -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"
+Run-Command140[124] = type sample-file.txt | msr -c -A  -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"
 :93: value2
 
 
-Run-Command142[127] = type sample-file.txt | msr -c -A  -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
+Run-Command140[125] = type sample-file.txt | msr -c -A  -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
 :100: value2
 
 [section2]
@@ -1295,20 +1286,20 @@ key=value
 key=value
 
 
-Run-Command142[128] = type sample-file.txt | msr -c -A  -b "^\[" -Q "no-such-end" -t SECTION
+Run-Command140[126] = type sample-file.txt | msr -c -A  -b "^\[" -Q "no-such-end" -t SECTION
 
-Run-Command142[129] = type sample-file.txt | msr -c -A  -b "--section1" -Q "^---|^\s*$" -q "--section3" -t SEC -ya
+Run-Command140[127] = type sample-file.txt | msr -c -A  -b "--section1" -Q "^---|^\s*$" -q "--section3" -t SEC -ya
 
-Run-Command142[130] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3
+Run-Command140[128] = type sample-file.txt | msr -c -A  -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3
 :67:   <Subject>Node 2 TITLE in body for test</Subject>
 
-Run-Command142[131] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*"
+Run-Command140[129] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*"
 :90: [section1]
 key1=value1
 key2=value2
 
 
-Run-Command142[132] = type sample-file.txt | msr -c -A  -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o ""
+Run-Command140[130] = type sample-file.txt | msr -c -A  -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o ""
 :100: [section2]
 key1=value1
 key=value
@@ -1317,10 +1308,10 @@ key=value
 key=value
 
 
-Run-Command142[133] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o ""
+Run-Command140[131] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o ""
 :90: 
 
-Run-Command142[134] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
+Run-Command140[132] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
 :90: 
 :94: 
 :98: 
@@ -1329,7 +1320,7 @@ Run-Command142[134] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :109: 
 :112: 
 
-Run-Command142[135] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?value2" -o ""
+Run-Command140[133] = type sample-file.txt | msr -c -A  -S -it "\s*\[section1.*?value2" -o ""
 :133: 2012-12-27 00:02:02.222 first  line time at 2
 2012-12-27 00:01:01.111 second line time at 1
 2012-12-27 00:03:03.333 third  line time at 3
@@ -1362,18 +1353,18 @@ int main(int argc, char* argv[])
         });
 }
 
-<pairPair>
+<pair>
     <Name>#FUNCTION#</Name>
     <Value>'All'</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_1#</Name>
     <Value>4000</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_2#</Name>
     <Value>8000</Value>
-</pairPair>
+</pair>
 
 
 <Tag Name="Node1">
@@ -1393,7 +1384,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node2">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node2Config" />
-  
+
   <MailTo>Bob@abc.com</MailTo>
   <SubArgs />
   <Subject>Node 2 title in body for test</Subject>
@@ -1406,7 +1397,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node3">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node3Config" />
-  
+
   <MailTo>Clark@abc.com</MailTo>
   <AllowReTry>true</AllowReTry>
   <SubArgs>
@@ -1461,7 +1452,7 @@ section 6 line 1
 --------------------section9
 line 9.1
 
-Run-Command142[136] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
+Run-Command140[134] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
 :90: 
 :94: 
 :98: 
@@ -1470,7 +1461,7 @@ Run-Command142[136] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :109: 
 :112: 
 
-Run-Command142[137] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
+Run-Command140[135] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""
 :90: 
 :94: 
 :98: 
@@ -1479,18 +1470,7 @@ Run-Command142[137] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :109: 
 :112: 
 
-Run-Command142[138] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o "" -y
-:90: 
-:94: 
-:98: 
-:101: 
-:103: 
-:106: 
-:109: 
-:111: 
-:112: 
-
-Run-Command142[139] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o "" -y
+Run-Command140[136] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o "" -y
 :90: 
 :94: 
 :98: 
@@ -1501,11 +1481,23 @@ Run-Command142[139] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^
 :111: 
 :112: 
 
-Run-Command142[140] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""
+Run-Command140[137] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o "" -y
+:90: 
+:94: 
+:98: 
+:101: 
+:103: 
+:106: 
+:109: 
+:111: 
+:112: 
 
-Run-Command142[141] = type sample-file.txt | msr -c -A  -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+"
+Run-Command140[138] = type sample-file.txt | msr -c -A  -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""
+:90: 
 
-Run-Command142[142] = type sample-file.txt | msr -c -A  -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1"
+Run-Command140[139] = type sample-file.txt | msr -c -A  -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+"
+
+Run-Command140[140] = type sample-file.txt | msr -c -A  -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1"
 :8:     LineType::NotMatchedLine = 0,
 :9:     LineType::MatchedLine = 1,
 :10:     LineType::UpLine = 2,

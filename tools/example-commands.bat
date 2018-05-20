@@ -2,6 +2,7 @@
 msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
 msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
 msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
@@ -9,6 +10,12 @@ msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail 
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
 msr -c -p %~dp0 -f bat -l -PAC -H 0
 msr -c -p %~dp0 -f bat -l -PIC -H 0
+msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
+msr -c -p %~dp0 -l -f bat -T 2 # Should show bottom 2 items.
 msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
 msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
 msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
@@ -81,9 +88,7 @@ msr -c -p %~dp0\sample-file.txt -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012
 msr -c -p %~dp0\sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line"
 msr -c -p %~dp0\sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc
 msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched.
-msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0 -T 2  ## Must out only 2 matched of bottom.
 msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.
-msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0 -H 2  ## Must out only 2 matched of top.
 msr -c -p %~dp0\example-commands.bat -it just -U 3 -D 3
 msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
@@ -194,10 +199,14 @@ msr -c -p %~dp0\sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLin
 msr -c -p %~dp0\sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1"
 copy /y %~dp0\original-sample.txt %~dp0\sample-file.txt
 
+del %~dp0\original-sample.txt
+
 ::Stop calling for linux-test.sh as following are advanced test. On Linux , need to replace the double quotes "" to single quotes '' in -o xxxx if contains $1 or $2 etc.
+pushd
 ::Example below extract to a file then generate replacing commands and execute them.
 msr -c -p %~dp0\sample-file.txt -b "<Tag Name.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
 msr -c -p %~dp0\sample-file.txt -b "<Tag Name.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
 (msr -c -p %~dp0\sample-file.txt -it "<name>(#.+?#)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
 msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced name value settings.
 msr -z "if exist Node1.tmp del Node1.tmp" -XPI
+popd

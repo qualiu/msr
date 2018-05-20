@@ -1,6 +1,6 @@
 ::=======================================================
 :: Check and fix file style.
-:: Latest version in: https://github.com/qualiu/msrTools
+:: Latest version in: https://github.com/qualiu/msrTools/
 ::=======================================================
 @echo off
 SetLocal EnableExtensions EnableDelayedExpansion
@@ -8,7 +8,7 @@ SetLocal EnableExtensions EnableDelayedExpansion
 where msr.exe 2>nul >nul || if not exist %~dp0\msr.exe powershell -Command "Invoke-WebRequest -Uri https://github.com/qualiu/msr/blob/master/tools/msr.exe?raw=true -OutFile %~dp0\msr.exe"
 where msr.exe 2>nul >nul || set "PATH=%PATH%;%~dp0"
 
-@if "%~1" == "" (
+if "%~1" == "" (
     echo Usage  : %~n0  Files-or-Directories  [options]
     echo Example: %~n0  my.cpp
     echo Example: %~n0  "my.cpp,my.ps1,my.bat"
@@ -51,6 +51,9 @@ if exist %PathToDo%\* (
     )
 )
 
+@echo ## Remove all white spaces if it is a white space line | msr -PA -e .+
+msr !msrOptions! -p %PathToDo% !FileFilter! -it "^\s+$" -o "" -R -c Remove all white spaces if it is a white space line.
+
 @echo ## Remove white spaces at each line end | msr -PA -e .+
 msr !msrOptions! -p %PathToDo% !FileFilter! -it "(\S+)\s+$" -o "$1" -R -c Remove white spaces at each line end.
 
@@ -70,12 +73,18 @@ msr !msrOptions! -p %PathToDo% !FileFilter! -S -t "(\S+)\s*$" -o "$1\n" -R -c Ad
     if !ERRORLEVEL! GTR 0 goto :ConvertTabTo4Spaces else exit /b 0
 
 
-@echo ## Convert line ending style from CR LF to LF for Linux files | msr -PA -e .+
-set FileFilterForLinuxLineEnding=-f "^makefile$|\.sh$|\.mak\w*$"
-if !hasFileFilter! NEQ 0 set FileFilterForLinuxLineEnding=--pp "[\\\\/]*makefile$|\.sh$|\.mak\w*$"
-msr !msrOptions! -p %PathToDo% !FileFilterForLinuxLineEnding! -l -PICc | msr -t ".+" -o "dos2unix \"$0\"" -XA
+where dos2unix >nul 2>nul
+if !ERRORLEVEL! EQU 0 (
+    @echo ## Convert line ending style from CR LF to LF for Linux files | msr -PA -e .+
+    set FileFilterForLinuxLineEnding=-f "^makefile$|\.sh$|\.mak\w*$"
+    if !hasFileFilter! NEQ 0 set FileFilterForLinuxLineEnding=--pp "[\\\\/]*makefile$|\.sh$|\.mak\w*$"
+    msr !msrOptions! -p %PathToDo% !FileFilterForLinuxLineEnding! -l -PICc | msr -t ".+" -o "dos2unix \"$0\"" -XA
+)
 
-@echo ## Convert line ending style from LF to CR LF for Windows files | msr -PA -e .+
-set FileFilterForWindowsLineEnding=-f "\.(bat|cmd|ps1)$"
-if !hasFileFilter! NEQ 0 set FileFilterForWindowsLineEnding=--pp "\.(bat|cmd|ps1)$"
-msr !msrOptions! -p %PathToDo% !FileFilterForWindowsLineEnding! -l -PICc | msr -t ".+" -o "unix2dos \"$0\"" -XA
+where unix2dos >nul 2>nul
+if !ERRORLEVEL! EQU 0 (
+    @echo ## Convert line ending style from LF to CR LF for Windows files | msr -PA -e .+
+    set FileFilterForWindowsLineEnding=-f "\.(bat|cmd|ps1)$"
+    if !hasFileFilter! NEQ 0 set FileFilterForWindowsLineEnding=--pp "\.(bat|cmd|ps1)$"
+    msr !msrOptions! -p %PathToDo% !FileFilterForWindowsLineEnding! -l -PICc | msr -t ".+" -o "unix2dos \"$0\"" -XA
+)

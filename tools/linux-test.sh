@@ -3,50 +3,57 @@ if [ -z "$1" ]; then
     echo "Usage:   $0  Sleep-Seconds"
     echo "Example: $0  0"
     echo "Example: $0  3"
+    echo "This file leverages test cases in windows-test.bat to test."
     exit -1
 fi
 
 # For example of msr.gcc48, just replace the windows test command and execute them by -X
 SleepSeconds=$1
 ThisDir="$( cd "$( dirname "$0" )" && pwd )"
-SYS_TYPE=$(uname | sed 's/_.*//g' | awk '{print tolower($0)}')
 
-msrExisted=$(whereis msr 2>/dev/null | msr -t "^.*?:\s*(\S+?msr\S*).*" -o '$1' -PAC 2>/dev/null | tr -d '\r')
-if [ -f "$msrExisted" ]; then
-    md5Existed=$(md5sum $msrExisted | msr -t "^(\w+\S+).*" -o '$1' -PAC | tr -d '\r')
-    if [ ! -x $msrExisted ]; then
-        chmod +x $msrExisted
-    fi
-fi
-
-if [ "$SYS_TYPE"x = "linux"x ]; then
-    msrThis=$ThisDir/msr.gcc48
-elif [ "$SYS_TYPE"x = "cygwin"x ]; then
+if [ -n "$(uname -o | grep -ie Cygwin)" ]; then
     msrThis=$ThisDir/msr.cygwin
+elif [ -n "$(uname -o | grep -ie Linux)" ]; then
+    if [ -n "$(uname -m | grep 64)" ]; then
+        msrThis=$ThisDir/msr.gcc48
+    else
+        msrThis=$ThisDir/msr-i386.gcc48
+    fi
 else
-    echo "Unknow system type: $SYS_TYPE"
+    echo "Unknow system type: $(uname -a)"
     exit -1
 fi
 
-chmod +x $msrThis
+if [ -f $msrThis ]; then
+    chmod +x $msrThis
+else
+    msrThis=$(basename $msrThis)
+fi
 
-md5This=$(md5sum $msrThis | msr -t "^(\w+\S+).*" -o '$1' -PAC 2>/dev/null | tr -d '\r')
+
+ninThis=$($msrThis -z "$msrThis" -t 'msr([^/]*?\.\w+)$' -o 'nin$1' -PAC)
+if [ -f $ninThis ]; then
+    chmod +x $ninThis
+else
+    ninThis=$(basename $ninThis)
+fi
+
+alias msr=$msrThis
+alias nin=$ninThis
 
 cd $ThisDir
 
 alias msr=$msrThis
 if [ "$md5Existed" = "$md5This" ] && [[ -x $msrExisted ]] && [ -z "$SleepSeconds" ] ; then
-    msr -p example-commands.bat -x %~dp0\\ -o "" -iq "^::.*Stop" --nt "^::" | msr -t "-o\s+.*-R" -x '"' -o "'" -a -X
+    # msr -p example-commands.bat -x %~dp0\\ -o "" -iq "^::.*Stop" --nt "^::" | msr -t "-o\s+.*-R" -x '"' -o "'" -a -X
+    msr -p example-commands.bat -i -q "stop" -x "msr -c -p" -t "%~dp0\\\\?" -o './' -PAC --nt "-o\s+.*\s+-R" | msr -t '-o\s+\"(\$\d)\"' -o " -o '\1'" -aPAC -X
 else
-    # echo "$msrThis -p example-commands.bat -x %~dp0\\ -o "" -iq "^::\s*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o \"$msrThis\" -aPAC"
-    $msrThis -p example-commands.bat -x %~dp0\\ -o "" -iq "^::.*Stop" --nt "^::" -PAC | $msrThis -t "^\s*msr" -o "$msrThis" -aPAC | $msrThis -t '\s+-o\s+\"(\$.*?)\"' -o " -o '\$1'" -aPAC | $msrThis -t '\s+-o\s+\"(msr.*)\"' -o " -o '\$1'" -aPAC |
+    msr -p example-commands.bat -i -q "stop" -x "msr -c -p" -t "%~dp0\\\\?" -o './' -PAC --nt "-o\s+.*\s+-R" | msr  -t '-o\s+\"(\$\d)\"' -o " -o '\1'" -aPAC | msr -t "^msr" -o "$msrThis" -PAC |
     while IFS= read -r cmdLine ; do
+        echo $cmdLine | msr -aPA -e "(.+)"
         sh -c "$cmdLine"
         if(($SleepSeconds > 0)); then
             sleep $SleepSeconds
         fi
     done
 fi
-
-sh $ThisDir/../fix-file-style.sh sample-file.txt
-unix2dos sample-file.txt

@@ -7,6 +7,8 @@
 :: Output line format, separated by TAB: ParentProcessId ProcessId Name CommandLine
 :: [1]: Default: :RowNumber: ParentProcessId ProcessId Name CommandLine
 :: [2]: With -P: ParentProcessId ProcessId Name CommandLine
+::
+:: Latest version in: https://github.com/qualiu/msrTools/
 :: ############################################################################
 
 @echo off
@@ -16,8 +18,9 @@ if "%~1" == "-h"     set ToShowUsage=1
 if "%~1" == "--help" set ToShowUsage=1
 if "%~1" == "/?"     set ToShowUsage=1
 
-where msr.exe 2>nul >nul || if not exist %~dp0\msr.exe powershell -Command "Invoke-WebRequest -Uri https://github.com/qualiu/msr/blob/master/tools/msr.exe?raw=true -OutFile %~dp0\msr.exe"
+where msr.exe 2>nul >nul || if not exist %~dp0\msr.exe powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri https://github.com/qualiu/msr/blob/master/tools/msr.exe?raw=true -OutFile %~dp0\msr.exe"
 where msr.exe 2>nul >nul || set "PATH=%~dp0;%PATH%"
+
 for /f "tokens=*" %%a in ('where msr.exe 2^>nul') do set "msrPath=%%a"
 
 if "%ToShowUsage%" == "1" (
@@ -50,7 +53,7 @@ set RemoveEmptyTail=-S -t "\s*$" -o "" -PAC
 
 :: Check if just all PID numbers, then set ColumnReplace with PIDPattern
 if not [%~1] == [] for /f "tokens=*" %%a in ('echo %* ^| msr -t "(^|\s+)(-[PACIMO]+|-[UDHT]\s*\d+|-c\s*.*)" -o "" -aPAC') do set TestPureNumbers=%%a
-echo !TestPureNumbers! | msr -t "[^\d ]" >nul
+echo !TestPureNumbers! | msr -t "[^\d ]" -c Check if input args are not just PIDs and spaces >nul
 :: if all are numbers and whitespaces.
 if !ERRORLEVEL! EQU 0 (
     for /f "tokens=*" %%a in ('echo !TestPureNumbers! ^| msr -t "\s*(\d+)\s*" -o "$1|" -PAC ^| msr -t "\s*\|\s*$" -o "" -aPAC') do set "PIDPattern=%%a"

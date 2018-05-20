@@ -30,18 +30,18 @@ int main(int argc, char* argv[])
         });
 }
 
-<pairPair>
+<pair>
     <Name>#FUNCTION#</Name>
     <Value>'All'</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_1#</Name>
     <Value>4000</Value>
-</pairPair>
-<pairPair>
+</pair>
+<pair>
     <Name>#THRESHOLD_2#</Name>
     <Value>8000</Value>
-</pairPair>
+</pair>
 
 
 <Tag Name="Node1">
@@ -61,7 +61,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node2">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node2Config" />
-  
+
   <MailTo>Bob@abc.com</MailTo>
   <SubArgs />
   <Subject>Node 2 title in body for test</Subject>
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 <Tag Name="Node3">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node3Config" />
-  
+
   <MailTo>Clark@abc.com</MailTo>
   <AllowReTry>true</AllowReTry>
   <SubArgs>
