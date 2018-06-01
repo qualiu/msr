@@ -446,4 +446,4 @@ Line 5 two
 Got 3 keys captured ONLY in tmp-nin-duplicated-diff.txt (50.00%/50.00%) NOT in nul, read 6 rows = 6 rows in .\tmp-nin-duplicated-diff.txt (duplicate = 3 = 50.00% , not-captured = 3 = 50.00% , captured = 3 = 50.00%)  + 0 rows in nul. 
 Return-Value78[78] = 3 : nin %TmpDupliatedDiffFile% nul "(5)" -wa -I
 
-Total executed lines = 78, non-zero-return-count = 77, return-zero-count = 1, positive-return-sum = 241, negative-return-sum = 0, exceptions = 0. Matched 77 lines(98.72%) from stdin
+Total executed lines = 78, non-zero-return-count = 77, return-zero-count = 1, positive-return-sum = 241, negative-return-sum = 0, exceptions = 0. Matched 78 lines(100%) from stdin

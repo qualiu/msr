@@ -159,6 +159,7 @@ echo.>>%fileTestLog% & echo.>>%fileTestLog%
 echo %MSR_EXE% -p %SourceFile% -b %StopCalling% --nt %StopCalling% -ix "%%~dp0" -o %%~dp0 -a -PAC ^| %MSR_EXE% -it "\b%MSR_UNIFY_NAME%\b" -o "%MSR_EXE%" -a -XPAC
 echo %MSR_EXE% -p %SourceFile% -b %StopCalling% --nt %StopCalling% -ix "%%~dp0" -o %%~dp0 -a -PAC ^| %MSR_EXE% -it "\b%MSR_UNIFY_NAME%\b" -o "%MSR_EXE%" -a -XPAC >> %fileTestLog%
 %MSR_EXE% -p %SourceFile% -b %StopCalling% --nt %StopCalling% -ix "%%~dp0" -o %ThisDir% -a -PAC | %MSR_EXE% -it "\b%MSR_UNIFY_NAME%\b" -o "%MSR_EXE%" -a -XPAC >> %fileTestLog%
+%MSR_EXE% -p %ThisDir% -f base.*.log -t "^Replaced \d+ \S+?\b(\d+\.\d+)%%" -s "" -n -H 20 >> %fileTestLog%
 
 call :Compare_Title_Base_TestLog "%TestGroupNumber%-%TestGroupCount%: File test comparison" %ThisDir%\base-windows-file-test.log  %ThisDir%\%fileTestLog%
 if !ERRORLEVEL! NEQ 0 (
@@ -242,3 +243,4 @@ exit /b !failedGroups!
     %MSR_EXE% -p %1 -t "\s*\d+\.?\d*(\s*[KM]?B)(\s*\t\s*)\d+" -o "  Number-Unit  Bytes" -ROc ReplaceDetailSizeBytes
     %MSR_EXE% -p %1 -t "\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(\s*\t\s*)" -o "yyyy-MM-dd HH:mm:ss$1" -ROc ReplaceDetailFileTime
     %MSR_EXE% -p %1 -t "^\d+\S+ \d+:\d+:\S+.*?(Run-Command|Return-Value)" -o "$1" -ROc UnifyExecuteCommands
+    %MSR_EXE% -p %1 -b "^%MSR_EXE%.*\s+-l -f bat\s+" -Q "^Matched|^\s*$" -t "\S+\.bat$" -o "Replace-Real-File-Name-To-Avoid-Difference" -Rc

@@ -110,7 +110,7 @@ And search usage like: nin | msr -it return.*value  or  nin -hC | msr -it "summa
 
 As a portable cross platform tool, nin has been running on: Windows / Cygwin / Ubuntu / CentOS / Fedora
 Any good ideas please to : QQ : 94394344 , aperiodic updates and docs on https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
-Call@Anywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
+Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
 	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS
 
@@ -148,6 +148,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -B [ --time-begin ] arg     Begin time, format like "2013-01-10 11:00:00". Just text comparison NOT time.
   -E [ --time-end ] arg       End time, format like "2013-01-10 15:30". Just text comparison NOT time.
   -s [ --sort-by ] arg        Regex pattern to sort result lines by captured group[1] if has, else by group[0]. If set to "" will try groups from -t .
+  -n [ --sort-as-number ]     If has used -s : Convert to number or decimal at first then sort the captured group[1] or group[0] of -s .
   --dsc                       Descending order for sorting of matching (-t/-x), list(-l with --wt --sz), sorting-key (-s), time (-F with -B -E), etc.
   -l [ --list-count ]         Only output matched file path list or matched count.
   --wt                        Sort file list by last write time (with -l). If used both --wt and --sz, order by prior then by latter.
@@ -157,7 +158,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --s1 arg                    Lower bound of file size, format like 100kb (No Space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No Space between number and unit, use B if no unit).
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
-  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --lz-backup-2018-05-22__12_49_19).
+  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --lz-backup-2018-06-08__09_15_20).
   -S [ --single-line ]        Single line Regex mode to match/replace (Treat each file or pipe as one line).
   -g [ --replace-times ] arg  Replace times for single line Regex replacing mode: Default = 1
   -c [ --show-command ]       Show command line, and you can append text after -c for summary or further extraction.
@@ -183,7 +184,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
 
 Return value/Exit code(%ERRORLEVEL%) = matched/replaced count of lines/blocks/files in files or pipe.
 But if Return value = 0 and caught N errors, will set Return value = -N which is error count.
-If used -X(--execute-out-lines): Return value = non-zero-return-count of all executions.
+If used -X(--execute-out-lines): Return value = non-zero-return-count of all executions if executed count > 1; Return value = One command line return value if executed count = 1.
 All error messages will be output to stderr . You can redirect them to stdout by appending 2>&1 to your command line.
 
 Detail instruction and examples ( Quick-Start at bottom is more brief ):
@@ -197,20 +198,21 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
     -B and -E only textually/literally compare with time text matched by -F XXX , not parse the text of -B and -E to time then compare.
     If replacing files, -R (--replace-file), will just copy the lines that out of -L/-b and -N/-Q/-q.
     -R does NOT change files if no lines replaced; Preview replacing result without -R.
-    -K (--backup) to backup files if changed, append modify-time (--yyyy-MM-dd__HH_mm_ss) to backup file name. If exists, will append '-N' and N start from 1.
+    -K(--backup) to backup files if changed, append modify-time (--yyyy-MM-dd__HH_mm_ss) to backup file name. If exists, will append '-N' and N start from 1.
 (2) Replace text/files By Regex expression or normal/plain text:
     If used both -t (--text-match) and -x (--has-text), will use the closer one to -o (--replace-to); 
     But if -t and -x distances to -o are same, replace by the prior one ( in command line position ).
 (3) Sort output or file list by time or size: (sort result by time/key see usage and bottom examples)
     Both --sz and --wt only work with -l (--list-count) to display and sort by file size and last-write-time;
     sort by the prior one (in command line position) if used both of them.
-    -s(--sort-by) will sort output by captured regex group[1], if no group[1] will use group[0];
-    If input empty regex pattern "" for -s, then -s will use the pattern of -t; If no -t then try -x if it's a valid regex pattern.
+    -s(--sort-by) will sort output by captured regex group[1], if no group[1] will use group[0] of -F(--time-format) or -t(--text-match) (if found).
+    If input empty regex pattern "" for -s, then -s will sort by the pattern of -F(--time-format) if found; else check and use the pattern of -t(--text-match) to sort.
 (4) Execute output line as command : If has -X (--execute-out-lines): 
-    -P will not output lines(commands) before executing;
-    -I will not output each execution summary;  -O will not output execution summary if return value = 0.
-    -A will omit both of them and new lines (which separates executions).
-    -Y to force reading from files other than pipe. -Y is rarely used, only for cases which msr cannot know where to read from : files or pipe. For example, remove the -p . and -Y below:
+    -P(--no-path-line) will not output lines(commands) before executing;
+    -I(--no-extra) will not output each execution summary;  -O(--out-if-did) will not output execution summary if return value = 0.
+    -A(--no-any-info) will not output any info or summary, and new lines (which separates executions).
+    -Y(--not-from-pipe) to force reading from files other than pipe. -Y is rarely used, only for cases which msr cannot know where to read from : files or pipe. 
+    For example, you can remove the -p . and -Y below, then run it, you will see that using -Y can avoid reading pipe:
     echo for /F "tokens=*" %a in ('msr -l -p . -H 3 -PICc -Y') do msr -Y -l -c --wt --sz -p %a | msr -X
 (5) Further extraction by summary:
     Use -c (--show-command), you can append any text to the command line.
@@ -225,7 +227,7 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
     robocopy /? | msr -it mirror -U 3 -D 3 -e purge
 
 Additional feature: Directly read and match text by -z (--string instead of using echo command on Windows which must escape | to ^|  in for-loop)
-    Example: Finding non-exist path in %PATH% and olny check 3 header + 3 tailer paths:
+    Example: Finding non-exist path in %PATH% and olny check 3 head(top) + 3 tail(bottom) paths:
     msr -z "%PATH%" -t "\s*;\s*" -o "\n" -PAC | msr -t .+ -o "if not exist \"$0\" echo NOT EXIST $0"  -PI -H 3 -T 3 -X
 
 Example-1 : Find env in profiles:
@@ -247,7 +249,7 @@ Example-6 : Multi-line regex mode (normal mode) replacing lines in each file and
     msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@\s*echo)\s+off\b" -o "$1 on" -R -K 
 
 Example-7 : Display current modified code files:
-    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2018-05-22 12:49:19" -PAC 2^>nul ') do @echo code file : %a
+    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2018-06-08 09:15:20" -PAC 2^>nul ') do @echo code file : %a
 
 Example-8 : Get 2 oldest and newest mp3 (4 files) which 3.0MB<=size<=9.9MB and show size unit, in current directory (Can omit -p . or -p %CD%)
     msr -l --wt -H 2 -T 2 -f "\.mp3$" --sz --s1 3.0MB --s2 9.9m
@@ -256,7 +258,7 @@ Example-9 : Find files in %PATH% environment variable: such as ATL*.dll, 2 metho
     for /f "tokens=*" %d in ('msr -z "%PATH%" -t "([^;]+);*" -o "$1\n" -PAC ^| msr -t "\\\s*$" -o "" -aPAC') do @msr -l --wt --sz -p "%d" -f "^ATL.*\.dll$" -O 2>nul
     msr -l --wt --sz -p "%PATH%" -f "^ATL.*\.dll$" -M 2>nul
 
-All optoins/switches are optional + no order + effective mean while, but case sensitive.
+All options/switches are optional + no order + effective mean while, but case sensitive.
 Can merge single char switches/options+values like : -rp -it -ix -PIC -PAC -POC -PIOCcl -PICc -PICcl , -mu -v zod, -muvzod, -uvz
 Useful options : -a, -H 3, -H 3 -J, -H 0, -T 3, -T -1, -M, -O, -PAC, -PIC, -POC, -POlCc, -XI, -XIP, -XA, -XO, -XOPI, -muvz, 2>&1, 2>nul (2^>nul in pipe)
 Like watching time/elapsed/matched (-muvzd): msr | msr -it show -v zdo -u -m
@@ -284,7 +286,7 @@ Helpful commands - Just 1 command line: Preview replacing just remove -R
     msr --help -C | msr -S -t "\s*$" -o "" -P
 (10) Debug batch files, turn on all ECHO/echo:
     msr -rp directory-1,dir-2 -f "\.(bat|cmd)$" -it "\b(echo)\s+off\b" -o "$1 on"  -R
-(11) Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2018-05-22 12:49:19.185637 +0800 CST = China Standard Time
+(11) Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2018-06-08 09:15:20.524577 +0800 CST = China Standard Time
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2" -PAC') do SET "TimeNowInSecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3" -PAC') do SET "TimeNowMillisecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3\4" -PAC') do SET "TimeNowMicrosecond=%a"
@@ -294,7 +296,9 @@ Helpful commands - Just 1 command line: Preview replacing just remove -R
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2 \6" -PAC') do SET "TimeNowZone=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3 \6" -PAC') do SET "TimeNowMilliZone=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3\4 \6" -PAC') do SET "TimeNowMicroZone=%a"
-    for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3\4" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowForFileName=%a"
+    for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowForFileName=%a"
+    for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowMilliForFileName=%a"
+    for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3\4" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowMicroForFileName=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2_\6" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowZoneForFileName=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3_\6" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowZoneMilliForFileName=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3\4_\6" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowZoneMicroForFileName=%a"
@@ -306,16 +310,17 @@ Final brief instruction as Quick-Start: Use -PAC to get pure output as other too
 (4) Replace files and Backup if changed : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -o "captured $1 and you want" -R -K
 (5) Get matched file list + distribution: msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -l --nd "^(target|bin)$" 
 (6) Extract or replace arbitrary blocks : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -b "block-begin" -Q "block-end" -f "\.(xml|ini|conf)$" -o "$1 something"
+(7) Execute top 2 output lines(commands): msr -l -f "\.(pdb|obj)$" -rp . -PAC | msr -t "(.+)" -o "del \"\1\"" -H 2 -X
 
 Search usage like: msr | msr -it block.*match  or  msr -hC | msr -it "max.*depth|full.*path|jump out"  or  msr | msr -t Backup -U 2 -D 2 -e replace
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
-For example: Remove/Display/Remove+Merge duplicated path in %PATH% and merge to new %PATH%:
+For example: Remove/Display/Remove+Merge duplicate path in %PATH% and merge to new %PATH%:
     msr -z "%PATH%" -t "\\*\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui
     msr -z "%PATH%" -t "\\*\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -uipd -H 9
     msr -z "%PATH%" -t "\\*\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui -PAC | msr -S -t "[\r\n]+(\S+)" -o ";$1" -aPAC | msr -S -t "\s+$" -o "" -aPAC
 
 As a portable cross platform tool, msr has been running on: Windows / Cygwin / Ubuntu / CentOS / Fedora
 Any good ideas please to : QQ : 94394344 , aperiodic updates and docs on https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
-Call@Anywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
+Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
 	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS
