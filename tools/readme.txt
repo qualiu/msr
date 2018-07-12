@@ -160,7 +160,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
   -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --lz-backup-2018-06-08__09_15_20).
   -S [ --single-line ]        Single line Regex mode to match/replace (Treat each file or pipe as one line).
-  -g [ --replace-times ] arg  Replace times for single line Regex replacing mode: Default = 1
+  -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to stop replacing until no changes. Default = 1.
   -c [ --show-command ]       Show command line, and you can append text after -c for summary or further extraction.
   -U [ --up ] arg             Output [N] lines above matched line by -t or/and found by -x.
   -D [ --down ] arg           Output [N] lines below matched line by -t or/and found by -x.
@@ -205,7 +205,7 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
 (3) Sort output or file list by time or size: (sort result by time/key see usage and bottom examples)
     Both --sz and --wt only work with -l (--list-count) to display and sort by file size and last-write-time;
     sort by the prior one (in command line position) if used both of them.
-    -s(--sort-by) will sort output by captured regex group[1], if no group[1] will use group[0] of -F(--time-format) or -t(--text-match) (if found).
+    -s(--sort-by) will sort output by captured regex group[1], if no group[1] will try group[0] of -F(--time-format) at first, then try -t(--text-match) (if found).
     If input empty regex pattern "" for -s, then -s will sort by the pattern of -F(--time-format) if found; else check and use the pattern of -t(--text-match) to sort.
 (4) Execute output line as command : If has -X (--execute-out-lines): 
     -P(--no-path-line) will not output lines(commands) before executing;
@@ -311,6 +311,7 @@ Final brief instruction as Quick-Start: Use -PAC to get pure output as other too
 (5) Get matched file list + distribution: msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -l --nd "^(target|bin)$" 
 (6) Extract or replace arbitrary blocks : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -b "block-begin" -Q "block-end" -f "\.(xml|ini|conf)$" -o "$1 something"
 (7) Execute top 2 output lines(commands): msr -l -f "\.(pdb|obj)$" -rp . -PAC | msr -t "(.+)" -o "del \"\1\"" -H 2 -X
+(8) Radically replace + only out changed: msr -z "Same with replacing files or pipe" -t "^(\w+)\s+" -o "$1_" -g -1 -j
 
 Search usage like: msr | msr -it block.*match  or  msr -hC | msr -it "max.*depth|full.*path|jump out"  or  msr | msr -t Backup -U 2 -D 2 -e replace
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
