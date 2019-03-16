@@ -23,7 +23,7 @@ Matched 133 lines(99.25%) in 1 files(100%)
 Return-Value = 133 : msr -c -p sample-file.txt -S -t "(.+\S+)\s*$" -H 0         # Check return value, output nothing 
 
 msr -c -p sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing 
-Matched 0 lines in 1 files
+Matched 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -S -t "(.+\S+)$" -H 0            # Check return value, output nothing 
 
 msr -c -p sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing 
@@ -100,7 +100,7 @@ Matched 4 lines(2.99%) in 1 files(100%)
 Return-Value = 4 : msr -c -p sample-file.txt -it node --nt "node\d+" -o "NODE" 
 
 msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks 
 
 msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block 
@@ -168,15 +168,15 @@ Matched 1 blocks(33.33%) with 2 lines(1.49%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block 
 
 msr -c -p sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -ib "\s*<tag" -Q "\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output 
 
 msr -c -p sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "\s*<tag" -iQ "\s*</tag" --nt "Node[1-3]"  ## Must no block to output 
 
 msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "\s*<tag" -Q "\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output 
 
 msr -c -p sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block 
@@ -568,7 +568,7 @@ Return-Value = 14 : msr -c -p example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 
 
 msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
 example-commands.bat:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-example-commands.bat:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+example-commands.bat:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
 example-commands.bat:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
 Matched 24 lines(11.27%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
@@ -787,39 +787,39 @@ Matched 75 lines(84.27%) in 1 files(100%)
 Return-Value = 75 : msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block" 
 
 msr -c -p sample-file.txt -it Tag -x ref -U 5 -D 5 
-Matched 0 lines in 1 files
+Matched 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -it Tag -x ref -U 5 -D 5 
 
-msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
+msr -c -p sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
 sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
 sample-file.txt:4: 2012-12-27 00:04:04.444 forth  line time at 4
 sample-file.txt:5: 2012-12-27 00:05:05.555 fifth  line time at 5
 Matched 3 lines(2.24%) in 1 files(100%)
-Return-Value = 3 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
+Return-Value = 3 : msr -c -p sample-file.txt -t "(\d+-\d+-\d+)" -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03" 
 
-msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
+msr -c -p sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
 sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
 sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 Matched 2 lines(66.67%) in 1 files(100%)
-Return-Value = 2 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
+Return-Value = 2 : msr -c -p sample-file.txt -t "(\d+-\d+-\d+)" -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03" 
 
-msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
+msr -c -p sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
 sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
 sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 sample-file.txt:3: 2012-12-27 00:03:03.333 third  line time at 3
 Matched 3 lines(100%) in 1 files(100%)
-Return-Value = 3 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
+Return-Value = 3 : msr -c -p sample-file.txt -t "(\d+-\d+-\d+)" -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03" 
 
-msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
+msr -c -p sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
 sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 Matched 1 lines(100%) in 1 files(100%)
-Return-Value = 1 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
+Return-Value = 1 : msr -c -p sample-file.txt -t "(\d+-\d+-\d+)" -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03" 
 
-msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
+msr -c -p sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
 sample-file.txt:2: 2012-12-27 00:01:01.111 second line time at 1
 sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 Matched 2 lines(66.67%) in 1 files(100%)
-Return-Value = 2 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
+Return-Value = 2 : msr -c -p sample-file.txt -t "(\d+-\d+-\d+)" -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" 
 
 msr -c -p sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first 
 sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
@@ -827,8 +827,8 @@ Matched 1 lines(33.33%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -F "(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first 
 
 msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*" 
-example-commands.bat:80: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
-example-commands.bat:84: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+example-commands.bat:80: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+example-commands.bat:84: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
 example-commands.bat:85: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
 Matched 3 lines(1.41%) in 1 files(100%)
 Return-Value = 3 : msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*" 
@@ -1605,11 +1605,11 @@ Matched 10 lines(10.00%) in 1 files(100%)
 Return-Value = 10 : msr -c -p sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1" 
 
 msr -c -p sample-file.txt -b "^\[" -Q "no-such-end" -t SECTION 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "\[" -Q "no-such-end" -t SECTION 
 
 msr -c -p sample-file.txt -b "--section1" -Q "^---|^\s*$" -q "--section3" -t SEC -ya 
-Matched 0 blocks with 0 lines in 1 files
+Matched 0 blocks with 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "--section1" -Q "---|\s*$" -q "--section3" -t SEC -ya 
 
 msr -c -p sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 
@@ -1840,7 +1840,7 @@ Matched 1 blocks(14.29%) with 4 lines(2.99%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[|\s*$" -x section1 -S -it "\s*\[section.*" -o "" 
 
 msr -c -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+" 
-Matched 0 lines in 1 files
+Matched 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+" 
 
 msr -c -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" 
@@ -1887,15 +1887,15 @@ msr -p example-commands.bat -b "::Stop calling" --nt "::Stop calling" -ix "%~dp0
     </as::pairs>
   </as::item>
 </Tag>
-Run-Command3[1] = msr -x "#FUNCTION#" -o "'All'" -p Node1.tmp -R
+Run-Command3[1] = msr -x "#FUNCTION#" -o "'All'" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
 
-Run-Command3[2] = msr -x "#THRESHOLD_1#" -o "4000" -p Node1.tmp -R
+Run-Command3[2] = msr -x "#THRESHOLD_1#" -o "4000" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
 
-Run-Command3[3] = msr -x "#THRESHOLD_2#" -o "8000" -p Node1.tmp -R
+Run-Command3[3] = msr -x "#THRESHOLD_2#" -o "8000" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
 
@@ -1934,4 +1934,4 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:203: Replaced 24 lines(11.27%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:583: Replaced 12 lines(11.88%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:552: Replaced 13 lines(12.87%) in 1 files(100%)
-Matched 46 lines(0.93%) in 2 files(40.00%)
+Matched 46 lines(0.69%) in 2 files(28.57%)

@@ -32,7 +32,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -i [ --ignore-case ]         Ignore case for plain text matching or Regex pattern.
   -n [ --out-not-captured ]    Also output not-captured keys/lines of Regex pattern in first file/pipe.
   -p [ --percentage ]          Output key percentage at each line head, and sort output.
-  -w [ --out-whole-text ]      Output matched lines other than keys (key = captured groups[1] of Regex pattern).
+  -w [ --out-whole-line ]      Output matched lines other than keys (key = captured groups[1] of Regex pattern).
   -a [ --ascending ]           Ascending sort output by line or captured-key or percentage.
   -d [ --descending ]          Descending sort output by line or captured-key or percentage.
   -k [ --stop-at-count ] arg   Stop if matched count of a key/line > [N] when ascending output, or if count < [N] when descending output.
@@ -73,13 +73,13 @@ But if Return value = 0 and caught N errors, will set Return value = -N which is
 All error messages will be output to stderr . You can redirect them to stdout by appending 2>&1 to your command line.
 
 Useful options : -H 20 -J, -H 0, -T 3, -k 30, -K 33.33, -T -1, -M, -S, -PAC, -i -u, -iuw, -iuwa, -ip, -ipa, -ipdw, -ium, iumw, -iwn, -im, -imw, -ipdPAC
--iwn : remove lines matched in latter from first (get lines captured + not-captured in first), ignore case.
--ium : get unique mutual intersection, ignore case.
--ipd : get top distributions and percentages, ignore case.
+-iwn : Remove lines matched in latter from first (get lines captured + not-captured in first, except captured in latter), ignore case.
+-ium : Get unique mutual intersection, ignore case.
+-ipd : Get top distributions and percentages by descending order, ignore case.
 nin treats nul as same as /dev/null on Linux.
 One important feature: nin.exe Does Not change the original line order, even if used unique(-u), if no sorting (-p, -a/-d, etc.).
 
-Frequent use cases as Quick-Start: 
+Frequent use cases as Quick-Start: Use -PAC or -PC to get pure output result.
 nin my.txt nul -ui :        output unique lines in my.txt ignore case.
 type my.txt | nin nul -ui : output unique lines in my.txt ignore case.
 nin my.txt nul "^(\w+)" -ui :  output unique keys (captured words at each line begin) in my.txt ignore case.
@@ -112,15 +112,15 @@ As a portable cross platform tool, nin has been running on: Windows / Cygwin / U
 Any good ideas please to : QQ : 94394344 , aperiodic updates and docs on https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
 Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS
+	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS\
 
 
 # msr.exe ------------------------------------------------
 Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of file and directory name) by LQM:
-  -r [ --recursive ]          Recursively search sub-directories.
-  -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 30.
-  -p [ --path ] arg           Directories or files: Use ',' or ';' to separate paths; Extra separator ':' for Linux.
-  -w [ --read-paths ] arg     Read path lines from files: Use ',' or ';' to separate files; Extra separator ':' for Linux.
+  -r [ --recursive ]          Recursively search files in descendant directories.
+  -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 33.
+  -p [ --path ] arg           Source paths (directories or files) to find/read: Use ',' or ';' to separate paths; Extra separator ':' for Linux.
+  -w [ --read-paths ] arg     Read source path lines from files: Use ',' or ';' to separate files; Extra separator ':' for Linux.
   -f [ --file-match ] arg     Regex pattern for file name to search.
   -t [ --text-match ] arg     Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx, -e).
   -x [ --has-text ] arg       Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx, -e).
@@ -130,16 +130,18 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --pp arg                    Regex pattern for full file path must match.
   --np arg                    Regex pattern for full file path must NOT match.
   --nd arg                    Regex pattern for file's parent directory names must NOT match.
-  -d [ --dir-has ] arg        Regex pattern for file's parent directory names must has one name match.
+  -d [ --dir-has ] arg        Regex pattern for file's parent directory names must has one name matched at least.
+  --xd                        Skip link directories.
+  --xf                        Skip link files.
   -i [ --ignore-case ]        Ignore case of matching/replacing for -t/-x/-e . You can add to one of them like: -it/-ix/-ie .
   -e [ --enhance ] arg        Regex pattern to enhance text (just add color from some text), inferior to : -t -x -o.
   -o [ --replace-to ] arg     Replace text from -x/-t XXX to -o XXX .
   -j [ --out-replaced ]       Just output replaced lines by -o xxx (no impact to replacing file, -R will ignore this).
   -a [ --out-all ]            Output all lines including not matched; Or each whole block range if used -b and -Q.
   -W [ --out-full-path ]      Output full paths if input relative paths by -p or -w. This can avoid duplicates and trim extra slashes and dots.
-  -A [ --no-any-info ]        Not output any info nor summary, only pure result (Please always use -PAC or -PIC to get pure result).
-  -I [ --no-extra ]           Not output extra info, out summary to stderr.
-  -P [ --no-path-line ]       Not output path and line number at head.
+  -A [ --no-any-info ]        Not output any info nor summary, warnings etc., only pure result (Please always use -PAC or -PIC to get pure result).
+  -I [ --no-extra ]           Not output extra info and warnings; Output summary to stderr.
+  -P [ --no-path-line ]       Not output path and line number at head of each line.
   -M [ --no-summary ]         Not output summary info.
   -O [ --out-if-did ]         Output summary info only if matched/replaced/found.
   -C [ --no-color ]           No color effect for output (Can ignore color on Windows. For Linux it's better to without color if has latter matching).
@@ -152,15 +154,16 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --dsc                       Descending order for sorting of matching (-t/-x), list(-l with --wt --sz), sorting-key (-s), time (-F with -B -E), etc.
   -l [ --list-count ]         Only output matched file path list or matched count.
   --wt                        Sort file list by last write time (with -l). If used both --wt and --sz, order by prior then by latter.
-  --w1 arg                    Lower bound of file write time, format like "2013-01-10 01:00:00", as a filter to list/find/replace files.
+  --w1 arg                    Lower bound of file write time, format like "2013-01-10T01:00:00", as a filter to list/find/replace files.
   --w2 arg                    Upper bound of file write time, format like "2013-01-10 12:30", as a filter to list/find/replace files.
   --sz                        Sort file list by file size (with -l) and display with unit like: B,KB,MB,GB,* etc.
   --s1 arg                    Lower bound of file size, format like 100kb (No Space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No Space between number and unit, use B if no unit).
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
-  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --lz-backup-2018-06-08__09_15_20).
+  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2018-06-08__09_15_20).
+  --force                     Force replacing BOM files. Default only replace UTF-8 BOM files which header bytes = 0xEFBBBF.
   -S [ --single-line ]        Single line Regex mode to match/replace (Treat each file or pipe as one line).
-  -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to stop replacing until no changes. Default = 1.
+  -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to replace radically. Default = 1.
   -c [ --show-command ]       Show command line, and you can append text after -c for summary or further extraction.
   -U [ --up ] arg             Output [N] lines above matched line by -t or/and found by -x.
   -D [ --down ] arg           Output [N] lines below matched line by -t or/and found by -x.
@@ -176,7 +179,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -X [ --execute-out-lines ]  Execute each final output line as a command. Will show command -> run -> show return value, if no: -P -I -A.
   -Y [ --not-from-pipe ]      Force reading from files other than pipe (To avoid reading pipe if running in another command and no reading paths set).
   -z [ --string ] arg         Input a string and read from it (without reading files or pipe). You can also use it to learn/test Regex, or test input args.
-  --verbose                   Show parsed arguments, return value, time zone and EXE path, etc.
+  --verbose                   Show parsed arguments, return value, time zone and EXE path, content error rows, BOM infos, link files' real paths, etc.
   -m [ --show-count ]         Show matched count at each output line head.
   -u [ --show-elapse ]        Show used time at output line head.
   -v [ --show-time ] arg      Show time at each output line head: s,dz,dzs,dzo (s = second, m = millisecond, o = microsecond; d = date, z = zone, t = offset).
@@ -199,7 +202,7 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
     If replacing files, -R (--replace-file), will just copy the lines that out of -L/-b and -N/-Q/-q.
     -R does NOT change files if no lines replaced; Preview replacing result without -R.
     -K(--backup) to backup files if changed, append modify-time (--yyyy-MM-dd__HH_mm_ss) to backup file name. If exists, will append '-N' and N start from 1.
-(2) Replace text/files By Regex expression or normal/plain text:
+(2) Replace text/files By Regex expression or normal/plain text: (To not output immediate replaced info, use anyone of : -A , -I , -H 0 , -T 0 )
     If used both -t (--text-match) and -x (--has-text), will use the closer one to -o (--replace-to); 
     But if -t and -x distances to -o are same, replace by the prior one ( in command line position ).
 (3) Sort output or file list by time or size: (sort result by time/key see usage and bottom examples)
@@ -227,7 +230,7 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
     robocopy /? | msr -it mirror -U 3 -D 3 -e purge
 
 Additional feature: Directly read and match text by -z (--string instead of using echo command on Windows which must escape | to ^|  in for-loop)
-    Example: Finding non-exist path in %PATH% and olny check 3 head(top) + 3 tail(bottom) paths:
+    Example: Finding non-exist path in %PATH% and only check 3 head(top) + 3 tail(bottom) paths:
     msr -z "%PATH%" -t "\s*;\s*" -o "\n" -PAC | msr -t .+ -o "if not exist \"$0\" echo NOT EXIST $0"  -PI -H 3 -T 3 -X
 
 Example-1 : Find env in profiles:
@@ -268,16 +271,16 @@ One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/AN
 Helpful commands - Just 1 command line: Preview replacing just remove -R
 (1) Remove white spaces at each line tail in each file in directories:
     msr -r -p dir-1,dir2,file1,file2 -f "\.(cpp|cxx|hp*|cs|java|scala|py)$" -t "\s+$" -o ""  -R
-(2) Replace tab(\t) to 4 spaces at line beginning in files: Run in loop until Return/Exit code %ERRORLEVEL% = 0: 
-    msr -rp directory-1,dir-2 -f "\.(cpp|cxx|hp*|cs|java|scala|py)$" -t "^(\s*)\t" -o "$1    " -R
+(2) Replace each tab(\t) to 4 spaces at each line begin in files: (Recursive/Radically change all head tabs in a line by -g -1)
+    msr -rp directory-1,dir-2 -f "\.(cp*|cxx|hp*|cs|java|scala|py)$" -t "^(\s*)\t" -o "$1    " -g -1 -R
 (3) Find top 100 largest old garbage log files which size >= 30MB:
-    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27 12:30" -H 100 --dsc -PIC
+    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27 12:30:00" -H 100 --dsc -PIC
 (4) Get command lines to delete top 100 largest old garbage log files which size >= 30MB:
-    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27 12:30" -H 100 --dsc -PAC | msr -t .+ -o "del /f /q /s \"$0\"" -PIC
+    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2  2015-07-27T12:30  -H 100 --dsc -PAC | msr -t .+ -o "del /f /q /s \"$0\"" -PIC
 (5) Delete top 100 largest old garbage log files which size >= 30MB:
     msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27 12:30" -T 100 -PAC | msr -t .+ -o "del /f /q /s \"$0\"" -X -PI
 (6) Delete top 100 largest old garbage log files which size >= 30MB:
-    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27 12:30" -T 100 -PAC | msr -t .+ -o "del /f /q /s \"$0\"" -H 100 -XPI
+    msr -rp directory-1,dir-2 -f "\.(log)$" -l --sz --s1 30MB --w2 "2015-07-27T12:30" -T 100 -PAC | msr -t .+ -o "del /f /q /s \"$0\"" -H 100 -XPI
 (7) Check tail new line: Return/Exit code %ERRORLEVEL% > 0 if has a new line:
     msr -p my-file -S -t "[\r\n]+$" -H 0 -PIC
 (8) Replace files to have only one new line at tail: (Add a new line or remove redundant new lines)
@@ -303,15 +306,19 @@ Helpful commands - Just 1 command line: Preview replacing just remove -R
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3_\6" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowZoneMilliForFileName=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3\4_\6" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowZoneMicroForFileName=%a"
 
-Final brief instruction as Quick-Start: Use -PAC to get pure output as other tools like findstr/grep/egrep/etc.
-(1) Search files by plain text matching : msr -rp dir1,dir2,fileN -x "my plain text" -PAC
-(2) Search in files with Regex pattern  : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" 
-(3) Search files & Replace matched text : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -o "captured $1 and you want" 
+Final brief instruction as Quick-Start: Use -PAC or -PIC to get pure output result as other tools like findstr/grep/egrep/etc.
+(1) Search files by plain text matching : msr -rp dir1,dir2,fileN -x "my plain text" -PAC 
+(2) Search in files with Regex pattern  : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -P -I -C
+(3) Search files & Replace matched text : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -o "captured \1 and you want" -P -A -C
 (4) Replace files and Backup if changed : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -o "captured $1 and you want" -R -K
 (5) Get matched file list + distribution: msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -l --nd "^(target|bin)$" 
 (6) Extract or replace arbitrary blocks : msr -rp dir1,dir2,fileN -t "my.*(capture-1).*pattern" -b "block-begin" -Q "block-end" -f "\.(xml|ini|conf)$" -o "$1 something"
 (7) Execute top 2 output lines(commands): msr -l -f "\.(pdb|obj)$" -rp . -PAC | msr -t "(.+)" -o "del \"\1\"" -H 2 -X
 (8) Radically replace + only out changed: msr -z "Same with replacing files or pipe" -t "^(\w+)\s+" -o "$1_" -g -1 -j
+(9) Extract key + Sort as number + Stats: msr -rp dir1,dir2,fileN -it "Key\s*=\s*(-?\d+\S*)"  -n -s ""  -c Set pattern for -s if different to -t or as you want.
+(A) Match an input string or Learn Regex: msr -z "NotFirstArg%~1" -t "^NotFirstArg(|-h|--help|/\?)$" > nul || echo goto show usage as no input args or input 'help' to script.
+(B) Search in pipe, Skip Head 3 + Tail 2: type my.txt | msr -it want-pattern -H -3 -T -2 -PIC
+(C) Replace with Many filters + Jump out: msr -w path-lines-1.txt,list-3.txt -rp dir1,fileN -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d src --nd "^(\.git|Debug)$" --pp code.*src --np "bin\S*Release" --w1 2016-02 --w2 2016-02-01T23:30:01 --s1 1B --s2 1.5MB -it public.*Find -x class -o Class -U 3 -D 3 -b start-find-line -q stop-line-pattern -L 10 -N 3000 -H 100 -J -O -c Show command + Out summary only if found.
 
 Search usage like: msr | msr -it block.*match  or  msr -hC | msr -it "max.*depth|full.*path|jump out"  or  msr | msr -t Backup -U 2 -D 2 -e replace
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
@@ -324,4 +331,4 @@ As a portable cross platform tool, msr has been running on: Windows / Cygwin / U
 Any good ideas please to : QQ : 94394344 , aperiodic updates and docs on https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
 Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS
+	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS\

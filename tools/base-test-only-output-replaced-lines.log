@@ -172,7 +172,7 @@ Return-Value58[18] = 7 : msr -c -j -p example-commands.bat -t name -a -o NAME -i
 
 Run-Command58[19] = msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -T 3
 example-commands.bat:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-example-commands.bat:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+example-commands.bat:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
 example-commands.bat:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
 Replaced 24 lines(11.27%) in 1 files(100%)
 Return-Value58[19] = 24 : msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -T 3
@@ -872,7 +872,7 @@ Replaced 1 blocks(14.29%) with 4 lines(2.99%) in 1 files(100%)
 Return-Value58[56] = 1 : msr -c -j -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""
 
 Run-Command58[57] = msr -c -j -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+"
-Replaced 0 lines in 1 files
+Replaced 0 lines in 0 files
 Return-Value58[57] = 0 : msr -c -j -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1" --nt "=\s*\d+"
 
 Run-Command58[58] = msr -c -j -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1"
@@ -883,4 +883,4 @@ sample-file.txt:11:     LineType::DownLine = 3
 Replaced 4 lines(2.99%) in 1 files(100%)
 Return-Value58[58] = 4 : msr -c -j -p sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLine)" -o "LineType::$1"
 
-Total executed lines = 58, non-zero-return-count = 55, return-zero-count = 3, positive-return-sum = 836, negative-return-sum = 0, exceptions = 0. Matched 55 lines(94.83%) from stdin
+Total executed lines = 58 , non-zero-return-count = 55 , return-zero-count = 3 , positive-return-count = 55 , negative-return-count = 0 , positive-return-sum = 836 , negative-return-sum = 0 , exceptions = 0 . Matched 55 lines(94.83%) from stdin

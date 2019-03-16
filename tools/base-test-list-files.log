@@ -83,7 +83,7 @@ Run-Command15[15] = msr -p . -l -f \.bat$ --sz --wt -H -2 -T 2
 Matched 5 files
 Return-Value15[15] = 5 : msr -p . -l -f \.bat$ --sz --wt -H -2 -T 2
 
-Total executed lines = 15, non-zero-return-count = 15, return-zero-count = 0, positive-return-sum = 75, negative-return-sum = 0, exceptions = 0. Matched 15 lines(100%) from stdin
+Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 75 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
 
 
 
@@ -173,4 +173,4 @@ Run-Command15[15] = msr -p . -l -f \.bat$  -H -2 -T 2
 Matched 5 files
 Return-Value15[15] = 5 : msr -p . -l -f \.bat$  -H -2 -T 2
 
-Total executed lines = 15, non-zero-return-count = 15, return-zero-count = 0, positive-return-sum = 75, negative-return-sum = 0, exceptions = 0. Matched 15 lines(100%) from stdin
+Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 75 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin

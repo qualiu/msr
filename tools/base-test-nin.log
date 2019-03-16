@@ -1,449 +1,751 @@
-Run-Command78[1] = nin .\tmp-nin-source.txt nul -H 0 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[1] = 5 : nin .\tmp-nin-source.txt nul -H 0 -I
+Run-Command100[1] = nin tmp-nin-source.txt nul -H 0 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[1] = 5 : nin tmp-nin-source.txt nul -H 0 -I
 
-Run-Command78[2] = nin .\tmp-nin-source.txt nul -T 0 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[2] = 5 : nin .\tmp-nin-source.txt nul -T 0 -I
+Run-Command100[2] = nin tmp-nin-source.txt nul -T 0 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[2] = 5 : nin tmp-nin-source.txt nul -T 0 -I
 
-Run-Command78[3] = nin .\tmp-nin-source.txt nul -H 2 -T 0 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[3] = 5 : nin .\tmp-nin-source.txt nul -H 2 -T 0 -I
+Run-Command100[3] = nin tmp-nin-source.txt nul -H 2 -T 0 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[3] = 5 : nin tmp-nin-source.txt nul -H 2 -T 0 -I
 
-Run-Command78[4] = nin .\tmp-nin-source.txt nul -H 0 -T 2 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[4] = 5 : nin .\tmp-nin-source.txt nul -H 0 -T 2 -I
+Run-Command100[4] = nin tmp-nin-source.txt nul -H 0 -T 2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[4] = 5 : nin tmp-nin-source.txt nul -H 0 -T 2 -I
 
-Run-Command78[5] = nin .\tmp-nin-source.txt nul -H -2 -T 0 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[5] = 5 : nin .\tmp-nin-source.txt nul -H -2 -T 0 -I
+Run-Command100[5] = nin tmp-nin-source.txt nul -H -2 -T 0 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[5] = 5 : nin tmp-nin-source.txt nul -H -2 -T 0 -I
 
-Run-Command78[6] = nin .\tmp-nin-source.txt nul -H 0 -T -2 -I
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[6] = 5 : nin .\tmp-nin-source.txt nul -H 0 -T -2 -I
+Run-Command100[6] = nin tmp-nin-source.txt nul -H 0 -T -2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[6] = 5 : nin tmp-nin-source.txt nul -H 0 -T -2 -I
 
-Run-Command78[7] = nin .\tmp-nin-source.txt nul -Z -I
+Run-Command100[7] = nin tmp-nin-source.txt nul -Z -I
 Line 1
 Line 2
 Line 3
 Line 4
 Line 5
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[7] = 5 : nin .\tmp-nin-source.txt nul -Z -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[7] = 5 : nin tmp-nin-source.txt nul -Z -I
 
-Run-Command78[8] = nin .\tmp-nin-source.txt nul -H 2 -I
+Run-Command100[8] = nin tmp-nin-source.txt nul -H 2 -I
 Line 1
 Line 2
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[8] = 5 : nin .\tmp-nin-source.txt nul -H 2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[8] = 5 : nin tmp-nin-source.txt nul -H 2 -I
 
-Run-Command78[9] = nin .\tmp-nin-source.txt nul -T 2 -I
+Run-Command100[9] = nin tmp-nin-source.txt nul -T 2 -I
 Line 4
 Line 5
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[9] = 5 : nin .\tmp-nin-source.txt nul -T 2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[9] = 5 : nin tmp-nin-source.txt nul -T 2 -I
 
-Run-Command78[10] = nin .\tmp-nin-source.txt nul -H 2 -T 2 -I
+Run-Command100[10] = nin tmp-nin-source.txt nul -H 2 -T 2 -I
 Line 1
 Line 2
 Line 4
 Line 5
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[10] = 5 : nin .\tmp-nin-source.txt nul -H 2 -T 2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[10] = 5 : nin tmp-nin-source.txt nul -H 2 -T 2 -I
 
-Run-Command78[11] = nin .\tmp-nin-source.txt nul -H -2 -I
+Run-Command100[11] = nin tmp-nin-source.txt nul -H -2 -I
 Line 3
 Line 4
 Line 5
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[11] = 5 : nin .\tmp-nin-source.txt nul -H -2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[11] = 5 : nin tmp-nin-source.txt nul -H -2 -I
 
-Run-Command78[12] = nin .\tmp-nin-source.txt nul -T -2 -I
+Run-Command100[12] = nin tmp-nin-source.txt nul -T -2 -I
 Line 1
 Line 2
 Line 3
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[12] = 5 : nin .\tmp-nin-source.txt nul -T -2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[12] = 5 : nin tmp-nin-source.txt nul -T -2 -I
 
-Run-Command78[13] = nin .\tmp-nin-source.txt nul -H -2 -T -2 -I
+Run-Command100[13] = nin tmp-nin-source.txt nul -H -2 -T -2 -I
 Line 3
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[13] = 5 : nin .\tmp-nin-source.txt nul -H -2 -T -2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[13] = 5 : nin tmp-nin-source.txt nul -H -2 -T -2 -I
 
-Run-Command78[14] = nin .\tmp-nin-source.txt nul -H 2 -T -2 -I
+Run-Command100[14] = nin tmp-nin-source.txt nul -H 2 -T -2 -I
 Line 1
 Line 2
 Line 3
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[14] = 5 : nin .\tmp-nin-source.txt nul -H 2 -T -2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[14] = 5 : nin tmp-nin-source.txt nul -H 2 -T -2 -I
 
-Run-Command78[15] = nin .\tmp-nin-source.txt nul -H -2 -T 2 -I
+Run-Command100[15] = nin tmp-nin-source.txt nul -H -2 -T 2 -I
 Line 4
 Line 5
-Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-source.txt + 0 rows in nul. 
-Return-Value78[15] = 5 : nin .\tmp-nin-source.txt nul -H -2 -T 2 -I
+Got 5 lines ONLY in tmp-nin-source.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-source.txt + 0 rows in nul . 
+Return-Value100[15] = 5 : nin tmp-nin-source.txt nul -H -2 -T 2 -I
 
-Run-Command78[16] = nin .\tmp-nin-duplicated.txt nul -iu -I
+Run-Command100[16] = nin tmp-nin-duplicated.txt nul -iu -I
 Line 3
 Line 5
 Line 6
 Line 7
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. 
-Return-Value78[16] = 4 : nin .\tmp-nin-duplicated.txt nul -iu -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
+Return-Value100[16] = 4 : nin tmp-nin-duplicated.txt nul -iu -I
 
-Run-Command78[17] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -I
+Run-Command100[17] = nin tmp-nin-duplicated.txt tmp-nin-source.txt -I
 Line 6
 Line 7
-Got 2 lines ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt + 5 rows in .\tmp-nin-source.txt (unique-lines = 5 = 100%) . 
-Return-Value78[17] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -I
+Got 2 lines ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt + 5 rows in tmp-nin-source.txt (unique-lines = 5 = 100%) . 
+Return-Value100[17] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt -I
 
-Run-Command78[18] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -S -I
+Run-Command100[18] = nin tmp-nin-duplicated.txt tmp-nin-source.txt -S -I
 Line 1
 Line 2
 Line 4
-Got 3 lines ONLY in tmp-nin-source.txt (60.00%/30.00%) NOT in tmp-nin-duplicated.txt, read 10 rows = 5 rows in .\tmp-nin-source.txt + 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) . 
-Return-Value78[18] = 3 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -S -I
+Got 3 lines ONLY in tmp-nin-source.txt (60.00%/30.00%) NOT in tmp-nin-duplicated.txt , read 10 rows = 5 rows in tmp-nin-source.txt + 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) . 
+Return-Value100[18] = 3 : nin tmp-nin-duplicated.txt tmp-nin-source.txt -S -I
 
-Run-Command78[19] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -m -I
+Run-Command100[19] = nin tmp-nin-duplicated.txt tmp-nin-source.txt -m -I
 Line 3
 Line 5
 Line 5
-Got 3 lines BOTH in tmp-nin-duplicated.txt (60.00%/30.00%) AND in tmp-nin-source.txt (60.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt + 5 rows in .\tmp-nin-source.txt (unique-lines = 5 = 100%) . 
-Return-Value78[19] = 3 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -m -I
+Got 3 lines BOTH in tmp-nin-duplicated.txt (60.00%/30.00%) AND in tmp-nin-source.txt (60.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt + 5 rows in tmp-nin-source.txt (unique-lines = 5 = 100%) . 
+Return-Value100[19] = 3 : nin tmp-nin-duplicated.txt tmp-nin-source.txt -m -I
 
-Run-Command78[20] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -mS -I
+Run-Command100[20] = nin tmp-nin-duplicated.txt tmp-nin-source.txt -mS -I
 Line 3
 Line 5
-Got 2 lines BOTH in tmp-nin-source.txt (40.00%/20.00%) AND in tmp-nin-duplicated.txt (40.00%), read 10 rows = 5 rows in .\tmp-nin-source.txt + 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) . 
-Return-Value78[20] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt -mS -I
+Got 2 lines BOTH in tmp-nin-source.txt (40.00%/20.00%) AND in tmp-nin-duplicated.txt (40.00%) , read 10 rows = 5 rows in tmp-nin-source.txt + 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) . 
+Return-Value100[20] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt -mS -I
 
-Run-Command78[21] = nin .\tmp-nin-duplicated.txt nul -ip -T 0 -I
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. Jumped out. 
-Return-Value78[21] = 4 : nin .\tmp-nin-duplicated.txt nul -ip -T 0 -I
+Run-Command100[21] = nin tmp-nin-duplicated.txt nul -ip -T 0 -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . Jumped out. 
+Return-Value100[21] = 4 : nin tmp-nin-duplicated.txt nul -ip -T 0 -I
 
-Run-Command78[22] = nin .\tmp-nin-duplicated.txt nul -ipd -H 2 -T 0 -I
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. Jumped out. 
-Return-Value78[22] = 4 : nin .\tmp-nin-duplicated.txt nul -ipd -H 2 -T 0 -I
+Run-Command100[22] = nin tmp-nin-duplicated.txt nul -ipd -H 2 -T 0 -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . Jumped out. 
+Return-Value100[22] = 4 : nin tmp-nin-duplicated.txt nul -ipd -H 2 -T 0 -I
 
-Run-Command78[23] = nin .\tmp-nin-duplicated.txt nul -iu -H 0 -T 2 -I
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. 
-Return-Value78[23] = 4 : nin .\tmp-nin-duplicated.txt nul -iu -H 0 -T 2 -I
+Run-Command100[23] = nin tmp-nin-duplicated.txt nul -iu -H 0 -T 2 -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
+Return-Value100[23] = 4 : nin tmp-nin-duplicated.txt nul -iu -H 0 -T 2 -I
 
-Run-Command78[24] = nin .\tmp-nin-duplicated.txt nul -ua -H -2 -T 0 -I
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. 
-Return-Value78[24] = 4 : nin .\tmp-nin-duplicated.txt nul -ua -H -2 -T 0 -I
+Run-Command100[24] = nin tmp-nin-duplicated.txt nul -ua -H -2 -T 0 -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
+Return-Value100[24] = 4 : nin tmp-nin-duplicated.txt nul -ua -H -2 -T 0 -I
 
-Run-Command78[25] = nin .\tmp-nin-duplicated.txt nul -ud -H 0 -T -2 -I
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. 
-Return-Value78[25] = 4 : nin .\tmp-nin-duplicated.txt nul -ud -H 0 -T -2 -I
+Run-Command100[25] = nin tmp-nin-duplicated.txt nul -ud -H 0 -T -2 -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
+Return-Value100[25] = 4 : nin tmp-nin-duplicated.txt nul -ud -H 0 -T -2 -I
 
-Run-Command78[26] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -mu -I
+Run-Command100[26] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -mu -I
 3
 5
-Got 2 unique keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[26] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -mu -I
+Got 2 unique keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[26] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -mu -I
 
-Run-Command78[27] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -I
+Run-Command100[27] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -I
 6
 7
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[27] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[27] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -I
 
-Run-Command78[28] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "([3-5])" -mu -I
+Run-Command100[28] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "([3-5])" -mu -I
 3
 5
-Got 2 unique keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
-Return-Value78[28] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "([3-5])" -mu -I
+Got 2 unique keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
+Return-Value100[28] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "([3-5])" -mu -I
 
-Run-Command78[29] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "([3-5])" -I
-Got 0 keys captured ONLY in tmp-nin-duplicated.txt (0%/0%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
-Return-Value78[29] = 0 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "([3-5])" -I
+Run-Command100[29] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "([3-5])" -I
+Got 0 keys captured ONLY in tmp-nin-duplicated.txt (0%/0%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
+Return-Value100[29] = 0 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "([3-5])" -I
 
-Run-Command78[30] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 2 -I
+Run-Command100[30] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 2 -I
 6
 7
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[30] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 2 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[30] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 2 -I
 
-Run-Command78[31] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -I
+Run-Command100[31] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -I
 7
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[31] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[31] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -I
 
-Run-Command78[32] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -T -1 -I
+Run-Command100[32] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -T -1 -I
 6
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[32] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -T -1 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[32] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -T -1 -I
 
-Run-Command78[33] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T -1 -I
+Run-Command100[33] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T -1 -I
 6
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[33] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T -1 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[33] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T -1 -I
 
-Run-Command78[34] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -T -1 -I
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[34] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -T -1 -I
+Run-Command100[34] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -T -1 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[34] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -T -1 -I
 
-Run-Command78[35] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T 1 -I
+Run-Command100[35] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T 1 -I
 6
 7
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[35] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T 1 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[35] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T 1 -I
 
-Run-Command78[36] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T 0 -I
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[36] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H 1 -T 0 -I
+Run-Command100[36] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T 0 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[36] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H 1 -T 0 -I
 
-Run-Command78[37] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -T 0 -I
-Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt, read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (captured = 5 = 100%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
-Return-Value78[37] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -H -1 -T 0 -I
+Run-Command100[37] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -T 0 -I
+Got 2 keys captured ONLY in tmp-nin-duplicated.txt (40.00%/20.00%) NOT in tmp-nin-source.txt , read 10 rows = 5 rows in tmp-nin-duplicated.txt (captured = 5 = 100%) + 5 rows in tmp-nin-source.txt (unique-keys = 5 = 100% , captured = 5 = 100%) . 
+Return-Value100[37] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -H -1 -T 0 -I
 
-Run-Command78[38] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m --nx 3 -I
+Run-Command100[38] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m --nx 3 -I
 5
 5
-Got 2 keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 1 = 20.00% , captured = 4 = 80.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 4 = 80.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%) . 
-Return-Value78[38] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m --nx 3 -I
+Got 2 keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 1 = 20.00% , captured = 4 = 80.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 4 = 80.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%) . 
+Return-Value100[38] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m --nx 3 -I
 
-Run-Command78[39] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m --nt "[4-5]" -I
+Run-Command100[39] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m --nt "[4-5]" -I
 3
-Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
-Return-Value78[39] = 1 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m --nt "[4-5]" -I
+Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 3 = 60.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
+Return-Value100[39] = 1 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m --nt "[4-5]" -I
 
-Run-Command78[40] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -t "[3-5]" -x 5 -I
+Run-Command100[40] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -t "[3-5]" -x 5 -I
 5
 5
-Got 2 keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 3 = 60.00% , captured = 2 = 40.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
-Return-Value78[40] = 2 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -t "[3-5]" -x 5 -I
+Got 2 keys captured BOTH in tmp-nin-duplicated.txt (40.00%/20.00%) AND in tmp-nin-source.txt (40.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 3 = 60.00% , captured = 2 = 40.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
+Return-Value100[40] = 2 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -t "[3-5]" -x 5 -I
 
-Run-Command78[41] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -x 3 -I
+Run-Command100[41] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -x 3 -I
 3
-Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 4 = 80.00% , captured = 1 = 20.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
-Return-Value78[41] = 1 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -x 3 -I
+Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 4 = 80.00% , captured = 1 = 20.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
+Return-Value100[41] = 1 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -x 3 -I
 
-Run-Command78[42] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -t 3 -I
+Run-Command100[42] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -t 3 -I
 3
-Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%), read 10 rows = 5 rows in .\tmp-nin-duplicated.txt (not-captured = 4 = 80.00% , captured = 1 = 20.00%)  + 5 rows in .\tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
-Return-Value78[42] = 1 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -m -t 3 -I
+Got 1 keys captured BOTH in tmp-nin-duplicated.txt (20.00%/10.00%) AND in tmp-nin-source.txt (20.00%) , read 10 rows = 5 rows in tmp-nin-duplicated.txt (not-captured = 4 = 80.00% , captured = 1 = 20.00%) + 5 rows in tmp-nin-source.txt (unique-keys = 1 = 20.00% , not-captured = 4 = 80.00% , captured = 1 = 20.00%) . 
+Return-Value100[42] = 1 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -m -t 3 -I
 
-Run-Command78[43] = nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -t "[3-5]" -S -I
+Run-Command100[43] = nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -t "[3-5]" -S -I
 4
-Got 1 keys captured ONLY in tmp-nin-source.txt (20.00%/10.00%) NOT in tmp-nin-duplicated.txt, read 10 rows = 5 rows in .\tmp-nin-source.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
-Return-Value78[43] = 1 : nin .\tmp-nin-duplicated.txt .\tmp-nin-source.txt "(\d+)" -t "[3-5]" -S -I
+Got 1 keys captured ONLY in tmp-nin-source.txt (20.00%/10.00%) NOT in tmp-nin-duplicated.txt , read 10 rows = 5 rows in tmp-nin-source.txt (not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 5 rows in tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) . 
+Return-Value100[43] = 1 : nin tmp-nin-duplicated.txt tmp-nin-source.txt "(\d+)" -t "[3-5]" -S -I
 
-Run-Command78[44] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -I
+Run-Command100[44] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -I
 1(20.00%): 3
 1(20.00%): 6
 1(20.00%): 7
 2(40.00%): 5
-Got 4 unique keys captured ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. 
-Return-Value78[44] = 4 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -I
+Got 4 unique keys captured ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . 
+Return-Value100[44] = 4 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -I
 
-Run-Command78[45] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -I
+Run-Command100[45] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -I
 1(20.00%): 3
 1(20.00%): 6
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[45] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[45] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -I
 
-Run-Command78[46] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -K 30 -I
+Run-Command100[46] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -K 30 -I
 1(20.00%): 3
 1(20.00%): 6
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[46] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -K 30 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[46] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -K 30 -I
 
-Run-Command78[47] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -K 30 -I
+Run-Command100[47] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -K 30 -I
 1(20.00%): 3
 1(20.00%): 6
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[47] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -K 30 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[47] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -K 30 -I
 
-Run-Command78[48] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -I
+Run-Command100[48] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -I
 2(40.00%): 5
 1(20.00%): 7
 1(20.00%): 6
 1(20.00%): 3
-Got 4 unique keys captured ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. 
-Return-Value78[48] = 4 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -I
+Got 4 unique keys captured ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . 
+Return-Value100[48] = 4 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -I
 
-Run-Command78[49] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -I
+Run-Command100[49] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -I
 2(40.00%): 5
-Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[49] = 1 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -I
+Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[49] = 1 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -I
 
-Run-Command78[50] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -K 40 -I
+Run-Command100[50] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -K 40 -I
 2(40.00%): 5
-Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[50] = 1 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -K 40 -I
+Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[50] = 1 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -K 40 -I
 
-Run-Command78[51] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -K 40 -I
+Run-Command100[51] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -K 40 -I
 2(40.00%): 5
-Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[51] = 1 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -K 40 -I
+Got 1 unique keys captured ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[51] = 1 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -d -k 2 -K 40 -I
 
-Run-Command78[52] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 0 -I
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[52] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 0 -I
+Run-Command100[52] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 0 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[52] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 0 -I
 
-Run-Command78[53] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -T 0 -I
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[53] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -T 0 -I
+Run-Command100[53] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -T 0 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[53] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -T 0 -I
 
-Run-Command78[54] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -I
+Run-Command100[54] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -I
 1(20.00%): 3
 1(20.00%): 6
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[54] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[54] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -I
 
-Run-Command78[55] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 0 -I
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[55] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 0 -I
+Run-Command100[55] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 0 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[55] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 0 -I
 
-Run-Command78[56] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 1 -T 1 -I
+Run-Command100[56] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 1 -T 1 -I
 1(20.00%): 3
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[56] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 1 -T 1 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[56] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 1 -T 1 -I
 
-Run-Command78[57] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -2 -T 1 -I
+Run-Command100[57] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -2 -T 1 -I
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[57] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -2 -T 1 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[57] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -2 -T 1 -I
 
-Run-Command78[58] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -1 -T -1 -I
+Run-Command100[58] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -1 -T -1 -I
 1(20.00%): 6
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[58] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -1 -T -1 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[58] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -1 -T -1 -I
 
-Run-Command78[59] = nin .\tmp-nin-duplicated.txt nul -iu -H 2 -J -I
+Run-Command100[59] = nin tmp-nin-duplicated.txt nul -iu -H 2 -J -I
 Line 3
 Line 5
-Got 3 unique lines ONLY in tmp-nin-duplicated.txt (75.00%/75.00%) NOT in nul, read 4 rows = 4 rows in .\tmp-nin-duplicated.txt (unique-lines = 3 = 75.00% , duplicate = 1 = 25.00%)  + 0 rows in nul. Jumped out. 
-Return-Value78[59] = 3 : nin .\tmp-nin-duplicated.txt nul -iu -H 2 -J -I
+Got 3 unique lines ONLY in tmp-nin-duplicated.txt (75.00%/75.00%) NOT in nul , read 4 rows = 4 rows in tmp-nin-duplicated.txt (unique-lines = 3 = 75.00% , duplicate = 1 = 25.00%) + 0 rows in nul . Jumped out. 
+Return-Value100[59] = 3 : nin tmp-nin-duplicated.txt nul -iu -H 2 -J -I
 
-Run-Command78[60] = nin .\tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
+Run-Command100[60] = nin tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
 Line 3
 Line 5
 Line 6
 Line 7
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. 
-Return-Value78[60] = 4 : nin .\tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
+Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
+Return-Value100[60] = 4 : nin tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
 
-Run-Command78[61] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -J -I
+Run-Command100[61] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -J -I
 1(20.00%): 3
 1(20.00%): 6
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[61] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -J -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[61] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -J -I
 
-Run-Command78[62] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 2 -J -I
+Run-Command100[62] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 2 -J -I
 1(20.00%): 3
 1(20.00%): 6
 1(20.00%): 7
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%)  + 0 rows in nul. Jumped out. 
-Return-Value78[62] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 2 -J -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , captured = 5 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[62] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -T 2 -J -I
 
-Run-Command78[63] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -it line --nx 3 -I
+Run-Command100[63] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -it line --nx 3 -I
 1(25.00%): 6
 1(25.00%): 7
 2(50.00%): 5
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 3 = 60.00% , duplicate = 1 = 20.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%)  + 0 rows in nul. 
-Return-Value78[63] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -it line --nx 3 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 3 = 60.00% , duplicate = 1 = 20.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%) + 0 rows in nul . 
+Return-Value100[63] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -it line --nx 3 -I
 
-Run-Command78[64] = nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -ix line --nt 3 -I
+Run-Command100[64] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -ix line --nt 3 -I
 1(25.00%): 6
 1(25.00%): 7
 2(50.00%): 5
-Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 3 = 60.00% , duplicate = 1 = 20.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%)  + 0 rows in nul. 
-Return-Value78[64] = 3 : nin .\tmp-nin-duplicated.txt nul "(\d+)" -p -ix line --nt 3 -I
+Got 3 unique keys captured ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 3 = 60.00% , duplicate = 1 = 20.00% , not-captured = 1 = 20.00% , captured = 4 = 80.00%) + 0 rows in nul . 
+Return-Value100[64] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -ix line --nt 3 -I
 
-Run-Command78[65] = nin .\tmp-nin-duplicated.txt nul "([3-5])" -p -w -I
+Run-Command100[65] = nin tmp-nin-duplicated.txt nul "([3-5])" -p -w -I
 1(33.33%): Line 3
 2(66.67%): Line 5
-Got 2 unique keys captured ONLY in tmp-nin-duplicated.txt (40.00%/40.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 0 rows in nul. 
-Return-Value78[65] = 2 : nin .\tmp-nin-duplicated.txt nul "([3-5])" -p -w -I
+Got 2 unique keys captured ONLY in tmp-nin-duplicated.txt (40.00%/40.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 2 = 40.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 0 rows in nul . 
+Return-Value100[65] = 2 : nin tmp-nin-duplicated.txt nul "([3-5])" -p -w -I
 
-Run-Command78[66] = nin .\tmp-nin-duplicated.txt nul "([3-5])" -p -wn -I
+Run-Command100[66] = nin tmp-nin-duplicated.txt nul "([3-5])" -p -wn -I
 1(20.00%): Line 3
 1(20.00%): Line 6
 1(20.00%): Line 7
 2(40.00%): Line 5
-Got 4 unique keys in total ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%)  + 0 rows in nul. 
-Return-Value78[66] = 4 : nin .\tmp-nin-duplicated.txt nul "([3-5])" -p -wn -I
+Got 4 unique keys in total ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-keys = 4 = 80.00% , duplicate = 1 = 20.00% , not-captured = 2 = 40.00% , captured = 3 = 60.00%) + 0 rows in nul . 
+Return-Value100[66] = 4 : nin tmp-nin-duplicated.txt nul "([3-5])" -p -wn -I
 
-Run-Command78[67] = nin .\tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
+Run-Command100[67] = nin tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
 1(25.00%): Line 6
 1(25.00%): Line 7
 2(50.00%): Line 5
-Got 3 unique lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 3 = 60.00% , duplicate = 2 = 40.00%)  + 0 rows in nul. 
-Return-Value78[67] = 3 : nin .\tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
+Got 3 unique lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 3 = 60.00% , duplicate = 2 = 40.00%) + 0 rows in nul . 
+Return-Value100[67] = 3 : nin tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
 
-Run-Command78[68] = nin .\tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
+Run-Command100[68] = nin tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
 1(25.00%): Line 6
 1(25.00%): Line 7
 2(50.00%): Line 5
-Got 3 unique lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 3 = 60.00% , duplicate = 2 = 40.00%)  + 0 rows in nul. 
-Return-Value78[68] = 3 : nin .\tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
+Got 3 unique lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 3 = 60.00% , duplicate = 2 = 40.00%) + 0 rows in nul . 
+Return-Value100[68] = 3 : nin tmp-nin-duplicated.txt nul -p -ix line --nt 3 -I
 
-Run-Command78[69] = nin .\tmp-nin-duplicated.txt nul -it line -H 2 -I
+Run-Command100[69] = nin tmp-nin-duplicated.txt nul -it line -H 2 -I
 Line 3
 Line 5
-Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[69] = 5 : nin .\tmp-nin-duplicated.txt nul -it line -H 2 -I
+Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[69] = 5 : nin tmp-nin-duplicated.txt nul -it line -H 2 -I
 
-Run-Command78[70] = nin .\tmp-nin-duplicated.txt nul -ix line -H 2 -t Line -I
+Run-Command100[70] = nin tmp-nin-duplicated.txt nul -ix line -H 2 -t Line -I
 Line 3
 Line 5
-Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[70] = 5 : nin .\tmp-nin-duplicated.txt nul -ix line -H 2 -t Line -I
+Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[70] = 5 : nin tmp-nin-duplicated.txt nul -ix line -H 2 -t Line -I
 
-Run-Command78[71] = nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -I
-Line 3
-Line 5
-Line 5
-Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[71] = 3 : nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -I
-
-Run-Command78[72] = nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -n -I
+Run-Command100[71] = nin tmp-nin-duplicated.txt nul -it "([3-5])" -I
 Line 3
 Line 5
 Line 5
-Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[72] = 3 : nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -n -I
+Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[71] = 3 : nin tmp-nin-duplicated.txt nul -it "([3-5])" -I
 
-Run-Command78[73] = nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -wn -I
+Run-Command100[72] = nin tmp-nin-duplicated.txt nul -it "([3-5])" -n -I
 Line 3
 Line 5
 Line 5
-Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[73] = 3 : nin .\tmp-nin-duplicated.txt nul -it "([3-5])" -wn -I
+Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[72] = 3 : nin tmp-nin-duplicated.txt nul -it "([3-5])" -n -I
 
-Run-Command78[74] = nin .\tmp-nin-duplicated.txt nul -H2 -I
+Run-Command100[73] = nin tmp-nin-duplicated.txt nul -it "([3-5])" -wn -I
 Line 3
 Line 5
-Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt + 0 rows in nul. 
-Return-Value78[74] = 5 : nin .\tmp-nin-duplicated.txt nul -H2 -I
+Line 5
+Got 3 lines ONLY in tmp-nin-duplicated.txt (60.00%/60.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[73] = 3 : nin tmp-nin-duplicated.txt nul -it "([3-5])" -wn -I
 
-Run-Command78[75] = nin .\tmp-nin-duplicated.txt nul -pdk2 -I
+Run-Command100[74] = nin tmp-nin-duplicated.txt nul -H2 -I
+Line 3
+Line 5
+Got 5 lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt + 0 rows in nul . 
+Return-Value100[74] = 5 : nin tmp-nin-duplicated.txt nul -H2 -I
+
+Run-Command100[75] = nin tmp-nin-duplicated.txt nul -pdk2 -I
 2(40.00%): Line 5
-Got 1 unique lines ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul, read 5 rows = 5 rows in .\tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%)  + 0 rows in nul. Jumped out. 
-Return-Value78[75] = 1 : nin .\tmp-nin-duplicated.txt nul -pdk2 -I
+Got 1 unique lines ONLY in tmp-nin-duplicated.txt (20.00%/20.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . Jumped out. 
+Return-Value100[75] = 1 : nin tmp-nin-duplicated.txt nul -pdk2 -I
 
-Run-Command78[76] = nin %TmpDupliatedDiffFile% nul "(5)" -pd -I
+Run-Command100[76] = nin tmp-nin-duplicated-diff.txt nul "(5)" -pd -I
 3(100.00%): 5
-Got 1 unique keys captured ONLY in tmp-nin-duplicated-diff.txt (16.67%/16.67%) NOT in nul, read 6 rows = 6 rows in .\tmp-nin-duplicated-diff.txt (unique-keys = 1 = 16.67% , duplicate = 2 = 33.33% , not-captured = 3 = 50.00% , captured = 3 = 50.00%)  + 0 rows in nul. 
-Return-Value78[76] = 1 : nin %TmpDupliatedDiffFile% nul "(5)" -pd -I
+Got 1 unique keys captured ONLY in tmp-nin-duplicated-diff.txt (16.67%/16.67%) NOT in nul , read 6 rows = 6 rows in tmp-nin-duplicated-diff.txt (unique-keys = 1 = 16.67% , duplicate = 2 = 33.33% , not-captured = 3 = 50.00% , captured = 3 = 50.00%) + 0 rows in nul . 
+Return-Value100[76] = 1 : nin tmp-nin-duplicated-diff.txt nul "(5)" -pd -I
 
-Run-Command78[77] = nin %TmpDupliatedDiffFile% nul "(5)" -pdw -I
+Run-Command100[77] = nin tmp-nin-duplicated-diff.txt nul "(5)" -pdw -I
 3(100.00%): Line 5 one
-Got 1 unique keys captured ONLY in tmp-nin-duplicated-diff.txt (16.67%/16.67%) NOT in nul, read 6 rows = 6 rows in .\tmp-nin-duplicated-diff.txt (unique-keys = 1 = 16.67% , duplicate = 2 = 33.33% , not-captured = 3 = 50.00% , captured = 3 = 50.00%)  + 0 rows in nul. 
-Return-Value78[77] = 1 : nin %TmpDupliatedDiffFile% nul "(5)" -pdw -I
+Got 1 unique keys captured ONLY in tmp-nin-duplicated-diff.txt (16.67%/16.67%) NOT in nul , read 6 rows = 6 rows in tmp-nin-duplicated-diff.txt (unique-keys = 1 = 16.67% , duplicate = 2 = 33.33% , not-captured = 3 = 50.00% , captured = 3 = 50.00%) + 0 rows in nul . 
+Return-Value100[77] = 1 : nin tmp-nin-duplicated-diff.txt nul "(5)" -pdw -I
 
-Run-Command78[78] = nin %TmpDupliatedDiffFile% nul "(5)" -wa -I
+Run-Command100[78] = nin tmp-nin-duplicated-diff.txt nul "(5)" -wa -I
 Line 5 one
 Line 5 three
 Line 5 two
-Got 3 keys captured ONLY in tmp-nin-duplicated-diff.txt (50.00%/50.00%) NOT in nul, read 6 rows = 6 rows in .\tmp-nin-duplicated-diff.txt (duplicate = 3 = 50.00% , not-captured = 3 = 50.00% , captured = 3 = 50.00%)  + 0 rows in nul. 
-Return-Value78[78] = 3 : nin %TmpDupliatedDiffFile% nul "(5)" -wa -I
+Got 3 keys captured ONLY in tmp-nin-duplicated-diff.txt (50.00%/50.00%) NOT in nul , read 6 rows = 6 rows in tmp-nin-duplicated-diff.txt (unique-keys = 1 = 16.67% , duplicate = 2 = 33.33% , not-captured = 3 = 50.00% , captured = 3 = 50.00%) + 0 rows in nul . 
+Return-Value100[78] = 3 : nin tmp-nin-duplicated-diff.txt nul "(5)" -wa -I
 
-Total executed lines = 78, non-zero-return-count = 77, return-zero-count = 1, positive-return-sum = 241, negative-return-sum = 0, exceptions = 0. Matched 78 lines(100%) from stdin
+Run-Command100[79] = nin sort-nin-test.txt nul "(\S+)$" -wa -I
+123 AA
+999 AAA
+789 ABC
+123 aa
+789 aa
+999 aaa
+123 ab
+456 abc
+678 abc
+456 bb
+456 bcd
+b73 link
+823 match
+863 number
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 12 = 85.71% , duplicate = 2 = 14.29% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[79] = 14 : nin sort-nin-test.txt nul "(\S+)$" -wa -I
+
+Run-Command100[80] = nin sort-nin-test.txt nul "(\S+)$" -wd -I
+863 number
+823 match
+b73 link
+456 bcd
+456 bb
+678 abc
+456 abc
+123 ab
+999 aaa
+789 aa
+123 aa
+789 ABC
+999 AAA
+123 AA
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 12 = 85.71% , duplicate = 2 = 14.29% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[80] = 14 : nin sort-nin-test.txt nul "(\S+)$" -wd -I
+
+Run-Command100[81] = nin sort-nin-test.txt nul "(\S+)$" -a -I
+AA
+AAA
+ABC
+aa
+aa
+aaa
+ab
+abc
+abc
+bb
+bcd
+link
+match
+number
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[81] = 14 : nin sort-nin-test.txt nul "(\S+)$" -a -I
+
+Run-Command100[82] = nin sort-nin-test.txt nul "(\S+)$" -d -I
+number
+match
+link
+bcd
+bb
+abc
+abc
+ab
+aaa
+aa
+aa
+ABC
+AAA
+AA
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[82] = 14 : nin sort-nin-test.txt nul "(\S+)$" -d -I
+
+Run-Command100[83] = nin sort-nin-test.txt nul "(\S+)$" -wai -I
+123 aa
+123 AA
+789 aa
+999 aaa
+999 AAA
+123 ab
+456 abc
+678 abc
+789 ABC
+456 bb
+456 bcd
+b73 link
+823 match
+863 number
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[83] = 14 : nin sort-nin-test.txt nul "(\S+)$" -wai -I
+
+Run-Command100[84] = nin sort-nin-test.txt nul "(\S+)$" -wdi -I
+863 number
+823 match
+b73 link
+456 bcd
+456 bb
+789 ABC
+678 abc
+456 abc
+123 ab
+999 aaa
+999 AAA
+789 aa
+123 aa
+123 AA
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[84] = 14 : nin sort-nin-test.txt nul "(\S+)$" -wdi -I
+
+Run-Command100[85] = nin sort-nin-test.txt nul "(\S+)$" -ia -I
+aa
+AA
+aa
+aaa
+AAA
+ab
+abc
+abc
+ABC
+bb
+bcd
+link
+match
+number
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[85] = 14 : nin sort-nin-test.txt nul "(\S+)$" -ia -I
+
+Run-Command100[86] = nin sort-nin-test.txt nul "(\S+)$" -id -I
+number
+match
+link
+bcd
+bb
+abc
+abc
+ABC
+ab
+aaa
+AAA
+aa
+AA
+aa
+Got 14 keys captured ONLY in sort-nin-test.txt (100%/100%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[86] = 14 : nin sort-nin-test.txt nul "(\S+)$" -id -I
+
+Run-Command100[87] = nin sort-nin-test.txt nul "(\S+)$" -pa -I
+1( 7.14%): AA
+1( 7.14%): AAA
+1( 7.14%): bcd
+1( 7.14%): aaa
+1( 7.14%): ab
+1( 7.14%): ABC
+1( 7.14%): bb
+1( 7.14%): number
+1( 7.14%): link
+1( 7.14%): match
+2(14.29%): aa
+2(14.29%): abc
+Got 12 unique keys captured ONLY in sort-nin-test.txt (85.71%/85.71%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 12 = 85.71% , duplicate = 2 = 14.29% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[87] = 12 : nin sort-nin-test.txt nul "(\S+)$" -pa -I
+
+Run-Command100[88] = nin sort-nin-test.txt nul "(\S+)$" -pd -I
+2(14.29%): abc
+2(14.29%): aa
+1( 7.14%): match
+1( 7.14%): link
+1( 7.14%): number
+1( 7.14%): bb
+1( 7.14%): ABC
+1( 7.14%): ab
+1( 7.14%): aaa
+1( 7.14%): bcd
+1( 7.14%): AAA
+1( 7.14%): AA
+Got 12 unique keys captured ONLY in sort-nin-test.txt (85.71%/85.71%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 12 = 85.71% , duplicate = 2 = 14.29% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[88] = 12 : nin sort-nin-test.txt nul "(\S+)$" -pd -I
+
+Run-Command100[89] = nin sort-nin-test.txt nul "(\S+)$" -ipa -I
+1( 7.14%): bcd
+1( 7.14%): ab
+1( 7.14%): bb
+1( 7.14%): number
+1( 7.14%): link
+1( 7.14%): match
+2(14.29%): aaa
+3(21.43%): aa
+3(21.43%): abc
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[89] = 9 : nin sort-nin-test.txt nul "(\S+)$" -ipa -I
+
+Run-Command100[90] = nin sort-nin-test.txt nul "(\S+)$" -ipd -I
+3(21.43%): abc
+3(21.43%): aa
+2(14.29%): aaa
+1( 7.14%): match
+1( 7.14%): link
+1( 7.14%): number
+1( 7.14%): bb
+1( 7.14%): ab
+1( 7.14%): bcd
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[90] = 9 : nin sort-nin-test.txt nul "(\S+)$" -ipd -I
+
+Run-Command100[91] = nin sort-nin-test.txt nul "(\S+)$" -iu -I
+aa
+ab
+abc
+bb
+bcd
+aaa
+number
+link
+match
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[91] = 9 : nin sort-nin-test.txt nul "(\S+)$" -iu -I
+
+Run-Command100[92] = nin sort-nin-test.txt nul "(\S+)$" -iuw -I
+123 aa
+123 ab
+456 abc
+456 bb
+456 bcd
+999 aaa
+863 number
+b73 link
+823 match
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[92] = 9 : nin sort-nin-test.txt nul "(\S+)$" -iuw -I
+
+Run-Command100[93] = nin sort-nin-test.txt nul "(\S+)$" -iua -I
+aa
+aaa
+ab
+abc
+bb
+bcd
+link
+match
+number
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[93] = 9 : nin sort-nin-test.txt nul "(\S+)$" -iua -I
+
+Run-Command100[94] = nin sort-nin-test.txt nul "(\S+)$" -iuaw -I
+123 aa
+999 aaa
+123 ab
+456 abc
+456 bb
+456 bcd
+b73 link
+823 match
+863 number
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[94] = 9 : nin sort-nin-test.txt nul "(\S+)$" -iuaw -I
+
+Run-Command100[95] = nin sort-nin-test.txt nul "(\S+)$" -iudw -I
+863 number
+823 match
+b73 link
+456 bcd
+456 bb
+456 abc
+123 ab
+999 aaa
+123 aa
+Got 9 unique keys captured ONLY in sort-nin-test.txt (64.29%/64.29%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 9 = 64.29% , duplicate = 5 = 35.71% , captured = 14 = 100%) + 0 rows in nul . 
+Return-Value100[95] = 9 : nin sort-nin-test.txt nul "(\S+)$" -iudw -I
+
+Run-Command100[96] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wua -I
+b73 link
+823 match
+863 number
+Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
+Return-Value100[96] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wua -I
+
+Run-Command100[97] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wud -I
+863 number
+823 match
+b73 link
+Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
+Return-Value100[97] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wud -I
+
+Run-Command100[98] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wp -I
+1(33.33%): 863 number
+1(33.33%): b73 link
+1(33.33%): 823 match
+Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
+Return-Value100[98] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wp -I
+
+Run-Command100[99] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wpd -I
+1(33.33%): 823 match
+1(33.33%): b73 link
+1(33.33%): 863 number
+Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
+Return-Value100[99] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -wpd -I
+
+Run-Command100[100] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
+1(33.33%): number
+1(33.33%): link
+1(33.33%): match
+Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
+Return-Value100[100] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
+
+Total executed lines = 100 , non-zero-return-count = 99 , return-zero-count = 1 , positive-return-count = 99 , negative-return-count = 0 , positive-return-sum = 455 , negative-return-sum = 0 , exceptions = 0 . Matched 100 lines(100%) from stdin

@@ -1,0 +1,28 @@
+  -u 
+ExactMatchCount = 3
+ExactMatchCount = 3, 
+not captured, abc = 2
+not captured, abc = 2, ok
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Test:217 TimeCost = 6467 ms, ExactMatches = 0, TotalResults = 0, ExtraResults = 0, Types = All
+msr -c -p .\ -l -f bat -T -2 # Should skip bottom 2 items.
+  <MailTo>Alex@abc.com</MailTo>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+myFileLog
+myFileLog
+myFileLog
+myFileLog
+myFileLog
+CENTOS_MANTISBT_PROJECT_VERSION-7a
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET Name=Value
+by %Name% command: SET "Name=Value"

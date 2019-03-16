@@ -1,0 +1,1393 @@
+Run-Command133[0m[[1;32;40m1[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing[0m
+
+Run-Command133[0m[[1;32;40m2[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing[0m
+
+Run-Command133[0m[[1;32;40m3[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing[0m
+
+Run-Command133[0m[[1;32;40m4[0m] = [1;34;47mmsr -c -PA -p ./ -f bat -lC -H 0[0m
+
+Run-Command133[0m[[1;32;40m5[0m] = [1;34;47mmsr -c -PA -p ./ -f bat -lIC -H 0[0m
+
+Run-Command133[0m[[1;32;40m6[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H -2 # Should skip top 2 items.[0m
+[1;36;40mpskill.bat[0m
+[1;36;40mreplace-file-test.bat[0m
+[1;36;40mwindows-test.bat[0m
+
+Run-Command133[0m[[1;32;40m7[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T -2 # Should skip bottom 2 items.[0m
+[1;36;40mexample-commands.bat[0m
+[1;36;40mpsall.bat[0m
+[1;36;40mpskill.bat[0m
+
+Run-Command133[0m[[1;32;40m8[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H -2 --sz # Should skip top 2 items.[0m
+[1;36;40mreplace-file-test.bat[0m
+[1;36;40mwindows-test.bat[0m
+[1;36;40mexample-commands.bat[0m
+
+Run-Command133[0m[[1;32;40m9[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T -2 --wt # Should skip bottom 2 items.[0m
+[1;36;40mpskill.bat[0m
+[1;36;40mpsall.bat[0m
+[1;36;40mexample-commands.bat[0m
+
+Run-Command133[0m[[1;32;40m10[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H 2 --wt # Should show top 2 items.[0m
+[1;36;40mpskill.bat[0m
+[1;36;40mpsall.bat[0m
+
+Run-Command133[0m[[1;32;40m11[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T 2 # Should show bottom 2 items.[0m
+[1;36;40mreplace-file-test.bat[0m
+[1;36;40mwindows-test.bat[0m
+
+Run-Command133[0m[[1;32;40m12[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2[0m
+enum class LineType {
+    [1;31;40mNot[0mMatchedLine = 0,
+    MatchedLine = 1,
+
+Run-Command133[0m[[1;32;40m13[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it node --nt "node\d+"[0m
+  <as::item ref="[1;31;40mNode[0mCitOnly" />
+  <as::item ref="[1;31;40mNode[0mCitOnly" />
+  <Subject>[1;31;40mNode[0m 2 title in body for test</Subject>
+  <as::item ref="[1;31;40mNode[0mCitOnly" />
+
+Run-Command133[0m[[1;32;40m14[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it node --nt "node\d+" -o "NODE"[0m
+  <as::item ref="[1;35;40mNODE[0mCitOnly" />
+  <as::item ref="[1;35;40mNODE[0mCitOnly" />
+  <Subject>[1;35;40mNODE[0m 2 title in body for test</Subject>
+  <as::item ref="[1;35;40mNODE[0mCitOnly" />
+
+Run-Command133[0m[[1;32;40m15[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks[0m
+
+Run-Command133[0m[[1;32;40m16[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block[0m
+<Tag Name="[1;31;40mNode1[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode1[0mConfig" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="[1;31;40mNode1[0mBody">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+Run-Command133[0m[[1;32;40m17[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3[0m
+<Tag Name="[1;31;40mNode1[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode1[0mConfig" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="[1;31;40mNode1[0mBody">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+<Tag Name="[1;31;40mNode3[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode3[0mConfig" />
+[1m[0m
+  <MailTo>Clark@abc.com</MailTo>
+  <AllowReTry>true</AllowReTry>
+  <SubArgs>
+    <SubArg>HBase</SubArg>
+  </SubArgs>
+  <Subject>[1;31;40mNode3[0m title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>LZHOST</HBrgetHost>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m18[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block[0m
+<Tag Name="[1;31;40mNode2[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode2[0mConfig" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m19[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output[0m
+
+Run-Command133[0m[[1;32;40m20[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output[0m
+
+Run-Command133[0m[[1;32;40m21[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[1-3]" -a  ## Must no block to output[0m
+
+Run-Command133[0m[[1;32;40m22[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -t "Node\d+"  ## Must have only Node2 but not whole block[0m
+<Tag Name="[1;31;40mNode2[0m">
+  <as::item ref="[1;31;40mNode2[0mConfig" />
+
+Run-Command133[0m[[1;32;40m23[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -e "Node\d+"  ## Must have only Node2 and whole block[0m
+<Tag Name="[1;32;40mNode2[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;32;40mNode2[0mConfig" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m24[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -e "Node\d+" ## Must have only Node2 and whole block[0m
+<Tag Name="[1;32;40mNode2[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;32;40mNode2[0mConfig" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m25[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<tag" -Q "^\s*</tag" -i --nt "Node[13]" -a -t "Node2"  ## Must have only Node2 and whole block[0m
+<Tag Name="[1;31;40mNode2[0m">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode2[0mConfig" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m26[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" --nx node3 -ai -x Node -o myNode  ## Must have only block Node1 and replaced[0m
+<Tag Name="[1;35;40mmyNode[0m[1;31;40m1[0m">
+  <as::item ref="[1;33;40mNode[0mCitOnly" />
+  <as::item ref="[1;35;40mmyNode[0m[1;31;40m1[0mConfig" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="[1;35;40mmyNode[0m[1;31;40m1[0mBody">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+Run-Command133[0m[[1;32;40m27[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</TagNotExist>" -a ## Should no blocks and output.[0m
+
+Run-Command133[0m[[1;32;40m28[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "^\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching[0m
+enum class LineType {[1;35;40m  [0mNotMatchedLine = 0,[1;35;40m  [0mMatchedLine = 1,[1;35;40m  [0mUpLine = 2,[1;35;40m  [0mDownLine = 3
+};
+
+Run-Command133[0m[[1;32;40m29[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "^\s*enum" -q "\};" -t "^\s+" -o "  " -a[0m
+enum class LineType {
+[1;35;40m  [0mNotMatchedLine = 0,
+[1;35;40m  [0mMatchedLine = 1,
+[1;35;40m  [0mUpLine = 2,
+[1;35;40m  [0mDownLine = 3
+};
+
+Run-Command133[0m[[1;32;40m30[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -i -t "(Deferred\w*)"[0m
+class [1;33;41mDeferredRun[0m {
+        [1;33;41mDeferredRun[0m(const std::function<void()>& run) : _run(run) { }
+        ~[1;33;41mDeferredRun[0m() {
+        [1;33;41mDeferredRun[0m [1;37;45mdeferredRun[0m([&]() {
+
+Run-Command133[0m[[1;32;40m31[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it "(Deferred\w*)\s+\1"[0m
+        [1;33;41mDeferredRun[0m[1;31;40m deferredRun[0m([&]() {
+
+Run-Command133[0m[[1;32;40m32[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"[0m
+class [1;35;40mReplaced[0m {
+        [1;35;40mReplaced[0m(const std::function<void()>& run) : _run(run) { }
+        ~[1;35;40mReplaced[0m() {
+
+Run-Command133[0m[[1;32;40m33[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it "class|run" -H 9[0m
+::Just [1;31;40mrun[0m windows-test.bat which calls this file, or [1;31;40mrun[0m this file directly, you will get a vivid sense of msr.
+msr -c -p %~dp0\sample-file.txt -i -b "[1;31;40mclass[0m Deferred[1;31;40mRun[0m" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
+msr -c -p %~dp0\example-commands.bat -it "[1;31;40mclass[0m|[1;31;40mrun[0m" -H 9
+msr -c -p %~dp0\example-commands.bat -ie "[1;31;40mclass[0m|[1;31;40mrun[0m" -H 9
+
+Run-Command133[0m[[1;32;40m34[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -ie "class|run" -H 9[0m
+::Just [1;32;40mrun[0m windows-test.bat which calls this file, or [1;32;40mrun[0m this file directly, you will get a vivid sense of msr.
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+
+Run-Command133[0m[[1;32;40m35[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9[0m
+[1;35;40mmsr -c [0m-z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+[1;35;40mmsr -c [0m-z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+[1;35;40mmsr -c [0m-z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+[1;35;40mmsr -c [0m-p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
+[1;35;40mmsr -c [0m-p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
+[1;35;40mmsr -c [0m-p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
+[1;35;40mmsr -c [0m-p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1" -R   # Remove tail new line
+[1;35;40mmsr -c [0m-p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
+[1;35;40mmsr -c [0m-p %~dp0 -f bat -l -PAC -H 0
+
+Run-Command133[0m[[1;32;40m36[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines[0m
+msr -c -p %~dp0 -f [1;35;40mBAT[0m -l -PAC -H 0
+msr -c -p %~dp0 -f [1;35;40mBAT[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -H -2 # Should skip top 2 items.
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -T -2 # Should skip bottom 2 items.
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -H -2 --sz # Should skip top 2 items.
+msr -c -p %~dp0\example-commands.[1;35;40mBAT[0m -ix update -t name -e Names
+msr -c -p %~dp0\example-commands.[1;35;40mBAT[0m -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
+msr -c -p %~dp0\example-commands.[1;35;40mBAT[0m -it "\w+" -H 0       ## Must NOT out any matched.
+msr -c -p %~dp0\example-commands.[1;35;40mBAT[0m -it "\w+" -T 0       ## Must NOT out any matched.
+msr -c -p %~dp0\example-commands.[1;35;40mBAT[0m -it just -U 3 -D 3
+
+Run-Command133[0m[[1;32;40m37[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines[0m
+msr -c -p %~dp0 -f [1;35;40mBAT[0m -l -PAC -H 0
+msr -c -p %~dp0 -f [1;35;40mBAT[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -H -2 # Should skip top 2 items.
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -T -2 # Should skip bottom 2 items.
+msr -c -p %~dp0 -l -f [1;35;40mBAT[0m -H -2 --sz # Should skip top 2 items.
+
+Run-Command133[0m[[1;32;40m38[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from[0m
+msr -c -r -p %~dp0 -f "^(example-[1;31;40mcom[0mmands|sample-file)\.(txt|[1;35;40mBAT[0m)$" -l --sz --wt -T 3
+msr -c -r -p %~dp0 -f "^(example-[1;31;40mcom[0mmands|sample-file)\.(txt|[1;35;40mBAT[0m)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+msr -c -p %~dp0\example-[1;31;40mcom[0mmands.[1;35;40mBAT[0m -it "class|run" -H 9
+msr -c -p %~dp0\example-[1;31;40mcom[0mmands.[1;35;40mBAT[0m -ie "class|run" -H 9
+msr -c -p %~dp0\example-[1;31;40mcom[0mmands.[1;35;40mBAT[0m -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
+
+Run-Command133[0m[[1;32;40m39[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test[0m
+msr -c -p %~dp0\sample-file.[1;31;40mt[0m[1;32;40mx[0m[1;31;40mt[0m -S -[1;31;40mt[0m "^(.+\S+)\s*$" -o "$1" -R   # Remove [1;31;40mt[0mail new line
+msr -c -p %~dp0\sample-file.[1;31;40mt[0m[1;32;40mx[0m[1;31;40mt[0m -S -[1;31;40mt[0m "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line [1;31;40mt[0mo [1;31;40mt[0mail
+msr -c -p %~dp0 -f ba[1;31;40mt[0m -l -PAC -H 0
+msr -c -p %~dp0 -f ba[1;31;40mt[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H -2 # Should skip [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -T -2 # Should skip bo[1;31;40mt[0m[1;31;40mt[0mom 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H -2 --sz # Should skip [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -T -2 --w[1;31;40mt[0m # Should skip bo[1;31;40mt[0m[1;31;40mt[0mom 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H 2 --w[1;31;40mt[0m # Should show [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+
+Run-Command133[0m[[1;32;40m40[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x t -L 9 -e txt -H 9[0m
+msr -c -p %~dp0\sample-file.[1;33;40mt[0m[1;32;40mx[0m[1;33;40mt[0m -S -[1;33;40mt[0m "^(.+\S+)\s*$" -o "$1" -R   # Remove [1;33;40mt[0mail new line
+msr -c -p %~dp0\sample-file.[1;33;40mt[0m[1;32;40mx[0m[1;33;40mt[0m -S -[1;33;40mt[0m "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line [1;33;40mt[0mo [1;33;40mt[0mail
+msr -c -p %~dp0 -f ba[1;33;40mt[0m -l -PAC -H 0
+msr -c -p %~dp0 -f ba[1;33;40mt[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H -2 # Should skip [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -T -2 # Should skip bo[1;33;40mt[0m[1;33;40mt[0mom 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H -2 --sz # Should skip [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -T -2 --w[1;33;40mt[0m # Should skip bo[1;33;40mt[0m[1;33;40mt[0mom 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H 2 --w[1;33;40mt[0m # Should show [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+
+Run-Command133[0m[[1;32;40m41[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile[0m
+msr -c -p %~dp0\sample-file.[1;31;40mt[0mx[1;31;40mt[0m -S -[1;31;40mt[0m "^(.+\S+)\s*$" -o "$1" -R   # Remove [1;31;40mt[0mail new line
+msr -c -p %~dp0\sample-file.[1;31;40mt[0mx[1;31;40mt[0m -S -[1;31;40mt[0m "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line [1;31;40mt[0mo [1;31;40mt[0mail
+msr -c -p %~dp0 -f ba[1;31;40mt[0m -l -PAC -H 0
+msr -c -p %~dp0 -f ba[1;31;40mt[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H -2 # Should skip [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -T -2 # Should skip bo[1;31;40mt[0m[1;31;40mt[0mom 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H -2 --sz # Should skip [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -T -2 --w[1;31;40mt[0m # Should skip bo[1;31;40mt[0m[1;31;40mt[0mom 2 i[1;31;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;31;40mt[0m -H 2 --w[1;31;40mt[0m # Should show [1;31;40mt[0mop 2 i[1;31;40mt[0mems.
+
+Run-Command133[0m[[1;32;40m42[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x t -L 9 -e me.txt -H 9[0m
+msr -c -p %~dp0\sample-file.[1;33;40mt[0mx[1;33;40mt[0m -S -[1;33;40mt[0m "^(.+\S+)\s*$" -o "$1" -R   # Remove [1;33;40mt[0mail new line
+msr -c -p %~dp0\sample-file.[1;33;40mt[0mx[1;33;40mt[0m -S -[1;33;40mt[0m "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line [1;33;40mt[0mo [1;33;40mt[0mail
+msr -c -p %~dp0 -f ba[1;33;40mt[0m -l -PAC -H 0
+msr -c -p %~dp0 -f ba[1;33;40mt[0m -l -PIC -H 0
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H -2 # Should skip [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -T -2 # Should skip bo[1;33;40mt[0m[1;33;40mt[0mom 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H -2 --sz # Should skip [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -T -2 --w[1;33;40mt[0m # Should skip bo[1;33;40mt[0m[1;33;40mt[0mom 2 i[1;33;40mt[0mems.
+msr -c -p %~dp0 -l -f ba[1;33;40mt[0m -H 2 --w[1;33;40mt[0m # Should show [1;33;40mt[0mop 2 i[1;33;40mt[0mems.
+
+Run-Command133[0m[[1;32;40m43[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x me -L 20 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;33;40mme[0m.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;33;40mme[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;33;40mme[0m.txt -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -ie "[1;33;40mme[0m|ping|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -ie "[1;33;40mme[0m|ping|\w+.txt" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m44[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x me -L 20 -ie me -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;33;40mme[0m.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;33;40mme[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;33;40mme[0m.txt -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -ie "[1;33;40mme[0m|ping|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -ie "[1;33;40mme[0m|ping|\w+.txt" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m45[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t me -L 20 -ie me -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;31;40mme[0m.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;31;40mme[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;31;40mme[0m.txt -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -L 20 -ie [1;31;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -L 20 -ie [1;31;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -ie "[1;31;40mme[0m|ping|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -ie "[1;31;40mme[0m|ping|\w+.txt" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m46[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;35;40myou[0m.[1;32;40mtxt[0m -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;35;40myou[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;35;40myou[0m.[1;32;40mtxt[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -L 20 -ie [1;35;40myou[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -L 20 -ie [1;35;40myou[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -o [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mtxt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -o [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mtxt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mping[0m|\w+.[1;32;40mtxt[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mping[0m|\w+.[1;32;40mtxt[0m" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m47[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;35;40myou[0m.[1;32;40mtxt[0m -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;35;40myou[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;35;40myou[0m.[1;32;40mtxt[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -L 20 -ie [1;35;40myou[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -L 20 -ie [1;35;40myou[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -o [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mtxt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -o [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mtxt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mping[0m|\w+.[1;32;40mtxt[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40myou[0m -ie "[1;35;40myou[0m|[1;32;40mping[0m|\w+.[1;32;40mtxt[0m" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m48[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;31;40mme[0m.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;31;40mme[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;31;40mme[0m.txt -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -L 20 -ie [1;31;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -L 20 -ie [1;31;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -o you -ie "[1;32;40myou|txt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -o you -ie "[1;32;40myou|txt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;31;40mme[0m -ie "[1;31;40mme[0m|[1;32;40mping[0m|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;31;40mme[0m -ie "[1;31;40mme[0m|[1;32;40mping[0m|\w+.txt" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m49[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t t -L 9 -e [1;33;40mme[0m.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text [1;33;40mme[0manwhile
+msr -c -p %~dp0\example-commands.bat -x t -L 9 -e [1;33;40mme[0m.txt -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -L 20 -ie [1;33;40mme[0m -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -o you -ie "[1;32;40myou|txt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -o you -ie "[1;32;40myou|txt[0m|[1;32;40mping[0m" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;33;40mme[0m -ie "[1;33;40mme[0m|[1;32;40mping[0m|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;33;40mme[0m -ie "[1;33;40mme[0m|[1;32;40mping[0m|\w+.txt" -L 30 -H 9
+
+Run-Command133[0m[[1;32;40m50[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9[0m
+msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie "[1;35;40mNAME[0m|[1;32;40mcome[0m" -U 3 -D 3 -L 16 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie [1;35;40mNAME[0ms -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -o [1;35;40mNAME[0m -T 1 -C
+msr -c -p %~dp0\example-commands.bat -it [1;35;40mNAME[0m -l
+msr -c -p %~dp0\sample-file.txt -it [1;35;40mNAME[0m -l
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -a -o [1;35;40mNAME[0m -ie [1;35;40mNAME[0ms -b "[1;32;40mcome[0m|[1;35;40mNAME[0m\w*" -Q "mailTo|Tag" -T 9
+
+Run-Command133[0m[[1;32;40m51[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t name -o NAME -ie Names -H 9[0m
+msr -c -p %~dp0\example-commands.bat -x [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie "[1;35;40mNAME[0m|come" -U 3 -D 3 -L 16 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie [1;35;40mNAME[0m[1;32;40ms[0m -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -o [1;35;40mNAME[0m -T 1 -C
+msr -c -p %~dp0\example-commands.bat -it [1;35;40mNAME[0m -l
+msr -c -p %~dp0\sample-file.txt -it [1;35;40mNAME[0m -l
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -a -o [1;35;40mNAME[0m -ie [1;35;40mNAME[0m[1;32;40ms[0m -b "come|[1;35;40mNAME[0m\w*" -Q "mailTo|Tag" -T 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie "[1;35;40mNAME[0m|come" -T 3
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -o come -ie "[1;35;40mNAME[0m|come" -a -L 19 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mNAME[0m -a -o NAM -ie "[1;35;40mNAME[0m|come" -L 19 -H 9
+
+Run-Command133[0m[[1;32;40m52[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t name -o NAME -T 1 -C[0m
+msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+
+Run-Command133[0m[[1;32;40m53[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it name -l[0m
+[1;36;40mexample-commands.bat[0m
+
+Run-Command133[0m[[1;32;40m54[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it name -l[0m
+[1;36;40msample-file.txt[0m
+
+Run-Command133[0m[[1;32;40m55[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9[0m
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
+msr -c -p %~dp0\sample-file.txt -b "<Tag [1;35;40mNAME[0m.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
+msr -c -p %~dp0\sample-file.txt -b "<Tag [1;35;40mNAME[0m.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+
+Run-Command133[0m[[1;32;40m56[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 5[0m
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output [1;31;40mnot[0mhing
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output [1;31;40mnot[0mhing
+msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output [1;31;40mnot[0mhing
+
+Run-Command133[0m[[1;32;40m57[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x name -o NAME -ie "name|come" -T 3[0m
+msr -c -p %~dp0\sample-file.txt -b "<Tag [1;35;40mNAME[0m.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+(msr -c -p %~dp0\sample-file.txt -it "<[1;35;40mNAME[0m>(#.+?#)</[1;35;40mNAME[0m>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced [1;35;40mNAME[0m value settings.
+
+Run-Command133[0m[[1;32;40m58[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9[0m
+msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
+msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
+
+Run-Command133[0m[[1;32;40m59[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9[0m
+msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
+msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
+msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
+msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
+
+Run-Command133[0m[[1;32;40m60[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3[0m
+msr -c -p %~dp0\example-commands.bat -x [1;35;40mname[0m -o [1;35;40mNAME[0m -ie "[1;35;40mname[0m|[1;32;40mcome[0m" -T 3
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mname[0m -o [1;32;40mcome[0m -ie "[1;35;40mname[0m|[1;32;40mcome[0m" -a -L 19 -H 9
+msr -c -p %~dp0\example-commands.bat -t [1;35;40mname[0m -a -o NAM -ie "[1;35;40mname[0m|[1;32;40mcome[0m" -L 19 -H 9
+msr -c -p %~dp0\example-commands.bat -x [1;35;40mNAME[0m -o [1;35;40mNAME[0m -ie "[1;35;40mNAME[0m|[1;32;40mcome[0m" -t [1;31;40mnot[0m -U 3 -D 3
+msr -c -p %~dp0\sample-file.txt -ib "<Tag [1;35;40mName[0m.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
+msr -c -p %~dp0\sample-file.txt -ib "<Tag [1;35;40mName[0m.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
+msr -c -p %~dp0\sample-file.txt -ib "<Tag [1;35;40mName[0m.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
+
+Run-Command133[0m[[1;32;40m61[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a[0m
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <[1;32;40mMailTo[0m>Alex@abc.com</[1;32;40mMailTo[0m>
+  <as::item ref="Node1[1;35;40mBODY[0m">
+    <as::pairs>
+      <as::pair name="[1;32;40mMailTo[0m">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+[1m[0m
+  <[1;32;40mMailTo[0m>Bob@abc.com</[1;32;40mMailTo[0m>
+  <SubArgs />
+  <Subject>Node 2 title in [1;35;40mBODY[0m for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m62[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a[0m
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+[1m[0m
+  <[1;32;40mMailTo[0m>Bob@abc.com</[1;32;40mMailTo[0m>
+  <SubArgs />
+  <Subject>Node 2 title in [1;35;40mBODY[0m for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m63[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a[0m
+[1;32;40m<Tag Name="[0m[1;31;40mNode1[0m[1;32;40m">[0m
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="[1;31;40mNode1[0mConfig" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="[1;31;40mNode1[0mBody">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+[1;32;40m</Tag>[0m
+
+Run-Command133[0m[[1;32;40m64[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it name -o NAME -e Names -x update[0m
+msr -c -p %~dp0\example-commands.bat -it [1;35;40mNAME[0m -o [1;35;40mNAME[0m -e [1;35;40mNAME[0m[1;32;40ms[0m -x [1;33;40mupdate[0m
+msr -c -p %~dp0\example-commands.bat -ix [1;33;40mupdate[0m -t [1;35;40mNAME[0m -e [1;35;40mNAME[0m[1;32;40ms[0m
+
+Run-Command133[0m[[1;32;40m65[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it name -e Names -x nameX[0m
+msr -c -p %~dp0\example-commands.bat -it [1;31;40mname[0m -e [1;31;40mName[0m[1;32;40ms[0m -x [1;31;40mname[0mX
+
+Run-Command133[0m[[1;32;40m66[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -ix update -t name -e Names[0m
+msr -c -p %~dp0\example-commands.bat -it [1;31;40mname[0m -o [1;31;40mNAME[0m -e [1;31;40mName[0m[1;32;40ms[0m -x [1;33;40mupdate[0m
+msr -c -p %~dp0\example-commands.bat -ix [1;33;40mupdate[0m -t [1;31;40mname[0m -e [1;31;40mName[0m[1;32;40ms[0m
+
+Run-Command133[0m[[1;32;40m67[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch[0m
+  <[1;31;40mMailTo[0m>Alex@abc.com</[1;31;40mMailTo[0m>
+      <as::pair name="[1;31;40mMailTo[0m">Bob@abc.com</as::pair>
+
+Run-Command133[0m[[1;32;40m68[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a[0m
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <[1;31;40mMailTo[0m>Alex@abc.com</[1;31;40mMailTo[0m>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="[1;31;40mMailTo[0m">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="[1;32;40mSwitch[0m">#THRESHOLD_2#</as::pair>
+
+Run-Command133[0m[[1;32;40m69[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block"[0m
+class DeferredRun {
+public:
+        DeferredRun(const std::function<void()>& run) : _run(run) { }
+        ~DeferredRun() {
+                _run();
+        }
+private:
+        const std::function<void()> _run;
+};
+
+int main(int argc, char* argv[])
+{
+        auto hFile = OpenHandle(argv[1]);
+
+        DeferredRun deferredRun([&]() {
+                CloseHandle(hFile);
+        });
+}
+
+<pair>
+    [1;35;40mmsr -x "" -o ""[0m
+</pair>
+<pair>
+    [1;35;40mmsr -x "" -o ""[0m
+</pair>
+<pair>
+    [1;35;40mmsr -x "" -o ""[0m
+</pair>
+
+
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+<Tag Name="Node3">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node3Config" />
+
+  <MailTo>Clark@abc.com</MailTo>
+  <AllowReTry>true</AllowReTry>
+  <SubArgs>
+    <SubArg>HBase</SubArg>
+  </SubArgs>
+  <Subject>Node3 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>LZHOST</HBrgetHost>
+  </Hosts>
+</Tag>
+
+--- arbitrary block to match replace  ----------
+
+Run-Command133[0m[[1;32;40m70[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it Tag -x ref -U 5 -D 5[0m
+
+Run-Command133[0m[[1;32;40m71[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"[0m
+[1;33;41m2012-12-27[0m[1;32;40m 00:03:03[0m[1;33;44m.333[0m third  line time at 3
+[1;33;41m2012-12-27[0m[1;32;40m 00:04:04[0m[1;33;44m.444[0m forth  line time at 4
+[1;33;41m2012-12-27[0m[1;32;40m 00:05:05[0m[1;33;44m.555[0m fifth  line time at 5
+
+Run-Command133[0m[[1;32;40m72[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03"[0m
+[1;33;41m2012-12-27[0m[1;32;40m 00:01:01[0m[1;33;44m.111[0m second line time at 1
+[1;33;41m2012-12-27[0m[1;32;40m 00:02:02[0m[1;33;44m.222[0m first  line time at 2
+
+Run-Command133[0m[[1;32;40m73[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03"[0m
+[1;33;41m2012-12-27[0m[1;32;40m 00:01:01[0m[1;33;44m.111[0m second line time at 1
+[1;33;41m2012-12-27[0m[1;32;40m 00:02:02[0m[1;33;44m.222[0m first  line time at 2
+[1;33;41m2012-12-27[0m[1;32;40m 00:03:03[0m[1;33;44m.333[0m third  line time at 3
+
+Run-Command133[0m[[1;32;40m74[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03"[0m
+[1;33;41m2012-12-27[0m[1;32;40m 00:02:02[0m[1;33;44m.222[0m first  line time at 2
+
+Run-Command133[0m[[1;32;40m75[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"[0m
+[1;33;41m2012-12-27[0m[1;32;40m 00:01:01[0m[1;33;44m.111[0m second line time at 1
+[1;33;41m2012-12-27[0m[1;32;40m 00:02:02[0m[1;33;44m.222[0m first  line time at 2
+
+Run-Command133[0m[[1;32;40m76[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first[0m
+[1;37;44m2012-12-27 00:02:02[0m[1;33;44m.222[0m [1;31;40mfirst[0m  line time at 2
+
+Run-Command133[0m[[1;32;40m77[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"[0m
+[1;31;40mmsr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "[0m[1;33;41m2012-12-27 00:03[0m[1;31;40m"[0m
+[1;31;40mmsr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "[0m[1;33;41m2012-12-27 00:00[0m[1;31;40m" -E "2012-12-27 00:03"[0m
+[1;31;40mmsr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "[0m[1;33;41m2012-12-27 00:00[0m[1;31;40m" -E "2012-12-27 00:03" -it first[0m
+
+Run-Command133[0m[[1;32;40m78[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012[0m
+[1;31;40m2012[0m[1;32;40m-12-27 00:01:01[0m[1;33;44m.111[0m second line time at 1
+[1;31;40m2012[0m[1;32;40m-12-27 00:02:02[0m[1;33;44m.222[0m first  line time at 2
+[1;31;40m2012[0m[1;32;40m-12-27 00:03:03[0m[1;33;44m.333[0m third  line time at 3
+[1;31;40m2012[0m[1;32;40m-12-27 00:04:04[0m[1;33;44m.444[0m forth  line time at 4
+[1;31;40m2012[0m[1;32;40m-12-27 00:05:05[0m[1;33;44m.555[0m fifth  line time at 5
+
+Run-Command133[0m[[1;32;40m79[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line"[0m
+[1;36;41m2012-12-27 00:01:01[0m[1;37;45m.111[0m [1;37;44msecond[0m[1;32;40m line[0m time at [1;32;40m1[0m
+[1;36;41m2012-12-27 00:02:02[0m[1;37;45m.222[0m [1;37;44mfirst[0m[1;32;40m  line[0m time at [1;32;40m2[0m
+[1;36;41m2012-12-27 00:03:03[0m[1;37;45m.333[0m [1;37;44mthird[0m[1;32;40m  line[0m time at [1;32;40m3[0m
+[1;36;41m2012-12-27 00:04:04[0m[1;37;45m.444[0m [1;37;44mforth[0m[1;32;40m  line[0m time at [1;32;40m4[0m
+[1;36;41m2012-12-27 00:05:05[0m[1;37;45m.555[0m [1;37;44mfifth[0m[1;32;40m  line[0m time at [1;32;40m5[0m
+
+Run-Command133[0m[[1;32;40m80[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc[0m
+[1;36;41m2012-12-27 00:05:05[0m[1;37;45m.555[0m [1;37;44mfifth[0m[1;32;40m  line[0m time at [1;32;40m5[0m
+[1;36;41m2012-12-27 00:04:04[0m[1;37;45m.444[0m [1;37;44mforth[0m[1;32;40m  line[0m time at [1;32;40m4[0m
+[1;36;41m2012-12-27 00:03:03[0m[1;37;45m.333[0m [1;37;44mthird[0m[1;32;40m  line[0m time at [1;32;40m3[0m
+[1;36;41m2012-12-27 00:02:02[0m[1;37;45m.222[0m [1;37;44mfirst[0m[1;32;40m  line[0m time at [1;32;40m2[0m
+[1;36;41m2012-12-27 00:01:01[0m[1;37;45m.111[0m [1;37;44msecond[0m[1;32;40m line[0m time at [1;32;40m1[0m
+
+Run-Command133[0m[[1;32;40m81[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched.[0m
+
+Run-Command133[0m[[1;32;40m82[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.[0m
+
+Run-Command133[0m[[1;32;40m83[0m] = [1;34;47mmsr -c -PA -p ./example-commands.bat -it just -U 3 -D 3[0m
+::[1;31;40mJust[0m run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
+msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
+msr -c -p %~dp0\sample-file.txt -t "^((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "^\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc
+msr -c -p %~dp0\example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched.
+msr -c -p %~dp0\example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched.
+msr -c -p %~dp0\example-commands.bat -it [1;31;40mjust[0m -U 3 -D 3
+msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
+msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
+
+Run-Command133[0m[[1;32;40m84[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -it "\W(function)\W" -e "name=(\S+)"[0m
+        DeferredRun(const std:[1;31;40m:[0m[1;33;41mfunction[0m[1;31;40m<[0mvoid()>& run) : _run(run) { }
+        const std:[1;31;40m:[0m[1;33;41mfunction[0m[1;31;40m<[0mvoid()> _run;
+    <Name>[1;31;40m#[0m[1;33;41mFUNCTION[0m[1;31;40m#[0m</Name>
+      <as::pair [1;32;40mname=[0m[1;31;40m"[0m[1;33;41mFunction[0m[1;31;40m"[0m[1;32;40m>[0m[1;31;40m#[0m[1;37;45mFUNCTION[0m[1;31;40m#[0m[1;37;44m</as::pair>[0m
+
+Run-Command133[0m[[1;32;40m85[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92[0m
+
+Run-Command133[0m[[1;32;40m86[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+
+Run-Command133[0m[[1;32;40m87[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 96[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+
+Run-Command133[0m[[1;32;40m88[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 97[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+
+Run-Command133[0m[[1;32;40m89[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 90[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+
+Run-Command133[0m[[1;32;40m90[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100 -L 91[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+
+Run-Command133[0m[[1;32;40m91[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 99 -it key2 -a[0m
+[section1]
+key1=value1
+[1;31;40mkey2[0m=value2
+[1m[0m
+
+Run-Command133[0m[[1;32;40m92[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a[0m
+[section1]
+key1=value1
+[1;31;40mkey2[0m=value2
+[1m[0m
+
+Run-Command133[0m[[1;32;40m93[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -it key2 -a -o KEY[0m
+[section1]
+[1;35;40mkey[0m1=value1
+[1;35;40mKEY[0m=value2
+[1m[0m
+
+Run-Command133[0m[[1;32;40m94[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 100[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+
+Run-Command133[0m[[1;32;40m95[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 101[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+
+Run-Command133[0m[[1;32;40m96[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 102[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+[section4]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m97[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 110[0m
+[section5]
+key1=value1
+key2=value2
+[section6]
+
+Run-Command133[0m[[1;32;40m98[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 103 -N 111[0m
+[section5]
+key1=value1
+key2=value2
+[section6]
+[section7]
+key=value
+[section8]
+
+Run-Command133[0m[[1;32;40m99[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109[0m
+[section7]
+key=value
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m100[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 111[0m
+[section7]
+key=value
+[section8]
+
+Run-Command133[0m[[1;32;40m101[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 112[0m
+[section7]
+key=value
+[section8]
+
+Run-Command133[0m[[1;32;40m102[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 109 -N 113[0m
+[section7]
+key=value
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m103[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111 -y[0m
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m104[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 111[0m
+[section8]
+[section9]
+
+Run-Command133[0m[[1;32;40m105[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[" -L 111[0m
+[section8]
+[section9]
+
+Run-Command133[0m[[1;32;40m106[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key[0m
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[1;31;40mkey[0m=value
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[1;31;40mkey[0m=value
+
+Run-Command133[0m[[1;32;40m107[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a[0m
+[section1]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[1m[0m
+[section2]
+[section3]
+[1;31;40mkey[0m=value
+[1m[0m
+[section4]
+[section5]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[section6]
+[section7]
+[1;31;40mkey[0m=value
+[section8]
+
+Run-Command133[0m[[1;32;40m108[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y[0m
+[section1]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[1m[0m
+[section2]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m=value
+[1m[0m
+[section3]
+[1;31;40mkey[0m=value
+[1m[0m
+[section5]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[section6]
+[1;31;40mkey[0m1=value1
+[1;31;40mkey[0m2=value2
+[section7]
+[1;31;40mkey[0m=value
+
+Run-Command133[0m[[1;32;40m109[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+[section3]
+key=value
+[1m[0m
+[section4]
+[section5]
+key1=value1
+key2=value2
+[section6]
+[section7]
+key=value
+[section8]
+
+Run-Command133[0m[[1;32;40m110[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+[section4]
+[1m[0m
+[section5]
+key1=value1
+key2=value2
+[section6]
+key1=value1
+key2=value2
+[section7]
+key=value
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m111[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+[section4]
+[1m[0m
+[section5]
+key1=value1
+key2=value2
+[section6]
+[section7]
+key=value
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m112[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y[0m
+[section1]
+key1=value1
+key2=value2
+[1m[0m
+[section2]
+key1=value1
+key=value
+[1m[0m
+[section3]
+key=value
+[1m[0m
+[section4]
+[1m[0m
+[section5]
+key1=value1
+key2=value2
+[section6]
+key1=value1
+key2=value2
+[section7]
+key=value
+[section8]
+[section9]
+[1m[0m
+
+Run-Command133[0m[[1;32;40m113[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a[0m
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m114[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -a[0m
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 [1;35;40mTITLE[0m in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m115[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3[0m
+  <Subject>Node 2 [1;35;40mTITLE[0m in body for test</Subject>
+
+Run-Command133[0m[[1;32;40m116[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y[0m
+  <Subject>Node 2 [1;35;40mTITLE[0m in body for test</Subject>
+
+Run-Command133[0m[[1;32;40m117[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t title -o TITLE --nt Node3 -y -a[0m
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+[1m[0m
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 [1;35;40mTITLE[0m in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+Run-Command133[0m[[1;32;40m118[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o ""[0m
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+
+Run-Command133[0m[[1;32;40m119[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -it "\s*\[section1.*?value2" -o ""[0m
+2012-12-27 00:02:02.222 first  line time at 2
+2012-12-27 00:01:01.111 second line time at 1
+2012-12-27 00:03:03.333 third  line time at 3
+2012-12-27 00:04:04.444 forth  line time at 4
+2012-12-27 00:05:05.555 fifth  line time at 5
+
+enum class LineType {
+    NotMatchedLine = 0,
+    MatchedLine = 1,
+    UpLine = 2,
+    DownLine = 3
+};
+
+class DeferredRun {
+public:
+        DeferredRun(const std::function<void()>& run) : _run(run) { }
+        ~DeferredRun() {
+                _run();
+        }
+private:
+        const std::function<void()> _run;
+};
+
+int main(int argc, char* argv[])
+{
+        auto hFile = OpenHandle(argv[1]);
+
+        DeferredRun deferredRun([&]() {
+                CloseHandle(hFile);
+        });
+}
+
+<pair>
+    <Name>#FUNCTION#</Name>
+    <Value>'All'</Value>
+</pair>
+<pair>
+    <Name>#THRESHOLD_1#</Name>
+    <Value>4000</Value>
+</pair>
+<pair>
+    <Name>#THRESHOLD_2#</Name>
+    <Value>8000</Value>
+</pair>
+
+
+<Tag Name="Node1">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node1Config" />
+  <MailTo>Alex@abc.com</MailTo>
+  <as::item ref="Node1Body">
+    <as::pairs>
+      <as::pair name="MailTo">Bob@abc.com</as::pair>
+      <as::pair name="Function">#FUNCTION#</as::pair>
+      <as::pair name="Interval">#THRESHOLD_1#</as::pair>
+      <as::pair name="Switch">#THRESHOLD_2#</as::pair>
+    </as::pairs>
+  </as::item>
+</Tag>
+
+<Tag Name="Node2">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node2Config" />
+
+  <MailTo>Bob@abc.com</MailTo>
+  <SubArgs />
+  <Subject>Node 2 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>HB</HBrgetHost>
+    <Type>BBB</Type>
+  </Hosts>
+</Tag>
+
+<Tag Name="Node3">
+  <as::item ref="NodeCitOnly" />
+  <as::item ref="Node3Config" />
+
+  <MailTo>Clark@abc.com</MailTo>
+  <AllowReTry>true</AllowReTry>
+  <SubArgs>
+    <SubArg>HBase</SubArg>
+  </SubArgs>
+  <Subject>Node3 title in body for test</Subject>
+  <Hosts>
+    <HBrgetHost>LZHOST</HBrgetHost>
+  </Hosts>
+</Tag>
+
+--- arbitrary block to match replace  ----------
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+[section4]
+
+[section5]
+key1=value1
+key2=value2
+[section6]
+key1=value1
+key2=value2
+[section7]
+key=value
+[section8]
+[section9]
+
+--section1---------------
+section 1 line 1
+section 1 line 2
+--section2---------------
+second section line 1
+second section line 2
+--------------------section3
+section 3 line 1
+section 3 line 2
+--------------------section4
+section 4 line 1
+--------------------section5
+section 5 line 1
+--------------------section6
+line 6.1
+--------------------section7
+section 6 line 1
+--------------------section8
+--------------------section9
+line 9.1
+
+Run-Command133[0m[[1;32;40m120[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101[0m
+
+--- arbitrary block to match replace  ----------
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+[section4]
+
+Run-Command133[0m[[1;32;40m121[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101[0m
+
+--- arbitrary block to match replace  ----------
+
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+[section4]
+
+Run-Command133[0m[[1;32;40m122[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101[0m
+--- arbitrary block to match replace  ----------
+
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+[section4]
+
+Run-Command133[0m[[1;32;40m123[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o ""[0m
+[1m[0m
+
+Run-Command133[0m[[1;32;40m124[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*?value2" -o "value2"[0m
+[1;35;40mvalue2[0m
+
+
+Run-Command133[0m[[1;32;40m125[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "\s*\[section1.*?value2" -o "value2"[0m
+[1;35;40mvalue2[0m
+
+
+Run-Command133[0m[[1;32;40m126[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o ""[0m
+[1m[0m
+[1m[0m
+[1m[0m
+[1m[0m
+[1m[0m
+[1m[0m
+[1m[0m
+
+Run-Command133[0m[[1;32;40m127[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -y[0m
+[1;31;40m[section1]
+key1=value1
+key2=value2
+
+[0m[1;31;40m[section2]
+key1=value1
+key=value
+
+[0m[1;31;40m[section3]
+key=value
+
+[0m[1;31;40m[section4]
+
+[0m[1;31;40m[section5]
+key1=value1
+key2=value2
+[0m[1;31;40m[section6]
+key1=value1
+key2=value2
+[0m[1;31;40m[section7]
+key=value
+[0m[1;31;40m[section8]
+[0m[1;31;40m[section9]
+
+[0m
+Run-Command133[0m[[1;32;40m128[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -x section1 -S -it "^\s*\[section.*" -o ""[0m
+[1m[0m
+
+Run-Command133[0m[[1;32;40m129[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"[0m
+
+
+
+Run-Command133[0m[[1;32;40m130[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it "\[section1.*?(value2)\s*" -o "$1"[0m
+[1m[0m
+
+Run-Command133[0m[[1;32;40m131[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"[0m
+
+
+
+Run-Command133[0m[[1;32;40m132[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"[0m
+
+
+
+Run-Command133[0m[[1;32;40m133[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"[0m
+
+
+[section2]
+key1=value1
+key=value
+
+[section3]
+key=value
+
+
+Run-Command[0m[[1;32;40m1[0m] = [1;34;47mmsr -PA -z "  -u " -t "^\s{2}(-+(\S+))\s"[0m
+[1;31;40m  [0m[1;33;41m-[0m[1;37;45mu[0m[1;33;41m [0m
+
+Run-Command[0m[[1;32;40m2[0m] = [1;34;47mmsr -PA -z "ExactMatchCount = 3" -t "Match|(\d+)" -e "Exact\w+" -x Count[0m
+[1;32;40mExact[0m[1;31;40mMatch[0m[1;33;40mCount[0m = [1;33;41m3[0m
+
+Run-Command[0m[[1;32;40m3[0m] = [1;34;47mmsr -PA -z "ExactMatchCount = 3, " -t "Match|(\d+)" -e "Exact\w+" -x Count[0m
+[1;32;40mExact[0m[1;31;40mMatch[0m[1;33;40mCount[0m = [1;33;41m3[0m, 
+
+Run-Command[0m[[1;32;40m4[0m] = [1;34;47mmsr -PA -z "not captured, abc = 2" -t "\w+ = (\S+)"[0m
+not captured, [1;31;40mabc = [0m[1;33;41m2[0m
+
+Run-Command[0m[[1;32;40m5[0m] = [1;34;47mmsr -PA -z "not captured, abc = 2, ok" -t "\w+ = (\S+)"[0m
+not captured, [1;31;40mabc = [0m[1;33;41m2,[0m ok
+
+Run-Command[0m[[1;32;40m6[0m] = [1;34;47mmsr -PA -z "Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception" -t "(\d+\.\d+)" -e "(\d+)|\w+" -a[0m
+[1;32;40mTest[0m [1;32;40mfile[0m [1;32;40minfo[0m : [1;37;44m3332543[0m [1;32;40mlines[0m [1;33;41m1.39[0m [1;32;40mGB[0m : [1;32;40mPlain[0m [1;32;40mtext[0m [1;32;40mfinding[0m [1;32;40mby[0m [1;32;40mfindstr[0m / [1;32;40mgrep[0m / [1;32;40mmsr[0m ; [1;32;40mTo[0m [1;32;40mfind[0m = [1;32;40mException[0m
+
+Run-Command[0m[[1;32;40m7[0m] = [1;34;47mmsr -PA -z "Test:217 TimeCost = 6467 ms, ExactMatches = 0, TotalResults = 0, ExtraResults = 0, Types = All" -t "^\s*$|Cost|Ex\w+ = (\d+)" -e "Test:\d+.*"[0m
+[1;32;40mTest:217 Time[0m[1;31;40mCost[0m[1;32;40m = 6467 ms, [0m[1;31;40mExactMatches = [0m[1;33;41m0[0m[1;32;40m, TotalResults = 0, [0m[1;31;40mExtraResults = [0m[1;37;45m0[0m[1;32;40m, Types = All[0m
+
+Run-Command[0m[[1;32;40m8[0m] = [1;34;47mmsr -PA -z "myFileLog" -t "(.+)File(.+)"[0m
+[1;33;41mmy[0m[1;31;40mF[0m[1;31;40mile[0m[1;37;45mLog[0m
+
+Run-Command[0m[[1;32;40m9[0m] = [1;34;47mmsr -PA -z "myFileLog" -t "(.+)(File)(.+)"[0m
+[1;33;41mmy[0m[1;37;45mFile[0m[1;36;41mLog[0m
+
+Run-Command[0m[[1;32;40m10[0m] = [1;34;47mmsr -PA -z "myFileLog" -t ".+(File)(.+)"[0m
+[1;31;40mmy[0m[1;33;41mFile[0m[1;37;45mLog[0m
+
+Run-Command[0m[[1;32;40m11[0m] = [1;34;47mmsr -PA -z "myFileLog" -t ".+(File).+"[0m
+[1;31;40mmy[0m[1;33;41mFile[0m[1;31;40mLog[0m
+
+Run-Command[0m[[1;32;40m12[0m] = [1;34;47mmsr -PA -z "myFileLog" -t ".+(File)"[0m
+[1;31;40mmy[0m[1;33;41mFile[0mLog
+
+Run-Command[0m[[1;32;40m13[0m] = [1;34;47mmsr -PA -z CENTOS_MANTISBT_PROJECT_VERSION-7a -it centos.*7[0m
+[1;31;40mCENTOS_MANTISBT_PROJECT_VERSION-7[0ma
+
+Run-Command[0m[[1;32;40m14[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=Value[0m
+
+Run-Command[0m[[1;32;40m15[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=[0m[1;37;45mValue[0m
+
+Run-Command[0m[[1;32;40m16[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "=Value"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name[0m[1;33;40m=Value[0m
+
+Run-Command[0m[[1;32;40m17[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "command"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m [0m[1;33;40mcommand[0m[1;32;40m: [0m[1;37;44mSET Name=Value[0m
+
+Run-Command[0m[[1;32;40m18[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x " command:"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;33;40m command:[0m[1;32;40m [0m[1;37;44mSET Name=Value[0m
+
+Run-Command[0m[[1;32;40m19[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "SET Name"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;33;40mSET Name[0m[1;37;44m=Value[0m
+
+Run-Command[0m[[1;32;40m20[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(=Value)" -x "Name="[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName[0m[1;37;45m=Value[0m
+
+Run-Command[0m[[1;32;40m21[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)" -x "Name="[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName=[0m[1;37;45mValue[0m
+
+Run-Command[0m[[1;32;40m22[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "Name=Value"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName=Value[0m
+
+Run-Command[0m[[1;32;40m23[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "=Value"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name[0m[1;33;40m=Value[0m
+
+Run-Command[0m[[1;32;40m24[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=Value[0m
+
+Run-Command[0m[[1;32;40m25[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET \"Name=Value\"" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
+[1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET "Name=Value"[0m
+

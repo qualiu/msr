@@ -404,7 +404,7 @@ Run-Command140[48] = type example-commands.bat | msr -c -A  -it NOT -U 2 -e "SRC
 
 Run-Command140[49] = type example-commands.bat | msr -c -A  -x name -o NAME -ie "name|come" -T 3
 :208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
 :210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
 
 Run-Command140[50] = type example-commands.bat | msr -c -A  -t name -o come -ie "name|come" -a -L 19 -H 9
@@ -598,24 +598,24 @@ int main(int argc, char* argv[])
 
 Run-Command140[62] = type sample-file.txt | msr -c -A  -it Tag -x ref -U 5 -D 5
 
-Run-Command140[63] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+Run-Command140[63] = type sample-file.txt | msr -c -A  -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
 :3: 2012-12-27 00:03:03.333 third  line time at 3
 :4: 2012-12-27 00:04:04.444 forth  line time at 4
 :5: 2012-12-27 00:05:05.555 fifth  line time at 5
 
-Run-Command140[64] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03"
+Run-Command140[64] = type sample-file.txt | msr -c -A  -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -E "2012-12-27 00:03"
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 
-Run-Command140[65] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03"
+Run-Command140[65] = type sample-file.txt | msr -c -A  -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27 00:03"
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 :3: 2012-12-27 00:03:03.333 third  line time at 3
 
-Run-Command140[66] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03"
+Run-Command140[66] = type sample-file.txt | msr -c -A  -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -q "2012-12-27|03"
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 
-Run-Command140[67] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+Run-Command140[67] = type sample-file.txt | msr -c -A  -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
 :2: 2012-12-27 00:01:01.111 second line time at 1
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 
@@ -623,8 +623,8 @@ Run-Command140[68] = type sample-file.txt | msr -c -A  -F "^(\d+-\d+-\d+ [\d:]+(
 :1: 2012-12-27 00:02:02.222 first  line time at 2
 
 Run-Command140[69] = type example-commands.bat | msr -c -A  -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
-:80: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
-:84: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
+:80: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
+:84: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
 :85: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
 
 Run-Command140[70] = type sample-file.txt | msr -c -A  -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012
