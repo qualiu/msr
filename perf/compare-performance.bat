@@ -33,7 +33,7 @@ if %ERRORLEVEL% EQU 0 (
     set GrepResult=msr -PAC -H 0 -M
 )
 
-set EnhanceShow=msr -PA -e "((((((.+))))))" -it "((((((Plain|Regex|(?<=by : )\S+))))))|Test|small|ignore\s*case|(Windows|Cygin|Linux|Centos|Fedora|UBuntu)\w*\s*(\d+\w*)?"
+set EnhanceShow=msr -PA -e "((((((.+))))))" -it "((((((Plain|Regex|(?<=by : )\S+))))))|Test|small|ignore\s*case|(Windows|Cygwin\w*|Linux|Centos|Fedora|UBuntu)\w*\s*(\d+\w*)?"
 
 call :GetCPUInfo
 call :GetMemoryInfo
