@@ -1,0 +1,101 @@
+qualiu@mypc d:\opengit\msr
+> perf\batch-compare-performance.bat d:\tmp\large-error.log
+:: Case-1: Both found
+Sat 05/06/2017 14:30:03.07 : Plain text finding : Exception : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.158695 s, from 2017-05-06 14:30:03.202685 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.956374 s, from 2017-05-06 14:30:05.426404 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.613206 s, from 2017-05-06 14:30:08.486202 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Exception
+
+Sat 05/06/2017 14:30:11.12 : Plain ignore case : Exception : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.587116 s, from 2017-05-06 14:30:11.262476 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 3.110560 s, from 2017-05-06 14:30:15.946632 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.142682 s, from 2017-05-06 14:30:19.135194 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Exception
+
+Sat 05/06/2017 14:30:23.29 : Regex text finding : "Error.*found" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 65.964959 s, from 2017-05-06 14:30:23.429278 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 6.261120 s, from 2017-05-06 14:31:29.452743 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 6.362951 s, from 2017-05-06 14:31:35.826563 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "Error.*found"
+
+Sat 05/06/2017 14:31:42.21 : Regex ignore case : "Error.*found" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 96.983285 s, from 2017-05-06 14:31:42.351974 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 6.870292 s, from 2017-05-06 14:33:19.404260 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "Error.*found"
+Matched 143 files from stdin, read 143 lines. Used 7.813659 s, from 2017-05-06 14:33:26.362559 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "Error.*found"
+
+:: Case-2: Both found, simpler regex
+Sat 05/06/2017 14:33:36.90 : Plain text finding : Exception : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.041023 s, from 2017-05-06 14:33:37.050990 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.907158 s, from 2017-05-06 14:33:39.153513 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.521663 s, from 2017-05-06 14:33:42.134717 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Exception
+
+Sat 05/06/2017 14:33:44.67 : Plain ignore case : Exception : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.423542 s, from 2017-05-06 14:33:44.815878 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 2.930200 s, from 2017-05-06 14:33:49.298420 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Exception
+Matched 1032 files from stdin, read 1032 lines. Used 4.238595 s, from 2017-05-06 14:33:52.308120 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Exception
+
+Sat 05/06/2017 14:33:56.56 : Regex text finding : "[0-9]*Exception[0-9]*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 5.333723 s, from 2017-05-06 14:33:56.703218 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 2.956064 s, from 2017-05-06 14:34:02.098956 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 9.644998 s, from 2017-05-06 14:34:05.134522 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "[0-9]*Exception[0-9]*"
+
+Sat 05/06/2017 14:34:14.79 : Regex ignore case : "[0-9]*Exception[0-9]*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 29.177778 s, from 2017-05-06 14:34:14.940533 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 3.108363 s, from 2017-05-06 14:34:44.184320 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "[0-9]*Exception[0-9]*"
+Matched 1032 files from stdin, read 1032 lines. Used 12.147959 s, from 2017-05-06 14:34:47.376712 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "[0-9]*Exception[0-9]*"
+
+:: Case-3: Not found, partial matched both
+Sat 05/06/2017 14:35:02.54 : Plain text finding : ExceptionX : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 2.154104 s, from 2017-05-06 14:35:02.680869 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 2.601179 s, from 2017-05-06 14:35:04.893974 CST ; Directory = d:\tmp , command = msr -l -c Read grep : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 2.429869 s, from 2017-05-06 14:35:07.599165 CST ; Directory = d:\tmp , command = msr -l -c Read msr : ExceptionX
+
+Sat 05/06/2017 14:35:10.04 : Plain ignore case : ExceptionX : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 6.344453 s, from 2017-05-06 14:35:10.216554 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 3.132123 s, from 2017-05-06 14:35:16.625013 CST ; Directory = d:\tmp , command = msr -l -c Read grep : ExceptionX
+Matched 0 files from stdin, read 0 lines. Used 4.371721 s, from 2017-05-06 14:35:19.851638 CST ; Directory = d:\tmp , command = msr -l -c Read msr : ExceptionX
+
+Sat 05/06/2017 14:35:24.24 : Regex text finding : "[0-9]*ExceptionX[0-9]*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 5.520069 s, from 2017-05-06 14:35:24.408858 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 2.559531 s, from 2017-05-06 14:35:30.003435 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 9.743366 s, from 2017-05-06 14:35:32.646974 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "[0-9]*ExceptionX[0-9]*"
+
+Sat 05/06/2017 14:35:42.41 : Regex ignore case : "[0-9]*ExceptionX[0-9]*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 27.626854 s, from 2017-05-06 14:35:42.544364 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 2.869615 s, from 2017-05-06 14:36:10.244218 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "[0-9]*ExceptionX[0-9]*"
+Matched 0 files from stdin, read 0 lines. Used 11.914516 s, from 2017-05-06 14:36:13.207345 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "[0-9]*ExceptionX[0-9]*"
+
+:: Case-4: Not found, not matched
+Sat 05/06/2017 14:36:27.96 : Plain text finding : Not-Exist : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 2.021620 s, from 2017-05-06 14:36:28.108264 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 2.910179 s, from 2017-05-06 14:36:30.186824 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 2.287627 s, from 2017-05-06 14:36:33.173004 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Not-Exist
+
+Sat 05/06/2017 14:36:35.47 : Plain ignore case : Not-Exist : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 1.945705 s, from 2017-05-06 14:36:35.608148 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 2.997775 s, from 2017-05-06 14:36:37.611368 CST ; Directory = d:\tmp , command = msr -l -c Read grep : Not-Exist
+Matched 0 files from stdin, read 0 lines. Used 3.920741 s, from 2017-05-06 14:36:40.685132 CST ; Directory = d:\tmp , command = msr -l -c Read msr : Not-Exist
+
+Sat 05/06/2017 14:36:44.62 : Regex text finding : "Not-exist.*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 2.472980 s, from 2017-05-06 14:36:44.762379 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 2.899698 s, from 2017-05-06 14:36:47.293651 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 4.894618 s, from 2017-05-06 14:36:50.272865 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "Not-exist.*"
+
+Sat 05/06/2017 14:36:55.19 : Regex ignore case : "Not-exist.*" : Microsoft Windows 10 Enterprise 64-bit + Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 4 Cores + 32 GB RAM
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 11.020265 s, from 2017-05-06 14:36:55.333021 CST ; Directory = d:\tmp , command = msr -l -c Read findstr : "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 3.053386 s, from 2017-05-06 14:37:06.413853 CST ; Directory = d:\tmp , command = msr -l -c Read grep : "Not-exist.*"
+Matched 0 files from stdin, read 0 lines. Used 5.694881 s, from 2017-05-06 14:37:09.546367 CST ; Directory = d:\tmp , command = msr -l -c Read msr : "Not-exist.*"

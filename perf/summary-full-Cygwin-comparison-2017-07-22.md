@@ -1,0 +1,52 @@
+* 2017-07-22 16:15:52 CST Genereated by ```generate-summary-table.bat full-Cygwin-comparison.log``` 
+* CYGWIN_NT-10.0 2.6.0(0.304/5/3) x86_64 Cygwin + 32 GB RAM + 4 Cores Intel(R) Xeon(R) CPU E5-1630 v3 @ 3.70GHz 
+
+| EXE | Cost | To find | Type | Text case | File rows | File size | System Info |
+| -- | -- | -- | -- | -- | -- | -- | -- |
+| findstr | **3**.*263* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*015* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **2**.*477* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **5**.*929* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*513* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **3**.*976* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **76**.*522* s | ```'Error.*found'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*705* s | ```'Error.*found'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **5**.*005* s | ```'Error.*found'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **106**.*620* s | ```'Error.*found'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*698* s | ```'Error.*found'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **10**.*678* s | ```'Error.*found'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **3**.*153* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*826* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **2**.*502* s | ```Exception``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **5**.*566* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*456* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **3**.*992* s | ```Exception``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **6**.*495* s | ```'[0-9]*Exception[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*916* s | ```'[0-9]*Exception[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **11**.*401* s | ```'[0-9]*Exception[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **2**.*413* s | ```'[0-9]*Exception[0-9]*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **20**.*481* s | ```'[0-9]*Exception[0-9]*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **2**.*265* s | ```ExceptionX``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **0**.*524* s | ```ExceptionX``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **1**.*657* s | ```ExceptionX``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **6**.*990* s | ```ExceptionX``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*679* s | ```ExceptionX``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **3**.*463* s | ```ExceptionX``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **6**.*076* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **0**.*532* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **11**.*053* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **33**.*658* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*707* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **21**.*522* s | ```'[0-9]*ExceptionX[0-9]*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **2**.*601* s | ```Not-Exist``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*036* s | ```Not-Exist``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **1**.*739* s | ```Not-Exist``` | Plain | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **2**.*488* s | ```Not-Exist``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*463* s | ```Not-Exist``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **3**.*255* s | ```Not-Exist``` | Plain | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **3**.*048* s | ```'Not-exist.*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*176* s | ```'Not-exist.*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **3**.*918* s | ```'Not-exist.*'``` | Regex | sensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| findstr | **13**.*719* s | ```'Not-exist.*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| grep | **1**.*407* s | ```'Not-exist.*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
+| msr | **5**.*373* s | ```'Not-exist.*'``` | Regex | insensitive | 3332543 | 1.39 GB | CYGWIN_NT |
