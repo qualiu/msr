@@ -152,6 +152,8 @@ if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup
     set replaceExeCmd=-t "^\S+" -o "%MSR_EXE%"
     echo %MSR_EXE% !extractListTestCmd! ^| %MSR_EXE% !replaceExeCmd! -X ^> !listFilesTestLog!
     call %MSR_EXE% !extractListTestCmd! | %MSR_EXE% !replaceExeCmd! -X > !listFilesTestLog!
+    call :Test_List_Files_Check_Head_Number_With_Arg
+    call :Test_List_Files_Check_Head_Number_With_Arg --wt
     %MSR_EXE% -z "" -t .* -o "\n\n\n" -PAC >> !listFilesTestLog!
     echo %MSR_EXE% !extractListTestCmd! ^| %MSR_EXE% !replaceExeCmd! -PAC ^| %MSR_EXE% -t "\s*(--wt|--sz)\s*" -o " " -X ^>^> !listFilesTestLog!
     call %MSR_EXE% !extractListTestCmd! | %MSR_EXE% !replaceExeCmd! -PAC | %MSR_EXE% -t "\s*(--wt|--sz)\s*" -o " " -X >> !listFilesTestLog!
@@ -288,3 +290,26 @@ exit /b !ERRORLEVEL!
     %MSR_EXE% -p %1 -t "\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(\s*\t\s*)" -o "yyyy-MM-dd HH:mm:ss$1" -ROc ReplaceDetailFileTime
     %MSR_EXE% -p %1 -t "^\d+\S+ \d+:\d+:\S+.*?(Run-Command|Return-Value)" -o "$1" -ROc UnifyExecuteCommands
     %MSR_EXE% -p %1 -b "^(%MSR_EXE%|%MSR_UNIFY_NAME%).*\s+-l -f bat\s+" -Q "^Matched|^\s*$" -t "\S+\.bat$" -o "Replace-Real-File-Name-To-Avoid-Difference" -Rc
+    exit /b 0
+
+:Test_List_Files_Check_Head_Number_With_Arg
+    echo. >> !listFilesTestLog!
+    %MSR_EXE% -l -f \.bat$ >nul
+    set /a batchFileCount=!ERRORLEVEL!
+    set /a batchFileCount2=!batchFileCount!+1
+    set /a testHeadCount=2
+    set /a testTailCount=!batchFileCount!-2
+    set /a testTailCount2=!testTailCount!+1
+    set listFileArgs=-l -f \.bat$
+    if not "%~1" == "" set listFileArgs=!listFileArgs! %*
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -T !batchFileCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -T !batchFileCount2!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T -1" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T !testTailCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T !testTailCount2!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T -!testTailCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T -!testTailCount2!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H -!testHeadCount! -T -!testTailCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H -!testHeadCount! -T !testTailCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H -!testHeadCount! -T !testTailCount2!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
+    exit /b 0

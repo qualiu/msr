@@ -37,7 +37,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -d [ --descending ]          Descending sort output by line or captured-key or percentage.
   -k [ --stop-at-count ] arg   Stop if matched count of a key/line > [N] when ascending output, or if count < [N] when descending output.
   -K [ --stop-percentage ] arg Stop if matched percentage of a key/line > [P%] when ascending output, or if percentage < [P%] when descending output.
-  -A [ --no-any-info ]         Not output any info nor summary, only pure result (Please always use -PAC or -PIC to get pure result).
+  -A [ --no-any-info ]         Not output any info, no warnings no summary (if no errors), only pure result (Please always use -PAC or -PC).
   -I [ --info-normal-out ]     Output summary info to stdout (default is to stderr).
   -M [ --no-summary ]          Not output summary info.
   -O [ --out-not-0-sum ]       Output summary only if result count is not 0.
@@ -131,15 +131,17 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --np arg                    Regex pattern for full file path must NOT match.
   --nd arg                    Regex pattern for file's parent directory names must NOT match.
   -d [ --dir-has ] arg        Regex pattern for file's parent directory names must has one name matched at least.
+  --xp arg                    Exclude full paths or sub-paths by plain text matching. Use ',' or ';' to separate.
   --xd                        Skip link directories.
   --xf                        Skip link files.
+  -G [ --read-once ]          Read once for link files (link folders must be or under input paths) which multiple paths link to one real path.
   -i [ --ignore-case ]        Ignore case of matching/replacing for -t/-x/-e . You can add to one of them like: -it/-ix/-ie .
   -e [ --enhance ] arg        Regex pattern to enhance text (just add color from some text), inferior to : -t -x -o.
   -o [ --replace-to ] arg     Replace text from -x/-t XXX to -o XXX .
   -j [ --out-replaced ]       Just output replaced lines by -o xxx (no impact to replacing file, -R will ignore this).
   -a [ --out-all ]            Output all lines including not matched; Or each whole block range if used -b and -Q.
   -W [ --out-full-path ]      Output full paths if input relative paths by -p or -w. This can avoid duplicates and trim extra slashes and dots.
-  -A [ --no-any-info ]        Not output any info nor summary, warnings etc., only pure result (Please always use -PAC or -PIC to get pure result).
+  -A [ --no-any-info ]        Not output any info, no warnings no summary (if no errors), only pure result (Please always use -PAC or -PIC).
   -I [ --no-extra ]           Not output extra info and warnings; Output summary to stderr.
   -P [ --no-path-line ]       Not output path and line number at head of each line.
   -M [ --no-summary ]         Not output summary info.
