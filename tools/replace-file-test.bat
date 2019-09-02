@@ -36,6 +36,12 @@ call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -t "\bNa
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -t "\bName\b" -o PairName -q "\s*</pair" -R -c || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
 
+:: Block replacing + skip
+call :Replace_And_Check -p sample-test.txt -b "\s*<Tag" -Q "^\s*</Tag" --nt "Node2" -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
+call :Replace_And_Check -p sample-test.txt -b "\s*<Tag" -Q "^\s*</Tag" --nx "Node2" -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
+call :Replace_And_Check -p sample-test.txt -b "\s*\[section[5-7]" -Q "" -y -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
+call :Replace_And_Check -p sample-test.txt -b "\s*\[section[5-7]" -Q "" -y --nt section6 -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
+
 :: Block replacing + Range
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 33 -N 36 -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 37 -N 40 -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
