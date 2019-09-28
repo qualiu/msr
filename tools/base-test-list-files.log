@@ -164,8 +164,8 @@ Run-Command[1] = msr -l -f \.bat$ --wt -T 5
 1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
 2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
@@ -173,8 +173,8 @@ Run-Command[1] = msr -l -f \.bat$ --wt -T 6
 1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
 2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
@@ -182,7 +182,7 @@ Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T -1
 1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
 2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
 Matched 5 files
 
  
@@ -190,8 +190,8 @@ Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T 3
 1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
 2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
@@ -199,8 +199,8 @@ Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T 4
 1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
 2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
@@ -222,15 +222,15 @@ Matched 5 files
  
 Run-Command[1] = msr -l -f \.bat$ --wt -H -2 -T 3
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
 Run-Command[1] = msr -l -f \.bat$ --wt -H -2 -T 4
 3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 5 files
 
  
