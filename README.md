@@ -201,10 +201,16 @@ Use the rich searching options of like below, **combine** these **optional** opt
   - Plain text:
     - **-x** `should-contain-plain-text`
     - **--nx** `should-not-contain-plain-text`
+- Set searching paths: (Can use both)
+  - Recursively(`-r`) search one or more files or directories, like: **-r** **-p** `file1,folder2,file2,folder3,folderN`
+  - Read paths (path list) from files, like: **-w** `path-list-1.txt,path-list-2.txt`
+- Set max search depth (begin from input folder), like: **-k** `16` (default max search depth = `33`).
+- Skip/Exclude link files: **--xf**
+- Skip/Exclude link folders: **--xd**
 - Filter `file name`: **-f** `should-match-Regex` , **--nf** `should-not-match`
 - Filter `directory name`: **-d** `at-least-one-match` , **--nd** `none-should-match`
 - Filter `full path pattern`: **--pp** `should-match` , **--np** `should-not-match`
-- Skip full or sub paths: **--xp** d:\win\dir,my\sub
+- Skip full or sub paths: **--xp** `d:\win\dir,my\sub`
 - Try to read once for link files: **-G** (link files's folders must be or under input root paths)
 - Filter `file size`: **--s1** <= size <= **s2** , like set one or two: **--s1** `1B` **--s2** `1.5MB`
 - Filter `file time`: like **--w1** `2019-07`, **--w2** `"2019-07-16 13:20"` or `2019-07-16T13:20:01` (quote it if has spaces).
@@ -212,13 +218,7 @@ Use the rich searching options of like below, **combine** these **optional** opt
 - Filter rows by begin + end Regex: like **-b** `"^\s*public.*?class"` **-q** `"^\s*\}\s*$"`
 - Filter rows by 1 or more blocks: **-b** `"^\s*public.*?class"` **-Q** `"^\s*\}\s*$"`
 - Filter rows by 1 or more blocks + **stop** like: **-b** `"^\s*public.*?class"` **-Q** `"^\s*\}\s*$"` **-q** `"stop-matching-regex"`
-- Set max search depth (begin from input folder), like: **-k** `16` (default max search depth = `33`).
-- Set searching paths: (Can use both)
-  - Recursively(`-r`) search one or more files or directories, like: **-r** **-p** `file1,folder2,file2,folder3,folderN`
-  - Read paths (path list) from files, like: **-w** `path-list-1.txt,path-list-2.txt`
-- Skip/Exclude link files: **--xf**
-- Skip/Exclude link folders: **--xd**
 - **Quickly** pick up `head{N}` results + **Jump out**(`-J`), like: **-H** `30` **-J** or **-J** **-H** `300` or **-JH** `300` etc.
-- Not coloring matched text: **-C**  (`Faster` to output, and **must be set** for `Linux/Cygwin` to further process).
+- Don't color matched text: **-C**  (`Faster` to output, and **must be set** for `Linux/Cygwin` to further process).
 - Output summary `info` to **stderr** + **hide** `warnings in stderr` (like BOM encoding): **-I** : Like **-I -C** or **-IC** or **-J -I -C** or **-JIC** etc.
   
