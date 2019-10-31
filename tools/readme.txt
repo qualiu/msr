@@ -201,7 +201,7 @@ Detail instruction and examples ( Quick-Start at bottom is more brief ):
     Special meaning of --nt/--nx for block matching(-b + -Q): --nt and --nx exclude a block if one of it's lines matches one of them.
     Special meaning of -S for block matching: -S just has 'single line' meaning for each block, other than whole text in each file or pipe.
     -B and -E only textually/literally compare with time text matched by -F XXX , not parse the text of -B and -E to time then compare.
-    If replacing files, -R (--replace-file), will just copy the lines that out of -L/-b and -N/-Q/-q.
+    If replacing files, -R (--replace-file), will replace + just copy the lines that out of -L/-b and -N/-Q/-q.
     -R does NOT change files if no lines replaced; Preview replacing result without -R.
     -K(--backup) to backup files if changed, append modify-time (--yyyy-MM-dd__HH_mm_ss) to backup file name. If exists, will append '-N' and N start from 1.
 (2) Replace text/files By Regex expression or normal/plain text: (To not output immediate replaced info, use anyone of : -A , -I , -H 0 , -T 0 )
