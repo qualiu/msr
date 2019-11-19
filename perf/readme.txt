@@ -9,9 +9,9 @@ msr is faster than findstr when using complicated regex pattern and ignore case 
 and a bit faster than grep when finding plain text;
 other conditions slower than them (lack of other regex performance testing)
 
-But msr support all regex syntax and has much much more funcitons than them.
+But msr support all regex syntax and has much much more functions than them.
 
 msr performance on different platforms differs due to several important factors :
 (1) Implementations of STL and BOOST on different platforms are different.
-(2) Outputing used std::cout which is much slower than fprintf/printf.
+(2) Outputting used std::cout which is much slower than fprintf/printf.
 (3) BOOST regex performance.

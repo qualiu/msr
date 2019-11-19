@@ -27,7 +27,7 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 ### **Vivid Colorful Demo/examples**: Run [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
 
 - Download all by command (Install [git](https://git-scm.com/downloads)) : **git clone** <https://github.com/qualiu/msr/>
-- If you've downloaded, run an updating command in the directory: **git pull** or **git fetch && git reset --hard origin/master** (if get conflictions)
+- If you've downloaded, run an updating command in the directory: **git pull** or **git fetch && git reset --hard origin/master** (if get conflicts)
 - Helpful scripts use **msr.exe** and **nin.exe** : <https://github.com/qualiu/msrTools> , and also *.bat files in [tools](https://github.com/qualiu/msr/tree/master/tools)
 
 ### Almost no learning cost
@@ -67,9 +67,8 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 
 - [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html)
 - [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html)
-- [Windows test result compare with base logs](https://qualiu.github.io/msr/demo/windows-test-compare-base.html)
-- [Peformance comparison on Cygwin](https://qualiu.github.io/msr/perf/on-Cygwin-comparison-2019-08-11.html)
-- [Peformance comparison on Windows](https://qualiu.github.io/msr/perf/on-Windows-comparison-2019-08-11.html)
+- [Performance comparison on Cygwin](https://qualiu.github.io/msr/perf/on-Cygwin-comparison-2019-08-11.html)
+- [Performance comparison on Windows](https://qualiu.github.io/msr/perf/on-Windows-comparison-2019-08-11.html)
 
 ### Powerful
 
@@ -141,7 +140,7 @@ Search/Replace text by **msr.exe** / **msr.gcc**** / **msr.cygwin**
      - Preview: no **-R**
      - Replace : with **-R**
      - Backup files only if changed/replaced (**-K**) :
-   - Backup : Original files will be backuped to : {name}--lz-backup--{file-last-write-time}-{N}
+   - Backup : Original files will be backup to : {name}--lz-backup--{file-last-write-time}-{N}
      - Such as : myConfig.xml--lz-backup-2013-11-13__11_38_24
        - But if replaced many times in a second :
        - Will be : myConfig.xml--lz-backup-2013-11-13__11_38_24**-N** (**N**  start from 1 )
@@ -211,7 +210,7 @@ Use the rich searching options of like below, **combine** these **optional** opt
 - Filter `directory name`: **-d** `at-least-one-match` , **--nd** `none-should-match`
 - Filter `full path pattern`: **--pp** `should-match` , **--np** `should-not-match`
 - Skip full or sub paths: **--xp** `d:\win\dir,my\sub`
-- Try to read once for link files: **-G** (link files's folders must be or under input root paths)
+- Try to read once for link files: **-G** (link file's folders must be or under input root paths)
 - Filter `file size`: **--s1** <= size <= **s2** , like set one or two: **--s1** `1B` **--s2** `1.5MB`
 - Filter `file time`: like **--w1** `2019-07`, **--w2** `"2019-07-16 13:20"` or `2019-07-16T13:20:01` (quote it if has spaces).
 - Filter rows by begin + end row numbers: like **-L** 10 **-N** 200 (for each file).
