@@ -9,13 +9,14 @@ https://github.com/qualiu/msr/blob/master/perf/summary-full-Cygwin-comparison.md
 https://github.com/qualiu/msr/blob/master/perf/summary-full-Windows-comparison.md
 
 Match/Search/Replace: msr.exe / msr.cygwin / msr.gcc**
-    Search/Replace/Execute/* Files/Pipe Lines/Blocks.
-    Filter/Load/Extract/Transform/Stats/* Files/Pipe Lines/Blocks.
+    Match/Search/Replace Lines/Blocks in Files/Pipe
+    Filter/Load/Extract/Transform/Stats/*** Lines/Blocks in Files/Pipe.
+    Execute** transformed/replaced result lines as command lines.
     
 Not-In-latter: nin.exe / nin.cygwin / nin.gcc**
-    Get Exclusive/Mutual Line-Set or Key-Set;
-    Remove Line-Set or Key-Set matched in latter file/pipe;
-    Get Unique/Mutual/Distribution/Stats/* Files/Pipe Line-Set or Key-Set.
+    Get `Unique` or `Raw` Exclusive/Mutual Line-Set or Key-Set.
+    Stats + Get Distribution in Files/Pipe.
+    Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
 
 Just run the 2 exe, you'll get their usages and examples. Besides, some script/batch/shell files are also examples.
 Helpful scripts use msr.exe and nin.exe : https://github.com/qualiu/msrTools
@@ -51,9 +52,9 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -c [ --show-command ]        Show command line, and you can append text after -c (if append text, -c and text must be last).
   -Z [ --skip-last-empty ]     Skip last empty line in first/latter file.
   -x [ --has-text ] arg        Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx).
-  --nx arg                     Line must NOT contain this normal/plain text.
+  --nx arg                     Line must not contain normal/plain text: Exclude/Skip rows.
   -t [ --text-match ] arg      Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx).
-  --nt arg                     Regex pattern for lines must NOT match.
+  --nt arg                     Regex pattern for lines must not match: Exclude/Skip rows.
   --verbose                    Show parsed arguments, return value, time zone and EXE path, etc.
   -h [ --help ]                See usage and examples below. More detail: https://github.com/qualiu/msr
 
@@ -124,12 +125,12 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -f [ --file-match ] arg     Regex pattern for file name to search.
   -t [ --text-match ] arg     Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx, -e).
   -x [ --has-text ] arg       Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx, -e).
-  --nx arg                    Line must NOT contain this normal/plain text.
-  --nt arg                    Regex pattern for lines must NOT match.
-  --nf arg                    Regex pattern for file name must NOT match.
+  --nx arg                    Line must not contain normal/plain text: Exclude/Skip rows.
+  --nt arg                    Regex pattern for lines must not match: Exclude/Skip rows.
+  --nf arg                    Regex pattern for file name must not match: Exclude/Skip files.
   --pp arg                    Regex pattern for full file path must match.
-  --np arg                    Regex pattern for full file path must NOT match.
-  --nd arg                    Regex pattern for file's parent directory names must NOT match.
+  --np arg                    Regex pattern for full file path must not match: Exclude/Skip paths.
+  --nd arg                    Regex pattern for file's parent directory names must not match: Exclude/Skip folders.
   -d [ --dir-has ] arg        Regex pattern for file's parent directory names must has one name matched at least.
   --xp arg                    Exclude/Skip full paths or sub-paths by plain text matching. Use ',' or ';' to separate.
   --xd                        Exclude/Skip link directories.
@@ -257,7 +258,7 @@ Example-5 : Single-line regex mode replacing whole text in each file and backup 
     msr -rp "%CD%" -f "config\w*\.(xml|ini)$" -S -t "(<Command>).*?(</Command>)" -o "$1 new-content ${2}" -RK 
 
 Example-6 : Multi-line regex mode (normal mode) replacing lines in each file and backup (preview without -R)
-    msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@\s*echo)\s+off\b" -o "$1 on" -R -K 
+    msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@?\s*echo)\s+off\b" -o "$1 on" -R -K 
 
 Example-7 : Display current modified code files:
     for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2018-06-08 09:15:20" -PAC 2^>nul ') do @echo code file : %a
@@ -277,7 +278,7 @@ Like watching time/elapsed/matched (-muvzd): msr | msr -it show -v zdo -u -m
 One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
 
 Helpful commands - Just 1 command line: Preview replacing just remove -R
-(1) Remove white spaces at each line tail in each file in directories:
+(1) Remove whitespaces at each line tail in each file in directories:
     msr -r -p dir-1,dir2,file1,file2 -f "\.(cpp|cxx|hp*|cs|java|scala|py)$" -t "\s+$" -o ""  -R
 (2) Replace each tab(\t) to 4 spaces at each line begin in files: (Recursive/Radically change all head tabs in a line by -g -1)
     msr -rp path1,path2 -f "\.(cp*|cxx|hp*|cs|java|scala|py)$" -t "^(\s*)\t" -o "$1    " -g -1 -R
@@ -293,10 +294,10 @@ Helpful commands - Just 1 command line: Preview replacing just remove -R
     msr -p my-file -S -t "[\r\n]+$" -H 0 -PIC
 (8) Replace files to have only one new empty line at tail (Add an empty line or remove redundant empty lines. Trim tail whitespaces):
     msr -rp path1,path2 -f "\.(cpp|cxx|hp*|cs|java|scala|py)$" -S -t "(\S+)\s*$" -o "$1\n" -R
-(9) Remove tail new lines and white spaces in pipe result:
+(9) Remove tail new lines and whitespaces in pipe result:
     msr --help -C | msr -S -t "\s*$" -o "" -P
 (A) Replace batch files on Windows: Turn on all ECHO/echo to debug scripts and skip junk folders when searching files:
-    msr -rp path1,path2 -f "\.(bat|cmd)$" -it "^(\s*echo)\s+off\b" -o "$1 on" -R --nd "^([\.\$]|(Release|Debug|objd?|bin|node_modules|static|dist|target|(Js)?Packages|\w+-packages?)$|__pycache__)"
+    msr -rp path1,path2 -f "\.(bat|cmd)$" -it "^(\s*@?\s*echo)\s+off\b" -o "$1 on" -R --nd "^([\.\$]|(Release|Debug|objd?|bin|node_modules|static|dist|target|(Js)?Packages|\w+-packages?)$|__pycache__)"
 (B) Show a command line -> Execute -> Show return value with begin+end+cost times no summary -> echo No results+errors if return = 0; If return != 0: echo Found N results or Caught N errors if N < 0:
     echo msr -p "%PATH%" -f "\.(bat|cmd|sh|bash)$" -t "^\s*(SET|export)\s+(\w+)=(.+)" -ix HOME -H 5 | msr -X -M && echo No results found and no errors: No non-exists paths in this case.
     echo msr -p "%PATH%" -f "\.(bat|cmd|sh|bash)$" -t "^\s*(SET|export)\s+(\w+)=(.+)" -ix HOME -H 5 | msr -X -M || echo Found %ERRORLEVEL% results or Caught %ERRORLEVEL% errors no results if negative return.

@@ -6,14 +6,15 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 
 #### **M**atch/**S**earch/**R**eplace: `msr.exe`/`msr-Win32.exe`/`msr.cygwin`/`msr.gcc**`/`msr-i386.gcc**`
 
-- **Match/Search/Replace/Execute/*** Files/Pipe Lines/Blocks.
-- **Filter/Load/Extract/Transform/Stats/*** Files/Pipe Lines/Blocks.
+- **Match/Search/Replace*** Lines/Blocks in Files/Pipe.
+- **Filter/Load/Extract/Transform/Stats/*** Lines/Blocks in Files/Pipe.
+- **Execute** transformed/replaced result lines as command lines.
 
 #### **N**ot-**IN**-latter: `nin.exe`/`nin-Win32.exe`/`nin.cygwin`/`nin.gcc**`/`nin-i386.gcc**`
 
-- Get **Exclusive/Mutual** Line-Set or Key-Set;
-- **Remove** Line-Set or Key-Set matched in latter file/pipe;
-- Get **Unique/Mutual/Distribution/Stats/*** Files/Pipe Line-Set or Key-Set.
+- Get `Unique` or `Raw` **Exclusive/Mutual** Line-Set or Key-Set;
+- **Stats** + **Get distribution** in Files/Pipe.
+- Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
 
 # MSR overview: (usage/examples: [readme.txt](https://github.com/qualiu/msr/tree/master/tools/readme.txt) )
 
