@@ -17,10 +17,10 @@ Save more time for enlightment, to be awakened.<br>
 是名妙蓮華，金剛王寶覺。如幻三摩提，彈指超無學。<br>
 此阿毗達磨，十方薄伽梵，一路涅槃門。<br>
 
-# [Enlightment approach of Avalokitesvara, just 52 characters](http://www.lengyanjing.cn/a/jdzj/yy/363.html)
+# Enlightment approach of Avalokitesvara, just 52 characters
 爾時**觀世音**菩薩，即從座起，頂禮佛足，而白佛言：世尊。憶念我昔無數恒河沙劫，於時有佛出現於世，名**觀世音**。我於彼佛發菩提心。彼佛教我從聞思修，入三摩地。<br>
 
-[**初於聞中，入流亡所。所入既寂，動靜二相，了然不生。如是漸增，聞所聞盡，盡聞不住；覺所覺空；空覺極圓，空所空滅；生滅既滅，寂滅現前。**](http://www.lengyanjing.cn/a/jdzj/yy/363.html)<br>
+**初於聞中，入流亡所。所入既寂，動靜二相，了然不生。如是漸增，聞所聞盡，盡聞不住；覺所覺空；空覺極圓，空所空滅；生滅既滅，寂滅現前。**<br>
 忽然超越世出世間，十方圓明，獲二殊勝。一者，上合十方諸佛本妙覺心，與佛如來同一慈力。二者，下合十方一切六道眾生，與諸眾生同一悲仰。<br>
 
 世尊。由我供養**觀音**如來。蒙彼如來，授我如幻聞熏聞修金剛三昧，與佛如來同慈力故，令我身成三十二應，入諸國土。<br>
@@ -58,8 +58,8 @@ Save more time for enlightment, to be awakened.<br>
 世尊。彼佛如來。歎我善得圓通法門。於大會中。授記我為**觀世音**號。由我觀聽十方圓明。故**觀音**名。遍十方界。<br>
 
 # Overall comments to 25 approaches by Manjusri.
-* [Criticize 24 approaches from saints of Asekkhas, Arahants, Bodhisattvas and Mahasattvas.](http://www.lengyanjing.cn/a/jdzj/yy/364.html)<br>
-* [Praise Avalokitesvara's approach only.](http://www.lengyanjing.cn/a/jdzj/yy/364.html) <br>
+* Criticize 24 approaches from saints of Asekkhas, Arahants, Bodhisattvas and Mahasattvas.<br>
+* Praise Avalokitesvara's approach only. <br>
 
 於是如來，告**文殊師利**法王子：汝今觀此二十五無學，諸大菩薩，及阿羅漢，各說最初成道方便，皆言修習，真實圓通，彼等修行，實無優劣前後差別。<br>
 我今欲令阿難開悟，二十五行，誰當其根；兼我滅後，此界眾生，入菩薩乘，求無上道，何方便門，得易成就？<br>

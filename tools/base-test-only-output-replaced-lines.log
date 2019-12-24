@@ -64,154 +64,154 @@ Replaced 1 blocks(100%) with 3 lines(2.24%) in 1 files(100%)
 Return-Value58[8] = 1 : msr -c -j -p sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
 
 Run-Command58[9] = msr -c -j -p example-commands.bat -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
-example-commands.bat:211: msr -c -z "if exist Node1.tmp del Node1.tmp" -XPI
-Replaced 1 lines(0.47%) in 1 files(100%)
+example-commands.bat:224: msr -c -z "if exist Node1.tmp del Node1.tmp" -XPI
+Replaced 1 lines(0.44%) in 1 files(100%)
 Return-Value58[9] = 1 : msr -c -j -p example-commands.bat -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
 
 Run-Command58[10] = msr -c -j -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines
-example-commands.bat:11: msr -c -p %~dp0 -f BAT -l -PAC -H 0
-example-commands.bat:12: msr -c -p %~dp0 -f BAT -l -PIC -H 0
-example-commands.bat:13: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
-example-commands.bat:14: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
-example-commands.bat:15: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
-example-commands.bat:75: msr -c -p %~dp0\example-commands.BAT -ix update -t name -e Names
-example-commands.bat:86: msr -c -p %~dp0\example-commands.BAT -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
-example-commands.bat:90: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
-example-commands.bat:91: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
-example-commands.bat:92: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
-Replaced 44 lines(20.66%) in 1 files(100%)
+example-commands.bat:18: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+example-commands.bat:19: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+example-commands.bat:20: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
+example-commands.bat:21: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
+example-commands.bat:22: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
+example-commands.bat:82: msr -c -p %~dp0\example-commands.BAT -ix update -t name -e Names
+example-commands.bat:93: msr -c -p %~dp0\example-commands.BAT -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
+example-commands.bat:97: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
+example-commands.bat:98: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
+example-commands.bat:99: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
+Replaced 44 lines(19.47%) in 1 files(100%)
 Return-Value58[10] = 44 : msr -c -j -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines
 
 Run-Command58[11] = msr -c -j -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines
-example-commands.bat:11: msr -c -p %~dp0 -f BAT -l -PAC -H 0
-example-commands.bat:12: msr -c -p %~dp0 -f BAT -l -PIC -H 0
-example-commands.bat:13: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
-example-commands.bat:14: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
-example-commands.bat:15: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
-Replaced 44 lines(20.66%) in 1 files(100%)
+example-commands.bat:18: msr -c -p %~dp0 -f BAT -l -PAC -H 0
+example-commands.bat:19: msr -c -p %~dp0 -f BAT -l -PIC -H 0
+example-commands.bat:20: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
+example-commands.bat:21: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
+example-commands.bat:22: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
+Replaced 44 lines(19.47%) in 1 files(100%)
 Return-Value58[11] = 44 : msr -c -j -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines
 
 Run-Command58[12] = msr -c -j -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from
-example-commands.bat:35: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
-example-commands.bat:36: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
-example-commands.bat:42: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
-example-commands.bat:43: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
-example-commands.bat:44: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
-Replaced 36 lines(16.90%) in 1 files(100%)
+example-commands.bat:42: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --sz --wt -T 3
+example-commands.bat:43: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\.(txt|BAT)$" -l --wt --sz -H 3 --dsc --s1 1KB --s2 1MB --w1 "2015-07-20 13:20"
+example-commands.bat:49: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
+example-commands.bat:50: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
+example-commands.bat:51: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
+Replaced 36 lines(15.93%) in 1 files(100%)
 Return-Value58[12] = 36 : msr -c -j -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from
 
 Run-Command58[13] = msr -c -j -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
-example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
-example-commands.bat:52: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
-example-commands.bat:53: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
-example-commands.bat:54: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
-example-commands.bat:55: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:56: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
-example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
-Replaced 33 lines(15.49%) in 1 files(100%)
+example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+example-commands.bat:59: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+example-commands.bat:60: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+example-commands.bat:61: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Replaced 33 lines(14.60%) in 1 files(100%)
 Return-Value58[13] = 33 : msr -c -j -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9
 
 Run-Command58[14] = msr -c -j -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
-example-commands.bat:51: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
-example-commands.bat:52: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
-example-commands.bat:53: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
-example-commands.bat:54: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
-example-commands.bat:55: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:56: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
-example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
-Replaced 33 lines(15.49%) in 1 files(100%)
+example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e you.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text youanwhile
+example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -x t -L 9 -e you.txt -H 9
+example-commands.bat:59: msr -c -p %~dp0\example-commands.bat -x you -L 20 -H 9
+example-commands.bat:60: msr -c -p %~dp0\example-commands.bat -x you -L 20 -ie you -H 9
+example-commands.bat:61: msr -c -p %~dp0\example-commands.bat -t you -L 20 -ie you -H 9
+example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
+Replaced 33 lines(14.60%) in 1 files(100%)
 Return-Value58[14] = 33 : msr -c -j -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 
 Run-Command58[15] = msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9
-example-commands.bat:56: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
-example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
-example-commands.bat:58: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-example-commands.bat:59: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
-example-commands.bat:60: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
-example-commands.bat:61: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
-example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -it NAME -l
-example-commands.bat:63: msr -c -p %~dp0\sample-file.txt -it NAME -l
-example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
-Replaced 24 lines(11.27%) in 1 files(100%)
+example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
+example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
+example-commands.bat:66: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+example-commands.bat:67: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+example-commands.bat:68: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -it NAME -l
+example-commands.bat:70: msr -c -p %~dp0\sample-file.txt -it NAME -l
+example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
+Replaced 24 lines(10.62%) in 1 files(100%)
 Return-Value58[15] = 24 : msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9
 
 Run-Command58[16] = msr -c -j -p example-commands.bat -t name -o NAME -ie Names -H 9
-example-commands.bat:59: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
-example-commands.bat:60: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
-example-commands.bat:61: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
-example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -it NAME -l
-example-commands.bat:63: msr -c -p %~dp0\sample-file.txt -it NAME -l
-example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
-example-commands.bat:66: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
-example-commands.bat:67: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
-example-commands.bat:68: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
-Replaced 24 lines(11.27%) in 1 files(100%)
+example-commands.bat:66: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -U 3 -D 3 -L 16 -H 9
+example-commands.bat:67: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -ie NAMEs -H 9
+example-commands.bat:68: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T 1 -C
+example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -it NAME -l
+example-commands.bat:70: msr -c -p %~dp0\sample-file.txt -it NAME -l
+example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
+example-commands.bat:73: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
+example-commands.bat:74: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
+example-commands.bat:75: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
+Replaced 24 lines(10.62%) in 1 files(100%)
 Return-Value58[16] = 24 : msr -c -j -p example-commands.bat -t name -o NAME -ie Names -H 9
 
 Run-Command58[17] = msr -c -j -p example-commands.bat -t name -o NAME -T 1 -C
-example-commands.bat:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
-Replaced 19 lines(8.92%) in 1 files(100%)
+example-commands.bat:223: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Replaced 19 lines(8.41%) in 1 files(100%)
 Return-Value58[17] = 19 : msr -c -j -p example-commands.bat -t name -o NAME -T 1 -C
 
 Run-Command58[18] = msr -c -j -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9
-example-commands.bat:116: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
-example-commands.bat:117: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
-example-commands.bat:118: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
-example-commands.bat:119: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
-example-commands.bat:120: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
-example-commands.bat:121: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
-example-commands.bat:122: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
-example-commands.bat:207: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
-example-commands.bat:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-Replaced 7 blocks(87.50%) with 22 lines(10.33%) in 1 files(100%)
+example-commands.bat:123: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a
+example-commands.bat:124: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -t key -a -y
+example-commands.bat:125: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[" -a
+example-commands.bat:126: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+example-commands.bat:127: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
+example-commands.bat:128: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
+example-commands.bat:129: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
+example-commands.bat:220: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
+example-commands.bat:221: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+Replaced 7 blocks(87.50%) with 22 lines(9.73%) in 1 files(100%)
 Return-Value58[18] = 7 : msr -c -j -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9
 
 Run-Command58[19] = msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -T 3
-example-commands.bat:208: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-example-commands.bat:209: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
-example-commands.bat:210: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
-Replaced 24 lines(11.27%) in 1 files(100%)
+example-commands.bat:221: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+example-commands.bat:222: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+example-commands.bat:223: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Replaced 24 lines(10.62%) in 1 files(100%)
 Return-Value58[19] = 24 : msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -T 3
 
 Run-Command58[20] = msr -c -j -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
-example-commands.bat:19: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-example-commands.bat:20: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-example-commands.bat:21: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-example-commands.bat:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-example-commands.bat:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-example-commands.bat:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
-example-commands.bat:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
-example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
-example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
-Replaced 24 lines(11.27%) in 1 files(100%)
+example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:20: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+example-commands.bat:21: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+example-commands.bat:22: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+example-commands.bat:23: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+example-commands.bat:24: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
+example-commands.bat:25: msr -c -p %~dp0 -l -f bat -T 2 # Should show bottom 2 items.
+example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+Replaced 24 lines(10.62%) in 1 files(100%)
 Return-Value58[20] = 24 : msr -c -j -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
 
 Run-Command58[21] = msr -c -j -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
-example-commands.bat:19: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
-example-commands.bat:20: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-example-commands.bat:21: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+" -o "NODE"
-example-commands.bat:22: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 50 ## Must no blocks
-example-commands.bat:23: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a -L 20 -N 80 ## Must have only 1 block
-example-commands.bat:24: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[13]" -a  ## Must have and only 2 blocks: Node1 and Node3
-example-commands.bat:25: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" -t "Node[1-3]" -x Node2 -a ## Must have only Node2 block
-example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -ib "^\s*<tag" -Q "^\s*</tag" --nt "Node[1-3]" -e "Node\d+"  ## Must no block to output
-example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -b "^\s*<tag" -iQ "^\s*</tag" --nt "Node[1-3]"  ## Must no block to output
-Replaced 24 lines(11.27%) in 1 files(100%)
+example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
+example-commands.bat:20: msr -c -p %~dp0 -l -f bat -H -2 # Should skip top 2 items.
+example-commands.bat:21: msr -c -p %~dp0 -l -f bat -T -2 # Should skip bottom 2 items.
+example-commands.bat:22: msr -c -p %~dp0 -l -f bat -H -2 --sz # Should skip top 2 items.
+example-commands.bat:23: msr -c -p %~dp0 -l -f bat -T -2 --wt # Should skip bottom 2 items.
+example-commands.bat:24: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2 items.
+example-commands.bat:25: msr -c -p %~dp0 -l -f bat -T 2 # Should show bottom 2 items.
+example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
+example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
+Replaced 24 lines(10.62%) in 1 files(100%)
 Return-Value58[21] = 24 : msr -c -j -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
 
 Run-Command58[22] = msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3
-example-commands.bat:66: msr -c -p %~dp0\example-commands.bat -x name -o NAME -ie "name|come" -T 3
-example-commands.bat:67: msr -c -p %~dp0\example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
-example-commands.bat:68: msr -c -p %~dp0\example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
-example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -t not -U 3 -D 3
-example-commands.bat:70: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
-example-commands.bat:71: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
-example-commands.bat:72: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
-Replaced 1 lines(0.47%) in 1 files(100%)
+example-commands.bat:73: msr -c -p %~dp0\example-commands.bat -x name -o NAME -ie "name|come" -T 3
+example-commands.bat:74: msr -c -p %~dp0\example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9
+example-commands.bat:75: msr -c -p %~dp0\example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9
+example-commands.bat:76: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -t not -U 3 -D 3
+example-commands.bat:77: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
+example-commands.bat:78: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
+example-commands.bat:79: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
+Replaced 1 lines(0.44%) in 1 files(100%)
 Return-Value58[22] = 1 : msr -c -j -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3
 
 Run-Command58[23] = msr -c -j -p sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
@@ -260,9 +260,9 @@ Replaced 1 blocks(100%) with 1 lines(0.75%) in 1 files(100%)
 Return-Value58[24] = 1 : msr -c -j -p sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
 
 Run-Command58[25] = msr -c -j -p example-commands.bat -it name -o NAME -e Names -x update
-example-commands.bat:73: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
-example-commands.bat:75: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
-Replaced 2 lines(0.94%) in 1 files(100%)
+example-commands.bat:80: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
+example-commands.bat:82: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
+Replaced 2 lines(0.88%) in 1 files(100%)
 Return-Value58[25] = 2 : msr -c -j -p example-commands.bat -it name -o NAME -e Names -x update
 
 Run-Command58[26] = msr -c -j -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block"

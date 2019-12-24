@@ -3,6 +3,13 @@ msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -x \ -o \\
 msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
 msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t "\\\\" -o \\
 msr -c -z www.lz.text/temp.normal/samples/my.normal/my-stream.xml -x normal/ -t "(www.*)/([^/]+\.xml)\s*"
+
+msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End  Should return 0
+msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End -l Should return 0
+
+msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End Should return 0
+msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End -l Should return 0
+
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
 msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
@@ -200,6 +207,12 @@ msr -c -p %~dp0\sample-file.txt -t "\b(NotMatchedLine|MatchedLine|UpLine|DownLin
 copy /y %~dp0\original-sample.txt %~dp0\sample-file.txt
 
 del %~dp0\original-sample.txt
+
+msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End  Should return 0
+msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End -l Should return 0
+
+msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End Should return 0
+msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End -l Should return 0
 
 ::Stop calling for linux-test.sh as following are advanced test. On Linux , need to replace the double quotes "" to single quotes '' in -o xxxx if contains $1 or $2 etc.
 pushd
