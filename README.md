@@ -2,7 +2,7 @@
 
 Most time **Just 1 command line** to solve your daily text or file processing work, pipe endless.
 
-Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extension: [**vscode-msr**]( https://marketplace.visualstudio.com/items?itemName=qualiu.vscode-msr) (souce code: [here](https://github.com/qualiu/vscode-msr)) to help your coding work.
+Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://marketplace.visualstudio.com/items?itemName=qualiu.vscode-msr) (souce code: [here](https://github.com/qualiu/vscode-msr)) to help your coding work.
 
 #### **M**atch/**S**earch/**R**eplace: `msr.exe`/`msr-Win32.exe`/`msr.cygwin`/`msr.gcc**`/`msr-i386.gcc**`
 
@@ -22,8 +22,7 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 
 | findstr + grep + msr on Windows | findstr + grep + msr on Cygwin | grep + msr on CentOS
 |-----|-----|-----|
-| [**Summary table**](https://github.com/qualiu/msr/blob/master/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/master/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/master/perf/summary-part-CentOS-comparison-2019-08-11.md)
-| [**Comparison screenshot**](https://qualiu.github.io/msr/perf/on-Windows-comparison-2019-08-11.html) | [**Comparison screenshot**](https://qualiu.github.io/msr/perf/on-Cygwin-comparison-2019-08-11.html) | [**Comparison screenshot**](https://qualiu.github.io/msr/perf/on-CentOS-comparison-2019-08-11.html)
+| [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md)
 
 ### **Vivid Colorful Demo/examples**: Run [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
 
@@ -68,8 +67,6 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 
 - [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html)
 - [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html)
-- [Performance comparison on Cygwin](https://qualiu.github.io/msr/perf/on-Cygwin-comparison-2019-08-11.html)
-- [Performance comparison on Windows](https://qualiu.github.io/msr/perf/on-Windows-comparison-2019-08-11.html)
 
 ### Powerful
 
@@ -100,93 +97,9 @@ Since 2019-07-19 a [Visual Studio Code](https://code.visualstudio.com/) extensio
 
 - Cannot process Unicode files/pipe so far; Fine with UTF-8 and ANSI etc.
 
-### Just run the exe, you'll get the usage and examples.
+### Just run the exe, you'll get the usage and examples
 
-Besides, some script/batch/shell files are also examples.
-
-Search/Replace text by **msr.exe** / **msr.gcc**** / **msr.cygwin**
-
-- in files or from pipe
-  - pipe (command line result);
-  - files recursively in directories and multiple root paths separated by comma or semicolon.
-- with
-  - Normal/Plain text searching/replacing;
-  - Regex text searching/replacing, and with single-line/multi-line mode.
-- with excluding and including syntax meanwhile for
-  - Filtering file-name/directory-name/full-path-string;
-  - Filtering  include text and exclude text;
-  - Filtering files by write-time range and file size.
-  - Finally Sort result text by specified time or text (regex pattern);
-  - Output with hierarchy colors by searching-regex and enhancing-regex.
-
-## Typical scenarios of msr: Coding/Deploying/Test/Operation/Log-Mining
-
-1. Find text in pipe (command line result) or files (such as code, log)
-2. Replace/Extract/Tranform text from pipe or files **recursively** in **multiple** root path.
-3. Search/Replace and get percentage, distribution; further extraction on previous pipe or even command line.
-4. [Find processes](https://github.com/qualiu/msr/blob/master/tools/psall.bat) / [Kill processes](https://github.com/qualiu/msr/blob/master/tools/pskill.bat) by regex/pid with colorful matching.
-5. Find files with specified name, in modification time range, size range and other filters, then use the path list to operate (**-X** is helpful).
-6. Look up a tool's usage with colors and context (Up/Down lines).
-7. Grep a command's result with matching info and time cost, and colorful matched lines or blocks.
-8. Adding colors to your scripts, especially nice to usage and examples section.
-9. Map <--> Reduce : Filter files and load, extract, transform, ... , pipe endless.
- ... ...
-
-### With requirements of:
-
-1. Basic text searching(**-x**) / replacing-to(**-o**) , plus case sensitive or not (**-i**).
-2. General Regex (regular expression) searching(**-t**)/replacing(**-o**) : consistent regex syntax with C#/C++/Java, not like strange or limited regex as AWK/GAWK/SED/FINDSTR …
-3. Recursively (**-r**) search / replace files in paths (**-p**) (multiple paths separated by "," or ";")
-   - For replacing: replace regex-pattern(**-t**)/normal-text(**-x**) to (**-o**) final-text
-     - Preview: no **-R**
-     - Replace : with **-R**
-     - Backup files only if changed/replaced (**-K**) :
-   - Backup : Original files will be backup to : {name}--lz-backup--{file-last-write-time}-{N}
-     - Such as : myConfig.xml--lz-backup-2013-11-13__11_38_24
-       - But if replaced many times in a second :
-       - Will be : myConfig.xml--lz-backup-2013-11-13__11_38_24**-N** (**N**  start from 1 )
-
-4. Powerful filtering: (can use all of following options meanwhile)
-   - For file : Sorting order by the prior of **--wt** and **--sz** if use both.
-      - file-name(**-f**) / directory-name(**-d**) / path(**-pp**) + ALL :
-      - include/exclude(**--nf**/**--nd**/**--np**) +ALL;
-      - file modification time filter: **--w1**,**--w2** : like --w1 2012-09-08  --w2 "2013-03-12 15" (or "2013-03-12 15:00")
-      - file size range filter: **--s1** , **--s2** : like --s1 100KB --s2 1M
-      - show file modification time and sort : **--wt** : useful if list file with **-l**
-      - show file size and unit and sort : **--sz** : useful if list file with **-l**
-   - Line matching + **Arbitrary** block matching: if not begin or stopped, not output/match/replace even if matched.
-     - Regex pattern
-       - start reading  (**-b**), or start matching a block begin (with **-Q** to perform block syntax).
-       - stop reading (**-q**) ignore if has matched start pattern.
-       - stop reading if has matched start pattern (**-Q**) as one block end (with **-b**) in pipe/each file.
-     - File line number
-       - start at row (**-L**)
-       - stop at row (**-N**)
-
-5. Matching(**-t**/**-x**) and non-matching(**--nt**/**--nx**) filter at mean while.(like file filter)
-6. Powerful output control:
-   - Can sort by time if specified time format **-F** for the logs from multiple paths;
-   - Colorful output and with hierarchy for captured matching group;
-   - Capture(**-t**/**-x**) and enhance(**-e**) and with different colors;
-   - Lines up(**-U**) and down(**-D**) as context to the captured row;
-   - Head(**-H**) and tail(**-T**) for whole result rows.
-   - Out summary info only if matched (**-O**)
-   - No any info just pure result (**-A**)
-   - Out summary info to stderr (**-I**)
-   - Execute(**-X**) output lines as commands (if they're callable commands) : because 'for' loop on Windows need escape | to ^| , > to ^> , etc.
-7. Extra and useful output info : if not use **-A**
-   - **When** you did it;
-   - **What** command line (**-c**) you used; What's the percentage and distribution.
-   - **Where** the files and rows (if not use **-P**) you searched/modified and working directory.
-   - **How** much time cost (so you know to start it at night/lunch if too long)
-   - Matching count and percentages (Also can use **-l** to get just brief file list and count/percentage)
-   - Use **-PAC** to get clean result (no path-line, no any info, no color)
-   - Use **-PIC** to output info to stderr pipe.
-   - Use **-PC**/**-POC**/**-l -PC**/**-lPOC** >nul(nul on Windows, /dev/null on Linux) to use summary info as source input for latter process/tool.
-   - If has **-c** in command line, can append any extra text, useful with **-O** **-H 0** or **>nul** to do further extraction based on summary info:
-     - msr -x "D:\data" -p xx.log -O >nul | msr -xxx xxx -c Checking D:\data
-   - Use **-z** to directly input string to read, avoid using echo which is clumsy in pipe on Windows.
-   - Use **-J** and **-H** output/match count to jump out.
+Besides the doc here and test scripts, some script/batch/shell files are also examples in this and sub-folders.
 
 # Brief Summary of msr EXE
 
@@ -205,15 +118,15 @@ Use the rich searching options of like below, **combine** these **optional** opt
   - Recursively(`-r`) search one or more files or directories, like: **-r** **-p** `file1,folder2,file2,folder3,folderN`
   - Read paths (path list) from files, like: **-w** `path-list-1.txt,path-list-2.txt`
 - Set max search depth (begin from input folder), like: **-k** `16` (default max search depth = `33`).
-- Skip/Exclude link files: **--xf**
-- Skip/Exclude link folders: **--xd**
 - Filter `file name`: **-f** `should-match-Regex` , **--nf** `should-not-match`
 - Filter `directory name`: **-d** `at-least-one-match` , **--nd** `none-should-match`
 - Filter `full path pattern`: **--pp** `should-match` , **--np** `should-not-match`
+- Skip/Exclude link files: **--xf**
+- Skip/Exclude link folders: **--xd**
 - Skip full or sub paths: **--xp** `d:\win\dir,my\sub`
-- Try to read once for link files: **-G** (link file's folders must be or under input root paths)
+- Try to read once for link files: **-G** (link files' folders must be or under input root paths of **-p** or/and **-w**)
 - Filter `file size`: **--s1** <= size <= **s2** , like set one or two: **--s1** `1B` **--s2** `1.5MB`
-- Filter `file time`: like **--w1** `2019-07`, **--w2** `"2019-07-16 13:20"` or `2019-07-16T13:20:01` (quote it if has spaces).
+- Filter `file time`: like **--w1** `2015-07`, **--w2** `"2015-07-16 13:20"` or `2015-07-16T13:20:01` (quote it if has spaces).
 - Filter rows by begin + end row numbers: like **-L** 10 **-N** 200 (for each file).
 - Filter rows by begin + end Regex: like **-b** `"^\s*public.*?class"` **-q** `"^\s*\}\s*$"`
 - Filter rows by 1 or more blocks: **-b** `"^\s*public.*?class"` **-Q** `"^\s*\}\s*$"`
@@ -221,4 +134,137 @@ Use the rich searching options of like below, **combine** these **optional** opt
 - **Quickly** pick up `head{N}` results + **Jump out**(`-J`), like: **-H** `30` **-J** or **-J** **-H** `300` or **-JH** `300` etc.
 - Don't color matched text: **-C**  (`Faster` to output, and **must be set** for `Linux/Cygwin` to further process).
 - Output summary `info` to **stderr** + **hide** `warnings in stderr` (like BOM encoding): **-I** : Like **-I -C** or **-IC** or **-J -I -C** or **-JIC** etc.
+- Use **-O** will hide immediate BOM warnings. Use **-M** will hide BOM caused warning summary that not hidden by **-A**.
+
+## Scenario Glance
+
+- Search files + Extract + Transform to target text/value:
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -PAC     + [Optional Args](#optional-args)
+
+- Get matched file list (You can omit -o xxx). You can also append `| msr -t "(.+)" -o "command \1" -X` to process files.
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -PAC -l  + [Optional Args](#optional-args)
+
+- Replace text:
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To"     + [Optional Args](#optional-args)
+
+- Just preview changed files + lines:
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -j  + [Optional Args](#optional-args)
+
+- Replace files (-R) and backup (Add -K):
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -R  + [Optional Args](#optional-args)
+
+- Insert or add a line with same indention:
+  - msr -rp paths -f `"\.(xml|json)$"` -it `"^(\s*)(regex-groups)"` -o `"\1\2\n\1{add-your-line}"` -R
+
+- Replace or remove specific matched block (multiple lines) like code files and config files(`XML`/`JSON`/`YAML`/`INI` etc.):
+  - msr -rp paths -f `"\.xml$"` -b `"^\s*</Tag1>"` -Q `"^\s*</Tag1>"` -it `"match-regex"` -o `"replace-to or empty/to-remove"` -R with **-S** if you need.
+
+- Sort log files by time text (**auto set to previous line's time if a line no time**) + Get error top distribution:
+  - **msr** -rp paths -F `"\d{4}-\d{2}-\d{2}\D\d+:\d+:\d+[\.,]?\d*"` | **nin** nul `"\.(\w+Exception)\b"` -p -d -O -w
+
+- Further processing based on summary (generate text, or command lines with `-X` to execute):
+  - msr -rp paths -it `regex` -x `text` --nt `skip-regex` --nx `skip-text` -H 0 -c **key message** | msr -t `"^Matched (\d+) .*? -c (key message)"` -o `"replace to text or command line"` -X
+
+### Tip for Captured Groups Reference to Replace Files or Transform Text
+
+It's better to use **"\1"** than **"$1"** which let you easier to copy/migrate your replacing command lines.
+
+- For example: msr -p paths -i -t `".*?text = (capture1).*?(capture2).*"` -o **"\1 \2"**
+  - `"\1"` = `"$1"` for CMD console or batch files (`*.bat` or `*.cmd`) on Windows.
+  - `"\1"` = `'$1'` for Powershell (Windows / Linux) or Bash (Linux / Cygwin).
+
+### Optional Args
+
+``` batch
+:: No order, but case-sensitive. Free to use abbreviations (-i = --ignore-case; -r = recursive; -k = --max-depth)
+ msr -r -p path1,path2,pathN
+  -k 18
   
+  -i
+  -t "Match-Regex"
+  -x "And-Plain-Text"
+
+  -o "Replace-To"
+
+  --nt "Exclude-Regex"
+  --nx "Exclude-Plain-Text"
+
+  -S  : Use single-line-Regex-mode for whole text in pipe or each-file or each-block
+
+  -f "File-Name-Regex"
+  --nf "Exclude-File-Name-Regex"
+  
+  -d "Match-Folder-Name-Regex"
+  --nd "^(\.git|bin|Debug|Release|static|packages|test)$"
+  
+  --pp "Match-Full-Path-Regex"
+  --np "Exclude-Full-Path-Regex"
+  --xp "Exclude-Full-or-SubPath1,FullPath2,SubPathN"
+
+  --s1 1B
+  --s2 10.50MB
+  
+  --w1 "2015-12-30 10:20"
+  --w2 "2015-12-30T19:20:30"
+  
+  -L Begin-Row-Number
+  -N End-Row-Number
+  
+  -F "Match-Regex-to-Sort-By-Text" : Usually for time like "\d{4}-\d{2}-\d{2}\D\d+:\d+:\d+[\.,]?\d*"
+  -B "Begin-Text-Regex"
+  -E "End-Text-Regex"
+
+  -s "Sort-by-Regex-(Group1)-or-this" : This will skip lines not matches this Regex, different to -F
+
+  -b "Begin-Regex-of-Block-or-Line"
+  -Q "End-Regex-of-Block"
+  -q "End-Regex-of-Line"
+
+  -H {N} : {N} = 0 to hide output;  {N} > 0 to show head N lines;  {N} < 0 to skip head N lines.
+  -T {N} : {N} = 0 to hide output;  {N} > 0 to show tail N lines;  {N} < 0 to skip tail N lines.
+
+  ***
+  More detail/examples see the home doc or just run the exe with '--help' or '-h' or no args.
+```
+
+### If you want to use MSR to color execution
+
+General example: Transform output to command lines then **execute**:
+
+`echo command line` or `command output lines` | msr -t `Search-Regex` -o `Replace-To` **-X** `-P` `-I` `-M` `-A` ...
+
+- Hide commands before execution: **-P** like **-X -P** or **-XP**
+- Hide return value and time cost: **-I** like **-X -I** or **-XI**
+- Hide summary of all executions:  **-M**  like **-X -M** or **-XM** (often use **-XM** or **-XMI**)
+- Hide all: **-A** like **-XA**
+
+### If you want to use MSR to color output
+
+Brief introduction besides the color doc [msr on Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) as following:
+
+Related controls and options that you can use at the same time:
+
+- Color Options
+  - **-x** `Plain-Text` : Set `Yellow` color to matched `Plain-Text`
+  - **-t** `Regex-Pattern`: Set `Red` color to matched `Regex` **group[0]**, different **group[N]** different color.
+  - **-e** `Regex-Pattern`: Set `Green` color to matched `Regex` **group[0]**, different **group[N]** different color.
+    - Difference: **-e** just add colors, **-t** will add colors + only show matched lines if not used **-a**.
+
+- Auxillary Controls
+  - **-P**: Hide path/line/row.
+  - **-M**: Hide summary message.
+  - **-A**: No any other info/text. Almost same to combination of **-P -M**
+  - **-I**: Output summary to **stderr**.
+  - **-a**: Show all output lines/text including not matched.
+
+- Frequently Used Examples
+  - **Only** show **captured** text with color:
+    - echo `cmd output text` | msr **-PA** -t `"Regex, error or need Red color"`
+    - echo `cmd output text` | msr **-PA** -x `"Plain text, warning or need Yellow color"`
+  - Show **all** output: Add color to specific text:
+    - echo `cmd output text` | msr **-aPA** -t `"Regex, error or need Red color.*?(group1) (group2)"` -e `"extra color (group1) (groupN)"`
+    - echo `cmd output text` | msr **-aPA** -x `"Plain text, warning or need Yellow color"` -e `"extra color (group1) (groupN)"`
+  - More complicate coloring:
+    - echo `cmd output text` | msr **-aPA** -it `"Regex (group1) (group2)"` -e `"extra (color) (group)"` -x `"plain text"`
+    - echo `cmd output text` | msr **-PA** -it `"Regex to only show matched"` --nx `"exclude text"` --nt `"exclude Regex"`
+    - echo `cmd output text` | msr **-PA** -it `"Regex to only show matched with up/down rows, head 100, tail 100"` -U 3 -D 9 -H 100 -T 100
