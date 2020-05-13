@@ -53,8 +53,9 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -Z [ --skip-last-empty ]     Skip last empty line in first/latter file.
   -x [ --has-text ] arg        Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx).
   --nx arg                     Line must not contain normal/plain text: Exclude/Skip rows.
-  -t [ --text-match ] arg      Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx).
+  -t [ --text-match ] arg      Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx). Use -t value to filter even if used -e.
   --nt arg                     Regex pattern for lines must not match: Exclude/Skip rows.
+  -e [ --enhance ] arg         Regex pattern to enhance text, inferior to: -t -x, use merged Regex value of "(-t)|-e" to enhance if used both -t and -e.
   --verbose                    Show parsed arguments, return value, time zone and EXE path, etc.
   -h [ --help ]                See usage and examples below. More detail: https://github.com/qualiu/msr
 
