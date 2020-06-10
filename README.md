@@ -13,7 +13,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 #### **N**ot-**IN**-latter: `nin.exe`/`nin-Win32.exe`/`nin.cygwin`/`nin.gcc**`/`nin-i386.gcc**`
 
 - Get `Unique` or `Raw` **Exclusive/Mutual** Line-Set or Key-Set;
-- **Stats** + **Get distribution** in Files/Pipe.
+- **Stats** + **Get top distribution** in Files/Pipe.
 - Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
 
 # MSR overview: (usage/examples: [readme.txt](https://github.com/qualiu/msr/tree/master/tools/readme.txt) )
@@ -30,10 +30,10 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 - If you've downloaded, run an updating command in the directory: **git pull** or **git fetch && git reset --hard origin/master** (if get conflicts)
 - Helpful scripts use **msr.exe** and **nin.exe** : <https://github.com/qualiu/msrTools> , and also *.bat files in [tools](https://github.com/qualiu/msr/tree/master/tools)
 
-### Almost no learning cost
+### Almost No Learning Cost
 
+- Just general `Regex` as **C++, C#, Java, Scala**, needless to learn strange Regex syntax like `FINDSTR`, `Awk`, `Sed` etc.
 - You can use plain text to search/replace (**-x**/**-ix** `search-text` to **-o** `replace-to`) if you're not farmiliar with `Regex`.
-- You can use general `Regex` as **C++, C#, Java, Scala**, needless to learn strange Regex syntax like `FINDSTR`, `Awk` and `Sed`, etc.
 - **Most** of the time **only** use searching(Regex: **-t**/**-i -t**, Plain text: **-x**/**-i -x**).
 - **Some** of the time search and replace-to(**-o**);
 - Just use **-PAC** or **-PIC** to get pure result as same as other tools (no **P**ath-number: **-P**, no **A**ny-info : **-A**, no **C**olor: **-C**)
@@ -41,7 +41,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 
 ## Usage + Examples + Color-Text-Screenshots
 
-- For **msr** : See [Brief Summary of msr EXE](https://github.com/qualiu/msr#brief-summary-of-msr-exe) at bottom.
+- For **msr** : See [**Scenario Glance**](https://github.com/qualiu/msr/blob/master/README.md#scenario-glance) + [Brief Summary of msr EXE](https://github.com/qualiu/msr/blob/master/README.md#brief-summary-of-msr-exe) at bottom.
 - For **msr** + **nin**: Also can see [tools/readme.txt](https://raw.githubusercontent.com/qualiu/msr/master/tools/readme.txt)
 - **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 
@@ -104,9 +104,13 @@ Besides the doc here and test scripts, some script/batch/shell files are also ex
 # Brief Summary of msr EXE
 
 Use the rich searching options of like below, **combine** these **optional** options (**You Can Use All**):
-
+- Set searching paths: (Can use both)
+  - Recursively(`-r`) search one or more files or directories, like: **-r** **-p** `file1,folder2,file2,folder3,folderN`
+  - Read paths (path list) from files, like: **-w** `path-list-1.txt,path-list-2.txt`
+- Set max search depth (begin from input folder), like:
+  **-k** `16` (default max search depth = `33`).
 - Filter text by `line-matching` (default) or `whole-file-text-matching` (add **-S** / **--single-line** Regex mode):
-  - Ignore case:
+  - Ignore case for text matching:
     - Add **-i** (`--ignore-case`)
   - Regex patterns:
     - **-t** `should-match-Regex-pattern`
@@ -114,16 +118,15 @@ Use the rich searching options of like below, **combine** these **optional** opt
   - Plain text:
     - **-x** `should-contain-plain-text`
     - **--nx** `should-not-contain-plain-text`
-- Set searching paths: (Can use both)
-  - Recursively(`-r`) search one or more files or directories, like: **-r** **-p** `file1,folder2,file2,folder3,folderN`
-  - Read paths (path list) from files, like: **-w** `path-list-1.txt,path-list-2.txt`
-- Set max search depth (begin from input folder), like: **-k** `16` (default max search depth = `33`).
+- Single-line-Regex mode (**-S**) for Regex `"^"`and `"$"`:
+  - Treat each file as one single line. If reading pipe, treat whole output as one line.
+  - If block matching (used `-b` + `-Q`): Treat each block as one line in a file. Useful like removing a whole block.
 - Filter `file name`: **-f** `should-match-Regex` , **--nf** `should-not-match`
 - Filter `directory name`: **-d** `at-least-one-match` , **--nd** `none-should-match`
 - Filter `full path pattern`: **--pp** `should-match` , **--np** `should-not-match`
 - Skip/Exclude link files: **--xf**
 - Skip/Exclude link folders: **--xd**
-- Skip full or sub paths: **--xp** `d:\win\dir,my\sub`
+- Skip full or sub paths: **--xp** `d:\win\dir,my\sub,\bin\,\out\`
 - Try to read once for link files: **-G** (link files' folders must be or under input root paths of **-p** or/and **-w**)
 - Filter `file size`: **--s1** <= size <= **s2** , like set one or two: **--s1** `1B` **--s2** `1.5MB`
 - Filter `file time`: like **--w1** `2015-07`, **--w2** `"2015-07-16 13:20"` or `2015-07-16T13:20:01` (quote it if has spaces).
@@ -138,6 +141,9 @@ Use the rich searching options of like below, **combine** these **optional** opt
 
 ## Scenario Glance
 
+- Search code or log:
+  - msr -rp folder1,folder2,file1,fileN -t "Regex-Pattern" -x "And-Plain-text" --nt ... --nx ... --nd ... -d ... --pp ... --np ... --xp ... 
+
 - Search files + Extract + Transform to target text/value:
   - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -PAC     + [Optional Args](#optional-args)
 
@@ -148,10 +154,10 @@ Use the rich searching options of like below, **combine** these **optional** opt
   - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To"     + [Optional Args](#optional-args)
 
 - Just preview changed files + lines:
-  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -j  + [Optional Args](#optional-args)
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" **-j**  + [Optional Args](#optional-args)
 
-- Replace files (-R) and backup (Add -K):
-  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" -R  + [Optional Args](#optional-args)
+- Replace files (`-R`) and backup (Add `-K`):
+  - msr -rp folder1,folder2,file1,fileN  -t "Regex-Pattern" -o "Replace-To" **-R**  + [Optional Args](#optional-args)
 
 - Insert or add a line with same indention:
   - msr -rp paths -f `"\.(xml|json)$"` -it `"^(\s*)(regex-groups)"` -o `"\1\2\n\1{add-your-line}"` -R
@@ -161,6 +167,10 @@ Use the rich searching options of like below, **combine** these **optional** opt
 
 - Sort log files by time text (**auto set to previous line's time if a line no time**) + Get error top distribution:
   - **msr** -rp paths -F `"\d{4}-\d{2}-\d{2}\D\d+:\d+:\d+[\.,]?\d*"` | **nin** nul `"\.(\w+Exception)\b"` -p -d -O -w
+
+- Grep numbers in files or pipe, and sort (**-s**) as number (**-n**) + Show stats: `Count` + `Sum` + `Max` + `Min` + `Median` + `Average` + `Standard-Deviation` + `Percentiles` etc. :
+  - msr -rp paths -f `"\.log$"` -t `"time cost = (\d+\.?\d*)"` -n -s `""`
+  - xxx-cmd-output | msr -t `"(match-1), value = (-?\d+\.?\d*)` -n -s `"value = (-?\d+\.?\d*)"`
 
 - Further processing based on summary (generate text, or command lines with `-X` to execute):
   - msr -rp paths -it `regex` -x `text` --nt `skip-regex` --nx `skip-text` -H 0 -c **key message** | msr -t `"^Matched (\d+) .*? -c (key message)"` -o `"replace to text or command line"` -X
@@ -235,8 +245,8 @@ General example: Transform output to command lines then **execute**:
 
 - Hide commands before execution: **-P** like **-X -P** or **-XP**
 - Hide return value and time cost: **-I** like **-X -I** or **-XI**
-- Hide summary of all executions:  **-M**  like **-X -M** or **-XM** (often use **-XM** or **-XMI**)
-- Hide all: **-A** like **-XA**
+- Hide summary of all executions:  **-M**  like **-X -M** or **-XM** (**-XM** or **-XMI** is mostly used)
+- Hide all(command/cost/summary): **-A** like **-XA**
 
 ### If you want to use MSR to color output
 

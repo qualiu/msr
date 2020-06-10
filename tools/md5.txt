@@ -4,9 +4,9 @@ c455d1acb5269b323241e67966fc6d13 msr.cygwin
 548653ee72ae5958ece8114ebeabc3cd msr.exe
 0b9aa110abcd9ceeeec084d9e249e1db msr.gcc48
 dc4a3bc477188ff5e4e70819cd6da1db msr.gcc62
-8ef86d81a37a7ce6c2c9ade1d6ed9bcd nin-Win32.exe
-e5a64dc6c3bf8943e3657f36b98abd9f nin-i386.gcc48
-e8269d35ee45fe7e551db8aa1931b273 nin.cygwin
-4c5f0bad0bf3d9b9908ba3d8e140a606 nin.exe
-e65e2d6272330b028174a7eacb7ec535 nin.gcc48
-9689bc436be79f9cc59d9e377eeeab14 nin.gcc62
+eee235f3951b2d74e55591d9bb723eea nin-Win32.exe
+cf6a261e555e1bb0b5140c16bacb0f32 nin-i386.gcc48
+18e6a1bf43f412cb9e4314f6fb7192bd nin.cygwin
+43fb907ad7ca4c45522fe941a6d94dc5 nin.exe
+e3617ab732e4375982526e73ae1c4be1 nin.gcc48
+c6c8611c9f8ac791c9a83da9179d338a nin.gcc62
