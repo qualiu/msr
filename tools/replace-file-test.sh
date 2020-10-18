@@ -12,49 +12,13 @@ Specified_Test_Number=$1
 
 ThisDir="$( cd "$( dirname "$0" )" && pwd )"
 cd "$(dirname $0)"
-if [ -n "$(uname -o | grep -ie Cygwin)" ]; then
-    msr=$ThisDir/msr.cygwin
-elif [ -n "$(uname -o | grep -ie Linux)" ]; then
-    if [ -n "$(uname -m | grep 64)" ]; then
-        msr=$ThisDir/msr.gcc48
-    else
-        msr=$ThisDir/msr-i386.gcc48
-    fi
-else
-    echo "Unknown system type: $(uname -a)"
+cd $ThisDir
+msr=$(bash $ThisDir/get-exe-path.sh msr 1)
+nin=$(bash $ThisDir/get-exe-path.sh nin 1)
+if [ ! -f "$msr" ] || [ ! -f "$nin" ]; then
+    echo "Not found msr or nin as above." >&2
     exit -1
 fi
-
-if [ -f "$msr" ]; then
-    chmod +x $msr
-elif [ -n "$(whereis msr 2>/dev/null)" ]; then
-    msr=$(whereis msr | sed -r 's/.*?:\s*(\S+).*/\1/')
-elif [ -n "$(alias msr)" ]; then
-    msr=$(alias msr | sed -r 's/.*?=\s*(\S+).*/\1/')
-else
-    msr=$ThisDir/$(basename $msr)
-    if [ !-f "$msr" ]; then
-        echo "Not exist msr nor $msr"
-        exit /b -1
-    fi
-    chmod +x $msr
-fi
-
-nin=$(echo $msr | sed -r 's/msr([^/]*)$/nin\1/')
-if [ -f "$nin" ]; then
-    chmod +x $nin
-else
-    nin=$(basename $nin)
-    if [ !-f "$nin" ]; then
-        echo "Not exist nin nor $nin"
-        exit /b -1
-    fi
-fi
-
-alias msr=$msr
-alias nin=$nin
-
-cd $ThisDir
 
 cp -ap sample-file.txt sample-test-restore.txt  >/dev/null
 unix2dos sample-test-restore.txt 2>/dev/null

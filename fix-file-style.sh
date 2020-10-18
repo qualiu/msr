@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #==================================================================
 # Check and fix file style.
 # Latest version in: https://github.com/qualiu/msrTools

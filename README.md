@@ -37,7 +37,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 - **Most** of the time **only** use searching(Regex: **-t**/**-i -t**, Plain text: **-x**/**-i -x**).
 - **Some** of the time search and replace-to(**-o**);
 - Just use **-PAC** or **-PIC** to get pure result as same as other tools (no **P**ath-number: **-P**, no **A**ny-info : **-A**, no **C**olor: **-C**)
-- All options are **optional** and **no order** and **effective mean while**; Free with abbreviations/full-names.
+- All options are **optional** and **no order** and **effective meanwhile**; Free with abbreviations/full-names.
 
 ## Usage + Examples + Color-Text-Screenshots
 
