@@ -1,326 +1,278 @@
-Run-Command15[1] = msr -p . -l -f \.bat$ --sz --wt -H 0
-Matched 5 files
-Return-Value15[1] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 0
+Run-Command15[1] = msr -p . -l -f \.txt$ --sz --wt -H 0
+Matched 7 files
+Return-Value15[1] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 0
 
-Run-Command15[2] = msr -p . -l -f \.bat$ --sz --wt -T 0
-Matched 5 files
-Return-Value15[2] = 5 : msr -p . -l -f \.bat$ --sz --wt -T 0
+Run-Command15[2] = msr -p . -l -f \.txt$ --sz --wt -T 0
+Matched 7 files
+Return-Value15[2] = 7 : msr -p . -l -f \.txt$ --sz --wt -T 0
 
-Run-Command15[3] = msr -p . -l -f \.bat$ --sz --wt -H 2 -T 0
-Matched 5 files
-Return-Value15[3] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 2 -T 0
+Run-Command15[3] = msr -p . -l -f \.txt$ --sz --wt -H 2 -T 0
+Matched 7 files
+Return-Value15[3] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 2 -T 0
 
-Run-Command15[4] = msr -p . -l -f \.bat$ --sz --wt -H 0 -T 2
-Matched 5 files
-Return-Value15[4] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 0 -T 2
+Run-Command15[4] = msr -p . -l -f \.txt$ --sz --wt -H 0 -T 2
+Matched 7 files
+Return-Value15[4] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 0 -T 2
 
-Run-Command15[5] = msr -p . -l -f \.bat$ --sz --wt -H -2 -T 0
-Matched 5 files
-Return-Value15[5] = 5 : msr -p . -l -f \.bat$ --sz --wt -H -2 -T 0
+Run-Command15[5] = msr -p . -l -f \.txt$ --sz --wt -H -2 -T 0
+Matched 7 files
+Return-Value15[5] = 7 : msr -p . -l -f \.txt$ --sz --wt -H -2 -T 0
 
-Run-Command15[6] = msr -p . -l -f \.bat$ --sz --wt -H 0 -T -2
-Matched 5 files
-Return-Value15[6] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 0 -T -2
+Run-Command15[6] = msr -p . -l -f \.txt$ --sz --wt -H 0 -T -2
+Matched 7 files
+Return-Value15[6] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 0 -T -2
 
-Run-Command15[7] = msr -p . -l -f \.bat$ --sz --wt
-1-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\pskill.bat
-2-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\psall.bat
-3-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\replace-file-test.bat
-4-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-5-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\windows-test.bat
-Matched 5 files
-Return-Value15[7] = 5 : msr -p . -l -f \.bat$ --sz --wt
+Run-Command15[7] = msr -p . -l -f \.txt$ --sz --wt
+1-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\md5.txt
+6-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	sample-file.txt
+7-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\readme.txt
+Matched 7 files
+Return-Value15[7] = 7 : msr -p . -l -f \.txt$ --sz --wt
 
-Run-Command15[8] = msr -p . -l -f \.bat$ --sz --wt -H 2
-1-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\pskill.bat
-2-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\psall.bat
-Matched 5 files
-Return-Value15[8] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 2
+Run-Command15[8] = msr -p . -l -f \.txt$ --sz --wt -H 2
+1-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\not-in-latter-test.txt
+Matched 7 files
+Return-Value15[8] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 2
 
-Run-Command15[9] = msr -p . -l -f \.bat$ --sz --wt -T 2
-4-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-5-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\windows-test.bat
-Matched 5 files
-Return-Value15[9] = 5 : msr -p . -l -f \.bat$ --sz --wt -T 2
+Run-Command15[9] = msr -p . -l -f \.txt$ --sz --wt -T 2
+6-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	sample-file.txt
+7-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\readme.txt
+Matched 7 files
+Return-Value15[9] = 7 : msr -p . -l -f \.txt$ --sz --wt -T 2
 
-Run-Command15[10] = msr -p . -l -f \.bat$ --sz --wt -H 2 -T 2
-1-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\pskill.bat
-2-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\psall.bat
-4-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-5-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\windows-test.bat
-Matched 5 files
-Return-Value15[10] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 2 -T 2
+Run-Command15[10] = msr -p . -l -f \.txt$ --sz --wt -H 2 -T 2
+1-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\not-in-latter-test.txt
+6-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	sample-file.txt
+7-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\readme.txt
+Matched 7 files
+Return-Value15[10] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 2 -T 2
 
-Run-Command15[11] = msr -p . -l -f \.bat$ --sz --wt -H -2
-3-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\replace-file-test.bat
-4-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-5-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\windows-test.bat
-Matched 5 files
-Return-Value15[11] = 5 : msr -p . -l -f \.bat$ --sz --wt -H -2
+Run-Command15[11] = msr -p . -l -f \.txt$ --sz --wt -H -2
+3-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\md5.txt
+6-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	sample-file.txt
+7-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\readme.txt
+Matched 7 files
+Return-Value15[11] = 7 : msr -p . -l -f \.txt$ --sz --wt -H -2
 
-Run-Command15[12] = msr -p . -l -f \.bat$ --sz --wt -T -2
-1-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\pskill.bat
-2-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\psall.bat
-3-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\replace-file-test.bat
-Matched 5 files
-Return-Value15[12] = 5 : msr -p . -l -f \.bat$ --sz --wt -T -2
+Run-Command15[12] = msr -p . -l -f \.txt$ --sz --wt -T -2
+1-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\md5.txt
+Matched 7 files
+Return-Value15[12] = 7 : msr -p . -l -f \.txt$ --sz --wt -T -2
 
-Run-Command15[13] = msr -p . -l -f \.bat$ --sz --wt -H -2 -T -2
-3-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\replace-file-test.bat
-Matched 5 files
-Return-Value15[13] = 5 : msr -p . -l -f \.bat$ --sz --wt -H -2 -T -2
+Run-Command15[13] = msr -p . -l -f \.txt$ --sz --wt -H -2 -T -2
+3-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\md5.txt
+Matched 7 files
+Return-Value15[13] = 7 : msr -p . -l -f \.txt$ --sz --wt -H -2 -T -2
 
-Run-Command15[14] = msr -p . -l -f \.bat$ --sz --wt -H 2 -T -2
-1-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\pskill.bat
-2-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\psall.bat
-3-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\replace-file-test.bat
-Matched 5 files
-Return-Value15[14] = 5 : msr -p . -l -f \.bat$ --sz --wt -H 2 -T -2
+Run-Command15[14] = msr -p . -l -f \.txt$ --sz --wt -H 2 -T -2
+1-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\md5.txt
+Matched 7 files
+Return-Value15[14] = 7 : msr -p . -l -f \.txt$ --sz --wt -H 2 -T -2
 
-Run-Command15[15] = msr -p . -l -f \.bat$ --sz --wt -H -2 -T 2
-4-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-5-5 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\windows-test.bat
-Matched 5 files
-Return-Value15[15] = 5 : msr -p . -l -f \.bat$ --sz --wt -H -2 -T 2
+Run-Command15[15] = msr -p . -l -f \.txt$ --sz --wt -H -2 -T 2
+6-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	sample-file.txt
+7-7 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	.\readme.txt
+Matched 7 files
+Return-Value15[15] = 7 : msr -p . -l -f \.txt$ --sz --wt -H -2 -T 2
 
-Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 75 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
+Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 105 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
  
-Run-Command[1] = msr -l -f \.bat$ -T 5
-1 : example-commands.bat
-2 : psall.bat
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ -T 6
-1 : example-commands.bat
-2 : psall.bat
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ -H 2 -T -1
-1 : example-commands.bat
-2 : psall.bat
-3 : pskill.bat
-4 : replace-file-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 6
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H 2 -T 3
-1 : example-commands.bat
-2 : psall.bat
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 7
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H 2 -T 4
-1 : example-commands.bat
-2 : psall.bat
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -1
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H 2 -T -3
-1 : example-commands.bat
-2 : psall.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 4
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H 2 -T -4
-1 : example-commands.bat
-2 : psall.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 5
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H -2 -T -3
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -4
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H -2 -T 3
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -5
+1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
+2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ -H -2 -T 4
-3 : pskill.bat
-4 : replace-file-test.bat
-5 : windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T -4
+Matched 6 files
 
  
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -T 5
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 4
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
-Run-Command[1] = msr -l -f \.bat$ --wt -T 6
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T -1
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T 3
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T 4
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T -3
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H 2 -T -4
-1-5 : yyyy-MM-dd HH:mm:ss	example-commands.bat
-2-5 : yyyy-MM-dd HH:mm:ss	psall.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H -2 -T -3
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H -2 -T 3
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
-
- 
-Run-Command[1] = msr -l -f \.bat$ --wt -H -2 -T 4
-3-5 : yyyy-MM-dd HH:mm:ss	pskill.bat
-4-5 : yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-5 : yyyy-MM-dd HH:mm:ss	windows-test.bat
-Matched 5 files
+Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 5
+3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
+4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+Matched 6 files
 
  
 
 
 
 
-Run-Command15[1] = msr -p . -l -f \.bat$  -H 0
-Matched 5 files
-Return-Value15[1] = 5 : msr -p . -l -f \.bat$  -H 0
+Run-Command15[1] = msr -p . -l -f \.txt$  -H 0
+Matched 7 files
+Return-Value15[1] = 7 : msr -p . -l -f \.txt$  -H 0
 
-Run-Command15[2] = msr -p . -l -f \.bat$  -T 0
-Matched 5 files
-Return-Value15[2] = 5 : msr -p . -l -f \.bat$  -T 0
+Run-Command15[2] = msr -p . -l -f \.txt$  -T 0
+Matched 7 files
+Return-Value15[2] = 7 : msr -p . -l -f \.txt$  -T 0
 
-Run-Command15[3] = msr -p . -l -f \.bat$  -H 2 -T 0
-Matched 5 files
-Return-Value15[3] = 5 : msr -p . -l -f \.bat$  -H 2 -T 0
+Run-Command15[3] = msr -p . -l -f \.txt$  -H 2 -T 0
+Matched 7 files
+Return-Value15[3] = 7 : msr -p . -l -f \.txt$  -H 2 -T 0
 
-Run-Command15[4] = msr -p . -l -f \.bat$  -H 0 -T 2
-Matched 5 files
-Return-Value15[4] = 5 : msr -p . -l -f \.bat$  -H 0 -T 2
+Run-Command15[4] = msr -p . -l -f \.txt$  -H 0 -T 2
+Matched 7 files
+Return-Value15[4] = 7 : msr -p . -l -f \.txt$  -H 0 -T 2
 
-Run-Command15[5] = msr -p . -l -f \.bat$  -H -2 -T 0
-Matched 5 files
-Return-Value15[5] = 5 : msr -p . -l -f \.bat$  -H -2 -T 0
+Run-Command15[5] = msr -p . -l -f \.txt$  -H -2 -T 0
+Matched 7 files
+Return-Value15[5] = 7 : msr -p . -l -f \.txt$  -H -2 -T 0
 
-Run-Command15[6] = msr -p . -l -f \.bat$  -H 0 -T -2
-Matched 5 files
-Return-Value15[6] = 5 : msr -p . -l -f \.bat$  -H 0 -T -2
+Run-Command15[6] = msr -p . -l -f \.txt$  -H 0 -T -2
+Matched 7 files
+Return-Value15[6] = 7 : msr -p . -l -f \.txt$  -H 0 -T -2
 
-Run-Command15[7] = msr -p . -l -f \.bat$
-1 : example-commands.bat
-2 : .\psall.bat
-3 : .\pskill.bat
-4 : .\replace-file-test.bat
-5 : .\windows-test.bat
-Matched 5 files
-Return-Value15[7] = 5 : msr -p . -l -f \.bat$
+Run-Command15[7] = msr -p . -l -f \.txt$
+1 : .\collection-and-description.txt
+2 : .\collection-part-to-remove.txt
+3 : .\md5.txt
+4 : .\not-in-latter-test.txt
+5 : .\readme.txt
+6 : sample-file.txt
+7 : .\sort-nin-test.txt
+Matched 7 files
+Return-Value15[7] = 7 : msr -p . -l -f \.txt$
 
-Run-Command15[8] = msr -p . -l -f \.bat$  -H 2
-1 : example-commands.bat
-2 : .\psall.bat
-Matched 5 files
-Return-Value15[8] = 5 : msr -p . -l -f \.bat$  -H 2
+Run-Command15[8] = msr -p . -l -f \.txt$  -H 2
+1 : .\collection-and-description.txt
+2 : .\collection-part-to-remove.txt
+Matched 7 files
+Return-Value15[8] = 7 : msr -p . -l -f \.txt$  -H 2
 
-Run-Command15[9] = msr -p . -l -f \.bat$  -T 2
-4 : .\replace-file-test.bat
-5 : .\windows-test.bat
-Matched 5 files
-Return-Value15[9] = 5 : msr -p . -l -f \.bat$  -T 2
+Run-Command15[9] = msr -p . -l -f \.txt$  -T 2
+6 : sample-file.txt
+7 : .\sort-nin-test.txt
+Matched 7 files
+Return-Value15[9] = 7 : msr -p . -l -f \.txt$  -T 2
 
-Run-Command15[10] = msr -p . -l -f \.bat$  -H 2 -T 2
-1 : example-commands.bat
-2 : .\psall.bat
-4 : .\replace-file-test.bat
-5 : .\windows-test.bat
-Matched 5 files
-Return-Value15[10] = 5 : msr -p . -l -f \.bat$  -H 2 -T 2
+Run-Command15[10] = msr -p . -l -f \.txt$  -H 2 -T 2
+1 : .\collection-and-description.txt
+2 : .\collection-part-to-remove.txt
+6 : sample-file.txt
+7 : .\sort-nin-test.txt
+Matched 7 files
+Return-Value15[10] = 7 : msr -p . -l -f \.txt$  -H 2 -T 2
 
-Run-Command15[11] = msr -p . -l -f \.bat$  -H -2
-3 : .\pskill.bat
-4 : .\replace-file-test.bat
-5 : .\windows-test.bat
-Matched 5 files
-Return-Value15[11] = 5 : msr -p . -l -f \.bat$  -H -2
+Run-Command15[11] = msr -p . -l -f \.txt$  -H -2
+3 : .\md5.txt
+4 : .\not-in-latter-test.txt
+5 : .\readme.txt
+6 : sample-file.txt
+7 : .\sort-nin-test.txt
+Matched 7 files
+Return-Value15[11] = 7 : msr -p . -l -f \.txt$  -H -2
 
-Run-Command15[12] = msr -p . -l -f \.bat$  -T -2
-1 : example-commands.bat
-2 : .\psall.bat
-3 : .\pskill.bat
-Matched 5 files
-Return-Value15[12] = 5 : msr -p . -l -f \.bat$  -T -2
+Run-Command15[12] = msr -p . -l -f \.txt$  -T -2
+1 : .\collection-and-description.txt
+2 : .\collection-part-to-remove.txt
+3 : .\md5.txt
+4 : .\not-in-latter-test.txt
+5 : .\readme.txt
+Matched 7 files
+Return-Value15[12] = 7 : msr -p . -l -f \.txt$  -T -2
 
-Run-Command15[13] = msr -p . -l -f \.bat$  -H -2 -T -2
-3 : .\pskill.bat
-Matched 5 files
-Return-Value15[13] = 5 : msr -p . -l -f \.bat$  -H -2 -T -2
+Run-Command15[13] = msr -p . -l -f \.txt$  -H -2 -T -2
+3 : .\md5.txt
+4 : .\not-in-latter-test.txt
+5 : .\readme.txt
+Matched 7 files
+Return-Value15[13] = 7 : msr -p . -l -f \.txt$  -H -2 -T -2
 
-Run-Command15[14] = msr -p . -l -f \.bat$  -H 2 -T -2
-1 : example-commands.bat
-2 : .\psall.bat
-3 : .\pskill.bat
-Matched 5 files
-Return-Value15[14] = 5 : msr -p . -l -f \.bat$  -H 2 -T -2
+Run-Command15[14] = msr -p . -l -f \.txt$  -H 2 -T -2
+1 : .\collection-and-description.txt
+2 : .\collection-part-to-remove.txt
+3 : .\md5.txt
+4 : .\not-in-latter-test.txt
+5 : .\readme.txt
+Matched 7 files
+Return-Value15[14] = 7 : msr -p . -l -f \.txt$  -H 2 -T -2
 
-Run-Command15[15] = msr -p . -l -f \.bat$  -H -2 -T 2
-4 : .\replace-file-test.bat
-5 : .\windows-test.bat
-Matched 5 files
-Return-Value15[15] = 5 : msr -p . -l -f \.bat$  -H -2 -T 2
+Run-Command15[15] = msr -p . -l -f \.txt$  -H -2 -T 2
+6 : sample-file.txt
+7 : .\sort-nin-test.txt
+Matched 7 files
+Return-Value15[15] = 7 : msr -p . -l -f \.txt$  -H -2 -T 2
 
-Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 75 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
+Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 105 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin

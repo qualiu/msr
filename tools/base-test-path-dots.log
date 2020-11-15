@@ -1,0 +1,522 @@
+Run-Command60[1] = msr -c -l --sz -H 5 -T 5 -p . -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[2] = msr -c -l --sz -H 5 -T 5 -p . -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[3] = msr -c -l --sz -H 5 -T 5 -p .. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-5 :  Number-Unit  Bytes	..\pskill.bat
+2-5 :  Number-Unit  Bytes	..\psall.bat
+3-5 :  Number-Unit  Bytes	..\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	..\windows-test.bat
+Matched 5 files
+
+Run-Command60[4] = msr -c -l --sz -H 5 -T 5 -p .. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[5] = msr -c -l --sz -H 5 -T 5 -p .\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[6] = msr -c -l --sz -H 5 -T 5 -p .\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[7] = msr -c -l --sz -H 5 -T 5 -p ..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-5 :  Number-Unit  Bytes	..\pskill.bat
+2-5 :  Number-Unit  Bytes	..\psall.bat
+3-5 :  Number-Unit  Bytes	..\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	..\windows-test.bat
+Matched 5 files
+
+Run-Command60[8] = msr -c -l --sz -H 5 -T 5 -p ..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[9] = msr -c -l --sz -H 5 -T 5 -p ..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\readme.txt
+Matched 15 files
+
+Run-Command60[10] = msr -c -l --sz -H 5 -T 5 -p ..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[11] = msr -c -l --sz -H 5 -T 5 -p ..\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\readme.txt
+Matched 15 files
+
+Run-Command60[12] = msr -c -l --sz -H 5 -T 5 -p ..\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[13] = msr -c -l --sz -H 5 -T 5 -p ..\..\. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\.\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\.\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\.\readme.txt
+Matched 15 files
+
+Run-Command60[14] = msr -c -l --sz -H 5 -T 5 -p ..\..\. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[15] = msr -c -l --sz -H 5 -T 5 -p ./ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[16] = msr -c -l --sz -H 5 -T 5 -p ./ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[17] = msr -c -l --sz -H 5 -T 5 -p ../ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-5 :  Number-Unit  Bytes	..\pskill.bat
+2-5 :  Number-Unit  Bytes	..\psall.bat
+3-5 :  Number-Unit  Bytes	..\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	..\windows-test.bat
+Matched 5 files
+
+Run-Command60[18] = msr -c -l --sz -H 5 -T 5 -p ../ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[19] = msr -c -l --sz -H 5 -T 5 -p ../.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\readme.txt
+Matched 15 files
+
+Run-Command60[20] = msr -c -l --sz -H 5 -T 5 -p ../.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[21] = msr -c -l --sz -H 5 -T 5 -p ../../ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\readme.txt
+Matched 15 files
+
+Run-Command60[22] = msr -c -l --sz -H 5 -T 5 -p ../../ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[23] = msr -c -l --sz -H 5 -T 5 -p ../../. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-15 :  Number-Unit  Bytes	..\..\.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	..\..\.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	..\..\.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	..\..\.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	..\..\.\md5.txt
+11-15 :  Number-Unit  Bytes	..\..\.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	..\..\.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	..\..\.\windows-test.bat
+15-15 :  Number-Unit  Bytes	..\..\.\readme.txt
+Matched 15 files
+
+Run-Command60[24] = msr -c -l --sz -H 5 -T 5 -p ../../. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-15 :  Number-Unit  Bytes	.\collection-part-to-remove.txt
+ 2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
+ 3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
+ 4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
+11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
+12-15 :  Number-Unit  Bytes	.\test-nin.cmd
+13-15 :  Number-Unit  Bytes	example-commands.bat
+14-15 :  Number-Unit  Bytes	.\windows-test.bat
+15-15 :  Number-Unit  Bytes	.\readme.txt
+Matched 15 files
+
+Run-Command60[25] = msr -c -l --sz -H 5 -T 5 -p deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-7 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	deep\readme.txt
+Matched 7 files
+
+Run-Command60[26] = msr -c -l --sz -H 5 -T 5 -p deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 7 files
+
+Run-Command60[27] = msr -c -l --sz -H 5 -T 5 -p deep\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-7 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	deep\readme.txt
+Matched 7 files
+
+Run-Command60[28] = msr -c -l --sz -H 5 -T 5 -p deep\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 7 files
+
+Run-Command60[29] = msr -c -l --sz -H 5 -T 5 -p deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[30] = msr -c -l --sz -H 5 -T 5 -p deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[31] = msr -c -l --sz -H 5 -T 5 -p deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[32] = msr -c -l --sz -H 5 -T 5 -p deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[33] = msr -c -l --sz -H 5 -T 5 -p .\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[34] = msr -c -l --sz -H 5 -T 5 -p .\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[35] = msr -c -l --sz -H 5 -T 5 -p . -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[36] = msr -c -l --sz -H 5 -T 5 -p . -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[37] = msr -c -l --sz -H 5 -T 5 -p .\deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-7 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	deep\readme.txt
+Matched 7 files
+
+Run-Command60[38] = msr -c -l --sz -H 5 -T 5 -p .\deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 7 files
+
+Run-Command60[39] = msr -c -l --sz -H 5 -T 5 -p .\deep\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-7 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	deep\readme.txt
+Matched 7 files
+
+Run-Command60[40] = msr -c -l --sz -H 5 -T 5 -p .\deep\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 7 files
+
+Run-Command60[41] = msr -c -l --sz -H 5 -T 5 -p .\deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[42] = msr -c -l --sz -H 5 -T 5 -p .\deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[43] = msr -c -l --sz -H 5 -T 5 -p .\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[44] = msr -c -l --sz -H 5 -T 5 -p .\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[45] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+ 1-10 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+ 2-10 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+ 3-10 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+ 4-10 :  Number-Unit  Bytes	deep\collection-and-description.txt
+ 5-10 :  Number-Unit  Bytes	deep\md5.txt
+ 6-10 :  Number-Unit  Bytes	test-list-files.cmd
+ 7-10 :  Number-Unit  Bytes	color-group-test.cmd
+ 8-10 :  Number-Unit  Bytes	sample-file.txt
+ 9-10 :  Number-Unit  Bytes	test-nin.cmd
+10-10 :  Number-Unit  Bytes	deep\readme.txt
+Matched 10 files
+
+Run-Command60[46] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\deep -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+ 1-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+ 2-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+ 3-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+ 4-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+ 5-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+ 6-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+ 7-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+ 8-10 :  Number-Unit  Bytes	sample-file.txt
+ 9-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+10-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 10 files
+
+Run-Command60[47] = msr -c -l --sz -H 5 -T 5 -p .,.\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[48] = msr -c -l --sz -H 5 -T 5 -p .,.\deep\..\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[49] = msr -c -l --sz -H 5 -T 5 -p .,.\deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-3 :  Number-Unit  Bytes	test-list-files.cmd
+2-3 :  Number-Unit  Bytes	color-group-test.cmd
+3-3 :  Number-Unit  Bytes	test-nin.cmd
+Matched 3 files
+
+Run-Command60[50] = msr -c -l --sz -H 5 -T 5 -p .,.\deep\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-3 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+Matched 3 files
+
+Run-Command60[51] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-8 :  Number-Unit  Bytes	test-list-files.cmd
+2-8 :  Number-Unit  Bytes	color-group-test.cmd
+3-8 :  Number-Unit  Bytes	..\pskill.bat
+4-8 :  Number-Unit  Bytes	..\psall.bat
+5-8 :  Number-Unit  Bytes	..\replace-file-test.bat
+6-8 :  Number-Unit  Bytes	test-nin.cmd
+7-8 :  Number-Unit  Bytes	example-commands.bat
+8-8 :  Number-Unit  Bytes	..\windows-test.bat
+Matched 8 files
+
+Run-Command60[52] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
+2-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
+3-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+4-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+5-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+6-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
+7-8 :  Number-Unit  Bytes	example-commands.bat
+8-8 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 8 files
+
+Run-Command60[53] = msr -c -l --sz -H 5 -T 5 -p deep\..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-5 :  Number-Unit  Bytes	..\pskill.bat
+2-5 :  Number-Unit  Bytes	..\psall.bat
+3-5 :  Number-Unit  Bytes	..\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	..\windows-test.bat
+Matched 5 files
+
+Run-Command60[54] = msr -c -l --sz -H 5 -T 5 -p deep\..\.. -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[55] = msr -c -l --sz -H 5 -T 5 -p deep\\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-7 :  Number-Unit  Bytes	deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	deep\readme.txt
+Matched 7 files
+
+Run-Command60[56] = msr -c -l --sz -H 5 -T 5 -p deep\\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-part-to-remove.txt
+2-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
+3-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
+4-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
+5-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+6-7 :  Number-Unit  Bytes	sample-file.txt
+7-7 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\readme.txt
+Matched 7 files
+
+Run-Command60[57] = msr -c -l --sz -H 5 -T 5 -p .\test-dots-path.tmp\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[58] = msr -c -l --sz -H 5 -T 5 -p .\test-dots-path.tmp\ -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+1-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\pskill.bat
+2-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\psall.bat
+3-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\replace-file-test.bat
+4-5 :  Number-Unit  Bytes	example-commands.bat
+5-5 :  Number-Unit  Bytes	.\test-dots-path.tmp\windows-test.bat
+Matched 5 files
+
+Run-Command60[59] = msr -c -l --sz -H 5 -T 5 -p .\test-dots-path.tmptest-dots-path.tmp\dots -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for"
+Matched 0 files in 0 files
+
+Run-Command60[60] = msr -c -l --sz -H 5 -T 5 -p .\test-dots-path.tmptest-dots-path.tmp\dots -f "\.(txt|cmd|bat)$" --nf "test-path|env.*for" -W
+Matched 0 files in 0 files
+

@@ -24,7 +24,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 |-----|-----|-----|
 | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md)
 
-### **Vivid Colorful Demo/Examples**: Run [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
+### **Vivid Colorful Demo/Examples**: [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
 
 - Download all by command (Install [git](https://git-scm.com/downloads)) : **git clone** <https://github.com/qualiu/msr/>
 - If you've downloaded, run an updating command in the directory: **git pull** or **git fetch && git reset --hard origin/master** (if get conflicts)
@@ -33,7 +33,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 ### Almost No Learning Cost
 
 - Just general `Regex` as **C++, C#, Java, Scala**, needless to learn strange Regex syntax like `FINDSTR`, `Awk`, `Sed` etc.
-- You can use plain text to search/replace (**-x**/**-ix** `search-text` to **-o** `replace-to`) if you're not farmiliar with `Regex`.
+- You can use plain text to search/replace (**-x**/**-ix** `search-text` to **-o** `replace-to`) if you're not familiar with `Regex`.
 - **Most** of the time **only** use searching(Regex: **-t**/**-i -t**, Plain text: **-x**/**-i -x**).
 - **Some** of the time search and replace-to(**-o**);
 - Just use **-PAC** or **-PIC** to get pure result as same as other tools (no **P**ath-number: **-P**, no **A**ny-info : **-A**, no **C**olor: **-C**)
@@ -49,7 +49,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 
 You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of using **`%SystemRoot%`** or **`/usr/bin/`** (you can also link msr to there).
 
-- [msr on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat))
+- [msr on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell command](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
   - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O msr.exe -q && `icacls msr.exe /grant %USERNAME%:RX` && `copy msr.exe %SystemRoot%\`
   - For 32-bit Windows: https://github.com/qualiu/msr/raw/master/tools/msr-Win32.exe
 - [msr on **Cygwin**](https://qualiu.github.io/msr/usage-by-running/msr-Cygwin.html)
@@ -191,7 +191,20 @@ It's better to use **"\1"** than **"$1"** which let you easier to copy/migrate y
 
 - For example: msr -p paths -i -t `".*?text = (capture1).*?(capture2).*"` -o **"\1 \2"**
   - `"\1"` = `"$1"` for CMD console or batch files (`*.bat` or `*.cmd`) on Windows.
-  - `"\1"` = `'$1'` for Powershell (Windows / Linux) or Bash (Linux / Cygwin).
+  - `"\1"` = `'$1'` for PowerShell (Windows / Linux) or Bash (Linux / Cygwin).
+
+### Tip for Frequent Usages:
+
+- Execute output lines as command lines:
+  - Often use **-X -M** (or **-XM**) to hide final summary of executions.
+  - Use **-X -I** to avoid show each command's return value + time cost + command line.
+  - Use **-X -P -I** or **-X -A** to hide all.
+  - Run a command, exit if return != 0: `echo command line | msr -XM || exit -1`
+  - Directly run a simple command line: `msr -XM -z "command line" || exit -1`
+  - Restore or set no-BOM encoding changed by `Python` or `PowerShell` if got error when executing output as commands:
+    - `[Console]::InputEncoding = New-Object System.Text.UTF8Encoding $false`
+- Replace Files: 
+  - Use **-M -T 0** to hide summary + final file list.
 
 ### Optional Args
 
@@ -270,7 +283,7 @@ Related controls and options that you can use at the same time:
   - **-e** `Regex-Pattern`: Set `Green` color to matched `Regex` **group[0]**, different **group[N]** different color.
     - Difference: **-e** just add colors, **-t** will add colors + only show matched lines if not used **-a**.
 
-- Auxillary Controls
+- Auxiliary Controls
   - **-P**: Hide path/line/row.
   - **-M**: Hide summary message.
   - **-A**: No any other info/text. Almost same to combination of **-P -M**

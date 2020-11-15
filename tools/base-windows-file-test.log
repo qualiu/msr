@@ -47,50 +47,54 @@ Matched 133 lines(99.25%) in 1 files(100%)
 Return-Value = 133 : msr -c -p sample-file.txt -S -t "(.+\S+)\n$" -H 0          # Check return value, output nothing 
 
 msr -c -p . -f bat -l -PAC -H 0 
-Return-Value = 5 : msr -c -p . -f bat -l -PAC -H 0 
+Return-Value = 6 : msr -c -p . -f bat -l -PAC -H 0 
 
 msr -c -p . -f bat -l -PIC -H 0 
-Return-Value = 5 : msr -c -p . -f bat -l -PIC -H 0 
+Return-Value = 6 : msr -c -p . -f bat -l -PIC -H 0 
 
 msr -c -p . -l -f bat -H -2 # Should skip top 2 items. 
 3 : Replace-Real-File-Name-To-Avoid-Difference
 4 : Replace-Real-File-Name-To-Avoid-Difference
 5 : Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -H -2 # Should skip top 2 items. 
+6 : Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -H -2 # Should skip top 2 items. 
 
 msr -c -p . -l -f bat -T -2 # Should skip bottom 2 items. 
 1 : Replace-Real-File-Name-To-Avoid-Difference
 2 : Replace-Real-File-Name-To-Avoid-Difference
 3 : Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -T -2 # Should skip bottom 2 items. 
+4 : Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -T -2 # Should skip bottom 2 items. 
 
 msr -c -p . -l -f bat -H -2 --sz # Should skip top 2 items. 
-3-5 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
-4-5 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
-5-5 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -H -2 --sz # Should skip top 2 items. 
+3-6 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
+4-6 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
+5-6 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
+6-6 :  Number-Unit  Bytes	Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -H -2 --sz # Should skip top 2 items. 
 
 msr -c -p . -l -f bat -T -2 --wt # Should skip bottom 2 items. 
-1-5 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
-2-5 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
-3-5 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -T -2 --wt # Should skip bottom 2 items. 
+1-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+2-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+3-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+4-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -T -2 --wt # Should skip bottom 2 items. 
 
 msr -c -p . -l -f bat -H 2 --wt # Should show top 2 items. 
-1-5 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
-2-5 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -H 2 --wt # Should show top 2 items. 
+1-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+2-6 : yyyy-MM-dd HH:mm:ss	Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -H 2 --wt # Should show top 2 items. 
 
 msr -c -p . -l -f bat -T 2 # Should show bottom 2 items. 
-4 : Replace-Real-File-Name-To-Avoid-Difference
 5 : Replace-Real-File-Name-To-Avoid-Difference
-Matched 5 files
-Return-Value = 5 : msr -c -p . -l -f bat -T 2 # Should show bottom 2 items. 
+6 : Replace-Real-File-Name-To-Avoid-Difference
+Matched 6 files
+Return-Value = 6 : msr -c -p . -l -f bat -T 2 # Should show bottom 2 items. 
 
 msr -c -p sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2 
 sample-file.txt:7: enum class LineType {
@@ -1952,9 +1956,9 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:19: Replaced 4 lines(2.99%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:883: Replaced 4 lines(2.99%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:639: Replaced 3 lines(3.23%) in 1 files(100%)
-.\base-windows-file-test.log:1924: Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-windows-file-test.log:1928: Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-windows-file-test.log:1932: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-windows-file-test.log:1936: Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:157: Replaced 19 lines(8.41%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:403: Replaced 10 lines(10.00%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:652: Replaced 10 lines(10.00%) in 1 files(100%)
@@ -1966,4 +1970,4 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:203: Replaced 24 lines(10.62%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:583: Replaced 12 lines(11.88%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:552: Replaced 13 lines(12.87%) in 1 files(100%)
-Matched 46 lines(0.67%) in 2 files(28.57%)
+Matched 46 lines(0.62%) in 2 files(20.00%)

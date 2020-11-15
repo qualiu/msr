@@ -1,0 +1,6 @@
+# Test: nin collection-and-description.txt collection-part-to-remove.txt "^(item\d+)" "^remove (item\d+)" -w -n
+
+item3 time3
+
+# the end
+

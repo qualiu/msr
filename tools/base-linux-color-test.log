@@ -19,14 +19,17 @@ Run-Command137[0m[[1;32;40m9[0m] = [1;34;47mmsr -c -PA -p ./ -f bat -lIC -H 
 Run-Command137[0m[[1;32;40m10[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H -2 # Should skip top 2 items.[0m
 [1;36;40mpskill.bat[0m
 [1;36;40mreplace-file-test.bat[0m
+[1;36;40mtest-path-dots.bat[0m
 [1;36;40mwindows-test.bat[0m
 
 Run-Command137[0m[[1;32;40m11[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T -2 # Should skip bottom 2 items.[0m
 [1;36;40mexample-commands.bat[0m
 [1;36;40mpsall.bat[0m
 [1;36;40mpskill.bat[0m
+[1;36;40mreplace-file-test.bat[0m
 
 Run-Command137[0m[[1;32;40m12[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H -2 --sz # Should skip top 2 items.[0m
+[1;36;40mtest-path-dots.bat[0m
 [1;36;40mreplace-file-test.bat[0m
 [1;36;40mexample-commands.bat[0m
 [1;36;40mwindows-test.bat[0m
@@ -35,13 +38,14 @@ Run-Command137[0m[[1;32;40m13[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T -
 [1;36;40mexample-commands.bat[0m
 [1;36;40mpsall.bat[0m
 [1;36;40mpskill.bat[0m
+[1;36;40mreplace-file-test.bat[0m
 
 Run-Command137[0m[[1;32;40m14[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -H 2 --wt # Should show top 2 items.[0m
 [1;36;40mexample-commands.bat[0m
 [1;36;40mpsall.bat[0m
 
 Run-Command137[0m[[1;32;40m15[0m] = [1;34;47mmsr -c -PA -p ./ -l -f bat -T 2 # Should show bottom 2 items.[0m
-[1;36;40mreplace-file-test.bat[0m
+[1;36;40mtest-path-dots.bat[0m
 [1;36;40mwindows-test.bat[0m
 
 Run-Command137[0m[[1;32;40m16[0m] = [1;34;47mmsr -c -PA -p ./sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2[0m
@@ -1360,42 +1364,45 @@ Run-Command[0m[[1;32;40m11[0m] = [1;34;47mmsr -PA -z "myFileLog" -t ".+(File
 Run-Command[0m[[1;32;40m12[0m] = [1;34;47mmsr -PA -z "myFileLog" -t ".+(File)"[0m
 [1;31;40mmy[0m[1;33;41mFile[0mLog
 
-Run-Command[0m[[1;32;40m13[0m] = [1;34;47mmsr -PA -z CENTOS_MANTISBT_PROJECT_VERSION-7a -it centos.*7[0m
+Run-Command[0m[[1;32;40m13[0m] = [1;34;47mmsr -aPA -z "see 'quotes' | msr -t" -e "see (.+?) \| (msr.*?)" -t " \| "[0m
+[1;32;40msee [0m[1;37;44m'quotes'[0m[1;31;40m | [0m[1;33;44mmsr[0m -t
+
+Run-Command[0m[[1;32;40m14[0m] = [1;34;47mmsr -PA -z CENTOS_MANTISBT_PROJECT_VERSION-7a -it centos.*7[0m
 [1;31;40mCENTOS_MANTISBT_PROJECT_VERSION-7[0ma
 
-Run-Command[0m[[1;32;40m14[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)"[0m
+Run-Command[0m[[1;32;40m15[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=Value[0m
 
-Run-Command[0m[[1;32;40m15[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)"[0m
+Run-Command[0m[[1;32;40m16[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=[0m[1;37;45mValue[0m
 
-Run-Command[0m[[1;32;40m16[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "=Value"[0m
+Run-Command[0m[[1;32;40m17[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "=Value"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name[0m[1;33;40m=Value[0m
 
-Run-Command[0m[[1;32;40m17[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "command"[0m
+Run-Command[0m[[1;32;40m18[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "command"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m [0m[1;33;40mcommand[0m[1;32;40m: [0m[1;37;44mSET Name=Value[0m
 
-Run-Command[0m[[1;32;40m18[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x " command:"[0m
+Run-Command[0m[[1;32;40m19[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x " command:"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;33;40m command:[0m[1;32;40m [0m[1;37;44mSET Name=Value[0m
 
-Run-Command[0m[[1;32;40m19[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "SET Name"[0m
+Run-Command[0m[[1;32;40m20[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)" -x "SET Name"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;33;40mSET Name[0m[1;37;44m=Value[0m
 
-Run-Command[0m[[1;32;40m20[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(=Value)" -x "Name="[0m
+Run-Command[0m[[1;32;40m21[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(=Value)" -x "Name="[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName[0m[1;37;45m=Value[0m
 
-Run-Command[0m[[1;32;40m21[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)" -x "Name="[0m
+Run-Command[0m[[1;32;40m22[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)" -x "Name="[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName=[0m[1;37;45mValue[0m
 
-Run-Command[0m[[1;32;40m22[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "Name=Value"[0m
+Run-Command[0m[[1;32;40m23[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "Name=Value"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET [0m[1;33;40mName=Value[0m
 
-Run-Command[0m[[1;32;40m23[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "=Value"[0m
+Run-Command[0m[[1;32;40m24[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)" -x "=Value"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name[0m[1;33;40m=Value[0m
 
-Run-Command[0m[[1;32;40m24[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
+Run-Command[0m[[1;32;40m25[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET Name=Value[0m
 
-Run-Command[0m[[1;32;40m25[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET \"Name=Value\"" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
+Run-Command[0m[[1;32;40m26[0m] = [1;34;47mmsr -PA -z "by %%Name%% command: SET \"Name=Value\"" -e ".+?(SET \S+)|(\w+=\w+)" -t "(%%*Name%%*)"[0m
 [1;32;40mby [0m[1;33;41m%%Name%%[0m[1;32;40m command: [0m[1;37;44mSET "Name=Value"[0m
 

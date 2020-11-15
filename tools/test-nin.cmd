@@ -11,12 +11,7 @@ where msr.exe 2>nul >nul || set "PATH=%ThisDir%;%PATH%"
 where nin.exe 2>nul >nul || if not exist %ThisDir%\nin.exe powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri https://github.com/qualiu/msr/blob/master/tools/nin.exe?raw=true -OutFile %ThisDir%\nin.exe"
 where nin.exe 2>nul >nul || set "PATH=%ThisDir%;%PATH%"
 
-if "%~1" == ""       set IsShowUsage=1
-if "%~1" == "-h"     set IsShowUsage=1
-if "%~1" == "--help" set IsShowUsage=1
-if "%~1" == "/?"     set IsShowUsage=1
-
-if "%IsShowUsage%" == "1" (
+msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || (
     echo Usage   : %0  SaveToFile  NIN_EXE
     echo Example : %0  0
     echo Example : %0  1  nin
@@ -28,6 +23,25 @@ set /a SaveToFile=%1
 if "%~2" == "" ( set "NIN_EXE=nin" ) else ( set "NIN_EXE=%~2" )
 
 pushd %~dp0
+set ninOutNotCapturedFirstFile=%ThisDir%\collection-and-description.txt
+set ninOutNotCapturedLatterFile=%ThisDir%\collection-part-to-remove.txt
+set ninOutNotCapturedTestLog=%ThisDir%\test-nin-out-not-captured.log
+set ninOutNotCapturedSwitchTestLog=%ThisDir%\test-nin-out-not-captured-switch.log
+for /f "tokens=*" %%a in ("%ninOutNotCapturedTestLog%") do set "BaseNinOutNotCapturedTestLog=%ThisDir%\base-%%~nxa"
+for /f "tokens=*" %%a in ("%ninOutNotCapturedSwitchTestLog%") do set "BaseNinOutNotCapturedSwitchTestLog=%ThisDir%\base-%%~nxa"
+
+echo ################## !NIN_EXE! out not captured test ################ | msr -aPA -e .+
+!NIN_EXE! !ninOutNotCapturedFirstFile! !ninOutNotCapturedLatterFile! "^(item\d+)" "^remove (item\d+)" -w -n -PAC > !ninOutNotCapturedTestLog!
+call :Compare_Title_Base_TestLog "!NIN_EXE! out not captured test" !BaseNinOutNotCapturedTestLog! !ninOutNotCapturedTestLog! || ( popd & exit /b -1 )
+echo.
+
+echo ################## !NIN_EXE! out not captured switch test ################ | msr -aPA -e .+
+!NIN_EXE! !ninOutNotCapturedFirstFile! !ninOutNotCapturedLatterFile! "^(item\d+)" "^remove (item\d+)" -w -n -S -PAC > !ninOutNotCapturedSwitchTestLog!
+call :Compare_Title_Base_TestLog "!NIN_EXE! out not captured swith test" !BaseNinOutNotCapturedSwitchTestLog! !ninOutNotCapturedSwitchTestLog! || ( popd & exit /b -1 )
+del /f !ninOutNotCapturedTestLog! !ninOutNotCapturedSwitchTestLog!
+
+echo.
+echo ################## !NIN_EXE! normal tests ################ | msr -aPA -e .+
 set ninTestLog=%ThisDir%\test-nin.log
 for /f "tokens=*" %%a in ("%ninTestLog%") do set "BaseLogFile=%ThisDir%\base-%%~nxa"
 
@@ -59,7 +73,7 @@ if %SaveToFile% EQU 0 (
 echo %ExtractCmd% ^| %TransformFile1% ^| %TransformFile2% ^| %RepalceFolder% ^| %RedirectSummaryAndExecute% ^> %ninTestLog%
 ::echo %ExtractCmd% ^| %TransformFile1% ^| %TransformFile2% ^| %RedirectSummaryAndExecute% ^> %ninTestLog% | %ColorCommands%
 %ExtractCmd% | %TransformFile1% | %TransformFile2% | %RepalceFolder% | %RedirectSummaryAndExecute% > %ninTestLog%
-call :Compare_Title_Base_TestLog "Test nin.exe" %BaseLogFile% %ninTestLog%
+call :Compare_Title_Base_TestLog "!NIN_EXE! normal tests" %BaseLogFile% %ninTestLog%
 if !ERRORLEVEL! NEQ 0 (
     popd & exit /b -1
 )

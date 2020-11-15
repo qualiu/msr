@@ -19,12 +19,7 @@ where msr.exe 2>nul >nul || set "PATH=%ThisDir%;%PATH%"
 where nin.exe 2>nul >nul || if not exist %ThisDir%\nin.exe powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri https://github.com/qualiu/msr/blob/master/tools/nin.exe?raw=true -OutFile %ThisDir%\nin.exe"
 where nin.exe 2>nul >nul || set "PATH=%ThisDir%;%PATH%"
 
-if "%~1" == ""       set IsShowUsage=1
-if "%~1" == "-h"     set IsShowUsage=1
-if "%~1" == "--help" set IsShowUsage=1
-if "%~1" == "/?"     set IsShowUsage=1
-
-if "%IsShowUsage%" == "1" (
+msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || (
     echo Usage   : %0  TestMode  [MSR_EXE]   [SleepSeconds]   [BeginTestGroup]   [EndTestGroup]   [ReplaceTo]
     echo Example : %0   0    -- directly test and output on this command window, using msr.
     echo Example : %0   1    -- output to files and compare with base-windows-**.log, using msr.
@@ -59,6 +54,10 @@ pushd %ThisDir%
 
 if "%MSR_EXE%" == "" set MSR_EXE=msr
 if "%SleepSeconds%" == "" set SleepSeconds=3
+@REM REM for /f "tokens=*" %%a in ('git rev-parse --show-toplevel ^| %MSR_EXE% -x / -o \ -aPAC') do set "GitRoot=%%a"
+@REM for /f "tokens=*" %%a in ("%ThisDir%") do set "GitRoot=%%~dpa"
+@REM if %GitRoot:~-1% == \ set GitRoot=%GitRoot:~0,-1%
+@REM for /f "tokens=*" %%a in ('%MSR_EXE% -z "!GitRoot!" -x \ -o / -aPAC') do set "GitRootLinuxSlash=%%a"
 
 for /f "tokens=*" %%a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1__\2.\3\4" -PAC ^| msr -t ":" -o _ -aPAC') do SET "TimeNowMicro=%%a"
 
@@ -95,7 +94,28 @@ if %TestMode% EQU 0 (
     popd & exit /b 0
 )
 
-set /a TestGroupNumber+=1
+set /a TestGroupNumber+=1 & echo. & echo.
+echo ################## %TestGroupNumber%-%TestGroupCount%: Test dots paths ##################  | %MSR_EXE% -PA -e .+
+if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup% (
+    if not exist %~dp0test-dots-path.tmp\dots\deep md %~dp0test-dots-path.tmp\dots\deep
+    copy /y %~dp0*.bat %~dp0test-dots-path.tmp\
+    copy /y %~dp0*.cmd %~dp0test-dots-path.tmp\dots
+    copy /y %~dp0*.txt %~dp0test-dots-path.tmp\dots\deep\
+    pushd %ThisDir%\test-dots-path.tmp\dots
+    %MSR_EXE% -p %ThisDir%\test-path-dots.bat -x msr -o %MSR_EXE% -PAC | %MSR_EXE% -x "%%~dp0" -o "%ThisDir%\test-dots-path.tmp" -aPICc | msr -X -I -M > %ThisDir%\tmp-test-path-dots.log
+    popd
+    call :Compare_Title_Base_TestLog "%TestGroupNumber%-%TestGroupCount%: Test dots paths" %ThisDir%\base-test-path-dots.log %ThisDir%\tmp-test-path-dots.log
+    if !ERRORLEVEL! NEQ 0 (
+        echo ################## %TestGroupNumber%-%TestGroupCount%: Test dots paths failed ##################  | %MSR_EXE% -PA -t .+
+        set /a failedGroups+=1
+        if %TestMode% NEQ 2 exit /b -1
+    ) else (
+        del %ThisDir%\tmp-test-path-dots.log
+        rd /q /s %ThisDir%\test-dots-path.tmp
+    )
+)
+
+set /a TestGroupNumber+=1 & echo. & echo.
 echo ################## %TestGroupNumber%-%TestGroupCount%: Test color group begin ##################  | %MSR_EXE% -PA -e .+
 if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup% (
     %MSR_EXE% -p %ThisDir%\color-group-test.cmd -x msr -o %MSR_EXE% -aPAC > "%ThisDir%\tmp-color-group-test-%TimeNowMicro%.cmd"
@@ -110,7 +130,6 @@ if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup
         del %ThisDir%\tmp-color-group-test.log
     )
 )
-
 
 set /a TestGroupNumber+=1 & echo. & echo.
 echo ################## %TestGroupNumber%-%TestGroupCount%: Replace file and verify begin ##################  | %MSR_EXE% -PA -e .+
@@ -143,7 +162,6 @@ if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup
 )
 
 
-
 set /a TestGroupNumber+=1 & echo. & echo.
 echo ################## %TestGroupNumber%-%TestGroupCount%: Test list files ##################  | %MSR_EXE% -PA -e .+
 if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup% (
@@ -152,8 +170,8 @@ if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup
     set replaceExeCmd=-t "^\S+" -o "%MSR_EXE%"
     echo %MSR_EXE% !extractListTestCmd! ^| %MSR_EXE% !replaceExeCmd! -X ^> !listFilesTestLog!
     call %MSR_EXE% !extractListTestCmd! | %MSR_EXE% !replaceExeCmd! -X > !listFilesTestLog!
-    call :Test_List_Files_Check_Head_Number_With_Arg
-    call :Test_List_Files_Check_Head_Number_With_Arg --wt
+    @REM call :Test_List_Files_Check_Head_Number_With_Arg -l -f \.bat$
+    call :Test_List_Files_Check_Head_Number_With_Arg -l -f \.bat$ --sz --wt
     %MSR_EXE% -z "" -t .* -o "\n\n\n" -PAC >> !listFilesTestLog!
     echo %MSR_EXE% !extractListTestCmd! ^| %MSR_EXE% !replaceExeCmd! -PAC ^| %MSR_EXE% -t "\s*(--wt|--sz)\s*" -o " " -X ^>^> !listFilesTestLog!
     call %MSR_EXE% !extractListTestCmd! | %MSR_EXE% !replaceExeCmd! -PAC | %MSR_EXE% -t "\s*(--wt|--sz)\s*" -o " " -X >> !listFilesTestLog!
@@ -242,6 +260,7 @@ exit /b !ERRORLEVEL!
 :: Call nin.exe to get the differences count which ERRORLEVEL as following. By the way, this is an example of nin.exe .
 :Compare_Title_Base_TestLog
     call :Unify_TestLog_Before_Compare %3
+
     :: nin %2 %3 >nul
     nin %2 %3 -H 0
     set /a diff1=!ERRORLEVEL!
@@ -278,6 +297,8 @@ exit /b !ERRORLEVEL!
 
 
 :Unify_TestLog_Before_Compare
+    @REM %MSR_EXE% -p %1 -ix "!GitRoot!" -o "GitRoot" -R -M -T 0
+    @REM %MSR_EXE% -p %1 -ix "!GitRootLinuxSlash!" -o "GitRoot" -R -M -T 0
     :: Need append file like : -p !pipeTestLog!  or -p !fileTestLog!
     %MSR_EXE% -p %1 -it "(\|\s*)%MSR_EXE%\b" -o "${1}%MSR_UNIFY_NAME%" -ROc UnifyPipeTestExeName
     %MSR_EXE% -p %1 -it "(^|\|\s+|^\s*echo\s+)%MSR_EXE%\b" -o "$1%MSR_UNIFY_NAME%" -ROc UnifyFileTestExeName
@@ -294,14 +315,13 @@ exit /b !ERRORLEVEL!
 
 :Test_List_Files_Check_Head_Number_With_Arg
     echo. >> !listFilesTestLog!
-    %MSR_EXE% -l -f \.bat$ >nul
+    set listFileArgs=%*
+    %MSR_EXE% !listFileArgs! >nul
     set /a batchFileCount=!ERRORLEVEL!
     set /a batchFileCount2=!batchFileCount!+1
     set /a testHeadCount=2
     set /a testTailCount=!batchFileCount!-2
     set /a testTailCount2=!testTailCount!+1
-    set listFileArgs=-l -f \.bat$
-    if not "%~1" == "" set listFileArgs=!listFileArgs! %*
     %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -T !batchFileCount!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
     %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -T !batchFileCount2!" >> !listFilesTestLog! & echo. >> !listFilesTestLog!
     %MSR_EXE% -X -I -M -z "%MSR_EXE% !listFileArgs! -H !testHeadCount! -T -1" >> !listFilesTestLog! & echo. >> !listFilesTestLog!

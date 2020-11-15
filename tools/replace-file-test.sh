@@ -20,8 +20,14 @@ if [ ! -f "$msr" ] || [ ! -f "$nin" ]; then
     exit -1
 fi
 
+which dos2unix && which unix2dos
+if [ $? -ne 0 ]; then
+    echo Please install dos2unix at first. | msr -aPA -t "(.+)" >&2
+    exit -1
+fi
+
 cp -ap sample-file.txt sample-test-restore.txt  >/dev/null
-unix2dos sample-test-restore.txt 2>/dev/null
+unix2dos sample-test-restore.txt
 SizeMustBe=$(du -sb sample-test-restore.txt | awk '{printf $1}')
 
 export TestNumber=0

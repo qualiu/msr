@@ -12,6 +12,7 @@ msr -PA -z "myFileLog" -t "(.+)(File)(.+)"
 msr -PA -z "myFileLog" -t ".+(File)(.+)"
 msr -PA -z "myFileLog" -t ".+(File).+"
 msr -PA -z "myFileLog" -t ".+(File)"
+msr -aPA -z "see 'quotes' | msr -t" -e "see (.+?) \| (msr.*?)" -t " \| "
 msr -PA -z CENTOS_MANTISBT_PROJECT_VERSION-7a -it centos.*7
 msr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)"
 msr -PA -z "by %%Name%% command: SET Name=Value" -e ".+?(SET \S+)" -t "(%%*Name%%*)|(Value)"

@@ -1,0 +1,4 @@
+# Test remove below:
+remove item1
+remove item2
+# the end

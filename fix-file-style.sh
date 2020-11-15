@@ -9,11 +9,12 @@ SYS_TYPE=$(uname | sed 's/_.*//g' | awk '{print tolower($0)}')
 
 sh $ThisDir/check-download-tools.sh
 if [ $? -ne 0 ]; then
-    echo "Failed to call $ThisDir/check-download-tools.sh"
+    echo "Failed to call $ThisDir/check-download-tools.sh" >&2
     exit -1
 fi
 
-if [ -z "$1" ]; then
+msr -z "LostArg$1" -t "^LostArg(|-h|--help|/\?)$" > /dev/null
+if [ $? -ne 0 ]; then
     echo "Usage  : $0  Files-or-Directories  [options]"
     echo "Example: $0  my.cpp"
     echo "Example: $0  \"my.cpp,my.ps1,my.bat\""
@@ -51,11 +52,15 @@ if [ ! -f "$PathToDo" ]; then
     fi
 fi
 
+echo "## Remove all white spaces if it is a white space line" | msr -PA -e .+
+msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -t "^\s+$" -o "" -R -c Remove all white spaces if it is a white space line.
+
+
 echo "## Remove white spaces at each line end" | msr -PA -e .+
-msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -it "(\S+)\s+$" -o '$1' -R -c Remove white spaces at each line end.
+msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -t "(\S+)\s+$" -o '$1' -R -c Remove white spaces at each line end.
 
 # echo "## Add a tail new line to files" | msr -PA -e .+
-# msr ${msrOptions[@]} -p $PathToDo -S -t "(\S+)$" -o '$1\n' -R -c Add a tail new line to files.
+# msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -S -t "(\S+)$" -o '$1\n' -R -c Add a tail new line to files.
 
 echo "## Add/Delete to have only one tail new line in files" | msr -PA -e .+
 msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -S -t "(\S+)\s*$" -o '$1\n' -R -c Add a tail new line to files.
@@ -65,7 +70,7 @@ function ConvertTabTo4Spaces() {
     if [ -d $PathToDo ]; then
         msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -it "^(\s*)\t" -o '$1    ' -R -c Covert TAB to 4 spaces.
     else
-        msr ${msrOptions[@]} -p $PathToDo -it "^(\s*)\t" -o '$1    ' -R -c Covert TAB to 4 spaces.
+        msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -it "^(\s*)\t" -o '$1    ' -R -c Covert TAB to 4 spaces.
     fi
     
     if (($? > 0)); then
