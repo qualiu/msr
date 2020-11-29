@@ -30,7 +30,7 @@ For example, running msr and nin on Windows:
 Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with latter file/pipe. by LQM:
   -u [ --unique ]              Get unique results, discard self/mutual duplicate lines/keys (key = captured groups[1] if set 1~2 Regex patterns).
   -m [ --intersection ]        Get mutual lines/keys intersection in 2 files or file-with-pipe (default is exclusive: 'not-in-latter').
-  -i [ --ignore-case ]         Ignore case for plain text matching or Regex matching.
+  -i [ --ignore-case ]         Ignore case for plain text matching and Regex matching.
   -n [ --out-not-captured ]    Also output not-captured keys/lines of Regex pattern in first file/pipe.
   -p [ --percentage ]          Output percentages of keys/lines at each line head, and sort by percentages.
   -w [ --out-whole-line ]      Output matched lines other than keys (key = captured groups[1] of Regex pattern).
@@ -44,6 +44,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -O [ --out-not-0-sum ]       Output summary only if the results count is not 0.
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
   -P [ --no-percent ]          Not output percentages (Overwrite --percentage). (Overwrite --percentage).
+  --not-warn-bom               Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
   -H [ --head ] arg            Output top [N] lines of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
   -T [ --tail ] arg            Output bottom [N] lines of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
   -J [ --jump-out ]            Jump out (stop and exit) if has set -H [N] and already has output [N] lines.
@@ -165,8 +166,9 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --s1 arg                    Lower bound of file size, format like 100kb (No Space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No Space between number and unit, use B if no unit).
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
-  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2020-11-15__23_06_09).
+  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2020-11-29__13_42_02).
   --force                     Force replacing BOM files. Default: only replace files of ANSI + UTF-8 no BOM + BOM header bytes = 0xEFBBBF.
+  --not-warn-bom              Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
   -S [ --single-line ]        Single line Regex mode to match/replace (Treat each file or pipe as one line).
   -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to replace radically. Default = 1.
   -U [ --up ] arg             Output [N] lines above the matched line by -t or/and found by -x.
@@ -193,7 +195,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
 
 Return value/Exit code(%ERRORLEVEL%) = matched/replaced count of lines/blocks/files in files or pipe.
 But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux which changed by shells like bash).
-If used -X(--execute-out-lines): Return value = non-zero-return-count if executed commands count > 1; Return value = One command line return value if executed count = 1.
+If used -X(--execute-out-lines): Return value = matched-stop-count if has -V else non-zero-return-count or the only one command line return value.
 All error messages will be output to stderr. You can redirect them to stdout by appending 2>&1 to your command line.
 
 Detail instruction and examples(Quick-Start at the bottom is briefer):
@@ -231,9 +233,8 @@ Detail instruction and examples(Quick-Start at the bottom is briefer):
     If input empty regex pattern "" for -s, then -s will sort by the pattern of -F(--time-format) if found; else check and use the pattern of -t(--text-match) to sort.
 
 (5) Execute each output line as a command: If has -X (--execute-out-lines): 
-    echo Complex symbols command contains 2 types of quotes + slashes, hard to quote. | msr -X -M || exit -1
-    msr -XM -z "Simple command, or you want to keep quotes and other chars." || exit -1
-    Note: If execute output lines got errors due to BOM output like PowerShell, set encoding at first like: [Console]::InputEncoding = New-Object System.Text.UTF8Encoding $false
+    echo Complex symbols command contains 2 types of quotes + slashes, hard to quote. | msr -X -M || exit /b -1
+    msr -XM -z "Simple command, or you want to keep quotes and other chars." || exit /b -1
     -P(--no-path-line) will not output lines(commands) before executing;
     -I(--no-extra) will not output each execution summary;  -O(--out-if-did) will not output execution summary if return value = 0.
     -A(--no-any-info) will not output any info or summary, and new lines (which separates executions).
@@ -280,12 +281,12 @@ Example-6: Multi-line regex mode (normal mode) replacing lines in each file and 
     msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@?\s*echo)\s+off\b" -o "$1 on" -R -K 
 
 Example-7: Display current modified code files:
-    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2020-11-15 09:51:52" -PAC 2^>nul ') do @echo code file: %a
+    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2020-11-29 13:42:02" -PAC 2^>nul ') do @echo code file: %a
 
 Example-8: Get 2 oldest and newest mp3 (4 files) which 3.0MB<=size<=9.9MB and show size unit, in current directory (Can omit -p . or -p %CD%)
     msr -l --wt -H 2 -T 2 -f "\.mp3$" --sz --s1 3.0MB --s2 9.9m
 
-Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2020-11-15 09:51:52.423795 +0800 CST = China Standard Time
+Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2020-11-29 13:42:02.822336 +0800 CST = China Standard Time
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2" -PAC') do SET "TimeNowInSecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3" -PAC') do SET "TimeNowMillisecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3\4" -PAC') do SET "TimeNowMicrosecond=%a"

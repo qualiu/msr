@@ -102,7 +102,7 @@ if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup
     copy /y %~dp0*.cmd %~dp0test-dots-path.tmp\dots
     copy /y %~dp0*.txt %~dp0test-dots-path.tmp\dots\deep\
     pushd %ThisDir%\test-dots-path.tmp\dots
-    %MSR_EXE% -p %ThisDir%\test-path-dots.bat -x msr -o %MSR_EXE% -PAC | %MSR_EXE% -x "%%~dp0" -o "%ThisDir%\test-dots-path.tmp" -aPICc | msr -X -I -M > %ThisDir%\tmp-test-path-dots.log
+    %MSR_EXE% -p %ThisDir%\test-path-dots.bat -x msr -o %MSR_EXE% -PAC | %MSR_EXE% -x "%%~dp0" -o "%ThisDir%\\" -aPICc | msr -X -I -M > %ThisDir%\tmp-test-path-dots.log
     popd
     call :Compare_Title_Base_TestLog "%TestGroupNumber%-%TestGroupCount%: Test dots paths" %ThisDir%\base-test-path-dots.log %ThisDir%\tmp-test-path-dots.log
     if !ERRORLEVEL! NEQ 0 (
