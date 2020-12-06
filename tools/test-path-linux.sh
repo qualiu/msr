@@ -8,6 +8,7 @@ if [ ! -f "$msr" ]; then
     exit -1
 fi
 
+cd $(dirname $0)
 $msr -c -l --wt --sz -H 5 -T 5 -p /home/../usr/bin/ -f "bash|grep"
 $msr -c -l --wt --sz -H 5 -T 5 -p /home/../usr/bin/ -f "bash|grep" -W
 $msr -c -l --wt --sz -H 5 -T 5 -p . -f "bash|grep"
@@ -29,3 +30,5 @@ if [ -d /cygdrive/c/ ]; then
     $msr -c -l --wt --sz -H 3 -p /cygdrive/c/
     $msr -c -l --wt --sz -H 3 -p /cygdrive/c/ -W
 fi
+
+exit 0

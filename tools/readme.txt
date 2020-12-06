@@ -48,6 +48,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -H [ --head ] arg            Output top [N] lines of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
   -T [ --tail ] arg            Output bottom [N] lines of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
   -J [ --jump-out ]            Jump out (stop and exit) if has set -H [N] and already has output [N] lines.
+  --timeout arg                Maximum waiting seconds to stop and exit. No limit if value <= 0. Default = 0.000 s.
   -S [ --switch-first ]        Switch positions (first/latter roles) of 2 files or file/pipe (also will switch their Regex patterns).
   -Z [ --skip-last-empty ]     Skip last empty line in first/latter file.
   -x [ --has-text ] arg        Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx).
@@ -123,6 +124,7 @@ Call@Everywhere: Add to system environment variable PATH with nin.exe parent dir
 Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of file and directory name) by LQM:
   -r [ --recursive ]          Recursively search files in descendant directories.
   -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 33.
+  --timeout arg               Maximum waiting seconds to stop and exit. No limit if value <= 0. Default = 0.000 s.
   -p [ --path ] arg           Source paths (directories or files) to find/read: Use ',' or ';' to separate paths; Extra separator ':' for Linux.
   -w [ --read-paths ] arg     Read source path lines from files: Use ',' or ';' to separate files; Extra separator ':' for Linux.
   -f [ --file-match ] arg     Regex pattern for file name to search.
@@ -351,7 +353,7 @@ Final brief instruction as Quick-Start: Use -PAC or -PIC to get pure output resu
 (9) Extract key + Sort as number + Stats: msr -rp folder1,fileN -it "Key\s*=\s*(-?\d+\S*)"  -n -s ""  -c Set pattern for -s if different to -t or as you want.
 (A) Match an input string or Learn Regex: msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || echo goto show usage as no input args or input 'help' to script.
 (B) Search in pipe, Skip Head 3 + Tail 2: type my.txt | msr -it Regex-pattern -x and-plain-text -H -3 -T -2 -PIC
-(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin\Release,obj\,test" -G --xd --xf --w1 2016-02 --w2 2016-02-01T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N 3000 -H 100 -J -m -u -v dtm -O -c Show command + Out summary only if found.
+(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin\Release,obj\,test" -G --xd --xf --w1 2016-02 --w2 2016-02-01T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N 3000 -H 100 -J --timeout 9.5 -m -u -v dtm -O -c Show command + Out summary only if found.
 
 Search usage like: msr -h -C | msr -i -t block.*match  or  msr | msr -it "max.*?depth|Full.*?path|jump out" -U 2 -D2  or  msr | msr -ix File -t "Preview|Replace|Execute" -e "Change|Backup|Command"
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
