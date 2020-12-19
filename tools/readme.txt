@@ -1,12 +1,5 @@
 Liberate & Digitize daily works by 2 exe: File Processing, Data Mining, Map-Reduce.
-Most time Just 1 command line to solve your daily text or file processing work, pipe endless.
-Vivid Colorful Demo/examples: Run windows-test.bat without parameters.
-Download all by command: git clone https://github.com/qualiu/msr/
-If you've downloaded, run an updating command in the directory: git pull or git fetch && git reset --hard origin/master (if get conflicts)
-
-Performance comparison with findstr and grep on Windows and Cygwin:
-https://github.com/qualiu/msr/blob/master/perf/summary-full-Cygwin-comparison.md
-https://github.com/qualiu/msr/blob/master/perf/summary-full-Windows-comparison.md
+https://github.com/qualiu/msr/
 
 Match/Search/Replace: msr.exe / msr.cygwin / msr.gcc**
     Match/Search/Replace Lines/Blocks in Files/Pipe
@@ -17,12 +10,6 @@ Not-In-latter: nin.exe / nin.cygwin / nin.gcc**
     Get `Unique` or `Raw` Exclusive/Mutual Line-Set or Key-Set.
     Stats + Get Distribution in Files/Pipe.
     Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
-
-Just run the 2 exe, you'll get their usages and examples. Besides, some script/batch/shell files are also examples.
-Helpful scripts use msr.exe and nin.exe : https://github.com/qualiu/msrTools
-Easy to search and get colorful usages of nin.exe/msr.exe like :
-    msr | msr -it replace -e "\w*pipe\w*"         with extra key words color enhancement.
-    nin | msr -it "regex.*capture" -U 3 -D 3       with Up/Down context.
     
 For example, running msr and nin on Windows:
 
@@ -45,8 +32,8 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
   -P [ --no-percent ]          Not output percentages (Overwrite --percentage). (Overwrite --percentage).
   --not-warn-bom               Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
-  -H [ --head ] arg            Output top [N] lines of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
-  -T [ --tail ] arg            Output bottom [N] lines of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
+  -H [ --head ] arg            Output top [N] rows of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
+  -T [ --tail ] arg            Output bottom [N] rows of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
   -J [ --jump-out ]            Jump out (stop and exit) if has set -H [N] and already has output [N] lines.
   --timeout arg                Maximum waiting seconds to stop and exit. No limit if value <= 0. Default = 0.000 s.
   -S [ --switch-first ]        Switch positions (first/latter roles) of 2 files or file/pipe (also will switch their Regex patterns).
@@ -113,7 +100,7 @@ For example: Get unique paths insensitive case + Show only top duplicate paths +
 
 And search usage like: nin -h | msr -i -t return.*value  or  nin -hC | msr -it "Summary|Jump|Sort" -x out -U 2 -D2  or  nin | msr -ix switch -t Regex -e "latter|first" 
 
-As a portable cross platform tool, nin has been running on: Windows / Cygwin / Ubuntu / CentOS / Fedora
+As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora
 Aperiodic updates and docs: https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
 Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
@@ -133,11 +120,11 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --nx arg                    Line must not contain normal/plain text. Exclude/Skip rows.
   --nt arg                    Regex pattern for lines must not match. Exclude/Skip rows.
   --nf arg                    Regex pattern for file name must not match. Exclude/Skip files.
-  --pp arg                    Regex pattern for full file path must match.
-  --np arg                    Regex pattern for full file path must not match. Exclude/Skip paths.
+  --pp arg                    Regex pattern for full file path must match. Support '/' on Windows.
+  --np arg                    Regex pattern for full file path must not match. Exclude/Skip paths. Support '/' on Windows.
   --nd arg                    Regex pattern for file's parent directory name splits must no one matched. Exclude/Skip folders.
   -d [ --dir-has ] arg        Regex pattern for file's parent directory name splits must have one name matched at least.
-  --xp arg                    Exclude/Skip full paths or sub-paths by plain text matching. Use ',' or ';' to separate.
+  --xp arg                    Exclude/Skip full paths or sub-paths by plain text matching. Use ',' or ';' to separate. Support '/' on Windows.
   --xd                        Exclude/Skip link directories.
   --xf                        Exclude/Skip link files.
   -G [ --read-once ]          Read once for link files (link folders must be or under input paths) which multiple paths link to one real path.
@@ -168,15 +155,15 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --s1 arg                    Lower bound of file size, format like 100kb (No Space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No Space between number and unit, use B if no unit).
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
-  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2020-11-29__13_42_02).
+  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2020-12-27__14_46_08).
   --force                     Force replacing BOM files. Default: only replace files of ANSI + UTF-8 no BOM + BOM header bytes = 0xEFBBBF.
   --not-warn-bom              Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
-  -S [ --single-line ]        Single line Regex mode to match/replace (Treat each file or pipe as one line).
+  -S [ --single-line ]        Single line Regex mode to match/replace (Treat as one line for each file/pipe/block).
   -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to replace radically. Default = 1.
-  -U [ --up ] arg             Output [N] lines above the matched line by -t or/and found by -x.
-  -D [ --down ] arg           Output [N] lines below the matched line by -t or/and found by -x.
-  -H [ --head ] arg           Output top [N] lines of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
-  -T [ --tail ] arg           Output bottom [N] lines of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
+  -U [ --up ] arg             Output [N] rows above the matched line by -t or/and found by -x.
+  -D [ --down ] arg           Output [N] rows below the matched line by -t or/and found by -x.
+  -H [ --head ] arg           Output top [N] rows of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
+  -T [ --tail ] arg           Output bottom [N] rows of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
   -J [ --jump-out ]           Jump out (stop and exit) if has set -H [N] and already has outputted [N] lines.
   -L [ --row-begin ] arg      Begin row number of reading/matching/replacing each file or pipe.
   -N [ --row-end ] arg        End row number of reading/matching/replacing each file or pipe.
@@ -283,12 +270,12 @@ Example-6: Multi-line regex mode (normal mode) replacing lines in each file and 
     msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@?\s*echo)\s+off\b" -o "$1 on" -R -K 
 
 Example-7: Display current modified code files:
-    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2020-11-29 13:42:02" -PAC 2^>nul ') do @echo code file: %a
+    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2020-12-27 14:46:08" -PAC 2^>nul ') do @echo code file: %a
 
 Example-8: Get 2 oldest and newest mp3 (4 files) which 3.0MB<=size<=9.9MB and show size unit, in current directory (Can omit -p . or -p %CD%)
     msr -l --wt -H 2 -T 2 -f "\.mp3$" --sz --s1 3.0MB --s2 9.9m
 
-Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2020-11-29 13:42:02.822336 +0800 CST = China Standard Time
+Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2020-12-27 14:46:08.525823 +0800 CST = China Standard Time
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2" -PAC') do SET "TimeNowInSecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3" -PAC') do SET "TimeNowMillisecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3\4" -PAC') do SET "TimeNowMicrosecond=%a"
@@ -362,7 +349,7 @@ For example: Get unique paths insensitive case + Show only top duplicate paths +
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -uipd -k 2
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
-As a portable cross platform tool, msr has been running on: Windows / Cygwin / Ubuntu / CentOS / Fedora
+As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora
 Aperiodic updates and docs: https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
 Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"

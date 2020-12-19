@@ -16,13 +16,13 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 - **Stats** + **Get top distribution** in Files/Pipe.
 - Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
 
-# MSR Overview: (Usage/Examples: [readme.txt](https://github.com/qualiu/msr/tree/master/tools/readme.txt) )
+# MSR Overview: [Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) or [Linux](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html)
 
 ### Performance Comparison [msr > findstr, msr ~ grep](https://github.com/qualiu/msr/tree/master/perf)
 
-| findstr + grep + msr on Windows | findstr + grep + msr on Cygwin | grep + msr on CentOS
-|-----|-----|-----|
-| [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md)
+| findstr + grep + msr on Windows                                                                                     | findstr + grep + msr on Cygwin                                                                                     | grep + msr on CentOS                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md) |
 
 ### **Vivid Colorful Demo/Examples**: [windows-test.bat](https://github.com/qualiu/msr/blob/master/tools/windows-test.bat) without parameters: [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
 
@@ -50,23 +50,23 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of using **`%SystemRoot%`** or **`/usr/bin/`** (you can also link msr to there).
 
 - [msr on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell command](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O msr.exe -q && `icacls msr.exe /grant %USERNAME%:RX` && `copy msr.exe %SystemRoot%\`
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O msr.exe.tmp && `move /y msr.exe.tmp msr.exe`  && `icacls msr.exe /grant %USERNAME%:RX` && `copy msr.exe %SystemRoot%\`
   - For 32-bit Windows: https://github.com/qualiu/msr/raw/master/tools/msr-Win32.exe
 - [msr on **Cygwin**](https://qualiu.github.io/msr/usage-by-running/msr-Cygwin.html)
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.cygwin -O msr.cygwin -q && `chmod +x msr.cygwin` && `cp msr.cygwin /usr/bin/msr`
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.cygwin -O msr.cygwin.tmp && `mv -f msr.cygwin.tmp msr.cygwin`  && `chmod +x msr.cygwin` && `cp msr.cygwin /usr/bin/msr`
 - [msr on **Fedora**](https://qualiu.github.io/msr/usage-by-running/msr-Fedora-25.html) + [**CentOS**](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html) + **WSL** + **Ubuntu**:
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.gcc48 -O msr.gcc48 -q && `chmod +x msr.gcc48` && `sudo cp msr.gcc48 /usr/bin/msr`
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.gcc48 -O msr.gcc48.tmp && `mv -f msr.gcc48.tmp msr.gcc48`  && `chmod +x msr.gcc48` && `sudo cp msr.gcc48 /usr/bin/msr`
   - For 32-bit Linux like [**32-bit CentOS**](https://qualiu.github.io/msr/usage-by-running/msr-i386-CentOS-32bit.html): Use https://github.com/qualiu/msr/raw/master/tools/msr-i386.gcc48
 
 ## NIN Color Doc on Windows/Linux + Download Command
 
 - [nin on **Windows**](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat))
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.exe -O nin.exe -q && `icacls nin.exe /grant %USERNAME%:RX` && `copy nin.exe %SystemRoot%\`
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.exe -O nin.exe.tmp && `move /y nin.exe.tmp nin.exe`  && `icacls nin.exe /grant %USERNAME%:RX` && `copy nin.exe %SystemRoot%\`
   - For 32-bit Windows: https://github.com/qualiu/msr/raw/master/tools/nin-Win32.exe
 - [nin on **Cygwin**](https://qualiu.github.io/msr/usage-by-running/nin-Cygwin.html)
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.cygwin -O nin.cygwin -q && `chmod +x nin.cygwin` && `cp nin.cygwin /usr/bin/nin`
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.cygwin -O nin.cygwin.tmp && `mv -f nin.cygwin.tmp nin.cygwin`  && `chmod +x nin.cygwin` && `cp nin.cygwin /usr/bin/nin`
 - [nin on **Fedora**](https://qualiu.github.io/msr/usage-by-running/nin-Fedora-25.html) + [**CentOS**](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html) + **WSL** + **Ubuntu**:
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.gcc48 -O nin.gcc48 -q && `chmod +x nin.gcc48` && `sudo cp nin.gcc48 /usr/bin/nin`
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.gcc48 -O nin.gcc48.tmp && `mv -f nin.gcc48.tmp nin.gcc48`  && `chmod +x nin.gcc48` && `sudo cp nin.gcc48 /usr/bin/nin`
   - For 32-bit Linux like [**32-bit CentOS**](https://qualiu.github.io/msr/usage-by-running/nin-i386-CentOS-32bit.html): Use https://github.com/qualiu/msr/raw/master/tools/nin-i386.gcc48
 
 ## Demo and Test Screenshots
@@ -92,7 +92,7 @@ You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of usin
       - Normal begin/end patterns (**b**, **-q**).
 - Process pipe (output of self/other commands) **endless** as you want.
 - Two composable single exe: [msr.exe/cygwin/gcc*](https://github.com/qualiu/msr/blob/master/tools/readme.txt) especially powerful with [nin.exe/cygwin/gcc*](https://github.com/qualiu/msr/blob/master/tools/readme.txt).
-- **68** composable options for [msr](https://github.com/qualiu/msr/blob/master/tools/readme.txt) and **28** composable options for [nin](https://github.com/qualiu/msr/blob/master/tools/readme.txt) (just run them without parameters to get colorful usage/examples or see [readme.txt](https://github.com/qualiu/msr/blob/master/tools/readme.txt)) for further extractions/mining.
+- **70** composable options for [msr](https://github.com/qualiu/msr/blob/master/tools/readme.txt) and **30** composable options for [nin](https://github.com/qualiu/msr/blob/master/tools/readme.txt) (just run them without parameters to get colorful usage/examples or see [readme.txt](https://github.com/qualiu/msr/blob/master/tools/readme.txt)) for further extractions/mining.
 
 ```batch
      msr --help # same as running: "msr -h" or "msr"
@@ -146,7 +146,6 @@ Use the rich searching options of like below, **combine** these **optional** opt
 - **Quickly** pick up `head{N}` results + **Jump out**(`-J`), like: **-H** `30` **-J** or **-J** **-H** `300` or **-JH** `300` etc.
 - Don't color matched text: **-C**  (`Faster` to output, and **must be set** for `Linux/Cygwin` to further process).
 - Output summary `info` to **stderr** + **hide** `warnings in stderr` (like BOM encoding): **-I** : Like **-I -C** or **-IC** or **-J -I -C** or **-JIC** etc.
-- Use **-O** will hide immediate BOM warnings. Use **-M** will hide BOM caused warning summary that not hidden by **-A**.
 - Use **--force** to force replace BOM files which header != 0xEFBBBF (if UTF8 encoding is acceptable).
 
 ## Scenario Glance
@@ -155,13 +154,13 @@ Use the rich searching options of like below, **combine** these **optional** opt
   - msr -rp `folder1,folder2,file1,fileN` -t `"Regex-Pattern"` -x `"And-Plain-text"` --nt ... --nx ... --nd ... -d ... --pp ... --np ... --xp ...
 
 - Search files + Extract + Transform to target text/value:
-  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"` -PAC     + [Optional Args](#optional-args)
+  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"`   + [Optional Args](#optional-args)
 
 - Get matched file list (You can omit -o xxx). You can also append `| msr -t "(.+)" -o "command \1" -X` to process files.
-  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"` -PAC -l  + [Optional Args](#optional-args)
+  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"`  -l  + [Optional Args](#optional-args)
 
 - Replace text:
-  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"`     + [Optional Args](#optional-args)
+  - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"`    + [Optional Args](#optional-args)
 
 - Just **preview** changed files + lines:
   - msr -rp `folder1,folder2,file1,fileN`  -t `"Regex-Pattern"` -o `"Replace-To"` **-j**  + [Optional Args](#optional-args)

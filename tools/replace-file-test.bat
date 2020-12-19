@@ -16,9 +16,16 @@ where bcompare 2>nul >nul  && set /a HasBCompareExe=1
 set Restore_Pattern_New_Line=-S -t " -New-Line- (\r?\n|\n\r?)?" -o "\n"
 set Restore_Pattern_Text=-t PairName -o Name
 
-for /f "tokens=*" %%a in ("sample-file.txt") do set /a SizeMustBe=%%~za
+for /f "tokens=*" %%a in ("sample-file.txt") do set /a ExpectedTxtSize=%%~za
+for /f "tokens=*" %%a in ("sample-block-expected-result.json") do set /a ExpectedJsonSize=%%~za
 
 set /a TestNumber=0
+:: Block replacing check
+call :Replace_Json_And_Check -p sample-block-test.json -b "^\s*.settings.\S+:\s*\{" -Q "^\s*\}\s*,?\s*$" -t "^(\s*)(.default.*)" -o "\1\"type\": \"string\",\n\1\2" --nt "^\s*.type" -R -c Insert a line || goto :Pop_Exit_Error
+call :Replace_Json_And_Check -p sample-block-test.json -b "^\s*.settings.\S+:\s*\{" -Q "^\s*\}\s*,?\s*$" -t "^(\s*)(.default.*)" -o "\1\"type\": \"string\",\n\1\2" --nx "\"type\":" -R -c Insert a line || goto :Pop_Exit_Error
+call :Replace_Json_And_Check -p sample-block-test.json -b "^\s*.settings.\S+:\s*\{" -Q "^\s*\}\s*,?\s*$" -t "^(\s*)(.default.*)" -o "\1\"type\": \"string\",\n\1\2" --nt "^\s*.type" --nx "\"type\":" -R -c Insert a line || goto :Pop_Exit_Error
+call :Replace_Json_And_Check -p sample-block-test.json -b "^\s*.settings.\S+:\s*\{" -Q "^\s*\}\s*,?\s*$" -S -t "([\r\n]*.settings.\S+:\s*\{\s*?)([\r\n]+\s+)" -o "\1\2\"type\": \"string\",\2" --nx "\"type\":" -R -c Insert a line || goto :Pop_Exit_Error
+
 :: No change replacing test
 call :Replace_And_Check -p sample-test.txt -t Function -o Function -R -c Should not replace or change file || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -t Function -o FuncTion --nx pair -R -c Should not replace or change file || goto :Pop_Exit_Error
@@ -34,7 +41,7 @@ call :Replace_And_Check -p sample-test.txt -b "\s*</pair" -t "\bName\b" -o PairN
 :: Block replacing
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -t "\bName\b" -o PairName -q "\s*</pair" -R -c || goto :Pop_Exit_Error
-call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
+call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -S -t "\r?\n|\r\n?" -o " -New-Line- " -N 42 -R -c || goto :Pop_Exit_Error
 
 :: Block replacing + skip
 call :Replace_And_Check -p sample-test.txt -b "\s*<Tag" -Q "^\s*</Tag" --nt "Node2" -t "\bName\b" -o PairName -R -c || goto :Pop_Exit_Error
@@ -49,15 +56,41 @@ call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 35 -t
 
 :: Block replacing + Single line mode + Range
 call :Replace_And_Check -p sample-test.txt -L 37 -q "\s*</pair" -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
-call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 35 -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
+call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 35 -S -t "\r?\n|\r\n?" -o " -New-Line- " -N 43 -R -c || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -L 35 -S -t "\r?\n|\r\n?" -o " -New-Line- " -q "\s*</pair" -R -c || goto :Pop_Exit_Error
 call :Replace_And_Check -p sample-test.txt -b "\s*<pair" -Q "\s*</pair" -N 36 -S -t "\r?\n|\r\n?" -o " -New-Line- " -R -c || goto :Pop_Exit_Error
 
 del sample-test.txt sample-test-restore.txt
+
 exit /b 0
 
 :Pop_Exit_Error
     popd & exit /b -1
+
+:Replace_Json_And_Check
+    set /a TestNumber+=1
+    if not "%Specified_Test_Number%" == "" if not "%Specified_Test_Number%" == "%TestNumber%" ( echo Skip Test-%TestNumber%: %MSR_EXE% %* | %MSR_EXE% -aPA -e "Skip \w+" -t "(?<=Test-)\d+" & exit /b 0 )
+    echo Test-Replace-File-And-Verify-!TestNumber!: %MSR_EXE% %* | %MSR_EXE% -aPA -x Test-Replace-File- -e "Verify|((%MSR_EXE%.+))" -t "And|(?<=-)\d+(?:)"
+    copy /y sample-block.json sample-block-test.json >nul
+    %MSR_EXE% %* >nul
+    ::bcompare sample-test.txt sample-test-restore.txt
+    nin sample-block-expected-result.json sample-block-test.json -O || goto :Show_Json_Error %*
+    nin sample-block-expected-result.json sample-block-test.json -S -O || goto :Show_Json_Error %*
+    fc sample-block-expected-result.json sample-block-test.json >nul || goto :Show_Json_Error %*
+    for /f "tokens=*" %%a in ("sample-block-test.json") do (
+        if not %%~za EQU !ExpectedJsonSize! (
+            echo sample-block-test.json = %%~a not equal !ExpectedJsonSize! of sample-block-expected-result.json | %MSR_EXE% -aPA -t .+
+            goto :Show_Json_Error %*
+        )
+    )
+    del sample-block-test.json
+    exit /b 0
+
+:Show_Json_Error
+    if "!HasBCompareExe!" == "1" start bcompare sample-block-expected-result.json sample-block-test.json
+    echo Error test: %MSR_EXE% %* | %MSR_EXE% -aPA -e "(%MSR_EXE%.+)" -t "((Error test))"
+    echo Full retry: pushd %~dp0 AND copy /y sample-block.json sample-block-test.json AND %MSR_EXE% %* AND bcompare sample-block-expected-result.json sample-block-test.json | %MSR_EXE% -aPA -x AND -o "&" -t "Full retry:" -e "(pushd.+)"
+    exit /b -1
 
 :Replace_And_Check
     set /a TestNumber+=1
@@ -86,10 +119,10 @@ exit /b 0
     call :Restore_To_Another_File >nul
 
     ::bcompare sample-test.txt sample-test-restore.txt
-    nin sample-file.txt sample-test-restore.txt -O  || ( call :Repro_Error_Replacing %* & exit /b !ERRORLEVEL! )
-    nin sample-file.txt sample-test-restore.txt -S -O || ( call :Repro_Error_Replacing %* & exit /b !ERRORLEVEL! )
-    fc sample-file.txt sample-test-restore.txt >nul || ( call :Repro_Error_Replacing %* & exit /b !ERRORLEVEL! )
-    for /f "tokens=*" %%a in ("sample-test-restore.txt") do if not %%~za EQU %SizeMustBe% ( call :Repro_Error_Replacing %* & exit /b !ERRORLEVEL! )
+    nin sample-file.txt sample-test-restore.txt -O  || ( call :Repro_Error_Replacing %* & exit /b -1 )
+    nin sample-file.txt sample-test-restore.txt -S -O || ( call :Repro_Error_Replacing %* & exit /b -1 )
+    fc sample-file.txt sample-test-restore.txt >nul || ( call :Repro_Error_Replacing %* & exit /b -1 )
+    for /f "tokens=*" %%a in ("sample-test-restore.txt") do if not %%~za EQU %ExpectedTxtSize% ( call :Repro_Error_Replacing %* & exit /b -1 )
     exit /b 0
 
 
@@ -115,15 +148,15 @@ exit /b 0
     copy /y sample-file.txt sample-test-restore.txt >nul
     :: Check and exit by file content , then by file size
     nin sample-file.txt sample-test-restore.txt
-    for /f "tokens=*" %%a in ("sample-test-restore.txt") do if not %%~za EQU %SizeMustBe% (
-        echo sample-test-restore.txt size is %%~za not equal %SizeMustBe% | %MSR_EXE% -t .+
+    for /f "tokens=*" %%a in ("sample-test-restore.txt") do if not %%~za EQU %ExpectedTxtSize% (
+        echo sample-test-restore.txt size is %%~za not equal %ExpectedTxtSize% | %MSR_EXE% -t .+
     )
 
     echo Test-%TestNumber% failed: %MSR_EXE% %* | %MSR_EXE% -aPA -it "(Test-.*failed)" -e "(%MSR_EXE%.+)"
     exit /b -1
 
 :Show_Error_And_Retry
-    echo Error test: %MSR_EXE% %* | %MSR_EXE% -aPA -e "((%MSR_EXE%.+))" -t "((Error \S+))"
+    echo Error test: %MSR_EXE% %* | %MSR_EXE% -aPA -e "(%MSR_EXE%.+)" -t "((Error test))"
     :: echo You can try: %MSR_EXE% %* | %MSR_EXE% -aPA -x sample-test.txt -o sample-test-restore.txt | %MSR_EXE% -aPA -e "(%MSR_EXE%.+)" -t "((You.*?try:))"
-    echo Full retry: copy /y sample-file.txt sample-test.txt AND %MSR_EXE% %* AND bcompare sample-file.txt sample-test.txt | %MSR_EXE% -aPA -x AND -o "&" -e "copy.*?\s+&|((%MSR_EXE%.*?))\s+&|bcompare.*txt" -t "((Full retry:))"
+    echo Full retry: pushd %~dp0 AND copy /y sample-file.txt sample-test.txt AND %MSR_EXE% %* AND bcompare sample-file.txt sample-test.txt | %MSR_EXE% -aPA -x AND -o "&" -e "(pushd.+)" -t "((Full retry:))"
     echo Test-%TestNumber% failed: %MSR_EXE% %* | %MSR_EXE% -aPA -it "(Test-.*failed)" -e "((%MSR_EXE%.+))"

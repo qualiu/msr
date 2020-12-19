@@ -35,16 +35,16 @@ Matched 0 lines in 1 files
 Return-Value = 0 : msr -c -p sample-file.txt -b No-Such-Begin -q No-Such-End -l Should return 0 
 
 msr -c -p sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing 
-Matched 133 lines(99.25%) in 1 files(100%)
-Return-Value = 133 : msr -c -p sample-file.txt -S -t "(.+\S+)\s*$" -H 0         # Check return value, output nothing 
+Matched 134 lines(100%) in 1 files(100%)
+Return-Value = 134 : msr -c -p sample-file.txt -S -t "(.+\S+)\s*$" -H 0         # Check return value, output nothing 
 
 msr -c -p sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing 
 Matched 0 lines in 0 files
 Return-Value = 0 : msr -c -p sample-file.txt -S -t "(.+\S+)$" -H 0            # Check return value, output nothing 
 
 msr -c -p sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing 
-Matched 133 lines(99.25%) in 1 files(100%)
-Return-Value = 133 : msr -c -p sample-file.txt -S -t "(.+\S+)\n$" -H 0          # Check return value, output nothing 
+Matched 134 lines(100%) in 1 files(100%)
+Return-Value = 134 : msr -c -p sample-file.txt -S -t "(.+\S+)\n$" -H 0          # Check return value, output nothing 
 
 msr -c -p . -f bat -l -PAC -H 0 
 Return-Value = 6 : msr -c -p . -f bat -l -PAC -H 0 
@@ -275,14 +275,14 @@ Matched 0 blocks with 0 lines in 1 files
 Return-Value = 0 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</TagNotExist>" -a ## Should no blocks and output. 
 
 msr -c -p sample-file.txt -ib "^\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching 
-sample-file.txt:12: enum class LineType {
+sample-file.txt:7: enum class LineType {
   NotMatchedLine = 0,
   MatchedLine = 1,
   UpLine = 2,
   DownLine = 3
 };
-Matched 5 lines(41.67%) in 1 files(100%)
-Return-Value = 5 : msr -c -p sample-file.txt -ib "\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching 
+Matched 6 lines(50.00%) in 1 files(100%)
+Return-Value = 6 : msr -c -p sample-file.txt -ib "\s*enum" -q "\};" -S -t "([\r\n]+)\s+" -o "$1  "  ## Single line regex matching 
 
 msr -c -p sample-file.txt -ib "^\s*enum" -q "\};" -t "^\s+" -o "  " -a -P 
 enum class LineType {
@@ -319,7 +319,7 @@ example-commands.bat:1: ::Just run windows-test.bat which calls this file, or ru
 example-commands.bat:48: msr -c -p %~dp0\sample-file.txt -i -b "class DeferredRun" -Q "^};" -t "(Deferred\w*)" -o "$1Replaced"
 example-commands.bat:49: msr -c -p %~dp0\example-commands.bat -it "class|run" -H 9
 example-commands.bat:50: msr -c -p %~dp0\example-commands.bat -ie "class|run" -H 9
-Matched 4 lines(1.77%) in 1 files(100%)
+Matched 4 lines(1.59%) in 1 files(100%)
 Return-Value = 4 : msr -c -p example-commands.bat -it "class|run" -H 9 
 
 msr -c -p example-commands.bat -ie "class|run" -H 9 
@@ -332,8 +332,8 @@ example-commands.bat:6:
 example-commands.bat:7: msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End  Should return 0
 example-commands.bat:8: msr -c -p %~dp0\sample-file.txt -b No-Such-Block-Begin -Q No-Such-Block-End -l Should return 0
 example-commands.bat:9: 
-Matched 226 lines(100%) in 1 files(100%)
-Return-Value = 226 : msr -c -p example-commands.bat -ie "class|run" -H 9 
+Matched 252 lines(100%) in 1 files(100%)
+Return-Value = 252 : msr -c -p example-commands.bat -ie "class|run" -H 9 
 
 msr -c -p example-commands.bat -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9 
 example-commands.bat:3: msr -c -z "c:\Program Files\LLVM\bin\clang.exe" -t \\ -o \\
@@ -345,8 +345,8 @@ example-commands.bat:10: msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-
 example-commands.bat:11: msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End -l Should return 0
 example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
 example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
-Matched 180 lines(79.65%) in 1 files(100%)
-Return-Value = 180 : msr -c -p example-commands.bat -it "msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9 
+Matched 207 lines(82.14%) in 1 files(100%)
+Return-Value = 207 : msr -c -p example-commands.bat -it "msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9 
 
 msr -c -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines 
 example-commands.bat:18: msr -c -p %~dp0 -f BAT -l -PAC -H 0
@@ -359,7 +359,7 @@ example-commands.bat:93: msr -c -p %~dp0\example-commands.BAT -x " -B" -t ".*?(\
 example-commands.bat:97: msr -c -p %~dp0\example-commands.BAT -it "\w+" -H 0       ## Must NOT out any matched.
 example-commands.bat:98: msr -c -p %~dp0\example-commands.BAT -it "\w+" -T 0       ## Must NOT out any matched.
 example-commands.bat:99: msr -c -p %~dp0\example-commands.BAT -it just -U 3 -D 3
-Matched 44 lines(19.47%) in 1 files(100%)
+Matched 44 lines(17.46%) in 1 files(100%)
 Return-Value = 44 : msr -c -p example-commands.bat -x bat -o BAT -L 3 -H 5 -T 5      ## Plain text replacing to BAT , begin-row-3, and show top 5 and bottom 5 lines 
 
 msr -c -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines 
@@ -368,7 +368,7 @@ example-commands.bat:19: msr -c -p %~dp0 -f BAT -l -PIC -H 0
 example-commands.bat:20: msr -c -p %~dp0 -l -f BAT -H -2 # Should skip top 2 items.
 example-commands.bat:21: msr -c -p %~dp0 -l -f BAT -T -2 # Should skip bottom 2 items.
 example-commands.bat:22: msr -c -p %~dp0 -l -f BAT -H -2 --sz # Should skip top 2 items.
-Matched 44 lines(19.47%) in 1 files(100%)
+Matched 44 lines(17.46%) in 1 files(100%)
 Return-Value = 44 : msr -c -p example-commands.bat -t bat -o BAT -L 3 -H 5           ## Plain text replacing to BAT , begin-row-3, show top 5 lines 
 
 msr -c -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from 
@@ -377,7 +377,7 @@ example-commands.bat:43: msr -c -r -p %~dp0 -f "^(example-commands|sample-file)\
 example-commands.bat:49: msr -c -p %~dp0\example-commands.BAT -it "class|run" -H 9
 example-commands.bat:50: msr -c -p %~dp0\example-commands.BAT -ie "class|run" -H 9
 example-commands.bat:51: msr -c -p %~dp0\example-commands.BAT -it "^msr\s+(-c\s+)?" -L 3 -o "msr -c " -H 9
-Matched 36 lines(15.93%) in 1 files(100%)
+Matched 36 lines(14.29%) in 1 files(100%)
 Return-Value = 36 : msr -c -p example-commands.bat -t com -x bat -o BAT T -H 5       ## Use both Regex and plain text , replacing from 
 
 msr -c -p example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test 
@@ -390,8 +390,8 @@ example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o
 example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
 example-commands.bat:18: msr -c -p %~dp0 -f bat -l -PAC -H 0
 example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
-Matched 194 lines(85.84%) in 1 files(100%)
-Return-Value = 194 : msr -c -p example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test 
+Matched 221 lines(87.70%) in 1 files(100%)
+Return-Value = 221 : msr -c -p example-commands.bat -t t -L 9 -e txt -H 9             ## single char matching and coloring test 
 
 msr -c -p example-commands.bat -x t -L 9 -e txt -H 9 
 example-commands.bat:10: msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End Should return 0
@@ -403,8 +403,8 @@ example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o
 example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
 example-commands.bat:18: msr -c -p %~dp0 -f bat -l -PAC -H 0
 example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
-Matched 194 lines(85.84%) in 1 files(100%)
-Return-Value = 194 : msr -c -p example-commands.bat -x t -L 9 -e txt -H 9 
+Matched 221 lines(87.70%) in 1 files(100%)
+Return-Value = 221 : msr -c -p example-commands.bat -x t -L 9 -e txt -H 9 
 
 msr -c -p example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile 
 example-commands.bat:10: msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End Should return 0
@@ -416,8 +416,8 @@ example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o
 example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
 example-commands.bat:18: msr -c -p %~dp0 -f bat -l -PAC -H 0
 example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
-Matched 194 lines(85.84%) in 1 files(100%)
-Return-Value = 194 : msr -c -p example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile 
+Matched 221 lines(87.70%) in 1 files(100%)
+Return-Value = 221 : msr -c -p example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile 
 
 msr -c -p example-commands.bat -x t -L 9 -e me.txt -H 9 
 example-commands.bat:10: msr -c -p %~dp0\sample-file.txt -b No-Such-Begin -q No-Such-End Should return 0
@@ -429,8 +429,8 @@ example-commands.bat:16: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o
 example-commands.bat:17: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -o "$1\n" -R # Add a new line to tail
 example-commands.bat:18: msr -c -p %~dp0 -f bat -l -PAC -H 0
 example-commands.bat:19: msr -c -p %~dp0 -f bat -l -PIC -H 0
-Matched 194 lines(85.84%) in 1 files(100%)
-Return-Value = 194 : msr -c -p example-commands.bat -x t -L 9 -e me.txt -H 9 
+Matched 221 lines(87.70%) in 1 files(100%)
+Return-Value = 221 : msr -c -p example-commands.bat -x t -L 9 -e me.txt -H 9 
 
 msr -c -p example-commands.bat -x me -L 20 -H 9 
 example-commands.bat:57: msr -c -p %~dp0\example-commands.bat -t t -L 9 -e me.txt -H 9       ## Coloring Regex-matched/Plain-found/Regex-enhance text meanwhile
@@ -442,7 +442,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -x me -L 20 -H 9 
 
 msr -c -p example-commands.bat -x me -L 20 -ie me -H 9 
@@ -455,7 +455,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -x me -L 20 -ie me -H 9 
 
 msr -c -p example-commands.bat -t me -L 20 -ie me -H 9 
@@ -468,7 +468,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -t me -L 20 -ie me -H 9 
 
 msr -c -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9 
@@ -481,7 +481,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x you -o you -ie 
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -x me -o you -ie "you|txt|ping" -L 30 -H 9 
 
 msr -c -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9 
@@ -494,7 +494,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x you -o you -ie 
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t you -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t you -ie "you|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x you -ie "you|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9 
 
 msr -c -p example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9 
@@ -507,7 +507,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9 
 
 msr -c -p example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9 
@@ -520,7 +520,7 @@ example-commands.bat:62: msr -c -p %~dp0\example-commands.bat -x me -o you -ie "
 example-commands.bat:63: msr -c -p %~dp0\example-commands.bat -t me -o you -ie "you|txt|ping" -L 30 -H 9
 example-commands.bat:64: msr -c -p %~dp0\example-commands.bat -t me -ie "me|ping|\w+.txt" -L 30 -H 9
 example-commands.bat:65: msr -c -p %~dp0\example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9
-Matched 33 lines(14.60%) in 1 files(100%)
+Matched 33 lines(13.10%) in 1 files(100%)
 Return-Value = 33 : msr -c -p example-commands.bat -x me -ie "me|ping|\w+.txt" -L 30 -H 9 
 
 msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9 
@@ -533,7 +533,7 @@ example-commands.bat:68: msr -c -p %~dp0\example-commands.bat -t NAME -o NAME -T
 example-commands.bat:69: msr -c -p %~dp0\example-commands.bat -it NAME -l
 example-commands.bat:70: msr -c -p %~dp0\sample-file.txt -it NAME -l
 example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME -ie NAMEs -b "come|NAME\w*" -Q "mailTo|Tag" -T 9
-Matched 24 lines(10.62%) in 1 files(100%)
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -U 3 -D 3 -L 16 -H 9 
 
 msr -c -p example-commands.bat -t name -o NAME -ie Names -H 9 
@@ -546,17 +546,17 @@ example-commands.bat:71: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAME
 example-commands.bat:73: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -ie "NAME|come" -T 3
 example-commands.bat:74: msr -c -p %~dp0\example-commands.bat -t NAME -o come -ie "NAME|come" -a -L 19 -H 9
 example-commands.bat:75: msr -c -p %~dp0\example-commands.bat -t NAME -a -o NAM -ie "NAME|come" -L 19 -H 9
-Matched 24 lines(10.62%) in 1 files(100%)
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -t name -o NAME -ie Names -H 9 
 
 msr -c -p example-commands.bat -t name -o NAME -T 1 -C 
-example-commands.bat:223: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
-Matched 19 lines(8.41%) in 1 files(100%)
+example-commands.bat:249: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Matched 19 lines(7.54%) in 1 files(100%)
 Return-Value = 19 : msr -c -p example-commands.bat -t name -o NAME -T 1 -C 
 
 msr -c -p example-commands.bat -it name -l 
 1-1 : example-commands.bat
-Matched 24 lines(10.62%) in 1 files(100%)
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -it name -l 
 
 msr -c -p sample-file.txt -it name -l 
@@ -572,9 +572,9 @@ example-commands.bat:126: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[
 example-commands.bat:127: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a
 example-commands.bat:128: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -a -y
 example-commands.bat:129: msr -c -p %~dp0\sample-file.txt -b "^\s*<Tag" -Q "^\s*</Tag" --nt Node3 -a
-example-commands.bat:220: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
-example-commands.bat:221: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-Matched 7 blocks(87.50%) with 22 lines(9.73%) in 1 files(100%)
+example-commands.bat:246: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PA -e "#\S+?#"
+example-commands.bat:247: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+Matched 7 blocks(87.50%) with 22 lines(8.73%) in 1 files(100%)
 Return-Value = 7 : msr -c -p example-commands.bat -t name -a -o NAME -ie Names -b "come|name\w*" -Q "mailTo|Tag" -T 9 
 
 msr -c -p example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 5 
@@ -583,14 +583,14 @@ example-commands.bat:12:
 example-commands.bat:13: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\s*$" -H 0         # Check return value, output nothing
 example-commands.bat:14: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)$" -H 0            # Check return value, output nothing
 example-commands.bat:15: msr -c -p %~dp0\sample-file.txt -S -t "^(.+\S+)\n$" -H 0          # Check return value, output nothing
-Matched 14 lines(6.19%) in 1 files(100%)
+Matched 14 lines(5.56%) in 1 files(100%)
 Return-Value = 14 : msr -c -p example-commands.bat -it NOT -U 2 -e "SRC|DIR" -H 5 
 
 msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
-example-commands.bat:221: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
-example-commands.bat:222: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
-example-commands.bat:223: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
-Matched 24 lines(10.62%) in 1 files(100%)
+example-commands.bat:247: msr -c -p %~dp0\sample-file.txt -b "<Tag NAME.*?Node1.*?>" -Q "</Tag>" -PIC > Node1.tmp
+example-commands.bat:248: (msr -c -p %~dp0\sample-file.txt -it "<NAME>(#.+?#)</NAME>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\""  -PAC | msr -t "^\s*(msr -x .*)" -o "$1 -p Node1.tmp -R -H 0" -PAC) |msr -XI -c Automatic extract macro and replace to real values.
+example-commands.bat:249: msr -c -p Node1.tmp -PA -e ".All.|4000|8000"  ## This is an expanded xml that has replaced NAME value settings.
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -T 3 
 
 msr -c -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9 
@@ -603,7 +603,7 @@ example-commands.bat:24: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2
 example-commands.bat:25: msr -c -p %~dp0 -l -f bat -T 2 # Should show bottom 2 items.
 example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
 example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-Matched 24 lines(10.62%) in 1 files(100%)
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -t name -o come -ie "name|come" -a -L 19 -H 9 
 
 msr -c -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9 
@@ -616,7 +616,7 @@ example-commands.bat:24: msr -c -p %~dp0 -l -f bat -H 2 --wt # Should show top 2
 example-commands.bat:25: msr -c -p %~dp0 -l -f bat -T 2 # Should show bottom 2 items.
 example-commands.bat:26: msr -c -p %~dp0\sample-file.txt -L 7 -N 9 -t Not -U 2 -D 2
 example-commands.bat:27: msr -c -p %~dp0\sample-file.txt -it node --nt "node\d+"
-Matched 24 lines(10.62%) in 1 files(100%)
+Matched 24 lines(9.52%) in 1 files(100%)
 Return-Value = 24 : msr -c -p example-commands.bat -t name -a -o NAM -ie "name|come" -L 19 -H 9 
 
 msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3 
@@ -627,7 +627,7 @@ example-commands.bat:76: msr -c -p %~dp0\example-commands.bat -x NAME -o NAME -i
 example-commands.bat:77: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a
 example-commands.bat:78: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(Node2)\b" -Q "<MailAddress>|</Tag>" -e MailTo -t body -o BODY -a
 example-commands.bat:79: msr -c -p %~dp0\sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<MailAddress>|</Tag>" -t Node1 -e "<.?Tag.*?>" -a
-Matched 1 lines(0.44%) in 1 files(100%)
+Matched 1 lines(0.40%) in 1 files(100%)
 Return-Value = 1 : msr -c -p example-commands.bat -x name -o NAME -ie "name|come" -t not -U 3 -D 3 
 
 msr -c -p sample-file.txt -ib "<Tag Name.*?\b(Node1|Node2)\b" -Q "<MailAddress>|</Tag>" -e "MailTo" -t body -o BODY -a 
@@ -695,18 +695,18 @@ Return-Value = 1 : msr -c -p sample-file.txt -ib "<Tag Name.*?\b(\w+)\b" -Q "<Ma
 msr -c -p example-commands.bat -it name -o NAME -e Names -x update 
 example-commands.bat:80: msr -c -p %~dp0\example-commands.bat -it NAME -o NAME -e NAMEs -x update
 example-commands.bat:82: msr -c -p %~dp0\example-commands.bat -ix update -t NAME -e NAMEs
-Matched 2 lines(0.88%) in 1 files(100%)
+Matched 2 lines(0.79%) in 1 files(100%)
 Return-Value = 2 : msr -c -p example-commands.bat -it name -o NAME -e Names -x update 
 
 msr -c -p example-commands.bat -it name -e Names -x nameX 
 example-commands.bat:81: msr -c -p %~dp0\example-commands.bat -it name -e Names -x nameX
-Matched 1 lines(0.44%) in 1 files(100%)
+Matched 1 lines(0.40%) in 1 files(100%)
 Return-Value = 1 : msr -c -p example-commands.bat -it name -e Names -x nameX 
 
 msr -c -p example-commands.bat -ix update -t name -e Names 
 example-commands.bat:80: msr -c -p %~dp0\example-commands.bat -it name -o NAME -e Names -x update
 example-commands.bat:82: msr -c -p %~dp0\example-commands.bat -ix update -t name -e Names
-Matched 2 lines(0.88%) in 1 files(100%)
+Matched 2 lines(0.79%) in 1 files(100%)
 Return-Value = 2 : msr -c -p example-commands.bat -ix update -t name -e Names 
 
 msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch 
@@ -730,7 +730,7 @@ Matched 1 blocks(100%) with 2 lines(3.57%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -ib "<Tag name" -q "Switch" -Q "</Tag" -t MailTo -e Switch -a 
 
 msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block" 
-sample-file.txt:89: class DeferredRun {
+sample-file.txt:14: class DeferredRun {
 public:
         DeferredRun(const std::function<void()>& run) : _run(run) { }
         ~DeferredRun() {
@@ -803,8 +803,8 @@ int main(int argc, char* argv[])
 </Tag>
 
 --- arbitrary block to match replace  ----------
-Matched 75 lines(84.27%) in 1 files(100%)
-Return-Value = 75 : msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block" 
+Matched 76 lines(85.39%) in 1 files(100%)
+Return-Value = 76 : msr -c -p sample-file.txt -it "<name>(#.+?)</name>\s*<value>(.+?)</value>" -S -o "msr -x \"$1\" -o \"$2\"" -L 14 -e "-x (\S+)|-o (\S+)|msr " -q "block" 
 
 msr -c -p sample-file.txt -it Tag -x ref -U 5 -D 5 
 Matched 0 lines in 0 files
@@ -850,7 +850,7 @@ msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*"
 example-commands.bat:87: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:03"
 example-commands.bat:91: msr -c -p %~dp0\sample-file.txt -t "^(\d+-\d+-\d+)" -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03"
 example-commands.bat:92: msr -c -p %~dp0\sample-file.txt -F "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -B "2012-12-27 00:00" -E "2012-12-27 00:03" -it first
-Matched 3 lines(1.33%) in 1 files(100%)
+Matched 3 lines(1.19%) in 1 files(100%)
 Return-Value = 3 : msr -c -p example-commands.bat -x " -B" -t ".*?(\d+\S+ \d+[\d:]+).*" 
 
 msr -c -p sample-file.txt -s "^(\d+-\d+-\d+ [\d:]+(\.\d+)?)" -it 2012 
@@ -881,12 +881,12 @@ Matched 5 lines(3.73%) in 1 files(100%)
 Return-Value = 5 : msr -c -p sample-file.txt -t "((((((\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+))))))(\S*)" -s "\d+\D\d+\D\d+[\D\s]*\d+:\d+:\d+" -e "\d+|(\w+)\s+line" --dsc 
 
 msr -c -p example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched. 
-Matched 203 lines(89.82%) in 1 files(100%)
-Return-Value = 203 : msr -c -p example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched. 
+Matched 230 lines(91.27%) in 1 files(100%)
+Return-Value = 230 : msr -c -p example-commands.bat -it "\w+" -H 0       ## Must NOT out any matched. 
 
 msr -c -p example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched. 
-Matched 203 lines(89.82%) in 1 files(100%)
-Return-Value = 203 : msr -c -p example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched. 
+Matched 230 lines(91.27%) in 1 files(100%)
+Return-Value = 230 : msr -c -p example-commands.bat -it "\w+" -T 0       ## Must NOT out any matched. 
 
 msr -c -p example-commands.bat -it just -U 3 -D 3 
 example-commands.bat:1: ::Just run windows-test.bat which calls this file, or run this file directly, you will get a vivid sense of msr.
@@ -900,7 +900,7 @@ example-commands.bat:99: msr -c -p %~dp0\example-commands.bat -it just -U 3 -D 3
 example-commands.bat:100: msr -c -p %~dp0\sample-file.txt -it "\W(function)\W" -e "name=(\S+)"
 example-commands.bat:101: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 92
 example-commands.bat:102: msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -N 93
-Matched 2 lines(0.88%) in 1 files(100%)
+Matched 2 lines(0.79%) in 1 files(100%)
 Return-Value = 2 : msr -c -p example-commands.bat -it just -U 3 -D 3 
 
 msr -c -p sample-file.txt -it "\W(function)\W" -e "name=(\S+)" 
@@ -1337,18 +1337,18 @@ Matched 1 blocks(33.33%) with 1 lines(0.75%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -b "\s*<Tag" -Q "\s*</Tag" -t title -o TITLE --nt Node3 -y -a 
 
 msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
-sample-file.txt:100: [section2]
+sample-file.txt:90: [section2]
 key1=value1
 key=value
 
 [section3]
 key=value
 
-Matched 10 lines(10.00%) in 1 files(100%)
-Return-Value = 10 : msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
+Matched 11 lines(11.00%) in 1 files(100%)
+Return-Value = 11 : msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
 
 msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
-sample-file.txt:134: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 2012-12-27 00:01:01.111 second line time at 1
 2012-12-27 00:03:03.333 third  line time at 3
 2012-12-27 00:04:04.444 forth  line time at 4
@@ -1478,11 +1478,11 @@ section 6 line 1
 --------------------section8
 --------------------section9
 line 9.1
-Matched 133 lines(99.25%) in 1 files(100%)
-Return-Value = 133 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
+Matched 134 lines(100%) in 1 files(100%)
+Return-Value = 134 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
 
 msr -c -p sample-file.txt -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101 
-sample-file.txt:101: 
+sample-file.txt:88: 
 --- arbitrary block to match replace  ----------value2
 
 [section2]
@@ -1493,11 +1493,11 @@ key=value
 key=value
 
 [section4]
-Matched 13 lines(12.87%) in 1 files(100%)
-Return-Value = 13 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101 
+Matched 14 lines(13.86%) in 1 files(100%)
+Return-Value = 14 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?(value2)" -o "$1" -L 88 -N 101 
 
 msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101 
-sample-file.txt:101: 
+sample-file.txt:88: 
 --- arbitrary block to match replace  ----------
 value2
 
@@ -1509,11 +1509,11 @@ key=value
 key=value
 
 [section4]
-Matched 13 lines(12.87%) in 1 files(100%)
-Return-Value = 13 : msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101 
+Matched 14 lines(13.86%) in 1 files(100%)
+Return-Value = 14 : msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1" -L 88 -N 101 
 
 msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101 
-sample-file.txt:101: --- arbitrary block to match replace  ----------
+sample-file.txt:89: --- arbitrary block to match replace  ----------
 value2
 
 [section2]
@@ -1524,8 +1524,8 @@ key=value
 key=value
 
 [section4]
-Matched 12 lines(11.88%) in 1 files(100%)
-Return-Value = 12 : msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101 
+Matched 13 lines(12.87%) in 1 files(100%)
+Return-Value = 13 : msr -c -p sample-file.txt -S -it "\[section1.*?(value2)" -o "$1"  -b "arbitrary block" -N 101 
 
 msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o "" 
 sample-file.txt:90: 
@@ -1606,13 +1606,13 @@ Matched 1 blocks(33.33%) with 4 lines(4.00%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[|\s*$" -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1" 
 
 msr -c -p sample-file.txt -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1" 
-sample-file.txt:93: value2
+sample-file.txt:90: value2
 
-Matched 3 lines(3.23%) in 1 files(100%)
-Return-Value = 3 : msr -c -p sample-file.txt -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1" 
+Matched 4 lines(4.30%) in 1 files(100%)
+Return-Value = 4 : msr -c -p sample-file.txt -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1" 
 
 msr -c -p sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1" 
-sample-file.txt:100: value2
+sample-file.txt:90: value2
 
 [section2]
 key1=value1
@@ -1621,8 +1621,219 @@ key=value
 [section3]
 key=value
 
-Matched 10 lines(10.00%) in 1 files(100%)
-Return-Value = 10 : msr -c -p sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1" 
+Matched 11 lines(11.00%) in 1 files(100%)
+Return-Value = 11 : msr -c -p sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" 
+.\sample-block.json:5:     "settings.debug": {
+.\sample-block.json:6:         "type": "boolean",
+.\sample-block.json:7:         "default": false,
+.\sample-block.json:8:         "description": "Print debug info."
+.\sample-block.json:9:     },
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 2 blocks(100%) with 9 lines(60.00%) in 1 files(100%)
+Return-Value = 2 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -a 
+.\sample-block.json:5:     "settings.debug": {
+.\sample-block.json:6:         "type": "boolean",
+.\sample-block.json:7:         "default": false,
+.\sample-block.json:8:         "description": "Print debug info."
+.\sample-block.json:9:     },
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 2 blocks(100%) with 9 lines(60.00%) in 1 files(100%)
+Return-Value = 2 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -a 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nx "\"type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type" -a 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nx "\"type" -a 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" -a 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" --nx "\"type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type" -a 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" --nx "\"type" -a 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nx "\"type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type" -a -t default 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "Debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Matched 1 blocks(50.00%) with 1 lines(6.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" --nx "\"type" -a -t default 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a -t default -x Debug -o debug -j 
+.\sample-block.json:10:     "settings.skipFolders": {
+.\sample-block.json:11:         "default": "debug|bin|Relase",
+.\sample-block.json:12:         "description": "Default Regex pattern to skip folders."
+.\sample-block.json:13:     }
+Replaced 1 blocks(50.00%) with 1 lines(6.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" -a -t default -x Debug -o debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a -t default -x Debug -o Debug -j 
+Replaced 0 blocks with 0 lines in 0 files
+Return-Value = 0 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" --nt "\s*\"type" -a -t default -x Debug -o Debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -a 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -a -t default 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default -x Debug -o debug -j 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Replaced 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -a -t default -x Debug -o debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default -x Debug -o Debug -j 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Replaced 0 blocks with 0 lines in 0 files
+Return-Value = 0 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -a -t default -x Debug -o Debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t default 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default -x Debug -o debug -j 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "default": "debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Replaced 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t default -x Debug -o debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default -x Debug -o Debug -j 
+Replaced 0 blocks with 0 lines in 0 files
+Return-Value = 0 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t default -x Debug -o Debug -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "^(\s*\"settings.*?\{[^\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3" 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "type": "string",
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t "(\s*\"settings.*?\{[\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "^(\s*\"settings.*?\{[^\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3" -j 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "type": "string",
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+Replaced 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t "(\s*\"settings.*?\{[\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3" -j 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "[\r\n]+\s*\"default[^\r\n]*" -o "" 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "description": "Default Regex pattern to skip folders."
+    }
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t "[\r\n]+\s*\"default[\r\n]*" -o "" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t ".*" -o "" 
+.\sample-block.json:10: 
+Matched 1 blocks(50.00%) with 4 lines(26.67%) in 1 files(100%)
+Return-Value = 1 : msr -c -p .\sample-block.json -b "\s*\"settings.*?\{" -Q "\s*\}\s*,?\s*$" -S --nt "\s*.type" -t ".*" -o "" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.skip.*?\{" -q "skip folders" -S -t "[\r\n]+\s*\"default[^\r\n]*" -o "" 
+.\sample-block.json:10:     "settings.skipFolders": {
+        "description": "Default Regex pattern to skip folders."
+Matched 3 lines(25.00%) in 1 files(100%)
+Return-Value = 3 : msr -c -p .\sample-block.json -b "\s*\"settings.skip.*?\{" -q "skip folders" -S -t "[\r\n]+\s*\"default[\r\n]*" -o "" 
+
+msr -c -p .\sample-block.json -b "^\s*\"settings.skip.*?\{" -q "skip folders" -S -t ".*" -o "" 
+.\sample-block.json:10: 
+Matched 3 lines(25.00%) in 1 files(100%)
+Return-Value = 3 : msr -c -p .\sample-block.json -b "\s*\"settings.skip.*?\{" -q "skip folders" -S -t ".*" -o "" 
 
 msr -c -p sample-file.txt -b "^\[" -Q "no-such-end" -t SECTION 
 Matched 0 blocks with 0 lines in 0 files
@@ -1646,15 +1857,15 @@ Matched 1 blocks(14.29%) with 4 lines(2.99%) in 1 files(100%)
 Return-Value = 1 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[|\s*$" -S -it "\s*\[section1.*" 
 
 msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
-sample-file.txt:100: [section2]
+sample-file.txt:90: [section2]
 key1=value1
 key=value
 
 [section3]
 key=value
 
-Matched 10 lines(10.00%) in 1 files(100%)
-Return-Value = 10 : msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
+Matched 11 lines(11.00%) in 1 files(100%)
+Return-Value = 11 : msr -c -p sample-file.txt -S -L 90 -N 100 -it "\s*\[section1.*?value2\s*" -o "" 
 
 msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section1.*" -o "" 
 sample-file.txt:90: 
@@ -1673,7 +1884,7 @@ Matched 7 blocks(100%) with 22 lines(16.42%) in 1 files(100%)
 Return-Value = 7 : msr -c -p sample-file.txt -b "\s*\[" -Q "\s*\[|\s*$" -S -it "\s*\[section.*" -o "" 
 
 msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
-sample-file.txt:134: 2012-12-27 00:02:02.222 first  line time at 2
+sample-file.txt:1: 2012-12-27 00:02:02.222 first  line time at 2
 2012-12-27 00:01:01.111 second line time at 1
 2012-12-27 00:03:03.333 third  line time at 3
 2012-12-27 00:04:04.444 forth  line time at 4
@@ -1803,8 +2014,8 @@ section 6 line 1
 --------------------section8
 --------------------section9
 line 9.1
-Matched 133 lines(99.25%) in 1 files(100%)
-Return-Value = 133 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
+Matched 134 lines(100%) in 1 files(100%)
+Return-Value = 134 : msr -c -p sample-file.txt -S -it "\s*\[section1.*?value2" -o "" 
 
 msr -c -p sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -S -it "^\s*\[section.*" -o "" 
 sample-file.txt:90: 
@@ -1950,24 +2161,24 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 </Tag>
 
 
-.\base-test-only-output-replaced-lines.log:68: Replaced 1 lines(0.44%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:214: Replaced 1 lines(0.44%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:265: Replaced 2 lines(0.88%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:68: Replaced 1 lines(0.40%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:214: Replaced 1 lines(0.40%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:265: Replaced 2 lines(0.79%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:19: Replaced 4 lines(2.99%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:883: Replaced 4 lines(2.99%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:639: Replaced 3 lines(3.23%) in 1 files(100%)
-.\base-windows-file-test.log:1928: Replaced 1 lines(7.14%) in 1 files(100%)
-.\base-windows-file-test.log:1932: Replaced 1 lines(7.14%) in 1 files(100%)
-.\base-windows-file-test.log:1936: Replaced 1 lines(7.14%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:157: Replaced 19 lines(8.41%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:403: Replaced 10 lines(10.00%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:652: Replaced 10 lines(10.00%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:668: Replaced 10 lines(10.00%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:139: Replaced 24 lines(10.62%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:152: Replaced 24 lines(10.62%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:177: Replaced 24 lines(10.62%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:190: Replaced 24 lines(10.62%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:203: Replaced 24 lines(10.62%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:583: Replaced 12 lines(11.88%) in 1 files(100%)
-.\base-test-only-output-replaced-lines.log:552: Replaced 13 lines(12.87%) in 1 files(100%)
-Matched 46 lines(0.62%) in 2 files(20.00%)
+.\base-test-only-output-replaced-lines.log:915: Replaced 4 lines(2.99%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:639: Replaced 4 lines(4.30%) in 1 files(100%)
+.\base-windows-file-test.log:2139: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-windows-file-test.log:2143: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-windows-file-test.log:2147: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:157: Replaced 19 lines(7.54%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:139: Replaced 24 lines(9.52%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:152: Replaced 24 lines(9.52%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:177: Replaced 24 lines(9.52%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:190: Replaced 24 lines(9.52%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:203: Replaced 24 lines(9.52%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:403: Replaced 11 lines(11.00%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:652: Replaced 11 lines(11.00%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:700: Replaced 11 lines(11.00%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:583: Replaced 13 lines(12.87%) in 1 files(100%)
+.\base-test-only-output-replaced-lines.log:113: Replaced 33 lines(13.10%) in 1 files(100%)
+Matched 57 lines(0.70%) in 2 files(20.00%)

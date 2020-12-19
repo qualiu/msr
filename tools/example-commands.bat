@@ -147,7 +147,33 @@ msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 93 -S -it
 msr -c -p %~dp0\sample-file.txt -b "^\s*\[" -Q "^\s*\[|^\s*$" -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
 msr -c -p %~dp0\sample-file.txt -L 90 -N 93 -S -it "\[section1.*?(value2)" -o "$1"
 msr -c -p %~dp0\sample-file.txt -L 90 -N 100 -S -it "\[section1.*?(value2)" -o "$1"
-
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -a
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type" -a
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type" -a
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nx "\"type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" --nx "\"type" -a -t default
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a -t default -x Debug -o debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" --nt "^\s*\"type" -a -t default -x Debug -o Debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default -x Debug -o debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -a -t default -x Debug -o Debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default -x Debug -o debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t default -x Debug -o Debug -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "^(\s*\"settings.*?\{[^\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3"
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "^(\s*\"settings.*?\{[^\r\n]*)([\r\n]+)(\s*)" -o "\1\2\3\"type\": \"string\",\2\3" -j
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t "[\r\n]+\s*\"default[^\r\n]*" -o ""
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.*?\{" -Q "^\s*\}\s*,?\s*$" -S --nt "^\s*.type" -t ".*" -o ""
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.skip.*?\{" -q "skip folders" -S -t "[\r\n]+\s*\"default[^\r\n]*" -o ""
+msr -c -p %~dp0\sample-block.json -b "^\s*\"settings.skip.*?\{" -q "skip folders" -S -t ".*" -o ""
 :: Block matching: stop pipe test
 
 copy /y %~dp0\sample-file.txt %~dp0\original-sample.txt

@@ -93,15 +93,15 @@ Run-Command15[15] = msr -p . -l -f \.txt$ --sz --wt -H -2 -T 2
 Matched 7 files
 Return-Value15[15] = 7 : msr -p . -l -f \.txt$ --sz --wt -H -2 -T 2
 
-Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 105 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
+Total executed lines = 15, non-zero-return-count = 15, return-zero-count = 0, positive-return-count = 15, negative-return-count = 0, positive-return-sum = 105, negative-return-sum = 0, exceptions = 0. Matched 15 lines(100%) from stdin
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 6
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
@@ -110,8 +110,8 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 7
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
@@ -120,7 +120,7 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -1
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 6 files
 
  
@@ -129,8 +129,8 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 4
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
@@ -139,8 +139,8 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 5
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
@@ -163,16 +163,16 @@ Matched 6 files
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 4
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 5
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
-5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
-6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
+6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
 
  
@@ -275,4 +275,4 @@ Run-Command15[15] = msr -p . -l -f \.txt$  -H -2 -T 2
 Matched 7 files
 Return-Value15[15] = 7 : msr -p . -l -f \.txt$  -H -2 -T 2
 
-Total executed lines = 15 , non-zero-return-count = 15 , return-zero-count = 0 , positive-return-count = 15 , negative-return-count = 0 , positive-return-sum = 105 , negative-return-sum = 0 , exceptions = 0 . Matched 15 lines(100%) from stdin
+Total executed lines = 15, non-zero-return-count = 15, return-zero-count = 0, positive-return-count = 15, negative-return-count = 0, positive-return-sum = 105, negative-return-sum = 0, exceptions = 0. Matched 15 lines(100%) from stdin

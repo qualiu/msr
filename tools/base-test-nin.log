@@ -748,4 +748,4 @@ Run-Command100[100] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
 Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
 Return-Value100[100] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
 
-Total executed lines = 100 , non-zero-return-count = 99 , return-zero-count = 1 , positive-return-count = 99 , negative-return-count = 0 , positive-return-sum = 455 , negative-return-sum = 0 , exceptions = 0 . Matched 100 lines(100%) from stdin
+Total executed lines = 100, non-zero-return-count = 99, return-zero-count = 1, positive-return-count = 99, negative-return-count = 0, positive-return-sum = 455, negative-return-sum = 0, exceptions = 0. Matched 100 lines(100%) from stdin

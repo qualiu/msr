@@ -1,0 +1,14 @@
+{
+    "test": {
+        "description": "Replace block test."
+    },
+    "settings.debug": {
+        "type": "boolean",
+        "default": false,
+        "description": "Print debug info."
+    },
+    "settings.skipFolders": {
+        "default": "Debug|bin|Relase",
+        "description": "Default Regex pattern to skip folders."
+    }
+}

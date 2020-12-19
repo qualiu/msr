@@ -94,7 +94,7 @@ if %TestMode% EQU 0 (
     popd & exit /b 0
 )
 
-set /a TestGroupNumber+=1 & echo. & echo.
+set /a TestGroupNumber+=1
 echo ################## %TestGroupNumber%-%TestGroupCount%: Test dots paths ##################  | %MSR_EXE% -PA -e .+
 if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup% (
     if not exist %~dp0test-dots-path.tmp\dots\deep md %~dp0test-dots-path.tmp\dots\deep
@@ -149,9 +149,9 @@ set /a TestGroupNumber+=1 & echo. & echo.
 echo ################## %TestGroupNumber%-%TestGroupCount%: Test output only replaced ##################  | %MSR_EXE% -PA -e .+
 if %TestGroupNumber% GEQ %BeginTestGroup% if %TestGroupNumber% LEQ %EndTestGroup% (
     set onlyOuputReplacedTestLog=test-only-output-replaced-lines.log
-    echo %MSR_EXE% -p example-commands.bat -t "^msr -c (.+\s+-o\s+)" --nt "\s+-R" -o "%MSR_EXE% -c -j $1" -PAC ^| %MSR_EXE% -x %%~dp0 -o . -a -X ^> !onlyOuputReplacedTestLog!
-    %MSR_EXE% -p example-commands.bat -t "^msr -c (.+\s+-o\s+)" --nt "\s+-R" -o "%MSR_EXE% -c -j $1" -PAC | %MSR_EXE% -x %%~dp0 -o . -a -X > !onlyOuputReplacedTestLog!
-
+    echo %MSR_EXE% -p example-commands.bat -t "^msr -c (.+\s+-o\s+)" --nt "\s+-R| -j\b" -o "%MSR_EXE% -c -j $1" -PAC ^| %MSR_EXE% -x %%~dp0 -o . -a -X ^> !onlyOuputReplacedTestLog!
+    %MSR_EXE% -p example-commands.bat -t "^msr -c (.+\s+-o\s+)" --nt "\s+-R| -j\b" -o "%MSR_EXE% -c -j $1" -PAC | %MSR_EXE% -x %%~dp0 -o . -a -X > !onlyOuputReplacedTestLog!
+    %MSR_EXE% -p example-commands.bat --nt " -R\b" -t "^msr -c -p \S*(sample-block.json)" -o "type \1 | %MSR_EXE%" -X >> !onlyOuputReplacedTestLog!
     call :Compare_Title_Base_TestLog "%TestGroupNumber%-%TestGroupCount%: Test output only replaced" %ThisDir%\base-!onlyOuputReplacedTestLog! %ThisDir%\!onlyOuputReplacedTestLog!
     if !ERRORLEVEL! NEQ 0 (
         set /a failedGroups+=1
