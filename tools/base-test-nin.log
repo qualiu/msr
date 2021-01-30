@@ -319,16 +319,14 @@ Return-Value100[58] = 3 : nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H -1 -
 Run-Command100[59] = nin tmp-nin-duplicated.txt nul -iu -H 2 -J -I
 Line 3
 Line 5
-Got 3 unique lines ONLY in tmp-nin-duplicated.txt (75.00%/75.00%) NOT in nul , read 4 rows = 4 rows in tmp-nin-duplicated.txt (unique-lines = 3 = 75.00% , duplicate = 1 = 25.00%) + 0 rows in nul . Jumped out. 
-Return-Value100[59] = 3 : nin tmp-nin-duplicated.txt nul -iu -H 2 -J -I
+Got 2 unique lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul , read 2 rows = 2 rows in tmp-nin-duplicated.txt (unique-lines = 2 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[59] = 2 : nin tmp-nin-duplicated.txt nul -iu -H 2 -J -I
 
 Run-Command100[60] = nin tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
 Line 3
 Line 5
-Line 6
-Line 7
-Got 4 unique lines ONLY in tmp-nin-duplicated.txt (80.00%/80.00%) NOT in nul , read 5 rows = 5 rows in tmp-nin-duplicated.txt (unique-lines = 4 = 80.00% , duplicate = 1 = 20.00%) + 0 rows in nul . 
-Return-Value100[60] = 4 : nin tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
+Got 2 unique lines ONLY in tmp-nin-duplicated.txt (100%/100%) NOT in nul , read 2 rows = 2 rows in tmp-nin-duplicated.txt (unique-lines = 2 = 100%) + 0 rows in nul . Jumped out. 
+Return-Value100[60] = 2 : nin tmp-nin-duplicated.txt nul -iu -H 2 -T 2 -J -I
 
 Run-Command100[61] = nin tmp-nin-duplicated.txt nul "(\d+)" -p -k 1 -H 2 -J -I
 1(20.00%): 3
@@ -748,4 +746,4 @@ Run-Command100[100] = nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
 Got 3 unique keys captured ONLY in sort-nin-test.txt (21.43%/21.43%) NOT in nul , read 14 rows = 14 rows in sort-nin-test.txt (unique-keys = 3 = 21.43% , not-captured = 11 = 78.57% , captured = 3 = 21.43%) + 0 rows in nul . 
 Return-Value100[100] = 3 : nin sort-nin-test.txt nul "\b([lmn]\w+)$" -p -I
 
-Total executed lines = 100, non-zero-return-count = 99, return-zero-count = 1, positive-return-count = 99, negative-return-count = 0, positive-return-sum = 455, negative-return-sum = 0, exceptions = 0. Matched 100 lines(100%) from stdin
+Total executed lines = 100, non-zero-return-count = 99, return-zero-count = 1, positive-return-count = 99, negative-return-count = 0, positive-return-sum = 452, negative-return-sum = 0, exceptions = 0. Matched 100 lines(100%) from stdin
