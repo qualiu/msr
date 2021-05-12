@@ -169,7 +169,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -N [ --row-end ] arg        End row number of reading/matching/replacing each file or pipe.
   -b [ --start-block ] arg    Regex pattern to begin matching text; If with -Q this will be the block begin pattern for each block.
   -q [ --stop-at-once ] arg   Regex pattern to stop reading/matching/replacing each file or pipe.
-  -Q [ --stop-block ] arg     Regex pattern of a block end (must have set -b); Can set to "" if same with -b. Add -Y if reuse it as next block begin.
+  -Q [ --stop-block ] arg     Regex pattern of a block end (must have set -b); Can set to "" if same with -b. Add -y if reuse it as next block begin.
   -y [ --reuse-block-end ]    Reuse a matched block end as next block begin (For cases of a line matched by -Q as next block begin for -b).
   -X [ --execute-out-lines ]  Execute each final output line as a command. Will show command -> run -> show return value, if no: -P -I -A.
   -V [ --stop-execute ] arg   Quit if an executed command return value matches Regex(like: "-\d+") or Math(like: ">=0", ge0, "!=0", ne0, eq-1, lt0, gt0).
