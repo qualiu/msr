@@ -37,7 +37,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
   - **Normal search**: msr -r -p `"path1,pathN"` -i -t `"Regex-pattern"` -x `"and-plain-text"` [Optional-Args](#optional-args)
   - **Advanced search**: [**code mining**](https://github.com/qualiu/vscode-msr#code-mining-without-or-with-little-knowledge) with the [cooked `doskeys`/`alias`](https://github.com/qualiu/vscode-msr#command-shortcuts) in `CMD`/`Bash` console or VSCode terminals.
 - **Replace**: (You can use both `-x` and `-t`)
-  - **Prereview changes**: msr -r -p `path1,pathN` -t `"Regex-pattern"` -o `"replace-to"` **-j** [Optional-Args](#optional-args)
+  - **Preview changes**: msr -r -p `path1,pathN` -t `"Regex-pattern"` -o `"replace-to"` **-j** [Optional-Args](#optional-args)
   - **Replace files**: msr -r -p `path1,pathN` -t `"Regex-pattern"` -o `"replace-to"` **-R** [Optional-Args](#optional-args)
 - Use [optional args](#optional-args) like **-P -A -C** or **-PAC** or **-PIC** to get pure result as same as other tools like `grep`/`findstr`.
 - All options are **optional** and **no order** and **effective meanwhile**; Free with **abbreviations** or **full-names** (like **-i** = `--ignore-case`).
@@ -45,7 +45,9 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 ## Usage + Examples + Color-Text-Screenshots
 
 - Just run `msr --help` or `msr -h` or `msr` (same for `nin`) to see usage and examples, **brief quick start** at the [**bottom of output**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html).
-- For **msr** : See [**Scenario Glance**](https://github.com/qualiu/msr/blob/master/README.md#scenario-glance) + [Brief Summary of msr EXE](https://github.com/qualiu/msr/blob/master/README.md#brief-summary-of-msr-exe) at the bottom of running `"msr -h"`.
+- For **msr**: 
+  - See [**Scenario Glance**](https://github.com/qualiu/msr/blob/master/README.md#scenario-glance) + [Brief Summary of msr EXE](https://github.com/qualiu/msr/blob/master/README.md#brief-summary-of-msr-exe) at the bottom of running `"msr -h"`.
+  - See **additional UI helper**: [**msrUI**](https://github.com/qualiu/msrUI) to auto show usage + example + command line.
 - For **msr** + **nin**: Also can see [tools/readme.txt](https://raw.githubusercontent.com/qualiu/msr/master/tools/readme.txt)
 - **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 
@@ -77,8 +79,8 @@ You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of usin
 
 **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 
-- [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html) (run `git clean -dfx` before re-run test if test failed)
-- [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html)
+- [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html) (run `git clean -dfx` before re-run test if test failed).
+- [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html).
 
 ### Powerful
 
