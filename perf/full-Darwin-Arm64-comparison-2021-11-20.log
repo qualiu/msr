@@ -1,0 +1,83 @@
+# Case-1: Both found
+2021-11-20 11:46:18 : Plain text finding: Exception : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 11.355578 s, from 2021-11-20 11:46:18.830099 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 1.097646 s, from 2021-11-20 11:46:30.188553 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Exception
+
+2021-11-20 11:46:31 : Plain ignore case: Exception : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 19.540685 s, from 2021-11-20 11:46:31.293144 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 1.973477 s, from 2021-11-20 11:46:50.836746 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Exception
+
+2021-11-20 11:46:52 : Regex text finding: Error.*found : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = Error.*found
+Matched 143 lines from stdin, read 143 lines 618.64 KB. Used 19.028755 s, from 2021-11-20 11:46:52.818590 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : 'Error.*found'
+Matched 143 lines from stdin, read 143 lines 618.50 KB. Used 1.955054 s, from 2021-11-20 11:47:11.850232 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : 'Error.*found'
+
+2021-11-20 11:47:13 : Regex ignore case: Error.*found : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = Error.*found
+Matched 143 lines from stdin, read 143 lines 618.64 KB. Used 27.772772 s, from 2021-11-20 11:47:13.812508 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : 'Error.*found'
+Matched 143 lines from stdin, read 143 lines 618.50 KB. Used 4.137562 s, from 2021-11-20 11:47:41.589005 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : 'Error.*found'
+
+# Case-2: Both found, simpler regex
+2021-11-20 11:47:46 : Plain text finding: Exception : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 11.501196 s, from 2021-11-20 11:47:46.629145 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 1.101499 s, from 2021-11-20 11:47:58.133037 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Exception
+
+2021-11-20 11:47:59 : Plain ignore case: Exception : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 19.345572 s, from 2021-11-20 11:47:59.241283 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Exception
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 1.974064 s, from 2021-11-20 11:48:18.589544 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Exception
+
+2021-11-20 11:48:20 : Regex text finding: [0-9]*Exception[0-9]* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = [0-9]*Exception[0-9]*
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 42.296292 s, from 2021-11-20 11:48:20.570737 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : '[0-9]*Exception[0-9]*'
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 6.039505 s, from 2021-11-20 11:49:02.869761 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : '[0-9]*Exception[0-9]*'
+
+2021-11-20 11:49:08 : Regex ignore case: [0-9]*Exception[0-9]* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = [0-9]*Exception[0-9]*
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 53.852839 s, from 2021-11-20 11:49:08.917501 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : '[0-9]*Exception[0-9]*'
+Matched 1032 lines from stdin, read 1032 lines 5.42 MB. Used 10.172055 s, from 2021-11-20 11:50:02.773109 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : '[0-9]*Exception[0-9]*'
+
+# Case-3: Not found, partial matched both
+2021-11-20 11:50:13 : Plain text finding: ExceptionX : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = ExceptionX
+Matched 0 lines from stdin, read 0 lines 0 B. Used 11.507619 s, from 2021-11-20 11:50:13.718658 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : ExceptionX
+Matched 0 lines from stdin, read 0 lines 0 B. Used 1.094433 s, from 2021-11-20 11:50:25.229029 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : ExceptionX
+
+2021-11-20 11:50:26 : Plain ignore case: ExceptionX : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = ExceptionX
+Matched 0 lines from stdin, read 0 lines 0 B. Used 19.588850 s, from 2021-11-20 11:50:26.330654 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : ExceptionX
+Matched 0 lines from stdin, read 0 lines 0 B. Used 1.979699 s, from 2021-11-20 11:50:45.922296 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : ExceptionX
+
+2021-11-20 11:50:47 : Regex text finding: [0-9]*ExceptionX[0-9]* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = [0-9]*ExceptionX[0-9]*
+Matched 0 lines from stdin, read 0 lines 0 B. Used 42.487531 s, from 2021-11-20 11:50:47.909873 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : '[0-9]*ExceptionX[0-9]*'
+Matched 0 lines from stdin, read 0 lines 0 B. Used 6.044650 s, from 2021-11-20 11:51:30.400297 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : '[0-9]*ExceptionX[0-9]*'
+
+2021-11-20 11:51:36 : Regex ignore case: [0-9]*ExceptionX[0-9]* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = [0-9]*ExceptionX[0-9]*
+Matched 0 lines from stdin, read 0 lines 0 B. Used 54.256813 s, from 2021-11-20 11:51:36.452168 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : '[0-9]*ExceptionX[0-9]*'
+Matched 0 lines from stdin, read 0 lines 0 B. Used 10.093526 s, from 2021-11-20 11:52:30.711727 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : '[0-9]*ExceptionX[0-9]*'
+
+# Case-4: Not found, not matched
+2021-11-20 11:52:41 : Plain text finding: Not-Exist : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain text finding by findstr / grep / msr ; To find = Not-Exist
+Matched 0 lines from stdin, read 0 lines 0 B. Used 3.501313 s, from 2021-11-20 11:52:41.656708 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Not-Exist
+Matched 0 lines from stdin, read 0 lines 0 B. Used 0.960403 s, from 2021-11-20 11:52:45.160657 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Not-Exist
+
+2021-11-20 11:52:46 : Plain ignore case: Not-Exist : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Plain ignore case by findstr / grep / msr ; To find = Not-Exist
+Matched 0 lines from stdin, read 0 lines 0 B. Used 19.476122 s, from 2021-11-20 11:52:46.127912 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : Not-Exist
+Matched 0 lines from stdin, read 0 lines 0 B. Used 1.787257 s, from 2021-11-20 11:53:05.609947 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : Not-Exist
+
+2021-11-20 11:53:07 : Regex text finding: Not-exist.* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex text finding by findstr / grep / msr ; To find = Not-exist.*
+Matched 0 lines from stdin, read 0 lines 0 B. Used 3.542084 s, from 2021-11-20 11:53:07.406794 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : 'Not-exist.*'
+Matched 0 lines from stdin, read 0 lines 0 B. Used 1.173454 s, from 2021-11-20 11:53:10.951541 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : 'Not-exist.*'
+
+2021-11-20 11:53:12 : Regex ignore case: Not-exist.* : Darwin 21.1.0 arm64 + 16 GM RAM + Apple M1 8 Cores
+Test file info : 3332543 lines 1.39 GB : Regex ignore case by findstr / grep / msr ; To find = Not-exist.*
+Matched 0 lines from stdin, read 0 lines 0 B. Used 19.518763 s, from 2021-11-20 11:53:12.132017 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read grep : 'Not-exist.*'
+Matched 0 lines from stdin, read 0 lines 0 B. Used 2.015972 s, from 2021-11-20 11:53:31.653510 +0800 CST. EXE = /usr/local/bin/msr ; Directory = /tmp/opengit/msr ; Command = /usr/local/bin/msr -l -c Read msr : 'Not-exist.*'

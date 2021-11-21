@@ -5,12 +5,15 @@
 #==================================================================
 
 ThisDir="$( cd "$( dirname "$0" )" && pwd )"
-SYS_TYPE=$(uname | sed 's/_.*//g' | awk '{print tolower($0)}')
+SYS_TYPE=$(uname -s | sed 's/_.*//g' | awk '{print tolower($0)}')
 
-sh $ThisDir/check-download-tools.sh
+which msr 2>/dev/null 1>&2
 if [ $? -ne 0 ]; then
-    echo "Failed to call $ThisDir/check-download-tools.sh" >&2
-    exit -1
+sh $ThisDir/check-download-tools.sh
+    if [ $? -ne 0 ]; then
+        echo "Failed to call $ThisDir/check-download-tools.sh" >&2
+        exit -1
+    fi
 fi
 
 msr -z "LostArg$1" -t "^LostArg(|-h|--help|/\?)$" > /dev/null
@@ -72,7 +75,7 @@ function ConvertTabTo4Spaces() {
     else
         msr ${msrOptions[@]} -p $PathToDo ${FileFilter[@]} -it "^(\s*)\t" -o '$1    ' -R -c Covert TAB to 4 spaces.
     fi
-    
+
     if (($? > 0)); then
         ConvertTabTo4Spaces
     fi

@@ -9,15 +9,30 @@ fi
 
 # For example of msr.gcc48, just replace the windows test command and execute them by -X
 Specified_Test_Number=$1
-
 ThisDir="$( cd "$( dirname "$0" )" && pwd )"
+function show_error() {
+    echo "$1" | GREP_COLOR='01;31' grep -E .+ --color=always 1>&2
+}
+
+function show_info() {
+    echo "$1" | GREP_COLOR='01;32' grep -E .+ --color=always
+}
+
+function show_warning() {
+    echo "$1" | GREP_COLOR='01;33' grep -E .+ --color=always
+}
+
+function exit_error() {
+    show_error "$1"
+    exit 1
+}
+
 cd "$(dirname $0)"
 cd $ThisDir
 msr=$(bash $ThisDir/get-exe-path.sh msr 1)
 nin=$(bash $ThisDir/get-exe-path.sh nin 1)
 if [ ! -f "$msr" ] || [ ! -f "$nin" ]; then
-    echo "Not found msr or nin as above." >&2
-    exit -1
+    exit_error "Not found msr or nin as above."
 fi
 
 alias msr=$msr
@@ -31,8 +46,11 @@ fi
 
 cp -ap sample-file.txt sample-test-restore.txt  >/dev/null
 unix2dos sample-test-restore.txt
-ExpectedTxtSize=$(du -sb sample-test-restore.txt | awk '{printf $1}')
-ExpectedJsonSize=$(du -sb sample-block-expected-result.json | awk '{printf $1}')
+
+duArgs="-sb"
+uname -s | grep -i Darwin >/dev/null && duArgs="-s"
+ExpectedTxtSize=$(du $duArgs sample-test-restore.txt | awk '{printf $1}')
+ExpectedJsonSize=$(du $duArgs sample-block-expected-result.json | awk '{printf $1}')
 
 export TestNumber=0
 Restore_Pattern_Text=$($msr -p replace-file-test.bat -it "^SET\s+Restore_Pattern_Text=(.+)" -o '$1' -PAC)
@@ -60,7 +78,7 @@ function Repro_Error_Replacing() {
     # Check and exit by file content , then by file size
     $nin sample-test.txt sample-test-restore.txt
 
-    restoredFileSize=$(du -sb sample-test-restore.txt | awk '{printf $1}')
+    restoredFileSize=$(du $duArgs sample-test-restore.txt | awk '{printf $1}')
     if (( $restoredFileSize != $ExpectedTxtSize )); then
         echo "sample-test-restore.txt size is $restoredFileSize not equal $ExpectedTxtSize of sample-file.txt" | $msr -aPA -t "((\d+)|\S+.txt)|\w+"
     fi
@@ -88,7 +106,7 @@ function Replace_And_Check() {
     $nin sample-file.txt sample-test-restore.txt -S -O || Repro_Error_Replacing $@ || exit -1
 
     unix2dos sample-test-restore.txt 2>/dev/null
-    restoredFileSize=$(du -sb sample-test-restore.txt | awk '{printf $1}')
+    restoredFileSize=$(du $duArgs sample-test-restore.txt | awk '{printf $1}')
     if [ "$restoredFileSize" -ne $ExpectedTxtSize ]; then
         echo Failed to validate: sample-test-restore.txt size = $restoredFileSize not $ExpectedTxtSize of sample-file.txt | $msr -aPA -t "((\d+)|\S+.txt)|\w+"
         Repro_Error_Replacing $@
@@ -98,7 +116,8 @@ function Replace_And_Check() {
 
 function Show_Json_Error() {
     echo Error test: $msr $@ | $msr -aPA -e "($msr.+)" -t "((Error test))"
-    echo Full retry: pushd $ThisDir AND cp -ap sample-block.json sample-block-test.json AND $msr $@ AND $nin sample-block-expected-result.json sample-block-test.json | $msr -aPA -x AND -o ";" -t "Full retry:" -e "(pushd.+)"
+    echo Full retry: pushd $ThisDir AND cp -ap sample-block.json sample-block-test.json AND $msr $@ AND $nin sample-block-expected-result.json sample-block-test.json \
+        | $msr -aPA -x AND -o ";" -t "Full retry:" -e "(pushd.+)"
     exit -1
 }
 
@@ -118,7 +137,7 @@ function Replace_Json_And_Check() {
     $nin sample-block-expected-result.json sample-block-test.json -S -O || Show_Json_Error $@ || exit -1
 
     unix2dos sample-block-test.json 2>/dev/null
-    restoredFileSize=$(du -sb sample-block-test.json | awk '{printf $1}')
+    restoredFileSize=$(du $duArgs sample-block-test.json | awk '{printf $1}')
     if [ "$restoredFileSize" -ne $ExpectedJsonSize ]; then
         echo sample-block-test.json = $restoredFileSize not equal $ExpectedJsonSize of sample-block-expected-result.json | $msr -aPA -t "((\d+)|\S+.txt)|\w+"
         Show_Json_Error $@
@@ -137,7 +156,7 @@ $msr -p replace-file-test.bat -t "^call :(?:Replace_Json_And_Check|Replace_And_C
     done
 
 if [ $? -eq 0 ]; then
-    echo Passed all tests in $0 | $msr -aPA -e "($0)|\w+"
+    show_info "Passed all tests in $0" # | $msr -aPA -e "($0)|\w+"
 fi
 
 rm sample-test-restore.txt sample-test.txt sample-block-test.json 2>/dev/null >/dev/null

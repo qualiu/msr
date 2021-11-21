@@ -4,7 +4,7 @@ cd "$(dirname $0)"
 
 msr=$(bash $ThisDir/get-exe-path.sh msr 1)
 if [ ! -f "$msr" ]; then
-    echo "Not found msr as above." >&2 ; 
+    echo "Not found msr as above." >&2 ;
     exit -1
 fi
 

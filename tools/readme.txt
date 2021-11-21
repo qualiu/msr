@@ -1,12 +1,12 @@
 Liberate & Digitize daily works by 2 exe: File Processing, Data Mining, Map-Reduce.
 https://github.com/qualiu/msr/
 
-Match/Search/Replace: msr.exe / msr.cygwin / msr.gcc**
+Match/Search/Replace: msr.exe / msr.cygwin / msr.gcc** / msr*.darwin
     Match/Search/Replace Lines/Blocks in Files/Pipe
     Filter/Load/Extract/Transform/Stats/*** Lines/Blocks in Files/Pipe.
     Execute** transformed/replaced result lines as command lines.
     
-Not-In-latter: nin.exe / nin.cygwin / nin.gcc**
+Not-In-latter: nin.exe / nin.cygwin / nin.gcc** / nin*.darwin
     Get `Unique` or `Raw` Exclusive/Mutual Line-Set or Key-Set.
     Stats + Get Distribution in Files/Pipe.
     Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
@@ -60,7 +60,7 @@ Example-1 uses regex capture1 to get new queries: only in daily-sample.txt but n
 Example-2/3 are same: get unique(-u) lines in file and show each percentage(-p) with order.
 
 Return value/Exit code(%ERRORLEVEL%) = matched line/key count in {first file/pipe} or {mutual intersection}.
-But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux which changed by shells like bash).
+But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux/MacOS which changed by shells like bash).
 All error messages will be output to stderr. You can redirect them to stdout by appending 2>&1 to your command line.
 
 Useful options: -H 20 -J, -H 0, -T 3, -k 30, -K 33.33, -T -1, -M, -S, -PAC, -i -u, -iuw, -iuwa, -ip, -ipa, -ipdw, -ium, iumw, -iwn, -im, -imw, -ipdPAC
@@ -69,7 +69,7 @@ Useful options: -H 20 -J, -H 0, -T 3, -k 30, -K 33.33, -T -1, -M, -S, -PAC, -i -
 -w -n : Skip lines/keys both matched in latter + first files/pipe, output other keys' lines + non-matched lines (like description/comments) in first.
 
 nin treats nul as same as /dev/null on Linux.
-One important feature: nin.exe does not change the original line order, even if used unique(-u), if no sorting (-p, -a/-d, etc.).
+One important feature: nin does not change the original line order, even if used unique(-u), if no sorting (-p, -a/-d, etc.).
 
 Frequent use cases as Quick-Start: Use -PAC or -PC to get pure output result.
 nin my.txt nul -u -i :      output unique lines in my.txt ignore case.
@@ -100,14 +100,11 @@ For example: Get unique paths insensitive case + Show only top duplicate paths +
 
 And search usage like: nin -h | msr -i -t return.*value  or  nin -hC | msr -it "Summary|Jump|Sort" -x out -U 2 -D2  or  nin | msr -ix switch -t Regex -e "latter|first" 
 
-As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora
-Aperiodic updates and docs: https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
+As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
+Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
 Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS\
-
-
-# msr.exe ------------------------------------------------
+	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\windows\
 Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of file and directory name) by LQM:
   -r [ --recursive ]          Recursively search files in descendant directories.
   -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 33.
@@ -151,11 +148,11 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --wt                        Sort file list by last write time (with -l). If used both --wt and --sz, order by prior then by latter.
   --w1 arg                    Lower bound of file write time, format like "2013-01-10T01:00:00", as a filter to list/find/replace files.
   --w2 arg                    Upper bound of file write time, format like "2013-01-10 12:30", as a filter to list/find/replace files.
-  --sz                        Sort file list by file size (with -l) and display with a unit like: B,KB,MB,GB,* etc.
-  --s1 arg                    Lower bound of file size, format like 100kb (No Space between number and unit, use B if no unit).
-  --s2 arg                    Upper bound of file size, format like 2.5M (No Space between number and unit, use B if no unit).
+  --sz                        Sort file list by file size (with -l) and display with a unit like: B,KB,MB,GB,TB,PB,EB etc.
+  --s1 arg                    Lower bound of file size, format like 100kb (No space between number and unit, use B if no unit).
+  --s2 arg                    Upper bound of file size, format like 2.5M (No space between number and unit, use B if no unit).
   -R [ --replace-file ]       Replace files, search text by -x/-t XXX , replace to -o XXX. Without this, just preview replacing.
-  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2020-12-27__14_46_08).
+  -K [ --backup ]             Backup files if replaced files content (Rename them by appending last write times like: --bak-2021-11-21__09_51_03).
   --force                     Force replacing BOM files. Default: only replace files of ANSI + UTF-8 no BOM + BOM header bytes = 0xEFBBBF.
   --not-warn-bom              Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
   -S [ --single-line ]        Single line Regex mode to match/replace (Treat as one line for each file/pipe/block).
@@ -183,7 +180,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -h [ --help ]               See usage and examples below. More detail: https://github.com/qualiu/msr
 
 Return value/Exit code(%ERRORLEVEL%) = matched/replaced count of lines/blocks/files in files or pipe.
-But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux which changed by shells like bash).
+But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux/MacOS which changed by shells like bash).
 If used -X(--execute-out-lines): Return value = matched-stop-count if has -V else non-zero-return-count or the only one command line return value.
 All error messages will be output to stderr. You can redirect them to stdout by appending 2>&1 to your command line.
 
@@ -270,12 +267,12 @@ Example-6: Multi-line regex mode (normal mode) replacing lines in each file and 
     msr -rp myApp\bin,myApp\scripts,D:\myApp\tools -f "\.(bat|cmd)$"  -it "^(\s*@?\s*echo)\s+off\b" -o "$1 on" -R -K 
 
 Example-7: Display current modified code files:
-    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2020-12-27 14:46:08" -PAC 2^>nul ') do @echo code file: %a
+    for /f %a in ('msr -l -f "\.(cs|java|cpp|cx*|hp*|py|scala)$" -rp "%CD%" --nd "^(debug|release)$"  --w1 "2021-11-21 09:51:03" -PAC 2^>nul ') do @echo code file: %a
 
 Example-8: Get 2 oldest and newest mp3 (4 files) which 3.0MB<=size<=9.9MB and show size unit, in current directory (Can omit -p . or -p %CD%)
     msr -l --wt -H 2 -T 2 -f "\.mp3$" --sz --s1 3.0MB --s2 9.9m
 
-Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2020-12-27 14:46:08.525823 +0800 CST = China Standard Time
+Example-9: Get precise time of now and set to %TimeNow-XXX% variable for latter commands: Now time = 2021-11-21 09:51:03.314459 +0800 CST = China Standard Time
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2" -PAC') do SET "TimeNowInSecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3" -PAC') do SET "TimeNowMillisecond=%a"
     for /f "tokens=*" %a in ('msr -hC ^| msr -t ".*Now time = (\d+\S+) (\d+[:\d]+)\.(\d{3})(\d*)\s+([-\+]\d+)?\s*(\w+)?.*" -o "\1 \2.\3\4" -PAC') do SET "TimeNowMicrosecond=%a"
@@ -349,8 +346,8 @@ For example: Get unique paths insensitive case + Show only top duplicate paths +
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -uipd -k 2
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
-As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora
-Aperiodic updates and docs: https://github.com/qualiu/msr , more tools/examples see: https://github.com/qualiu/msrTools
+As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
+Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
 Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS\
+	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\windows\

@@ -17,7 +17,7 @@ TestFileName=$(basename $1)
 PlainFinding=$2
 RegexFinding=$3
 
-FindStrPath="$(which findstr 2>/dev/null | egrep -ie '/findstr')"
+FindStrPath="$(which findstr 2>/dev/null | grep -i -E '/findstr')"
 
 TestTimes=$4
 if [ -z "$TestTimes" ]; then
@@ -32,6 +32,12 @@ if [ -z "$msr" ]; then
 fi
 
 function GetCPUCoresInfo() {
+    if [ -n "$(uname -s | grep -i '^Darwin')" ]; then
+        chipInfo=$(system_profiler SPHardwareDataType | $msr -it "^\s*Chip\s*:\s*(.+)" -o '\1' -PAC)
+        export CPUCoresInfo="$chipInfo $(sysctl -n hw.ncpu) Cores"
+        return
+    fi
+
     if [ -z "$FindStrPath" ]; then
         export CPUCoresInfo="$(nproc) Cores"
         return
@@ -51,7 +57,7 @@ function GetOSVersionBit() {
         OSName="$(cat /etc/os-release | $msr -it 'PRETTY_NAME=\"?([^\"]+).*' -o "\1" -PAC) "
     fi
 
-    export OSVersionBit="$OSName$(uname -mors)"
+    export OSVersionBit="$OSName$(uname -smr)"
 : '
     OSArchitecture=""
     SystemCaption=""
@@ -74,8 +80,14 @@ function GetOSVersionBit() {
 }
 
 function GetMemoryInfo() {
+    if [ -n "$(uname -s | grep -i '^Darwin')" ]; then
+        export MemoryInfo="$(($(sysctl -n hw.memsize) / 1024/1024/1024)) GM RAM"
+        return
+    fi
+
     if [ -z "$FindStrPath" ]; then
-        export MemoryInfo=$(vmstat -s -S M | $msr -t ".*?(\d+) M.* total memory.*" -o "\1 MB RAM" -PAC)
+        memoryBytes=$(vmstat -s -S B | $msr -t "^\s*(\d+).*total memory" -o "\1" -PAC)
+        export MemoryInfo="$(($memoryBytes / 1024/1024/1024)) GM RAM"
         return
     fi
 
@@ -113,14 +125,14 @@ function GetMemoryInfo() {
 function Compare_By_File_Pattern_3_Options() {
     #echo "args[$#] = $*"
     echo "$(date +'%F %T') : $1: $3 : $SystemInformation" | $msr -PA -e "(.+)" -it "(Plain|Regex|(?<=by : )\S+)|Test|small|(ignore\s*case)|(Windows|Cygwin\w*|Linux|Centos|Fedora|UBuntu)\w*\s*(\d+\w*)?"
-    echo "Test file info : $TestFileInfo : $1 by findstr / grep / $msr ; To find = $3" | $msr -t "(\d+\.\d+)" -e "(\d+)|\w+" -PA
+    echo "Test file info : $TestFileInfo : $1 by findstr / grep / msr ; To find = $3" | $msr -t "(\d+\.\d+)" -e "(\d+)|\w+" -PA
     for ((k=1; k <= $TestTimes; k++)); do
         #echo "Test[$k]-$TestTimes : $1 : $3 "
         if [ -n "$FindStrPath" ]; then
             findstr $4 "$3"    $2      | $msr -l -c Read  findstr : $3
         fi
         grep    $5 "$3"    $2      | $msr -l -c Read  grep : $3
-        $msr    $6 "$3" -p $2 -PAC | $msr -l -c Read  $msr : $3
+        $msr    $6 "$3" -p $2 -PAC | $msr -l -c Read  msr  : $3
     done
     echo
 }

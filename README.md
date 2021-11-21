@@ -4,31 +4,36 @@ Most time **Just 1 command line** to solve your daily text or file processing wo
 
 Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://marketplace.visualstudio.com/items?itemName=qualiu.vscode-msr) (source code: [here](https://github.com/qualiu/vscode-msr)) to help your coding work.
 
-#### **M**atch/**S**earch/**R**eplace: `msr.exe`/`msr-Win32.exe`/`msr.cygwin`/`msr.gcc**`/`msr-i386.gcc**`
+#### **M**atch/**S**earch/**R**eplace: on [Windows/MinGW/Cygwin + Ubuntu/CentOS/Fedora + Darwin](#msr-color-doc-on-windowslinux--download-command)
 
 - **Match/Search/Replace*** Lines/Blocks in Files/Pipe.
 - **Filter/Load/Extract/Transform/Stats/*** Lines/Blocks in Files/Pipe.
 - **Execute** transformed/replaced result lines as command lines.
 
-#### **N**ot-**IN**-latter: `nin.exe`/`nin-Win32.exe`/`nin.cygwin`/`nin.gcc**`/`nin-i386.gcc**`
+#### **N**ot-**IN**-latter: on [Windows/MinGW/Cygwin + Ubuntu/CentOS/Fedora + Darwin](#nin-color-doc-on-windowslinux--download-command)
 
 - Get `Unique` or `Raw` **Exclusive/Mutual** Line-Set or Key-Set;
 - **Stats** + **Get top distribution** in Files/Pipe.
 - Remove(Skip) Line-Set or Key-Set matched in latter file/pipe.
 
-# MSR Overview: [Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) or [Linux](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html)
+# MSR Overview: [Windows](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) or [Linux](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html) or [MacOS](https://qualiu.github.io/msr/usage-by-running/msr-Darwin-Arm64.html)
 
-### Performance Comparison [msr > findstr, msr ~ grep](https://github.com/qualiu/msr/tree/master/perf)
+### Performance Comparison: findstr + grep + msr
 
-| findstr + grep + msr on Windows                                                                                     | findstr + grep + msr on Cygwin                                                                                     | grep + msr on CentOS                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Cygwin-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md) |
+| Windows | MacOS | Linux |
+| ------- | ----- | ----- |
+| [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Windows-comparison-2019-08-11.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-full-Darwin-Arm64-comparison-2021-11-20.md) | [**Summary table**](https://github.com/qualiu/msr/blob/gh-pages/perf/summary-part-CentOS-comparison-2019-08-11.md) |
+| **2X**~**15X+** > findstr | **3X**~**10X+** > grep | **1.5~3X+** vs **1.5~3X+** |
 
-### **Vivid Colorful Demo/Examples** like [Windows screenshot](https://qualiu.github.io/msr/demo/windows-test.html)
+### Quickly Get msr/nin + Demo + Related Resources
 
-- Download all by command (Install [git](https://git-scm.com/downloads)) : **git clone** <https://github.com/qualiu/msr/>
-- If you've cloned it, run command in the folder: **git pull origin master** && **git reset --hard origin/master** (if conflicts).
-- Helpful scripts use **msr.exe** and **nin.exe** : <https://github.com/qualiu/msrTools> , and also *.bat files in [tools](https://github.com/qualiu/msr/tree/master/tools)
+- To quickly get msr/nin without slowly cloning + storing many files: 
+  - Method-1: Install a tiny extension [vscode-msr](https://marketplace.visualstudio.com/items?itemName=qualiu.vscode-msr) to **auto check + download** by system + terminal.
+  - Method-2: Manually **click the URLs** in [**msr download commands**](#msr-color-doc-on-windowslinux--download-command) or [**nin download commands**](#nin-color-doc-on-windowslinux--download-command).
+- To clone all files: 
+  - git clone https://github.com/qualiu/msr (run `git reset --hard origin/master` when pulling conflicts).
+- Preview functions: See HTML screenshots like [msr](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) or [nin](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html) or vivid colorful [**demo on Windows**](https://qualiu.github.io/msr/demo/windows-test.html).
+- Helpful **repos**: [**msrTools**](https://github.com/qualiu/msrTools)(like [psall.bat](https://github.com/qualiu/msrTools/blob/master/psall.bat) + [pskill.bat](https://github.com/qualiu/msrTools/blob/master/pskill.bat) + [Run-SQL.ps1](https://github.com/qualiu/msrTools/blob/master/SQL/Run-SQL.ps1)) + [**msrUI**](https://github.com/qualiu/msrUI) + **msr-nin** repo(if you're in Microsoft).
 
 ### Almost No Learning Cost
 
@@ -40,7 +45,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
   - **Preview changes**: msr -r -p `path1,pathN` -t `"Regex-pattern"` -o `"replace-to"` **-j** [Optional-Args](#optional-args)
   - **Replace files**: msr -r -p `path1,pathN` -t `"Regex-pattern"` -o `"replace-to"` **-R** [Optional-Args](#optional-args)
 - Use [optional args](#optional-args) like **-P -A -C** or **-PAC** or **-PIC** to get pure result as same as other tools like `grep`/`findstr`.
-- All options are **optional** and **no order** and **effective meanwhile**; Free with **abbreviations** or **full-names** (like **-i** = `--ignore-case`).
+- All options are **optional** + **no order** + **effective meanwhile**; Free with **abbreviations** or **full-names**(like **-i** = `--ignore-case`).
 
 ## Usage + Examples + Color-Text-Screenshots
 
@@ -55,36 +60,39 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 
 You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of using **`%SystemRoot%`** or **`/usr/bin/`** (you can also link msr to there).
 
-- [msr on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell command](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O msr.exe.tmp && `move /y msr.exe.tmp msr.exe`  && `icacls msr.exe /grant %USERNAME%:RX` && `copy msr.exe %SystemRoot%\`
+- [msr on **Windows** x86_64](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell command](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O `msr.exe.tmp` && `move /y msr.exe.tmp msr.exe`  && `icacls msr.exe /grant %USERNAME%:RX` && `move msr.exe %SystemRoot%\`
   - For 32-bit Windows: https://github.com/qualiu/msr/raw/master/tools/msr-Win32.exe
-- [msr on **Cygwin**](https://qualiu.github.io/msr/usage-by-running/msr-Cygwin.html)
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.cygwin -O msr.cygwin.tmp && `mv -f msr.cygwin.tmp msr.cygwin`  && `chmod +x msr.cygwin` && `cp msr.cygwin /usr/bin/msr`
-- [msr on **Fedora**](https://qualiu.github.io/msr/usage-by-running/msr-Fedora-25.html) + [**CentOS**](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html) + **WSL** + **Ubuntu**:
-  - wget https://github.com/qualiu/msr/raw/master/tools/msr.gcc48 -O msr.gcc48.tmp && `mv -f msr.gcc48.tmp msr.gcc48`  && `chmod +x msr.gcc48` && `sudo cp msr.gcc48 /usr/bin/msr`
+- [msr on **Darwin** Arm64](https://qualiu.github.io/msr/usage-by-running/msr-Darwin-Arm64.html) for **MacBook**:
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr-arm64.darwin -O `msr.tmp` && `mv -f msr.tmp msr` && `chmod +x msr` && `sudo mv msr /usr/local/bin/msr`
+- [msr on **CentOS** x86_64](https://qualiu.github.io/msr/usage-by-running/msr-CentOS-7.html) + [**Fedora**](https://qualiu.github.io/msr/usage-by-running/msr-Fedora-25.html) + **WSL** + **Ubuntu**:
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.gcc48 -O `msr.tmp` && `mv -f msr.tmp msr` && `chmod +x msr` && `sudo mv msr /usr/bin/msr`
   - For 32-bit Linux like [**32-bit CentOS**](https://qualiu.github.io/msr/usage-by-running/msr-i386-CentOS-32bit.html): Use https://github.com/qualiu/msr/raw/master/tools/msr-i386.gcc48
-
+- [msr on **Cygwin** x86_64](https://qualiu.github.io/msr/usage-by-running/msr-Cygwin.html) (one command + green [install-cygwin.bat](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat)):
+  - wget https://github.com/qualiu/msr/raw/master/tools/msr.cygwin -O `msr.tmp` && `mv -f msr.tmp msr`  && `chmod +x msr` && `mv msr /usr/bin/msr`
 ## NIN Color Doc on Windows/Linux + Download Command
 
-- [nin on **Windows**](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat))
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.exe -O nin.exe.tmp && `move /y nin.exe.tmp nin.exe`  && `icacls nin.exe /grant %USERNAME%:RX` && `copy nin.exe %SystemRoot%\`
+- [nin on **Windows** x86_64](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat))
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.exe -O `nin.exe.tmp` && `move /y nin.exe.tmp nin.exe` && `icacls nin.exe /grant %USERNAME%:RX` && `move nin.exe %SystemRoot%\`
   - For 32-bit Windows: https://github.com/qualiu/msr/raw/master/tools/nin-Win32.exe
-- [nin on **Cygwin**](https://qualiu.github.io/msr/usage-by-running/nin-Cygwin.html)
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.cygwin -O nin.cygwin.tmp && `mv -f nin.cygwin.tmp nin.cygwin`  && `chmod +x nin.cygwin` && `cp nin.cygwin /usr/bin/nin`
-- [nin on **Fedora**](https://qualiu.github.io/msr/usage-by-running/nin-Fedora-25.html) + [**CentOS**](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html) + **WSL** + **Ubuntu**:
-  - wget https://github.com/qualiu/msr/raw/master/tools/nin.gcc48 -O nin.gcc48.tmp && `mv -f nin.gcc48.tmp nin.gcc48`  && `chmod +x nin.gcc48` && `sudo cp nin.gcc48 /usr/bin/nin`
+- [nin on **Darwin** Arm64](https://qualiu.github.io/msr/usage-by-running/nin-Darwin-Arm64.html) for **MacBook**:
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin-arm64.darwin -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `sudo mv nin /usr/local/bin/nin`
+- [nin on **CentOS** x86_64](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html) + [**Fedora**](https://qualiu.github.io/msr/usage-by-running/nin-Fedora-25.html) + **WSL** + **Ubuntu**:
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.gcc48 -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `sudo mv nin /usr/bin/nin`
   - For 32-bit Linux like [**32-bit CentOS**](https://qualiu.github.io/msr/usage-by-running/nin-i386-CentOS-32bit.html): Use https://github.com/qualiu/msr/raw/master/tools/nin-i386.gcc48
+- [nin on **Cygwin** x86_64](https://qualiu.github.io/msr/usage-by-running/nin-Cygwin.html) (one command + green [install-cygwin.bat](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat)):
+  - wget https://github.com/qualiu/msr/raw/master/tools/nin.cygwin -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `mv nin /usr/bin/nin`
 
 ## Demo and Test Screenshots
 
 **Zoom out** following screenshots to **90% or smaller** if it's not tidy or comfortable.
 
-- [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html) (run `git clean -dfx` before re-run test if test failed).
+- [Windows vivid demo test](https://qualiu.github.io/msr/demo/windows-test.html) (run `git clean -dfx` before re-running test if test failed).
 - [Linux demo and test](https://qualiu.github.io/msr/demo/linux-test.html).
 
 ### Powerful
 
-- Single exe for multiple platforms: **Windows** + **Cygwin** + **WSL** + **Ubuntu/CentOS/Fedora**
+- Single exe for multiple platforms: **Windows** + **Cygwin** + **WSL** + **Ubuntu/CentOS/Fedora/Darwin**
 - Smart Loading files with 8 composable kinds of filters:
   - 5 pairs of file attribute filters:
     - File name patterns (**-f**/**--nf**)
