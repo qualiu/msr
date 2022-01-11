@@ -31,6 +31,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -O [ --out-not-0-sum ]       Output summary only if the results count is not 0.
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
   -P [ --no-percent ]          Not output percentages (Overwrite --percentage). (Overwrite --percentage).
+  --sum                        Sum accumulative counts and percentages(if used -p) for each key/line.
   --not-warn-bom               Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
   -H [ --head ] arg            Output top [N] rows of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
   -T [ --tail ] arg            Output bottom [N] rows of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
