@@ -13,30 +13,29 @@ ExeName=$1
 ShowPath=$2
 NotCheckSetExecutable=$3
 
+SYS_ARCH=$(uname -m | awk '{print tolower($0)}')
 SYS_TYPE=$(uname -s | sed 's/[_-].*//g' | awk '{print tolower($0)}')
+DEFAULT_SUFFIX="-$SYS_ARCH.$SYS_TYPE"
 
-# 1. find in current folder
-if [ -n "$(uname -s | grep -i Darwin)" ]; then
-    suffix="-$(uname -m).$SYS_TYPE"
-    exePath=$ThisDir/$ExeName$suffix
-elif [ -n "$(uname -s | grep -i '^Cygwin')" ]; then
-    exePath=$ThisDir/$ExeName.cygwin
-elif [ -n "$(uname -s | grep -i '^Linux')" ]; then
-    if [ -n "$(uname -m | grep 64)" ]; then
-        exePath=$(ls $ThisDir/$ExeName.gcc* | sort | head -n 1)
+if [ "$SYS_TYPE" == "darwin" ] || [ "$SYS_ARCH" == "aarch64" ]; then
+    toolSuffix=$DEFAULT_SUFFIX
+elif [ "$SYS_TYPE" == "linux" ]; then
+    if [ -n "$(echo "$SYS_ARCH" | grep -iE "i386|i686")" ]; then
+        toolSuffix=-i386.gcc48
     else
-        exePath=$(ls $ThisDir/$ExeName-i386.gcc* | sort | head -n 1)
+        toolSuffix=.gcc48
     fi
-elif [ -n "$(uname -s | grep -i -E '^MINGW')" ]; then
-    # exePath=$ThisDir/$ExeName.exe
-    echo "$0 : Not support MinGW test." | grep -E --color=always ".+" >&2
-    exit -1
+elif [ "$SYS_TYPE" == "cygwin" ]; then
+    toolSuffix=.cygwin
+elif [ -n "$(echo "$SYS_TYPE" | grep -iE "MinGW")" ]; then
+    toolSuffix=.exe
+    echo "WARNING: MinGW is not fully supported: $0" | grep -E --color=always ".+" >&2
 else
-    echo "$0 : Unknown system type: $(uname -a)" | grep -E --color=always ".+" >&2
+    exit_error "Unknow system type: $(uname -smr)"
     exit -1
 fi
 
-# 2. find in system or alias
+exePath=$ThisDir/$ExeName$toolSuffix
 if [ ! -f "$exePath" ]; then
     if [ -n "$(which $ExeName 2>/dev/null)" ]; then
         exePath=$(which $ExeName) # | sed -r 's/.*?:\s*(\S+).*/\1/')

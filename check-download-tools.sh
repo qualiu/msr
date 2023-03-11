@@ -22,15 +22,23 @@ function exit_error() {
     exit 1
 }
 
-SYS_ARCH=$(uname -m)
-SYS_TYPE=$(uname -s | sed 's/_.*//g' | awk '{print tolower($0)}')
+SYS_ARCH=$(uname -m | awk '{print tolower($0)}')
+SYS_TYPE=$(uname -s | sed 's/[_-].*//g' | awk '{print tolower($0)}')
+DEFAULT_SUFFIX="-$SYS_ARCH.$SYS_TYPE"
 
-if [ "$SYS_TYPE" == "darwin" ]; then
-    toolExtension="-$SYS_ARCH.$SYS_TYPE"
+if [ "$SYS_TYPE" == "darwin" ] || [ "$SYS_ARCH" == "aarch64" ]; then
+    toolSuffix=$DEFAULT_SUFFIX
 elif [ "$SYS_TYPE" == "linux" ]; then
-    toolExtension=.gcc48
+    if [ -n "$(echo "$SYS_ARCH" | grep -iE "i386|i686")" ]; then
+        toolSuffix=-i386.gcc48
+    else
+        toolSuffix=.gcc48
+    fi
 elif [ "$SYS_TYPE" == "cygwin" ]; then
-    toolExtension=.cygwin
+    toolSuffix=.cygwin
+elif [ -n "$(echo "$SYS_TYPE" | grep -iE "MinGW")" ]; then
+    toolSuffix=.exe
+    echo "WARNING: MinGW is not fully supported: $0" | grep -E --color=always ".+" >&2
 else
     exit_error "Unknow system type: $(uname -smr)"
     exit -1
@@ -45,11 +53,11 @@ check_tool() {
         return
     fi
 
-    toolPath=$ThisDir/$toolName$toolExtension
-    if [ ! -f $ThisDir/$toolName$toolExtension ]; then
-        wget "https://github.com/qualiu/msr/blob/master/tools/$toolName$toolExtension?raw=true" -O $toolPath.tmp \
-            && mv -f $toolExtension.tmp $toolExtension \
-        || exit_error "Failed to download $toolName$toolExtension"
+    toolPath=$ThisDir/$toolName$toolSuffix
+    if [ ! -f $ThisDir/$toolName$toolSuffix ]; then
+        wget "https://github.com/qualiu/msr/blob/master/tools/$toolName$toolSuffix?raw=true" -O $toolPath.tmp \
+            && mv -f $toolPath.tmp $toolPath \
+        || exit_error "Failed to download $toolName$toolSuffix"
     fi
 
     if [ ! -x $toolPath ]; then

@@ -105,50 +105,51 @@ As a portable cross platform tool, nin has been running on: Windows / MinGW / Cy
 Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
 Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\windows\
+	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS\
 Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of file and directory name) by LQM:
   -r [ --recursive ]          Recursively search files in descendant directories.
   -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 33.
   --timeout arg               Maximum waiting seconds to stop and exit. No limit if value <= 0. Default = 0.000 s.
   -p [ --path ] arg           Source paths (directories or files) to find/read: Use ',' or ';' to separate paths; Extra separator ':' for Linux.
-  -w [ --read-paths ] arg     Read source path lines from files: Use ',' or ';' to separate files; Extra separator ':' for Linux.
-  -f [ --file-match ] arg     Regex pattern for file name to search.
-  -t [ --text-match ] arg     Regex pattern for line text must match (Can use meanwhile: -t, -x, --nt, --nx, -e).
-  -x [ --has-text ] arg       Line must contain this normal/plain text (Can use meanwhile: -t, -x, --nt, --nx, -e).
-  --nx arg                    Line must not contain normal/plain text. Exclude/Skip rows.
-  --nt arg                    Regex pattern for lines must not match. Exclude/Skip rows.
-  --nf arg                    Regex pattern for file name must not match. Exclude/Skip files.
-  --pp arg                    Regex pattern for full file path must match. Support '/' on Windows.
-  --np arg                    Regex pattern for full file path must not match. Exclude/Skip paths. Support '/' on Windows.
-  --nd arg                    Regex pattern for file's parent directory name splits must no one matched. Exclude/Skip folders.
-  -d [ --dir-has ] arg        Regex pattern for file's parent directory name splits must have one name matched at least.
-  --xp arg                    Exclude/Skip full paths or sub-paths by plain text matching. Use ',' or ';' to separate. Support '/' on Windows.
-  --xd                        Exclude/Skip link directories.
+  -w [ --read-paths ] arg     Input files list to read 1+ lines of source paths(like -p): Use ',' or ';' to separate; Extra separator ':' for Linux.
+  -f [ --file-match ] arg     Regex pattern: File name with extension must match this.
+  -t [ --text-match ] arg     Regex pattern: Line text must match (Can use meanwhile: -t, -x, --nt, --nx, -e).
+  -x [ --has-text ] arg       Plain text: Lines must contain this text (Can use meanwhile: -t, -x, --nt, --nx, -e).
+  --nx arg                    Exclude/Skip rows by plain text: Line text must not include this text.
+  --nt arg                    Regex pattern: Exclude/Skip rows if line matches this regex.
+  --nf arg                    Regex pattern: Exclude/Skip files by file name (including extension).
+  --pp arg                    Regex pattern: Must match this regex for full path of files. Support '/' on Windows.
+  --np arg                    Regex pattern: Exclude/Skip files if full path matches this. Support '/' on Windows.
+  --nd arg                    Regex pattern: Exclude/Skip directories if find 1 sub-folder-name matches (skip inner files too).
+  -d [ --dir-has ] arg        Regex pattern: Must has 1+ sub-folder-name of a directory matches this (skip inner files if not).
+  --xp arg                    Plain text list: Exclude/Skip files if has 1+ text in file path. Use ',' or ';' to separate. Support '/' on Windows.
+  --sp arg                    Plain text list: Must find all texts in file path. Use ',' or ';' to separate. Support '/' on Windows.
+  --xd                        Exclude/Skip link directories/folders (skip inner files too).
   --xf                        Exclude/Skip link files.
   -G [ --read-once ]          Read once for link files (link folders must be or under input paths) which multiple paths link to one real path.
   -i [ --ignore-case ]        Ignore case of matching/replacing for -t/-x/-e . You can add to one of them like: -it/-ix/-ie .
-  -e [ --enhance ] arg        Regex pattern to color output, inferior to: -t -x -o (skip if matched by them).
+  -e [ --enhance ] arg        Regex pattern to color output, inferior to: -t -x -o (skip -e if matched by them for a text).
   -o [ --replace-to ] arg     Replace text from -x/-t XXX to -o XXX. If used both -x and -t: Use the closer one to '-o'; Or the left one if same.
   -j [ --out-replaced ]       Just output replaced lines by -o xxx (just show changed files + lines which is helpful to preview changes).
   -a [ --out-all ]            Output all lines including not matched; Or each whole block range if used -b and -Q.
   -W [ --out-full-path ]      Output full paths if input relative paths by -p or -w. This can avoid duplicates and trim extra slashes and dots.
   -A [ --no-any-info ]        Not output any info, no warnings no summary (if no errors), only pure result (Please always use -PAC or -PIC).
-  -I [ --no-extra ]           Not output extra info and warnings; Hide each return info for -X; Output summary to stderr(helpful for debug: -aPICc, -PICc).
+  -I [ --no-extra ]           Not output extra info + warnings(like BOM); Hide each return info for -X; Output summary to stderr(for debug: -aPICc, -PICc).
   -P [ --no-path-line ]       Not output path and line number at the head of each line. If used -X: Not show each command line before executing.
-  -M [ --no-summary ]         Not output summary info.
+  -M [ --no-summary ]         Not output summary info (at end). Use -A to hide when got errors. Use --not-warn-bom to hide summary for BOM.
   -O [ --out-if-did ]         Output summary info only if matched/replaced/found.
   -C [ --no-color ]           No color for output (it's better to not add color if have subsequent matching or processing).
   -Z [ --skip-last-empty ]    Skip last empty line in each file.
   -F [ --time-format ] arg    Regex pattern to grep time/key for -B and -E : Use captured group[0] or [1] like: "(\d{4}-\d+-\d+\D\d+:\d+:\d+([\.,]\d+)?)"
-  -B [ --time-begin ] arg     Begin time/key, format like "2013-01-10 11:00:00". Just text comparison NOT by time value (if -F XXX is a time pattern).
-  -E [ --time-end ] arg       End time/key, format like "2013-01-10 15:30". Just text comparison NOT by time value (if -F XXX is a time pattern).
+  -B [ --time-begin ] arg     Begin time/key as value of -F, like "2023-03-03 11:00:00". Just text comparison NOT by time value.
+  -E [ --time-end ] arg       End time/key as value of -F, like 2023-03-03T15:30. Just text comparison NOT by time value.
   -s [ --sort-by ] arg        Regex pattern to sort result lines by captured group[1] if has, else by group[0]. If set to "" will try groups from -t .
   -n [ --sort-as-number ]     If has used -s : Convert the captured group[1] (if has, else group[0]) of -s to number or decimal at first then sort by -s .
   --dsc                       Descending order for sorting of matching (-t/-x), list(-l with --wt --sz), sorting-key (-s), time (-F with -B -E), etc.
   -l [ --list-count ]         Only output matched file path list or matched count.
   --wt                        Sort file list by last write time (with -l). If used both --wt and --sz, order by prior then by latter.
-  --w1 arg                    Lower bound of file write time, format like "2013-01-10T01:00:00", as a filter to list/find/replace files.
-  --w2 arg                    Upper bound of file write time, format like "2013-01-10 12:30", as a filter to list/find/replace files.
+  --w1 arg                    File time begin, 2 formats, time or ago(day/h/m/second): '2023-03-03T12:00:00' or '3d'='now - 3days', '-3h'='now - 3hours'.
+  --w2 arg                    File time end, time or ago: '2023-03-03T12:30', '12:30'; or '3h'='begin + 3hours', '+1d'='begin + 1day', 'now+1d'='now + 1day'.
   --sz                        Sort file list by file size (with -l) and display with a unit like: B,KB,MB,GB,TB,PB,EB etc.
   --s1 arg                    Lower bound of file size, format like 100kb (No space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No space between number and unit, use B if no unit).
@@ -160,23 +161,26 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -g [ --replace-times ] arg  Maximum times to replace a line text with --replace-to. Use a big number or -1 to replace radically. Default = 1.
   -U [ --up ] arg             Output [N] rows above the matched line by -t or/and found by -x.
   -D [ --down ] arg           Output [N] rows below the matched line by -t or/and found by -x.
-  -H [ --head ] arg           Output top [N] rows of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
-  -T [ --tail ] arg           Output bottom [N] rows of whole output if N > 0; Skip bottom [N] lines if N < 0; [N] = 0 means not output.
-  -J [ --jump-out ]           Jump out (stop and exit) if has set -H [N] and already has outputted [N] lines.
+  -H [ --head ] arg           Output top [N] rows of whole output if [N] > 0; Skip top [N] lines if [N] < 0; [N] = 0 will not output result rows.
+  -T [ --tail ] arg           Output bottom [N] rows of whole output if [N] > 0; Skip bottom [N] lines if [N] < 0; [N] = 0 will not output result rows.
+  -J [ --jump-out ]           Jump out (stop and exit) if has set -H [N] and already output [N] lines.
   -L [ --row-begin ] arg      Begin row number of reading/matching/replacing each file or pipe.
-  -N [ --row-end ] arg        End row number of reading/matching/replacing each file or pipe.
-  -b [ --start-block ] arg    Regex pattern to begin matching text; If with -Q this will be the block begin pattern for each block.
+  -N [ --row-end ] arg        End row number. If input 0, end-row = 'begin-row'; If input '+[N]', end-row = 'begin-row + [N]'.
+  -b [ --start-block ] arg    Regex pattern of begin matching (skip lines above in files/pipe); If has -Q this will be the begin pattern for each block.
   -q [ --stop-at-once ] arg   Regex pattern to stop reading/matching/replacing each file or pipe.
   -Q [ --stop-block ] arg     Regex pattern of a block end (must have set -b); Can set to "" if same with -b. Add -y if reuse it as next block begin.
-  -y [ --reuse-block-end ]    Reuse a matched block end as next block begin (For cases of a line matched by -Q as next block begin for -b).
+  -y [ --reuse-block-end ]    Reuse -Q (a matched block end) as -b (next block begin): For cases of blocks can only be separated from beginning(-b).
+  --block arg                 Output specific matched blocks by block numbers(start from 1 of output), like: 1 or 1,2,3 or 1~3.
+  --sep-block arg             Output [N] empty lines between blocks as a separator. [N] = empty line count.
   -X [ --execute-out-lines ]  Execute each final output line as a command. Will show command -> run -> show return value, if no: -P -I -A.
   -V [ --stop-execute ] arg   Quit if an executed command return value matches Regex(like: "-\d+") or Math(like: ">=0", ge0, "!=0", ne0, eq-1, lt0, gt0).
-  -Y [ --not-from-pipe ]      Force reading from files other than pipe (To avoid reading pipe if running in another command and no reading paths set).
+  -Y [ --not-from-pipe ]      Force reading from files other than pipe (to avoid reading pipe if running in another command and no reading paths set).
   -z [ --string ] arg         Input a string and read from it (without reading files or pipe). You can also use it to learn/test Regex, or test input args.
+  --out-index                 Output index(column) of first match for each row text. If no -P, output will be: File-Path:{row}:{column}: {line-text}
   -m [ --show-count ]         Show matched count at the head of each output line.
-  -u [ --show-elapse ]        Show used time at the head of each output line.
+  -u [ --show-elapse ]        Show used time (in seconds) at the head of each output line.
   -v [ --show-time ] arg      Show time at each output line head: dt,dtm,dto (s = second, m = millisecond, o = microsecond; d = date, z = zone, t = offset).
-  -c [ --show-command ]       Show command line, and you can append text after -c for debug(like: -I -c), summary or further extraction.
+  -c [ --show-command ]       Show command line and info. You can append text after -c for debug(like: -I -c xxx) for further extraction.
   --verbose                   Show parsed arguments, return value, time zone and EXE path, content error rows, BOM info, link files' real paths, etc.
   -h [ --help ]               See usage and examples below. More detail: https://github.com/qualiu/msr
 
@@ -351,4 +355,4 @@ As a portable cross platform tool, msr has been running on: Windows / MinGW / Cy
 Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
 Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
-	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\windows\
+	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS\
