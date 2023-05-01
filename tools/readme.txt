@@ -30,7 +30,9 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -M [ --no-summary ]          Not output summary info.
   -O [ --out-not-0-sum ]       Output summary only if the results count is not 0.
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
-  -P [ --no-percent ]          Not output percentages (Overwrite --percentage). (Overwrite --percentage).
+  --keep-color                 Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
+  --to-stderr                  Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
+  -P [ --no-percent ]          Not output percentages (Overwrite --percentage).
   --sum                        Sum accumulative counts and percentages(if used -p) for each key/line.
   --not-warn-bom               Not output BOM warnings when reading BOM files which BOM header bytes != 0xEFBBBF.
   -H [ --head ] arg            Output top [N] rows of whole output if N > 0; Skip top [N] lines if N < 0; [N] = 0 means not output.
@@ -112,6 +114,8 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --timeout arg               Maximum waiting seconds to stop and exit. No limit if value <= 0. Default = 0.000 s.
   -p [ --path ] arg           Source paths (directories or files) to find/read: Use ',' or ';' to separate paths; Extra separator ':' for Linux.
   -w [ --read-paths ] arg     Input files list to read 1+ lines of source paths(like -p): Use ',' or ';' to separate; Extra separator ':' for Linux.
+  --no-check                  Not check/fix source paths. Case like reading(-w) source paths list file from 'git ls-files'.
+  -Z [ --skip-last-empty ]    Skip last empty line in each file.
   -f [ --file-match ] arg     Regex pattern: File name with extension must match this.
   -t [ --text-match ] arg     Regex pattern: Line text must match (Can use meanwhile: -t, -x, --nt, --nx, -e).
   -x [ --has-text ] arg       Plain text: Lines must contain this text (Can use meanwhile: -t, -x, --nt, --nx, -e).
@@ -139,7 +143,8 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -M [ --no-summary ]         Not output summary info (at end). Use -A to hide when got errors. Use --not-warn-bom to hide summary for BOM.
   -O [ --out-if-did ]         Output summary info only if matched/replaced/found.
   -C [ --no-color ]           No color for output (it's better to not add color if have subsequent matching or processing).
-  -Z [ --skip-last-empty ]    Skip last empty line in each file.
+  --keep-color                Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
+  --to-stderr                 Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
   -F [ --time-format ] arg    Regex pattern to grep time/key for -B and -E : Use captured group[0] or [1] like: "(\d{4}-\d+-\d+\D\d+:\d+:\d+([\.,]\d+)?)"
   -B [ --time-begin ] arg     Begin time/key as value of -F, like "2023-03-03 11:00:00". Just text comparison NOT by time value.
   -E [ --time-end ] arg       End time/key as value of -F, like 2023-03-03T15:30. Just text comparison NOT by time value.
@@ -148,8 +153,8 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   --dsc                       Descending order for sorting of matching (-t/-x), list(-l with --wt --sz), sorting-key (-s), time (-F with -B -E), etc.
   -l [ --list-count ]         Only output matched file path list or matched count.
   --wt                        Sort file list by last write time (with -l). If used both --wt and --sz, order by prior then by latter.
-  --w1 arg                    File time begin, 2 formats, time or ago(day/h/m/second): '2023-03-03T12:00:00' or '3d'='now - 3days', '-3h'='now - 3hours'.
-  --w2 arg                    File time end, time or ago: '2023-03-03T12:30', '12:30'; or '3h'='begin + 3hours', '+1d'='begin + 1day', 'now+1d'='now + 1day'.
+  --w1 arg                    File time begin, file or time or ago(d/h/m/s): 'add_1s_if_no_w2.md' or '2023-05-01T18:30' or '3h'='-3h' = 'now - 3hours'.
+  --w2 arg                    File time end, file or time or ago(d/h/m/s): 'range2.exe' or '18:30:01' or '1d'='+1d' = 'begin + 1day', 'now-1d' = 'now - 1day'.
   --sz                        Sort file list by file size (with -l) and display with a unit like: B,KB,MB,GB,TB,PB,EB etc.
   --s1 arg                    Lower bound of file size, format like 100kb (No space between number and unit, use B if no unit).
   --s2 arg                    Upper bound of file size, format like 2.5M (No space between number and unit, use B if no unit).
@@ -249,7 +254,7 @@ Detail instruction and examples(Quick-Start at the bottom is briefer):
     msr | msr -i -t sort -U 3 -D 3 -e time
     robocopy /? | msr -it mirror -U 3 -D 3 -e purge
 
-Additional feature: Directly read and match text by -z (--string instead of using echo command on Windows which must escape | to ^|  in for-loop)
+Additional feature: Directly read and match text by -z (--string instead of using echo command on Windows which must escape | to ^| in for-loop)
     Example: Finding non-exist paths in %PATH% and only check 3 head(top) + 3 tail(bottom) paths:
     msr -z "%PATH%;" -t "\s*;\s*" -o "\n" -PAC | msr -t .+ -o "if not exist \"$0\" echo NOT EXIST $0"  -PI -H 3 -T 3 -X
 
