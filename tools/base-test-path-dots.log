@@ -59,7 +59,7 @@ Run-Command60[9] = msr -c -l --sz -H 5 -T 5 -p ..\.. -f "\.(txt|cmd|bat)$" --nf 
  2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\windows-test.bat
@@ -72,7 +72,7 @@ Run-Command60[10] = msr -c -l --sz -H 5 -T 5 -p ..\.. -f "\.(txt|cmd|bat)$" --nf
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -85,7 +85,7 @@ Run-Command60[11] = msr -c -l --sz -H 5 -T 5 -p ..\..\ -f "\.(txt|cmd|bat)$" --n
  2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\windows-test.bat
@@ -98,7 +98,7 @@ Run-Command60[12] = msr -c -l --sz -H 5 -T 5 -p ..\..\ -f "\.(txt|cmd|bat)$" --n
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -111,7 +111,7 @@ Run-Command60[13] = msr -c -l --sz -H 5 -T 5 -p ..\..\. -f "\.(txt|cmd|bat)$" --
  2-15 :  Number-Unit  Bytes	..\..\.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\.\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\.\windows-test.bat
@@ -124,7 +124,7 @@ Run-Command60[14] = msr -c -l --sz -H 5 -T 5 -p ..\..\. -f "\.(txt|cmd|bat)$" --
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -165,7 +165,7 @@ Run-Command60[19] = msr -c -l --sz -H 5 -T 5 -p ../.. -f "\.(txt|cmd|bat)$" --nf
  2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\windows-test.bat
@@ -178,7 +178,7 @@ Run-Command60[20] = msr -c -l --sz -H 5 -T 5 -p ../.. -f "\.(txt|cmd|bat)$" --nf
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -191,7 +191,7 @@ Run-Command60[21] = msr -c -l --sz -H 5 -T 5 -p ../../ -f "\.(txt|cmd|bat)$" --n
  2-15 :  Number-Unit  Bytes	..\..\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\windows-test.bat
@@ -204,7 +204,7 @@ Run-Command60[22] = msr -c -l --sz -H 5 -T 5 -p ../../ -f "\.(txt|cmd|bat)$" --n
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -217,7 +217,7 @@ Run-Command60[23] = msr -c -l --sz -H 5 -T 5 -p ../../. -f "\.(txt|cmd|bat)$" --
  2-15 :  Number-Unit  Bytes	..\..\.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	..\..\.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	..\..\.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	..\..\.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	..\..\.\md5.txt
 11-15 :  Number-Unit  Bytes	..\..\.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	..\..\.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	..\..\.\windows-test.bat
@@ -230,7 +230,7 @@ Run-Command60[24] = msr -c -l --sz -H 5 -T 5 -p ../../. -f "\.(txt|cmd|bat)$" --
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -395,8 +395,8 @@ Run-Command60[45] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\deep -f "\.(txt|cmd|ba
  2-10 :  Number-Unit  Bytes	deep\not-in-latter-test.txt
  3-10 :  Number-Unit  Bytes	deep\sort-nin-test.txt
  4-10 :  Number-Unit  Bytes	deep\collection-and-description.txt
- 5-10 :  Number-Unit  Bytes	test-list-files.cmd
- 6-10 :  Number-Unit  Bytes	deep\md5.txt
+ 5-10 :  Number-Unit  Bytes	deep\md5.txt
+ 6-10 :  Number-Unit  Bytes	test-list-files.cmd
  7-10 :  Number-Unit  Bytes	color-group-test.cmd
  8-10 :  Number-Unit  Bytes	sample-file.txt
  9-10 :  Number-Unit  Bytes	test-nin.cmd
@@ -408,8 +408,8 @@ Run-Command60[46] = msr -c -l --sz -H 5 -T 5 -p .,deep\..\deep -f "\.(txt|cmd|ba
  2-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\not-in-latter-test.txt
  3-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\sort-nin-test.txt
  4-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\collection-and-description.txt
- 5-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
- 6-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+ 5-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\deep\md5.txt
+ 6-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-list-files.cmd
  7-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\color-group-test.cmd
  8-10 :  Number-Unit  Bytes	sample-file.txt
  9-10 :  Number-Unit  Bytes	.\test-dots-path.tmp\dots\test-nin.cmd
@@ -503,7 +503,7 @@ Run-Command60[57] = msr -c -l --sz -H 5 -T 5 -p .\\ -f "\.(txt|cmd|bat)$" --nf "
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat
@@ -516,7 +516,7 @@ Run-Command60[58] = msr -c -l --sz -H 5 -T 5 -p .\\ -f "\.(txt|cmd|bat)$" --nf "
  2-15 :  Number-Unit  Bytes	.\not-in-latter-test.txt
  3-15 :  Number-Unit  Bytes	.\sort-nin-test.txt
  4-15 :  Number-Unit  Bytes	.\collection-and-description.txt
- 5-15 :  Number-Unit  Bytes	.\test-list-files.cmd
+ 5-15 :  Number-Unit  Bytes	.\md5.txt
 11-15 :  Number-Unit  Bytes	.\replace-file-test.bat
 12-15 :  Number-Unit  Bytes	.\test-nin.cmd
 13-15 :  Number-Unit  Bytes	.\windows-test.bat

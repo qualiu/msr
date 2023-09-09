@@ -25,6 +25,8 @@ if [ ! -f "$msr" ] || [ ! -f "$nin" ]; then
     exit_error "Not found msr or nin as above."
 fi
 
+export MSR_USE_BRIGHT_COLOR=0
+
 $msr -p ./example-commands.bat -i -q "stop" -t "msr -c -p %~dp0\\\\?" -o "$msr -c -p ./" --nt "-o\s+.*\s+-R" -PAC | $msr -t "\s+-P(\w*)" -o '$1' -aPAC | $msr -t "\s+-(\w*)A(\w*)" -o ' -$1$2' -aPAC | $msr -t "($msr -c)" -o '$1 -PA' -aXIM > tmp-linux-color-test.log
 
 $msr -p color-group-test.cmd -t "^msr" -o $msr --nx dp0 -XIM >> tmp-linux-color-test.log

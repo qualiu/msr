@@ -31,6 +31,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -O [ --out-not-0-sum ]       Output summary only if the results count is not 0.
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
   --keep-color                 Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
+  --unix-slash arg             Set 1 to output uniform forward slash '/' on Windows + MinGW + Cygwin, like 'c:/' instead of '/c/' or '/cygdrive/c/'.
   --to-stderr                  Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
   -P [ --no-percent ]          Not output percentages (Overwrite --percentage).
   --sum                        Sum accumulative counts and percentages(if used -p) for each key/line.
@@ -48,6 +49,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -e [ --enhance ] arg         Regex pattern to color output, inferior to: -t -x. Use merged Regex value of "(-t)|-e" to enhance if used both -t and -e.
   -Y [ --not-from-pipe ]       Force reading from files other than pipe (to avoid reading pipe if running in another command).
   -c [ --show-command ]        Show command line, you can append text for debug, or extraction after -c (if append text, -c and text must be last).
+  --exit arg                   Change return value, format: [Number] or [Regex-or-Math]-to-[Exit-Code], like: '1' or '-?\d+-to-1' or 'lt0-to-1,255-to-1'.
   --verbose                    Show parsed arguments, return value, time zone, BOM rows and EXE path, etc.
   -h [ --help ]                See usage and examples below. More detail: https://github.com/qualiu/msr
 
@@ -63,7 +65,7 @@ Example-1 uses regex capture1 to get new queries: only in daily-sample.txt but n
 Example-2/3 are same: get unique(-u) lines in file and show each percentage(-p) with order.
 
 Return value/Exit code(%ERRORLEVEL%) = matched line/key count in {first file/pipe} or {mutual intersection}.
-But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux/MacOS which changed by shells like bash).
+But if return value = 0 and caught errors, will exit with return value = -1 (probably 255 on Linux/MacOS or 127 on MinGW which changed by shells like bash).
 All error messages will be output to stderr. You can redirect them to stdout by appending 2>&1 to your command line.
 
 Useful options: -H 20 -J, -H 0, -T 3, -k 30, -K 33.33, -T -1, -M, -S, -PAC, -i -u, -iuw, -iuwa, -ip, -ipa, -ipdw, -ium, iumw, -iwn, -im, -imw, -ipdPAC
@@ -71,11 +73,11 @@ Useful options: -H 20 -J, -H 0, -T 3, -k 30, -K 33.33, -T -1, -M, -S, -PAC, -i -
 -p -d : Get top distributions/percentages and sort by count/percentages with descending order.
 -w -n : Skip lines/keys both matched in latter + first files/pipe, output other keys' lines + non-matched lines (like description/comments) in first.
 
-nin treats nul as same as /dev/null on Linux.
-One important feature: nin does not change the original line order, even if used unique(-u), if no sorting (-p, -a/-d, etc.).
+nin treats Windows nul as same as /dev/null on MinGW / Cygwin / Linux / MacOS.
+One important feature: nin does not change the original line order even if used unique(-u) if no sorting of -p/-d/-a/etc.
 
 Frequent use cases as Quick-Start: Use -PAC or -PC to get pure output result.
-nin my.txt nul -u -i :      output unique lines in my.txt ignore case.
+nin my.txt nul -u -i :     output unique lines in my.txt ignore case.
 type my.txt | nin nul -ui : output unique lines in my.txt ignore case.
 nin my.txt nul "^(\w+)" -u -i :  output unique keys (captured words at each line begin) in my.txt ignore case.
 nin my.txt nul "^(\w+)" -u -wi : output unique lines (lines of the captured keys) in my.txt ignore case.
@@ -94,20 +96,23 @@ nin -h -C | nin nul "^\s{2}-(\w)\s+" -wpdi -K 5.0 : Get percentages of nin singl
 nin -h -C | nin nul "^\s{2}-(\w)\s+" -wpdi -k 2 -K 5.0 -P : Get percentages of nin single letter command options: count >= 2 and percentage >= 5% without percentage info.
 
 One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
+Search usage like: nin -h | msr -i -t return.+value  or  nin -hC | msr -it "Summary|Jump|Sort" -x out -U 2 -D2  or  nin | msr -ix switch -t Regex -e "latter|first" 
+You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
 
 With msr.exe more powerful to load files/read pipe, extract/transform, pre/post-processing: https://github.com/qualiu/msr
-For example: Get unique paths insensitive case + Show only top duplicate paths + Get one line paths without redundant slashes + separators from %PATH% to merge/set to new %PATH%:
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -uipd -k 2
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
-
-And search usage like: nin -h | msr -i -t return.*value  or  nin -hC | msr -it "Summary|Jump|Sort" -x out -U 2 -D2  or  nin | msr -ix switch -t Regex -e "latter|first" 
+Example: Get insensitive unique paths + descending sort-by-percentage to show top 2 duplicate paths + Merge trimmed one line paths to new %PATH%:
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u 
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -d -p -k 2
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
 As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
-Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
-Call@Everywhere: Add to system environment variable PATH with nin.exe parent directory: D:\lztool
+Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI + https://github.com/qualiu/vscode-msr
+Call@Everywhere: Add nin.exe to system environment variable PATH with nin.exe directory like: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
 	 or rudely but simple and permanent: copy D:\lztool\nin.exe C:\WINDOWS\
+
+
+# msr.exe -------------------------------------------------
 Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of file and directory name) by LQM:
   -r [ --recursive ]          Recursively search files in descendant directories.
   -k [ --max-depth ] arg      Maximum depth to search directories (begin depth = 1 from/for each input path). Default maximum depth = 33.
@@ -144,6 +149,7 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -O [ --out-if-did ]         Output summary info only if matched/replaced/found.
   -C [ --no-color ]           No color for output (it's better to not add color if have subsequent matching or processing).
   --keep-color                Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
+  --unix-slash arg            Set 1 to output uniform forward slash '/' on Windows + MinGW + Cygwin, like 'c:/' instead of '/c/' or '/cygdrive/c/'.
   --to-stderr                 Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
   -F [ --time-format ] arg    Regex pattern to grep time/key for -B and -E : Use captured group[0] or [1] like: "(\d{4}-\d+-\d+\D\d+:\d+:\d+([\.,]\d+)?)"
   -B [ --time-begin ] arg     Begin time/key as value of -F, like "2023-03-03 11:00:00". Just text comparison NOT by time value.
@@ -186,11 +192,12 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -u [ --show-elapse ]        Show used time (in seconds) at the head of each output line.
   -v [ --show-time ] arg      Show time at each output line head: dt,dtm,dto (s = second, m = millisecond, o = microsecond; d = date, z = zone, t = offset).
   -c [ --show-command ]       Show command line and info. You can append text after -c for debug(like: -I -c xxx) for further extraction.
+  --exit arg                  Change return value, format: [Number] or [Regex-or-Math]-to-[Exit-Code], like: '1' or '-?\d+-to-1' or 'lt0-to-1,255-to-1'.
   --verbose                   Show parsed arguments, return value, time zone and EXE path, content error rows, BOM info, link files' real paths, etc.
   -h [ --help ]               See usage and examples below. More detail: https://github.com/qualiu/msr
 
 Return value/Exit code(%ERRORLEVEL%) = matched/replaced count of lines/blocks/files in files or pipe.
-But if Return value = 0 and caught errors, will set return value = -1 (probably 255 on Linux/MacOS which changed by shells like bash).
+But if return value = 0 and caught errors, will exit with return value = -1 (probably 255 on Linux/MacOS or 127 on MinGW which changed by shells like bash).
 If used -X(--execute-out-lines): Return value = matched-stop-count if has -V else non-zero-return-count or the only one command line return value.
 All error messages will be output to stderr. You can redirect them to stdout by appending 2>&1 to your command line.
 
@@ -308,8 +315,6 @@ Can merge single char switches/options+values like: -rp -it -ix -PIC -PAC -POC -
 Useful options: -a, -H 3, -H 3 -J, -H 0, -T 3, -T -1, -M, -O, -PAC, -PIC, -POC, -POlCc, -XI, -XIP, -XA, -XO, -XOPI, -muvz, 2>&1, 2>nul (2^>nul in pipe)
 Like watching time/elapsed/matched (-muvzd): msr | msr -it show -v zdo -u -m
 
-One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
-
 Helpful commands - Just 1 command line: Preview replacing just remove -R
 (1) Remove whitespace at each line tail in each file in directories:
     msr -r -p dir-1,dir2,file1,file2 -f "\.(cpp|cxx|hp*|cs|java|scala|py)$" -t "\s+$" -o ""  -R
@@ -335,7 +340,7 @@ Helpful commands - Just 1 command line: Preview replacing just remove -R
     echo msr -p "%PATH%;" -f "\.(bat|cmd|sh)$" -t "^\s*(SET|export)\s+(\w+)=(.+)" -ix HOME -H 5 | msr -X -M && echo No results found + No errors.
     echo msr -p "%PATH%;" -f "\.(bat|cmd|sh)$" -t "^\s*(SET|export)\s+(\w+)=(.+)" -ix HOME -H 5 | msr -X -M || echo Found %ERRORLEVEL% results or Got errors + No result if return -1.
 
-Final brief instruction as Quick-Start: Use -PAC or -PIC to get pure output result like other tools: findstr/grep/egrep/etc.
+Frequent use cases as Quick-Start: Use -PAC or -PIC to get pure output result like other tools: findstr/grep/egrep/etc.
 (1) Search files by normal text finding: msr -rp folder1,fileN -x "my plain text" -P -I -C -i -c ignore case and show this command line.
 (2) Search files by general Regex match: msr -rp folder1,fileN -t ".*(capture-1).+Regex" -aPAC out all including not matched, not show this command line.
 (3) Search files + Replace output lines: msr -rp folder1,fileN -t ".*(capture-1).+Regex" -o "group \1 is same with $1 except Linux double quotes" -j just preview changes.
@@ -347,17 +352,20 @@ Final brief instruction as Quick-Start: Use -PAC or -PIC to get pure output resu
 (9) Extract key + Sort as number + Stats: msr -rp folder1,fileN -it "Key\s*=\s*(-?\d+\S*)"  -n -s ""  -c Set pattern for -s if different to -t or as you want.
 (A) Match an input string or Learn Regex: msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || echo goto show usage as no input args or input 'help' to script.
 (B) Search in pipe, Skip Head 3 + Tail 2: type my.txt | msr -it Regex-pattern -x and-plain-text -H -3 -T -2 -PIC
-(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin\Release,obj\,test" -G --xd --xf --w1 2016-02 --w2 2016-02-01T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N 3000 -H 100 -J --timeout 9.5 -m -u -v dtm -O -c Show command + Out summary only if found.
+(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin/Release,obj/,test" -G --xd --xf --w1 2023-09 --w2 2023-09-19T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N +20 -H 100 -J --timeout 9.5 --keep-color --unix-slash 1 --exit gt0-to-0,le0-to-1 -m -u -v dtm -O -c Show command Out summary only if found.
 
-Search usage like: msr -h -C | msr -i -t block.*match  or  msr | msr -it "max.*?depth|Full.*?path|jump out" -U 2 -D2  or  msr | msr -ix File -t "Preview|Replace|Execute" -e "Change|Backup|Command"
+One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
+Search usage like: msr -h -C | msr -i -t block.+match  or  msr | msr -it "max.*?depth|Jump out" -U 2 -D2  or  msr | msr -ix File -t "Preview|Replace|Execute" -e "Change|Backup"
+You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
+
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
-For example: Get unique paths insensitive case + Show only top duplicate paths + Get one line paths without redundant slashes + separators from %PATH% to merge/set to new %PATH%:
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -uipd -k 2
-    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -ui -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
+Example: Get insensitive unique paths + descending sort-by-percentage to show top 2 duplicate paths + Merge trimmed one line paths to new %PATH%:
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u 
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -d -p -k 2
+    msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
 As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
-Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI
-Call@Everywhere: Add to system environment variable PATH with msr.exe parent directory: D:\lztool
+Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI + https://github.com/qualiu/vscode-msr
+Call@Everywhere: Add msr.exe to system environment variable PATH with msr.exe directory like: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
 	 or rudely but simple and permanent: copy D:\lztool\msr.exe C:\WINDOWS\
