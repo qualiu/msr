@@ -29,7 +29,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 
 - To quickly get msr/nin without slowly cloning + storing many files: 
   - Method-1: Install a tiny extension [vscode-msr](https://marketplace.visualstudio.com/items?itemName=qualiu.vscode-msr) to **auto check + download** by system + terminal.
-  - Method-2: Manually **click the URLs** in [**msr download commands**](#msr-Color-Doc on-on-windowslinux--download-command) or [**nin download commands**](#nin-Color-Doc on-on-windowslinux--download-command).
+  - Method-2: Manually **click the URLs** in [**msr download commands**](#msr-color-doc-on-windowslinux--download-command) or [**nin download commands**](#nin-color-doc-on-windowslinux--download-command).
 - To clone all files: 
   - git clone https://github.com/qualiu/msr (run `git reset --hard origin/master` when pulling conflicts).
 - Preview functions: See HTML screenshots like [msr](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) or [nin](https://qualiu.github.io/msr/usage-by-running/nin-CentOS-7.html) or vivid colorful [**demo on Windows**](https://qualiu.github.io/msr/demo/windows-test.html).
@@ -60,7 +60,7 @@ Since 2019-07-19 a `Visual Studio Code` extension: [**vscode-msr**]( https://mar
 
 You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of using **`%SystemRoot%`** or **`/usr/bin/`** (you can also link msr to there).
 
-- [msr-Color-Doc on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell command](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
+- [msr-Color-Doc on **Windows**](https://qualiu.github.io/msr/usage-by-running/msr-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **msr** by [PowerShell](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
   - **x86_64** + **Arm64**:
     - wget https://github.com/qualiu/msr/raw/master/tools/msr.exe -O `msr.exe.tmp` && `move /y msr.exe.tmp msr.exe`  && `icacls msr.exe /grant %USERNAME%:RX` && `move msr.exe %SystemRoot%\`
   - Windows `32-bit`:
@@ -76,9 +76,12 @@ You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of usin
     - wget https://github.com/qualiu/msr/raw/master/tools/msr-i386.gcc48 -O `msr.tmp` && `mv -f msr.tmp msr` && `chmod +x msr` && `sudo mv msr /usr/bin/msr`
   - **Arm64**:
     - wget https://github.com/qualiu/msr/raw/master/tools/msr-aarch64.linux -O `msr.tmp` && `mv -f msr.tmp msr` && `chmod +x msr` && `sudo mv msr /usr/bin/msr`
+- **FreeBSD**
+  - **amd64**:
+    - wget https://github.com/qualiu/msr/raw/master/tools/msr-amd64.freebsd -O `msr.tmp` && `mv -f msr.tmp msr` && `chmod +x msr` && `sudo mv msr /usr/bin/msr`
 
 ## NIN Color Doc on Windows/Linux + Download Command
-- [nin-Color-Doc on **Windows**](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **nin** by [PowerShell command](https://github.com/qualiu/vscode-nin#or-manually-download--set-path-once-and-forever))
+- [nin-Color-Doc on **Windows**](https://qualiu.github.io/msr/usage-by-running/nin-Windows.html) + **MinGW**: (You can get `wget` by [choco](https://chocolatey.org/packages/Wget) or [cygwin](https://github.com/qualiu/msrTools/blob/master/system/install-cygwin.bat); or get **nin** by [PowerShell](https://github.com/qualiu/vscode-msr#or-manually-download--set-path-once-and-forever))
   - **x86_64** + **Arm64**:
     - wget https://github.com/qualiu/msr/raw/master/tools/nin.exe -O `nin.exe.tmp` && `move /y nin.exe.tmp nin.exe`  && `icacls nin.exe /grant %USERNAME%:RX` && `move nin.exe %SystemRoot%\`
   - Windows `32-bit`:
@@ -94,6 +97,9 @@ You can use a **`tool folder`** (already in `%PATH%` or `$PATH`) instead of usin
     - wget https://github.com/qualiu/msr/raw/master/tools/nin-i386.gcc48 -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `sudo mv nin /usr/bin/nin`
   - **Arm64**:
     - wget https://github.com/qualiu/msr/raw/master/tools/nin-aarch64.linux -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `sudo mv nin /usr/bin/nin`
+ - **FreeBSD**:
+   - **amd64**:
+     - wget https://github.com/qualiu/msr/raw/master/tools/nin-amd64.freebsd -O `nin.tmp` && `mv -f nin.tmp nin` && `chmod +x nin` && `sudo mv nin /usr/bin/nin`
 
 ## Demo and Test Screenshots
 

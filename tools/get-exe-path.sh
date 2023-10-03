@@ -17,7 +17,7 @@ SYS_ARCH=$(uname -m | awk '{print tolower($0)}')
 SYS_TYPE=$(uname -s | sed 's/[_-].*//g' | awk '{print tolower($0)}')
 DEFAULT_SUFFIX="-$SYS_ARCH.$SYS_TYPE"
 
-if [ "$SYS_TYPE" == "darwin" ] || [ "$SYS_ARCH" == "aarch64" ]; then
+if [ "$SYS_TYPE" == "darwin" ] || [ "$SYS_ARCH" == "aarch64" ] || [ "$DEFAULT_SUFFIX" == "-amd64.freebsd" ]; then
     toolSuffix=$DEFAULT_SUFFIX
 elif [ "$SYS_TYPE" == "linux" ]; then
     if [ -n "$(echo "$SYS_ARCH" | grep -iE "i386|i686")" ]; then
@@ -31,7 +31,7 @@ elif [ -n "$(echo "$SYS_TYPE" | grep -iE "MinGW")" ]; then
     toolSuffix=.exe
     echo "WARNING: MinGW is not fully supported: $0" | grep -E --color=always ".+" >&2
 else
-    exit_error "Unknow system type: $(uname -smr)"
+    echo "Unknow system type: $(uname -smr)" | grep -E --color=always ".+" >&2
     exit -1
 fi
 

@@ -31,6 +31,8 @@ msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || (
     exit /b 0
 )
 
+for /f "tokens=*" %%a in ('set ^| msr -t "^(MSR_\w+)=.*" -o "\1" -PAC') do @msr -z "%%a" -t "(.+)" -o "echo Cleared \1=%\1% | msr -aPA -t MSR_\\w+ -e =.*" -XA || @set "%%a="
+
 msr -p %0 -t "^\s*set /a TestGroupNumber\s*\+\s*=" >nul
 set /a TestGroupCount=!ERRORLEVEL!
 

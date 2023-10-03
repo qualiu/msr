@@ -1,4 +1,5 @@
 d2c46afe6dc79fe7b29d649780591ae0 msr-aarch64.linux
+156449400ef0e3ade2fc42ab687fe976 msr-amd64.freebsd
 ca94f32ad8725ff0b6b9111417127feb msr-arm64.darwin
 8f956e0c0ff1fc0c957ec329d5f20afc msr-i386.gcc48
 72a157f33586eb7208a5fdc1e585be9d msr-Win32.exe
@@ -6,6 +7,7 @@ f38bd0913f5ad40d04b98652ab9ab4a2 msr.cygwin
 4b61a2427d677f20fe035b27639c620a msr.exe
 cfd93eb517bdeeb3d9dd1ce02365e2a2 msr.gcc48
 363b94d712349c03db9743522d608547 nin-aarch64.linux
+cee3e831e3534aedaf583769f6137e8c nin-amd64.freebsd
 fe515696e0547888af4a44609a27d27e nin-arm64.darwin
 65d752c506045b3265b9f11c183fce9e nin-i386.gcc48
 a4d67ed88c1d66e2f15bcdc8bafaf003 nin-Win32.exe
