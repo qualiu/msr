@@ -2137,15 +2137,12 @@ msr -p example-commands.bat -b "::Stop calling" --nt "::Stop calling" -ix "%~dp0
 Run-Command3[1] = msr -x "#FUNCTION#" -o "'All'" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
-
 Run-Command3[2] = msr -x "#THRESHOLD_1#" -o "4000" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
-
 Run-Command3[3] = msr -x "#THRESHOLD_2#" -o "8000" -p Node1.tmp -R -H 0
 1-1 : Node1.tmp
 Replaced 1 lines(7.14%) in 1 files(100%)
-
 <Tag Name="Node1">
   <as::item ref="NodeCitOnly" />
   <as::item ref="Node1Config" />
@@ -2168,8 +2165,8 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:915: Replaced 4 lines(2.99%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:639: Replaced 4 lines(4.30%) in 1 files(100%)
 .\base-windows-file-test.log:2139: Replaced 1 lines(7.14%) in 1 files(100%)
-.\base-windows-file-test.log:2143: Replaced 1 lines(7.14%) in 1 files(100%)
-.\base-windows-file-test.log:2147: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-windows-file-test.log:2142: Replaced 1 lines(7.14%) in 1 files(100%)
+.\base-windows-file-test.log:2145: Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:157: Replaced 19 lines(7.54%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:139: Replaced 24 lines(9.52%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:152: Replaced 24 lines(9.52%) in 1 files(100%)
@@ -2181,4 +2178,4 @@ Replaced 1 lines(7.14%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:700: Replaced 11 lines(11.00%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:583: Replaced 13 lines(12.87%) in 1 files(100%)
 .\base-test-only-output-replaced-lines.log:113: Replaced 33 lines(13.10%) in 1 files(100%)
-Matched 57 lines(0.70%) in 2 files(20.00%)
+Matched 57 lines(0.74%) in 2 files(20.00%)

@@ -103,7 +103,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 6
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 7
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
@@ -113,7 +112,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -T 7
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -1
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
@@ -122,7 +120,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -1
 4-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	replace-file-test.bat
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 4
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
@@ -132,7 +129,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 4
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 5
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
@@ -142,23 +138,19 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T 5
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -4
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H 2 -T -5
 1-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	psall.bat
 2-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	pskill.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T -4
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 4
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
@@ -166,7 +158,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 4
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 5
 3-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	test-path-dots.bat
@@ -174,7 +165,6 @@ Run-Command[1] = msr -l -f \.bat$ --sz --wt -H -2 -T 5
 5-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	windows-test.bat
 6-6 :  Number-Unit  Bytes	yyyy-MM-dd HH:mm:ss	example-commands.bat
 Matched 6 files
-
  
 
 

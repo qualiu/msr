@@ -30,6 +30,7 @@ Get difference-set(not-in-latter) for first file/pipe; Or intersection-set with 
   -M [ --no-summary ]          Not output summary info.
   -O [ --out-not-0-sum ]       Output summary only if the results count is not 0.
   -C [ --no-color ]            No color for output (it's better to not add color if have subsequent matching or processing).
+  --colors arg                 Set fore_back colors for -t/-e/-x;d/f/p;m/u like: 'Red' or 't=Red,x=Yellow,e=Green' or 't = red + Yellow_Blue, x = Cyan'.
   --keep-color                 Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
   --unix-slash arg             Set 1 to output uniform forward slash '/' on Windows + MinGW + Cygwin, like 'c:/' instead of '/c/' or '/cygdrive/c/'.
   --to-stderr                  Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
@@ -97,7 +98,7 @@ nin -h -C | nin nul "^\s{2}-(\w)\s+" -wpdi -k 2 -K 5.0 -P : Get percentages of n
 
 One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
 Search usage like: nin -h | msr -i -t return.+value  or  nin -hC | msr -it "Summary|Jump|Sort" -x out -U 2 -D2  or  nin | msr -ix switch -t Regex -e "latter|first" 
-You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
+You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_COLORS, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
 
 With msr.exe more powerful to load files/read pipe, extract/transform, pre/post-processing: https://github.com/qualiu/msr
 Example: Get insensitive unique paths + descending sort-by-percentage to show top 2 duplicate paths + Merge trimmed one line paths to new %PATH%:
@@ -105,7 +106,7 @@ Example: Get insensitive unique paths + descending sort-by-percentage to show to
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -d -p -k 2
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
-As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
+As a portable cross platform tool, nin has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin / FreeBSD
 Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI + https://github.com/qualiu/vscode-msr
 Call@Everywhere: Add nin.exe to system environment variable PATH with nin.exe directory like: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
@@ -146,8 +147,9 @@ Match/Search/Replace String/Lines/Blocks in Command/Files/Pipe. (IGNORE case of 
   -I [ --no-extra ]           Not output extra info + warnings(like BOM); Hide each return info for -X; Output summary to stderr(for debug: -aPICc, -PICc).
   -P [ --no-path-line ]       Not output path and line number at the head of each line. If used -X: Not show each command line before executing.
   -M [ --no-summary ]         Not output summary info (at end). Use -A to hide when got errors. Use --not-warn-bom to hide summary for BOM.
-  -O [ --out-if-did ]         Output summary info only if matched/replaced/found.
+  -O [ --out-if-did ]         Output summary only if matched/replaced/found file/text; or execution(-X) return value = non-zero or unexpected(-V).
   -C [ --no-color ]           No color for output (it's better to not add color if have subsequent matching or processing).
+  --colors arg                Set fore_back colors for -t/-e/-x;d/f/p;m/u like: 'Red' or 't=Red,x=Yellow,e=Green' or 't = red + Yellow_Blue, x = Cyan'.
   --keep-color                Keep color of output result for Windows/MinGW - to be uniform color style with Cygwin/Linux/MacOS.
   --unix-slash arg            Set 1 to output uniform forward slash '/' on Windows + MinGW + Cygwin, like 'c:/' instead of '/c/' or '/cygdrive/c/'.
   --to-stderr                 Output result to stderr. Default: result -> stdout, error/warn/info/verbose -> stderr.
@@ -249,7 +251,7 @@ Detail instruction and examples(Quick-Start at the bottom is briefer):
 
 (6) Further extraction by summary:
     Use -c (--show-command), you can append any text to the command line.
-    Use -O to output summary only if matched/replaced/found or execution-result != 0.
+    Use -O to output summary only if matched/replaced/found file/text; or one execution(-X) return non-zero or unexpected(-V).
     Use -H 0 or -T 0 if you just want summary info, without other outputs.
     Use -J to jump out: Quit(exit) if has set -H [N] and output line count exceeds [N].
 
@@ -352,11 +354,11 @@ Frequent use cases as Quick-Start: Use -PAC or -PIC to get pure output result li
 (9) Extract key + Sort as number + Stats: msr -rp folder1,fileN -it "Key\s*=\s*(-?\d+\S*)"  -n -s ""  -c Set pattern for -s if different to -t or as you want.
 (A) Match an input string or Learn Regex: msr -z "LostArg%~1" -t "^LostArg(|-h|--help|/\?)$" > nul || echo goto show usage as no input args or input 'help' to script.
 (B) Search in pipe, Skip Head 3 + Tail 2: type my.txt | msr -it Regex-pattern -x and-plain-text -H -3 -T -2 -PIC
-(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin/Release,obj/,test" -G --xd --xf --w1 2023-09 --w2 2023-09-19T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N +20 -H 100 -J --timeout 9.5 --keep-color --unix-slash 1 --exit gt0-to-0,le0-to-1 -m -u -v dtm -O -c Show command Out summary only if found.
+(C) Replace with Many filters + Jump out: msr -r -p folder1,fileN -w path-lines-1.txt,list-3.txt -k 33 -f "\.(cs|cp*|hp*|cx*)$" --nf "test|unit" -d "^(code|src)$" --nd "^(\.git|Debug)$" --pp "code.*src" --np "bin\S*Release" --xp "bin/Release,obj/,test" -G --xd --xf --w1 2023-09 --w2 2023-09-19T23:30:01 --s1 1B --s2 1.5MB -i -x public -t "\bclass\b" -o Class -e color-extra-regex -U 3 -D 3 -b begin-line-or-block -Q block-end-regex -q stop-regex -L 10 -N +20 -H 100 -J --timeout 9.5 --keep-color --unix-slash 1 --exit gt0-to-0,le0-to-1 --colors t=Red+Red_Yellow,x=Yellow,e=Green+Cyan -m -u -v dtm -O -c Show command Out summary only if found.
 
 One limitation: Cannot process Unicode files or pipe for now; Fine with UTF-8/ANSI/etc.
 Search usage like: msr -h -C | msr -i -t block.+match  or  msr | msr -it "max.*?depth|Jump out" -U 2 -D2  or  msr | msr -ix File -t "Preview|Replace|Execute" -e "Change|Backup"
-You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
+You can preset env: MSR_EXIT, MSR_OUT_INDEX, MSR_NO_COLOR, MSR_COLORS, MSR_OUT_FULL_PATH, MSR_NOT_WARN_BOM, MSR_SKIP_LAST_EMPTY, MSR_KEEP_COLOR, MSR_UNIX_SLASH for --unix-slash / --keep-color / etc.
 
 With nin.exe more powerful to remove duplication, get exclusive/mutual key/line set, top distribution: https://github.com/qualiu/msr
 Example: Get insensitive unique paths + descending sort-by-percentage to show top 2 duplicate paths + Merge trimmed one line paths to new %PATH%:
@@ -364,7 +366,7 @@ Example: Get insensitive unique paths + descending sort-by-percentage to show to
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -d -p -k 2
     msr -z "%PATH%;" -t "\\*?\s*;\s*" -o "\n" -aPAC | nin nul "(\S+.+)" -i -u -PAC | msr -S -t "[\r\n]+(\S+)" -o ";\1" -aPAC 
 
-As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin
+As a portable cross platform tool, msr has been running on: Windows / MinGW / Cygwin / Ubuntu / CentOS / Fedora / Darwin / FreeBSD
 Aperiodic updates: https://github.com/qualiu/msr , more tools: https://github.com/qualiu/msrTools + https://github.com/qualiu/msrUI + https://github.com/qualiu/vscode-msr
 Call@Everywhere: Add msr.exe to system environment variable PATH with msr.exe directory like: D:\lztool
 	 or temporarily: SET "PATH=%PATH%;D:\lztool"
